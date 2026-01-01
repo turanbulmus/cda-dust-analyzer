@@ -127,7 +127,7 @@ def main():
                 img_data = get_last_image_data(pred_obj['request'])
                 
                 if not img_data or img_data not in request_map:
-                    # print(f"Warning: Could not match prediction {line_no} to input request.")
+                    print(f"Warning: Could not match prediction {line_no} to input request.")
                     continue
                     
                 idx = request_map[img_data]

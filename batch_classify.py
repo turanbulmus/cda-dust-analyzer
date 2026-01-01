@@ -108,32 +108,43 @@ def generate_spectrum_image_bytes(spectrum_data, title=None):
     return buf.getvalue()
 
 def get_few_shot_examples(df):
-    """Extracts reference few-shot examples (one Class 4, one Noise)."""
+    """Extracts reference few-shot examples (Class 4, Class 1, Noise)."""
     examples = []
     
-    # Class 4 Example
+    # 1. Class 4 (Target)
     cls4_subset = df[df['class'].astype(str) == '4']
     if not cls4_subset.empty:
-        # Use a specific one if possible, or just the first
-        # Ideally one with the clear peak at 640 we found
+        # Use first one or specific high-quality one
         row = cls4_subset.iloc[0]
         img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Class 4")
         examples.append({
             "label": "Class 4",
             "image": img_bytes,
-            "explanation": "Note the distinct sharp peak around index 640.",
+            "explanation": "POSITIVE MATCH. Note the distinct high-amplitude signal complex (jagged/double-peak) rising significantly above baseline in the Target Zone (X=180-400).",
             "sclk": row['sclk']
         })
     
-    # Noise Example
+    # 2. Class 1 (Distractor - Early Spike)
+    cls1_subset = df[df['class'].astype(str) == '1']
+    if not cls1_subset.empty:
+        row = cls1_subset.iloc[0]
+        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Class 1 (Non-Target)")
+        examples.append({
+            "label": "Non-Target",
+            "image": img_bytes,
+            "explanation": "NEGATIVE MATCH. Contains a strong 'Early Spike' at X<50, but the Target Zone (X=180-400) is quiet/flat. This is Class 1 (Distractor), NOT Class 4.",
+            "sclk": row['sclk']
+        })
+        
+    # 3. Noise (Distractor - Static)
     noise_subset = df[df['class'] == 'Noise']
     if not noise_subset.empty:
         row = noise_subset.iloc[0]
-        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Noise")
+        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Noise (Non-Target)")
         examples.append({
-            "label": "Noise",
+            "label": "Non-Target",
             "image": img_bytes,
-            "explanation": "Random low-amplitude fluctuations without distinctive high peaks at index 640.",
+            "explanation": "NEGATIVE MATCH. Signal resembles random chaotic static or is too weak. No distinct isolated complex in the Target Zone.",
             "sclk": row['sclk']
         })
         
@@ -505,16 +516,27 @@ def run_pipeline(dry_run=False, bucket_uri=None):
             }
             run.log_params(params)
             
-            # 3. Create Artifact for Prompt (System + User)
+            # 3. Create Artifact for Prompt (System + User + Few-Shot)
+            few_shot_ex, _ = get_few_shot_examples(df)
+            few_shot_desc = "\n".join([f"- {ex['label']}: {ex['explanation']} (SCLK: {ex['sclk']})" for ex in few_shot_ex])
+            
+            prompt_data = {
+                "system_instruction": SYSTEM_INSTRUCTION_TEXT,
+                "user_prompt": USER_PROMPT_TEXT,
+                "few_shot_examples": few_shot_desc
+            }
+            
+            # Save Locally
+            with open("experiment_prompts.json", "w") as f:
+                json.dump(prompt_data, f, indent=2)
+            print("Saved experiment_prompts.json locally.")
+
             try:
                 print("Creating Prompt Artifact in Vertex Metadata...")
                 prompt_artifact = aiplatform.Artifact.create(
                     schema_title="system.Artifact",
-                    display_name="cda_prompt_v2",
-                    metadata={
-                        "system_instruction": SYSTEM_INSTRUCTION_TEXT,
-                        "user_prompt": USER_PROMPT_TEXT
-                    }
+                    display_name="cda_prompt_v2_enhanced",
+                    metadata=prompt_data
                 )
                 print(f"Prompt Artifact created: {prompt_artifact.resource_name}")
             except Exception as e:

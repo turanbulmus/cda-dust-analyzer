@@ -1,0 +1,28 @@
+# Environment Variables
+.env
+.venv
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data & Large Files
+data/
+*.parquet
+*.jsonl
+*.csv
+batch_requests.jsonl
+predictions.jsonl
+batch_analysis_results.csv
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Experiment Tracking
+last_run_config.json
+batch_request.json

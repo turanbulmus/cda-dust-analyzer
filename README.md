@@ -27,7 +27,7 @@ This project implements an automated pipeline to identify rare **Class 4** dust 
 ### 1. Setup Environment
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/cda-dust-analyzer.git
+git clone https://github.com/turanbulmus/cda-dust-analyzer.git
 cd cda-dust-analyzer
 
 # Install dependencies

@@ -60,34 +60,58 @@ MODEL_ID = "gemini-3-pro-preview"
 BUCKET_NAME = os.environ.get("GCS_BUCKET_NAME", "your-bucket-name")
 
 # Centralized Prompts
-SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Classification System specializing in Time-of-Flight Mass Spectrometry data. Your sole objective is to correctly identify **Class 4** events while rejecting Class 1 and Noise distractors.
+SYSTEM_INSTRUCTION_TEXT = """### ROLE
+You are an expert Cosmic Dust Analyst and Spectroscopist. Your task is to classify Time-of-Flight (TOF) mass spectra data into one of three distinct categories: **Class 4**, **Class 1**, or **Noise**.
 
-**INPUT DATA:**
-- X-axis: Time-of-Flight (Indices). Note: Features may jitter/shift slightly (±20 indices).
-- Y-axis: Amplitude (Signal Intensity).
+### INPUT DATA CONTEXT
+- **X-Axis:** Represents Time-of-Flight (indices). Note that features may experience slight temporal jitter (shifting left or right by small amounts).
+- **Y-Axis:** Represents Amplitude (signal intensity).
+- **Baseline:** The signal generally oscillates around a zero baseline.
 
-**CLASS 4 DEFINITION (TARGET):**
-To classify a sample as Class 4, it MUST exhibit a **Central Signal Complex**.
-- **Location:** A distinct, high-amplitude feature located roughly between **X = 180 and X = 400** (specifically centered around 200-250 in nominal cases).
-- **Shape:** This is not typically a single narrow line; look for a "jagged" shape, a double-peak, or a complex cluster of high activity rising **significantly** above the baseline.
-- **Amplitude Requirement:** The signal in this region MUST be prominent. **Ignorable bumps, faint fluctuations, or low-amplitude noise in this region are NOT sufficient.**
+### CLASSIFICATION CRITERIA
 
-**REJECTION CRITERIA (DISTRACTORS):**
-1.  **The "Early Spike Only" (Class 1 / Simple Noise):** If the spectrum contains a prominent sharp spike at the far left (X < 50) but the region between X=180 and X=400 is flat (baseline noise only), REJECT.
-2.  **The "Wall of Static" (Chaotic Noise):** If the signal consists of continuous, high-amplitude fluctuations across the entire X-axis without distinct, isolated signal peaks, REJECT.
-3.  **Weak/Ambiguous Signals:** If the feature in the 180-400 range is weak, barely visible above baseline, or looks like random low-level noise, REJECT (Classify as Non-Target).
+You must evaluate the spectrum based on specific Regions of Interest (ROI) and assign the class that best fits the description.
 
-**OUTPUT:**
-Provide a concise analysis of the 180-400 range and a final classification: "Class 4" or "Non-Target".
-Return JSON: {"is_class_4": boolean, "reasoning": string}
+#### 1. Class 4 (Target: Complex Dust Signal)
+This is the scientific target. It is characterized by significant activity in the "mid-range" of the time-of-flight.
+- **Primary Feature:** Presence of distinct, sharp peaks in the mid-range (Indices 150–500).
+- **Key Signatures:** 
+    - Look for a high-intensity peak around **x ≈ 320**.
+    - Look for a secondary peak around **x ≈ 200**.
+    - Smaller peaks may appear around **x ≈ 150** and **x ≈ 450**.
+- **Differentiation:** Unlike Class 1 and Noise, Class 4 is **NOT** defined solely by an initial start spike. It must contain structural peaks later in the spectrum.
+
+#### 2. Class 1 (Distractor: Early Spike Event)
+This is a specific type of non-target event (often calibration or grid signals).
+- **Primary Feature:** A single, dominant, high-intensity sharp peak at the very beginning of the spectrum.
+- **Location:** The peak occurs approximately between indices **10 and 20**.
+- **Mid-Range Activity:** While the provided description focuses on the start, this class is distinguished from Class 4 by the *lack* of the specific structural peaks at 200 and 320.
+
+#### 3. Noise (Distractor: Background/Static)
+This represents instrumental artifacts or false triggers.
+- **Primary Feature:** A single, extremely sharp high-amplitude spike at the start (approx index **15**).
+- **Secondary Feature:** The rest of the spectrum is explicitly **featureless**.
+- **Mid-Range Activity:** The region from indices **200–400** is flat, showing only standard low-level baseline noise with no signal activity.
+- **Late-Range Activity:** No activity around index 640.
+
+### DECISION LOGIC
+1. **Analyze the 200–500 Index Range:** 
+   - Are there distinct peaks (especially near 200 or 320)? -> **Classify as "4"**.
+2. **Analyze the 0–50 Index Range:**
+   - Is there a massive spike here, but NO peaks in the 200–500 range? -> Proceed to step 3.
+3. **Distinguish Class 1 vs. Noise:**
+   - If the spectrum looks like a dominant start spike and the rest is explicitly "featureless" or "flat" -> **Classify as "Noise"**.
+   - If the spectrum is dominated by the start spike (indices 10-20) and lacks the specific Class 4 mid-range structure -> **Classify as "Class 1"**.
+
+### OUTPUT FORMAT
+You must output your reasoning followed by the final classification label.
+**Reasoning:** [Brief analysis of the 0-50 range and the 200-500 range]
+**Classification:** [4, 1, or Noise]
 """
 
-USER_PROMPT_TEXT = """Analyze the provided spectrum plot to determine if it belongs to **Class 4**.
+USER_PROMPT_TEXT = """Please analyze the following spectrum observation and classify it.
 
-Follow these steps:
-1.  **Scan the Central Region (X = 180 to 400):** Is there a distinct, high-amplitude signal complex in this region? Describe its shape (jagged, double-peak, etc.).
-2.  **Check for Rejection Features:** Is there *only* an early spike (X < 50) with a quiet central region? Is the signal just chaotic static? Is the central signal too weak/faint?
-3.  **Conclusion:** Based on the above, is this Class 4?"""
+Based on the criteria for Class 4 (Mid-range peaks), Class 1 (Early spike), and Noise (Featureless artifact), determine the correct class."""
 
 def generate_spectrum_image_bytes(spectrum_data, title=None):
     """Generates a PNG byte buffer of the spectrum plot."""
@@ -107,46 +131,49 @@ def generate_spectrum_image_bytes(spectrum_data, title=None):
     buf.seek(0)
     return buf.getvalue()
 
-def get_few_shot_examples(df):
+def get_few_shot_examples(df, n_per_class=4):
     """Extracts reference few-shot examples (Class 4, Class 1, Noise)."""
     examples = []
     
     # 1. Class 4 (Target)
     cls4_subset = df[df['class'].astype(str) == '4']
     if not cls4_subset.empty:
-        # Use first one or specific high-quality one
-        row = cls4_subset.iloc[0]
-        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Class 4")
-        examples.append({
-            "label": "Class 4",
-            "image": img_bytes,
-            "explanation": "POSITIVE MATCH. Note the distinct high-amplitude signal complex (jagged/double-peak) rising significantly above baseline in the Target Zone (X=180-400).",
-            "sclk": row['sclk']
-        })
+        # Take up to n_per_class
+        selected = cls4_subset.head(n_per_class)
+        for _, row in selected.iterrows():
+            img_bytes = generate_spectrum_image_bytes(row['spectrum'], title=f"Class 4 Sample {row['sclk']}")
+            examples.append({
+                "label": "Class 4",
+                "image": img_bytes,
+                "explanation": "POSITIVE MATCH (Class 4). Distinct high-amplitude signal complex (jagged/double-peak) in Target Zone (X=180-400).",
+                "sclk": row['sclk']
+            })
     
-    # 2. Class 1 (Distractor - Early Spike)
+    # 2. Class 1 (Distractor)
     cls1_subset = df[df['class'].astype(str) == '1']
     if not cls1_subset.empty:
-        row = cls1_subset.iloc[0]
-        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Class 1 (Non-Target)")
-        examples.append({
-            "label": "Non-Target",
-            "image": img_bytes,
-            "explanation": "NEGATIVE MATCH. Contains a strong 'Early Spike' at X<50, but the Target Zone (X=180-400) is quiet/flat. This is Class 1 (Distractor), NOT Class 4.",
-            "sclk": row['sclk']
-        })
+        selected = cls1_subset.head(n_per_class)
+        for _, row in selected.iterrows():
+            img_bytes = generate_spectrum_image_bytes(row['spectrum'], title=f"Class 1 Sample {row['sclk']}")
+            examples.append({
+                "label": "Class 1",
+                "image": img_bytes,
+                "explanation": "DISTRACTOR (Class 1). Strong 'Early Spike' at X<50, but Target Zone (X=180-400) is quiet.",
+                "sclk": row['sclk']
+            })
         
-    # 3. Noise (Distractor - Static)
+    # 3. Noise (Distractor)
     noise_subset = df[df['class'] == 'Noise']
     if not noise_subset.empty:
-        row = noise_subset.iloc[0]
-        img_bytes = generate_spectrum_image_bytes(row['spectrum'], title="Reference: Noise (Non-Target)")
-        examples.append({
-            "label": "Non-Target",
-            "image": img_bytes,
-            "explanation": "NEGATIVE MATCH. Signal resembles random chaotic static or is too weak. No distinct isolated complex in the Target Zone.",
-            "sclk": row['sclk']
-        })
+        selected = noise_subset.head(n_per_class)
+        for _, row in selected.iterrows():
+            img_bytes = generate_spectrum_image_bytes(row['spectrum'], title=f"Noise Sample {row['sclk']}")
+            examples.append({
+                "label": "Noise",
+                "image": img_bytes,
+                "explanation": "DISTRACTOR (Noise). Chaotic static or weak signal. No distinct complex in Target Zone.",
+                "sclk": row['sclk']
+            })
         
     return examples, [ex['sclk'] for ex in examples]
 
@@ -231,14 +258,20 @@ def create_batch_input_file(df, output_file='batch_requests.jsonl', limit=None):
 def parse_response(response_text):
     """Parses JSON response from model."""
     if not response_text:
-        return {"is_class_4": False, "reasoning": "Empty response text"}
+        return {"class_label": "Noise", "reasoning": "Empty response text"}
     try:
         # cleanup markdown code blocks if present
         text = response_text.replace("```json", "").replace("```", "").strip()
-        return json.loads(text)
+        data = json.loads(text)
+        
+        # Backwards compatibility / Safety check
+        if "is_class_4" in data and "class_label" not in data:
+            data["class_label"] = "4" if data["is_class_4"] else "Noise"
+            
+        return data
     except Exception as e:
         print(f"Error parsing JSON: {e} | Text: {response_text}")
-        return {"is_class_4": False, "reasoning": f"Parse Error: {response_text}"}
+        return {"class_label": "Noise", "reasoning": f"Parse Error: {response_text}"}
 
 def run_local_evaluation(df, limit=20):
     """Runs local evaluation on a subset of data for immediate metrics."""
@@ -275,8 +308,8 @@ def run_local_evaluation(df, limit=20):
     
     # Define Schema for Structured Output
     class ClassificationResult(BaseModel):
-        is_class_4: bool = Field(description="True if the spectrum is Class 4 (has peak at ~640), False otherwise.")
-        reasoning: str = Field(description="Detailed reasoning explaining why the spectrum matches or does not match Class 4 criteria.")
+        class_label: str = Field(description="The predicted class label. options: '4', '1', 'Noise'.")
+        reasoning: str = Field(description="Detailed reasoning for the classification based on signal features.")
 
     # Build Config
     config = types.GenerateContentConfig(
@@ -367,7 +400,7 @@ def run_local_evaluation(df, limit=20):
             resp_data = parse_response(resp_text)
             
             # Map prediction
-            pred_label = "4" if resp_data.get("is_class_4") else "Noise"
+            pred_label = resp_data.get("class_label", "Noise")
             
             results.append({
                 "sclk": s_id,

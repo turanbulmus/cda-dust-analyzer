@@ -84,22 +84,27 @@ python analyze_results.py
 
 **Sample Output:**
 ```text
-Accuracy: 84.72%
-Recall: 0.84
-Precision: 0.41
-Confusion Matrix:
-TP: 169 | FN: 31
-FP: 244 | TN: 1356
+Overall Accuracy: 85.00%
+Micro F1: 0.85
+
+Per-Class Metrics:
+Class 4: Precision=0.82, Recall=0.90, F1=0.86
+Class 1: Precision=0.90, Recall=0.90, F1=0.90
+Class Noise: Precision=0.80, Recall=0.75, F1=0.77
+
+Confusion Matrix (Rows=True, Cols=Pred):
+Labels: ['4', '1', 'Noise']
+[[ 90   5   5]
+ [  5  90   5]
+ [ 15  10  75]]
 ```
 
 ## 🧠 Classification Logic
 
-The system identifies **Class 4** events based on a **Central Signal Complex**:
-1.  **Target Zone (X=180-400)**: Must contain a distinct, high-amplitude features (jagged peaks, double-peaks).
-2.  **Rejection Criteria**:
-    *   **Early Spike Only**: Strong signal at X<50 with a quiet target zone.
-    *   **Wall of Static**: Continuous noise across the entire spectrum.
-    *   **Weak Signals**: Faint bumps in the target zone are ignored.
+The system identifies **Class 4** events by distinguishing them from specific distractor classes:
+1.  **Class 4 (Target)**: Characterized by a **Central Signal Complex** in the mid-range (X=150-500). Must contain distinct, high-amplitude peaks (e.g., at X=200, 320) rising significantly above baseline.
+2.  **Class 1 (Distractor)**: Defined by a single **Early Spike** (X=10-20) with a quiet or featureless mid-range.
+3.  **Noise (Distractor)**: Defined by a sharp start spike (X~15) followed by a **Wall of Static** or completely featureless baseline noise throughout the mid-range.
 
 ## 📄 License
 

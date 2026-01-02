@@ -30,16 +30,20 @@ def get_last_image_data(request_dict):
 def parse_model_response(response_text):
     """Parses the model's JSON response."""
     if not response_text:
-        return False, "Empty Response"
+        return "Noise", "Empty Response"
         
     cleaned_text = response_text.replace("```json", "").replace("```", "").strip()
     try:
         data = json.loads(cleaned_text)
+        # Handle new schema
+        if "class_label" in data:
+            return str(data["class_label"]), data.get("reasoning", "")
+            
+        # Backwards compatibility
         is_class_4 = data.get("is_class_4", False)
-        reasoning = data.get("reasoning", "")
-        return is_class_4, reasoning
+        return "4" if is_class_4 else "Noise", data.get("reasoning", "")
     except Exception as e:
-        return False, f"JSON Parse Error: {e} | Text: {response_text[:100]}..."
+        return "Error", f"JSON Parse Error: {e} | Text: {response_text[:100]}..."
 
 def main():
     print("Loading Ground Truth...")
@@ -139,12 +143,12 @@ def main():
                     if cands and 'content' in cands[0] and 'parts' in cands[0]['content']:
                         response_text = cands[0]['content']['parts'][0]['text']
                 
-                pred_is_c4, reasoning = parse_model_response(response_text)
+                pred_label, reasoning = parse_model_response(response_text)
                 
                 results.append({
                     "sclk": row['sclk'],
                     "true_label": str(row['class']),
-                    "pred_is_c4": pred_is_c4,
+                    "pred_label": pred_label,
                     "reasoning": reasoning
                 })
                 
@@ -158,31 +162,43 @@ def main():
     # Convert to DF
     res_df = pd.DataFrame(results)
     
-    # Metrics
-    y_true = (res_df['true_label'] == '4').astype(int)
-    y_pred = res_df['pred_is_c4'].astype(int)
+    # Filter out errors for metric calc
+    valid_df = res_df[res_df['pred_label'] != 'Error']
+    
+    y_true = valid_df['true_label'].astype(str)
+    y_pred = valid_df['pred_label'].astype(str)
     
     print("\n--- Final Evaluation Metrics ---")
-    print(f"Total Predictions Evaluated: {len(res_df)}")
-    if len(res_df) < len(df):
-        print(f"Warning: Evaluated {len(res_df)} out of {len(df)} samples.")
+    print(f"Total Predictions Evaluated: {len(valid_df)}")
+    if len(valid_df) < len(df):
+        print(f"Warning: Evaluated {len(valid_df)} out of {len(df)} samples.")
         
-    print(f"Accuracy: {accuracy_score(y_true, y_pred):.2%}")
     acc = accuracy_score(y_true, y_pred)
-    prec = precision_score(y_true, y_pred, zero_division=0)
-    rec = recall_score(y_true, y_pred, zero_division=0)
-    f1 = f1_score(y_true, y_pred, zero_division=0)
-
-    print(f"Accuracy: {acc:.2%}")
-    print(f"Precision: {prec:.2f}")
-    print(f"Recall: {rec:.2f}")
-    print(f"F1 Score: {f1:.2f}")
     
-    cm = confusion_matrix(y_true, y_pred)
-    tn, fp, fn, tp = cm.ravel()
-    print("Confusion Matrix:")
-    print(f"TN: {tn} | FP: {fp}")
-    print(f"FN: {fn} | TP: {tp}")
+    # Multiclass Metrics
+    # labels=['4', '1', 'Noise'] to ensure order
+    labels = ['4', '1', 'Noise']
+    
+    prec_micro = precision_score(y_true, y_pred, average='micro', zero_division=0)
+    rec_micro = recall_score(y_true, y_pred, average='micro', zero_division=0)
+    f1_micro = f1_score(y_true, y_pred, average='micro', zero_division=0)
+    
+    # Class-specific metrics
+    prec_per_class = precision_score(y_true, y_pred, average=None, labels=labels, zero_division=0)
+    rec_per_class = recall_score(y_true, y_pred, average=None, labels=labels, zero_division=0)
+    f1_per_class = f1_score(y_true, y_pred, average=None, labels=labels, zero_division=0)
+
+    print(f"Overall Accuracy: {acc:.2%}")
+    print(f"Micro F1: {f1_micro:.2f}")
+    
+    print("\nPer-Class Metrics:")
+    for i, label in enumerate(labels):
+        print(f"Class {label}: Precision={prec_per_class[i]:.2f}, Recall={rec_per_class[i]:.2f}, F1={f1_per_class[i]:.2f}")
+    
+    cm = confusion_matrix(y_true, y_pred, labels=labels)
+    print("\nConfusion Matrix (Rows=True, Cols=Pred):")
+    print(f"Labels: {labels}")
+    print(cm)
 
     # --- EXPERIMENT TRACKING LOGGING ---
     try:
@@ -206,14 +222,14 @@ def main():
                 with aiplatform.start_run(run_name, resume=True) as run:
                     metrics = {
                         "accuracy": acc,
-                        "recall": rec,
-                        "precision": prec,
-                        "f1_score": f1,
-                        "true_positives": int(tp),
-                        "false_negatives": int(fn),
-                        "false_positives": int(fp),
-                        "true_negatives": int(tn)
+                        "f1_micro": f1_micro
                     }
+                    # Add per-class metrics
+                    for i, label in enumerate(labels):
+                        metrics[f"precision_class_{label}"] = prec_per_class[i]
+                        metrics[f"recall_class_{label}"] = rec_per_class[i]
+                        metrics[f"f1_class_{label}"] = f1_per_class[i]
+                        
                     run.log_metrics(metrics)
                     print("Metrics logged successfully.")
             else:
@@ -225,13 +241,12 @@ def main():
     res_df.to_csv("batch_analysis_results.csv", index=False)
     print("\nDetailed results saved to 'batch_analysis_results.csv'")
     
-    fps = res_df[(y_true == 0) & (y_pred == 1)]
-    fns = res_df[(y_true == 1) & (y_pred == 0)]
-    
-    if not fps.empty:
-        print(f"\nExample False Positive Reasoning (Sample {fps.iloc[0]['sclk']}):\n{fps.iloc[0]['reasoning']}")
-    if not fns.empty:
-        print(f"\nExample False Negative Reasoning (Sample {fns.iloc[0]['sclk']}):\n{fns.iloc[0]['reasoning']}")
+    # Example Errors
+    for label in labels:
+        misclassified = res_df[(res_df['true_label'] == label) & (res_df['pred_label'] != label) & (res_df['pred_label'] != 'Error')]
+        if not misclassified.empty:
+            sample = misclassified.iloc[0]
+            print(f"\nExample Misclassification for Class {label} (Pred: {sample['pred_label']}, SCLK: {sample['sclk']}):\n{sample['reasoning']}")
 
 if __name__ == "__main__":
     main()

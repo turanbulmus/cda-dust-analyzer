@@ -6,6 +6,7 @@ import time
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+import json
 from datetime import datetime
 
 # Reuse image generation from batch_classify to ensure consistency
@@ -37,7 +38,7 @@ def analyze_samples():
 
     # Sample Data
     classes = ['4', '1', 'Noise']
-    samples_per_class = 10
+    samples_per_class = 4
     
     analysis_results = {}
 
@@ -103,7 +104,7 @@ def analyze_samples():
     print("\nSynthesizing Optimized Prompt...")
     
     synthesis_prompt = """You are a prompt engineer for a cosmic dust classification system.
-    I have analyzed 10 samples each from Class 4 (Target), Class 1 (Distractor), and Noise (Distractor).
+    I have analyzed 4 samples each from Class 4 (Target), Class 1 (Distractor), and Noise (Distractor).
     
     Here are the observations:
     
@@ -116,17 +117,17 @@ def analyze_samples():
     ### Noise Observations
     {noise_obs}
     
-    Based on these observations, identify the MOST ROBUST distinguishing features for Class 4.
+    Based on these observations, identify the distinguishing features for EACH class.
     
     CRITICAL: 
     - X-axis is Time (Time-of-Flight). Features might jitter/shift slightly in time.
-    - Y-axis is Amplitude. Look for high signal-to-noise ratio features.
-    - Don't just rely on rigid X-indices; describe the SHAPE and RELATIVE locations if relevant.
+    - Y-axis is Amplitude.
     
     Write a SYSTEM INSTRUCTION and a USER PROMPT that:
-    1. Clearly defines Class 4 criteria based on the verified features (e.g., peak locations).
-    2. Explicitly lists rejection criteria for features common in Class 1 or Noise but absent in Class 4.
-    3. Is concise and unambiguous.
+    1.  CLASSIFICATION TASK: The model must classify the spectrum into one of three classes: "4", "1", or "Noise".
+    2.  Define specific criteria for Class 4 (Target).
+    3.  Define specific criteria for Class 1 (Distractor - Early Spike).
+    4.  Define specific criteria for Noise (Distractor - Background/Static).
     
     Output format:
     ---SYSTEM_INSTRUCTION_START---
@@ -146,20 +147,42 @@ def analyze_samples():
         final_response = client.models.generate_content(
             model=MODEL_ID,
             contents=[types.Content(role="user", parts=[types.Part.from_text(text=synthesis_prompt)])],
-            config=types.GenerateContentConfig(temperature=0.5, max_output_tokens=2048)
+            config=types.GenerateContentConfig(temperature=0.5, max_output_tokens=8192)
         )
         
         if final_response.text:
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            filename = f"optimized_prompt_{timestamp}.txt"
+            
+            # Archive prompt and examples
+            archive_dir = "archive"
+            os.makedirs(archive_dir, exist_ok=True)
+            
+            # Save raw text
+            filename = f"{archive_dir}/optimized_prompt_{timestamp}.txt"
             with open(filename, "w") as f:
                 f.write(final_response.text)
+                
+            # Save structured archive
+            archive_data = {
+                "timestamp": timestamp,
+                "model_id": MODEL_ID,
+                "generated_prompt": final_response.text,
+                "observations": analysis_results
+            }
+            archive_json = f"{archive_dir}/optimize_run_{timestamp}.json"
+            with open(archive_json, "w") as f:
+                json.dump(archive_data, f, indent=2)
+                
             print(f"\nOptimized prompt saved to: {filename}")
+            print(f"Archive data saved to: {archive_json}")
             print("-" * 40)
             print(final_response.text)
             print("-" * 40)
         else:
             print("Error: Empty response for synthesis.")
+            print(f"Response Candidates: {final_response.candidates}")
+            if final_response.prompt_feedback:
+                print(f"Prompt Feedback: {final_response.prompt_feedback}")
             
     except Exception as e:
         print(f"Error during synthesis: {e}")

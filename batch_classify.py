@@ -60,63 +60,68 @@ MODEL_ID = "gemini-3-pro-preview"
 BUCKET_NAME = os.environ.get("GCS_BUCKET_NAME", "your-bucket-name")
 
 # Centralized Prompts
-SYSTEM_INSTRUCTION_TEXT = """### ROLE
-You are an expert Cosmic Dust Analyst and Spectroscopist. Your task is to classify Time-of-Flight (TOF) mass spectra data into one of three distinct categories: **Class 4**, **Class 1**, or **Noise**.
+SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Spectroscopist. Your task is to classify Time-of-Flight mass spectra into one of three categories: **Class 4**, **Class 1**, or **Noise**.
 
-### INPUT DATA CONTEXT
-- **X-Axis:** Represents Time-of-Flight (indices). Note that features may experience slight temporal jitter (shifting left or right by small amounts).
-- **Y-Axis:** Represents Amplitude (signal intensity).
-- **Baseline:** The signal generally oscillates around a zero baseline.
+### CRITICAL BIAS CORRECTION
+**Do not default to "Noise" simply because a spectrum looks messy, hairy, or has a high baseline.**
+*   **Class 4** often contains "messy" signals with peaks embedded in static. If there is structural complexity in the mid-range (Indices 150-500), it is likely Class 4.
+*   **Noise** must be strictly defined as lacking distinct structural peaks in the mid-range.
 
-### CLASSIFICATION CRITERIA
+### CLASSIFICATION DEFINITIONS
 
-You must evaluate the spectrum based on specific Regions of Interest (ROI) and assign the class that best fits the description.
+**1. CLASS 4 (Target: Organic/Complex)**
+*   **Primary Identifier:** Distinct structural activity in the **Mid-Range (Indices 150-500)**.
+*   **Key Features:** Look for peaks centered roughly around **X ≈ 200** and **X ≈ 320**.
+*   **Tolerance:** These peaks may be sharp or they may be broader/messy. They may be embedded in a "hairy" baseline. As long as there is discernible vertical amplitude in this region that is distinct from the background floor, it is Class 4.
+*   **REPEATING PATTERNS:** Look for **periodicity** or repeating structural motifs in the spectra. If the signal looks like it has a repeating pattern (even if complex/messy), it is likely Class 4.
+*   **Start:** May or may not have an initial start spike.
 
-#### 1. Class 4 (Target: Complex Dust Signal)
-This is the scientific target. It is characterized by significant activity in the "mid-range" of the time-of-flight.
-- **Primary Feature:** Presence of distinct, sharp peaks in the mid-range (Indices 150–500).
-- **Key Signatures:** 
-    - Look for a high-intensity peak around **x ≈ 320**.
-    - Look for a secondary peak around **x ≈ 200**.
-    - Smaller peaks may appear around **x ≈ 150** and **x ≈ 450**.
-- **Differentiation:** Unlike Class 1 and Noise, Class 4 is **NOT** defined solely by an initial start spike. It must contain structural peaks later in the spectrum.
+**2. CLASS 1 (Distractor: Elemental/Simple)**
+*   **Primary Identifier:** A dominant **Early Spike (Indices 0-50)** followed by a **Quiet Mid-Range**.
+*   **Key Features:** The start spike is usually high amplitude (often >2x the background).
+*   **Mid-Range:** The region from 150-600 is relatively featureless. It may have low-level grass, but it lacks the distinct peaks (200/320) seen in Class 4.
 
-#### 2. Class 1 (Distractor: Early Spike Event)
-This is a specific type of non-target event (often calibration or grid signals).
-- **Primary Feature:** A single, dominant, high-intensity sharp peak at the very beginning of the spectrum.
-- **Location:** The peak occurs approximately between indices **10 and 20**.
-- **Mid-Range Activity:** While the provided description focuses on the start, this class is distinguished from Class 4 by the *lack* of the specific structural peaks at 200 and 320.
-
-#### 3. Noise (Distractor: Background/Static)
-This represents instrumental artifacts or false triggers.
-- **Primary Feature:** A single, extremely sharp high-amplitude spike at the start (approx index **15**).
-- **Secondary Feature:** The rest of the spectrum is explicitly **featureless**.
-- **Mid-Range Activity:** The region from indices **200–400** is flat, showing only standard low-level baseline noise with no signal activity.
-- **Late-Range Activity:** No activity around index 640.
+**3. NOISE (Distractor: Artifacts)**
+*   **Primary Identifier:** Lack of chemical structure.
+*   **Sub-Type A (Flat):** Low amplitude random static across the whole plot.
+*   **Sub-Type B (Spike Only):** A single spike at **X ≈ 15** (similar to Class 1) but with a **completely flat or "grassy" baseline** afterwards.
+*   **Sub-Type C (Hump):** A broad, featureless elevation or "hump" in the baseline without distinct vertical peaks.
 
 ### DECISION LOGIC
-1. **Analyze the 200–500 Index Range:** 
-   - Are there distinct peaks (especially near 200 or 320)? -> **Classify as "4"**.
-2. **Analyze the 0–50 Index Range:**
-   - Is there a massive spike here, but NO peaks in the 200–500 range? -> Proceed to step 3.
-3. **Distinguish Class 1 vs. Noise:**
-   - If the spectrum looks like a dominant start spike and the rest is explicitly "featureless" or "flat" -> **Classify as "Noise"**.
-   - If the spectrum is dominated by the start spike (indices 10-20) and lacks the specific Class 4 mid-range structure -> **Classify as "Class 1"**.
-
-### OUTPUT FORMAT
-You must output your reasoning followed by the final classification label.
-**Reasoning:** [Brief analysis of the 0-50 range and the 200-500 range]
-**Classification:** [4, 1, or Noise]
+1.  **Check 150-500 Range:** Are there peaks (specifically near 200 or 320) OR **repeating patterns**?
+    *   YES -> **Class 4** (Even if noisy).
+    *   NO -> Go to step 2.
+2.  **Check 0-50 Range:** Is there a distinct start spike?
+    *   YES (and mid-range is empty) -> **Class 1**.
+    *   NO (or just random static/hump) -> **Noise**.
 """
 
-USER_PROMPT_TEXT = """Please analyze the following spectrum observation and classify it.
+USER_PROMPT_TEXT = """Analyze the spectral data provided in the image. Focus on the **Time-of-Flight (X-axis)** and **Amplitude (Y-axis)**.
 
-Based on the criteria for Class 4 (Mid-range peaks), Class 1 (Early spike), and Noise (Featureless artifact), determine the correct class."""
+**Data Analysis Steps:**
+1.  **Analyze the Start (Indices 0-50):** Is there a sharp, high-amplitude spike here?
+2.  **Analyze the Mid-Range (Indices 150-500):**
+    *   Are there peaks visible around **X=200** or **X=320**?
+    *   Is the signal "hairy" or elevated? (Note: If yes, favor Class 4 over Noise).
+    *   Is this region flat/featureless? (Note: If yes, favor Class 1 or Noise).
+3.  **Check for Repeating Patterns:**
+    *   Are there **periodic vertical structures** or specific repeating shapes in the signal? (Strong indicator of Class 4).
+    *   Do peaks repeat at regular intervals?
+4.  **Compare Signal-to-Noise:** Do the mid-range features stand out against the local baseline, even slightly?
+
+**Final Classification:**
+Based on the logic above, determine the class.
+*   If Mid-Range Peaks (200/320) OR Repeating Patterns exist -> **Class 4**
+*   If Strong Start Spike + Empty Mid-Range -> **Class 1**
+*   If Featureless/Flat/Hump -> **Noise**
+
+Return only the class name: **Class 4**, **Class 1**, or **Noise**."""
 
 def generate_spectrum_image_bytes(spectrum_data, title=None):
     """Generates a PNG byte buffer of the spectrum plot."""
     plt.figure(figsize=(12, 6))
-    plt.plot(spectrum_data, color='black', linewidth=2)
+    # Use Log Scale as requested
+    plt.semilogy(spectrum_data, color='black', linewidth=1.5)
     # Highlight Class 4 region
     plt.axvspan(180, 400, color='green', alpha=0.1, label='Class 4 Region')
     # Highlight Noise region
@@ -145,7 +150,7 @@ def get_few_shot_examples(df, n_per_class=4):
             examples.append({
                 "label": "Class 4",
                 "image": img_bytes,
-                "explanation": "POSITIVE MATCH (Class 4). Distinct high-amplitude signal complex (jagged/double-peak) in Target Zone (X=180-400).",
+                "explanation": "POSITIVE MATCH (Class 4). Distinct high-amplitude signal complex or repeating patterns in Target Zone (X=180-400).",
                 "sclk": row['sclk']
             })
     
@@ -287,17 +292,20 @@ def run_local_evaluation(df, limit=20):
         print("No key found. Save it as an environment variable and try again.")
         return
      
-    # Prepare Balanced Subset
+    # Prepare Balanced Subset (3 Classes)
     df_c4 = df[df['class'].astype(str) == '4']
+    df_c1 = df[df['class'].astype(str) == '1']
     df_noise = df[df['class'] == 'Noise']
     
-    n_samples = limit // 2
+    n_per_class = max(1, limit // 3)
+    
     subset = pd.concat([
-        df_c4.head(n_samples),
-        df_noise.head(n_samples)
+        df_c4.head(n_per_class),
+        df_c1.head(n_per_class),
+        df_noise.head(n_per_class)
     ]).sample(frac=1, random_state=42) # Shuffle
     
-    print(f"Evaluating on {len(subset)} samples ({len(df_c4.head(n_samples))} Class 4, {len(df_noise.head(n_samples))} Noise)...")
+    print(f"Evaluating on {len(subset)} samples ({len(df_c4.head(n_per_class))} Class 4, {len(df_c1.head(n_per_class))} Class 1, {len(df_noise.head(n_per_class))} Noise)...")
     
     # Get Few-Shot Context (shared across calls)
     few_shot_context, _ = get_few_shot_examples(df)
@@ -429,29 +437,22 @@ def run_local_evaluation(df, limit=20):
         print("No successful predictions.")
         return results
 
-    # Normalize labels for metric calc (Target=4, Negative=Noise)
-    y_true_bin = [1 if x == '4' else 0 for x in y_true]
-    y_pred_bin = [1 if x == '4' else 0 for x in y_pred]
-    
-    # Simple Metrics
-    tp = sum([1 for t, p in zip(y_true_bin, y_pred_bin) if t == 1 and p == 1])
-    fp = sum([1 for t, p in zip(y_true_bin, y_pred_bin) if t == 0 and p == 1])
-    fn = sum([1 for t, p in zip(y_true_bin, y_pred_bin) if t == 1 and p == 0])
-    tn = sum([1 for t, p in zip(y_true_bin, y_pred_bin) if t == 0 and p == 0])
-    
-    accuracy = (tp + tn) / len(y_true_bin) if y_true_bin else 0
-    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
-    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+    # Multiclass Metrics using sklearn
+    from sklearn.metrics import classification_report, confusion_matrix
     
     print("\n--- Evaluation Results ---")
-    print(f"Accuracy: {accuracy:.2%}")
-    print(f"Precision (Class 4): {precision:.2f}")
-    print(f"Recall (Class 4): {recall:.2f}")
-    print(f"F1 Score: {f1:.2f}")
-    cm = [[tp, fn], [fp, tn]]
-    print(f"Confusion Matrix (TP, FN, FP, TN):\n{cm}")
-    
+    if y_true:
+        # labels argument ensures we get all classes even if some are missing in preds
+        target_names = ['4', '1', 'Noise'] 
+        print(classification_report(y_true, y_pred, labels=target_names))
+        
+        print("Confusion Matrix (Rows=True, Cols=Pred):")
+        labels = ['4', '1', 'Noise']
+        cm = confusion_matrix(y_true, y_pred, labels=labels)
+        print(f"Labels: {labels}")
+        print(cm)
+    else:
+        print("No valid predictions to evaluate.")
     return results
 
 def run_pipeline(dry_run=False, bucket_uri=None):

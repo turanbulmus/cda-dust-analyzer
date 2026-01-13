@@ -55,6 +55,17 @@ Run a rapid verification on 20 random samples to verify the model logic:
 python batch_classify.py --local-eval
 ```
 
+### 3. Automated Feature Research (Optimization)
+**Recommended Step**: Run this *before* large scale batch processing to ensure the prompt is tuned to the current data.
+```bash
+python optimize_prompt.py
+```
+**What this does:**
+1.  **Selects** random samples from each class.
+2.  **Analyzes** them using Gemini to extract features.
+3.  **Synthesizes** a new System Instruction and User Prompt.
+4.  **Updates** `batch_classify.py` automatically with the new prompt.
+
 ### 4. Full Batch Processing
 Submit the entire dataset (e.g., 1800 samples) to Vertex AI, wait for completion, and automatically analyze results:
 
@@ -99,10 +110,15 @@ Labels: ['4', '1', 'Noise']
  [ 15  10  75]]
 ```
 
+
+
 ## 🧠 Classification Logic
 
-The system identifies **Class 4** events by distinguishing them from specific distractor classes:
-1.  **Class 4 (Target)**: Characterized by a **Central Signal Complex** in the mid-range (X=150-500). Must contain distinct, high-amplitude peaks (e.g., at X=200, 320) rising significantly above baseline.
+The system identifies **Class 4** events by distinguishing them from specific distractor classes. Plots are generated using **Logarithmic Scale** to visualize full dynamic range.
+
+1.  **Class 4 (Target)**: Characterized by:
+    *   **Mid-Range Peaks**: Distinct peaks (e.g., at X=200, 320) rising available baseline.
+    *   **Repeating Patterns**: Periodic vertical structures or repeating motifs in the mid-range (even if messy).
 2.  **Class 1 (Distractor)**: Defined by a single **Early Spike** (X=10-20) with a quiet or featureless mid-range.
 3.  **Noise (Distractor)**: Defined by a sharp start spike (X~15) followed by a **Wall of Static** or completely featureless baseline noise throughout the mid-range.
 

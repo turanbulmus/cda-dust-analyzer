@@ -104,7 +104,7 @@ def analyze_samples():
     print("\nSynthesizing Optimized Prompt...")
     
     synthesis_prompt = """You are a prompt engineer for a cosmic dust classification system.
-    I have analyzed 4 samples each from Class 4 (Target), Class 1 (Distractor), and Noise (Distractor).
+    I have analyzed 10 samples each from Class 4 (Target), Class 1 (Distractor), and Noise (Distractor).
     
     Here are the observations:
     
@@ -117,17 +117,30 @@ def analyze_samples():
     ### Noise Observations
     {noise_obs}
     
-    Based on these observations, identify the distinguishing features for EACH class.
+    *** CRITICAL FEEDBACK FROM PREVIOUS MODEL RUN ***
+    The previous prompt failed significantly by classifying Class 4 and Class 1 samples as "Noise". 
+    It suffered from "Conservative Bias", where any spectral complexity was dismissed as "chaotic static".
+    
+    Specific Failure Examples:
+    1. Class 4 misclassified as Noise: The model saw a "single high-amplitude spike" and "chaotic low-level static" but missed the mid-range peaks because they weren't "distinct" enough for its strict criteria.
+    2. Class 1 misclassified as Noise: The model rejected Class 1 because the "Early Spike" wasn't seen as the *identifying* feature, but rather as just an artifact, and the rest was "featureless".
+    
+    CORRECTION REQUIRED:
+    - You MUST explicitly define "Noise" as having *truly* no structure (flat baseline). If there is "hairy" or "messy" signal in the mid-range (indices 150-500), it is likely Class 4, NOT Noise.
+    - Class 4 peaks might be embedded in some noise. Do not require "perfect clean peaks". 
+    - Differentiate Class 1 from Noise: Class 1 has a *very strong* start spike (often >2x background) and a *relatively* quiet mid-range, but maybe not perfectly flat.
+    
+    Based on these observations and corrections, identify the MOST ROBUST distinguishing features for Class 4.
     
     CRITICAL: 
     - X-axis is Time (Time-of-Flight). Features might jitter/shift slightly in time.
-    - Y-axis is Amplitude.
+    - Y-axis is Amplitude. Look for high signal-to-noise ratio features.
+    - Don't just rely on rigid X-indices; describe the SHAPE and RELATIVE locations if relevant.
     
     Write a SYSTEM INSTRUCTION and a USER PROMPT that:
-    1.  CLASSIFICATION TASK: The model must classify the spectrum into one of three classes: "4", "1", or "Noise".
-    2.  Define specific criteria for Class 4 (Target).
-    3.  Define specific criteria for Class 1 (Distractor - Early Spike).
-    4.  Define specific criteria for Noise (Distractor - Background/Static).
+    1. Clearly defines Class 4 criteria based on the verified features (e.g., peak locations).
+    2. Explicitly lists rejection criteria for features common in Class 1 or Noise but absent in Class 4.
+    3. Is concise and unambiguous.
     
     Output format:
     ---SYSTEM_INSTRUCTION_START---
@@ -178,6 +191,63 @@ def analyze_samples():
             print("-" * 40)
             print(final_response.text)
             print("-" * 40)
+            
+            # --- AUTO-UPDATE PIPELINE ---
+            try:
+                print("\nInitiating Auto-Update of batch_classify.py...")
+                
+                # 1. Parse Response
+                import re
+                
+                sys_instruction_match = re.search(r'---SYSTEM_INSTRUCTION_START---(.*?)---SYSTEM_INSTRUCTION_END---', final_response.text, re.DOTALL)
+                user_prompt_match = re.search(r'---USER_PROMPT_START---(.*?)---USER_PROMPT_END---', final_response.text, re.DOTALL)
+                
+                if sys_instruction_match and user_prompt_match:
+                    new_sys_inst = sys_instruction_match.group(1).strip()
+                    new_user_prompt = user_prompt_match.group(1).strip()
+                    
+                    target_file = 'batch_classify.py'
+                    with open(target_file, 'r') as f:
+                        code = f.read()
+                    
+                    # Backup
+                    backup_file = f"{target_file}.bak"
+                    with open(backup_file, 'w') as f:
+                        f.write(code)
+                    print(f"Backup created at {backup_file}")
+                    
+                    # Replace SYSTEM_INSTRUCTION_TEXT
+                    # Look for SYSTEM_INSTRUCTION_TEXT = """..."""
+                    # We use a robust regex that handles potential multiline strings
+                    
+                    # Note: expecting triple quotes in the target file
+                    code = re.sub(
+                        r'SYSTEM_INSTRUCTION_TEXT = """(.*?)"""', 
+                        f'SYSTEM_INSTRUCTION_TEXT = """{new_sys_inst}"""', 
+                        code, 
+                        flags=re.DOTALL
+                    )
+                    
+                    # Replace USER_PROMPT_TEXT
+                    code = re.sub(
+                        r'USER_PROMPT_TEXT = """(.*?)"""', 
+                        f'USER_PROMPT_TEXT = """{new_user_prompt}"""', 
+                        code, 
+                        flags=re.DOTALL
+                    )
+                    
+                    with open(target_file, 'w') as f:
+                        f.write(code)
+                        
+                    print(f"SUCCESS: {target_file} updated with new optimal prompt.")
+                    
+                else:
+                    print("Error: Could not parse prompt blocks from synthesis response. Update skipped.")
+                    print("Ensure the model output contains ---SYSTEM_INSTRUCTION_START--- blocks.")
+                    
+            except Exception as update_e:
+                print(f"Error during auto-update: {update_e}")
+                
         else:
             print("Error: Empty response for synthesis.")
             print(f"Response Candidates: {final_response.candidates}")

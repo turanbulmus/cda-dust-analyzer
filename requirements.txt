@@ -6,3 +6,12 @@ matplotlib
 python-dotenv
 pydantic
 scikit-learn
+
+ipykernel
+jupyterlab
+numpy
+ipython
+
+huggingface_hub
+tqdm
+pyarrow

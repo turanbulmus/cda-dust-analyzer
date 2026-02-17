@@ -1,0 +1,16 @@
+# Get a Pyhton image
+FROM python:3.13.8-trixie
+
+WORKDIR /app
+
+# Set some meta information
+LABEL description="Remote Container for CDA project development"
+LABEL version="1.0"
+
+# Copy and install requirements first (for better layer caching)
+COPY requirements.txt ./
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Don't copy the source code here - it will be mounted by devcontainer
+# The pip install -e . will be done in postCreateCommand in devcontainer.json
+# after the workspace is mounted

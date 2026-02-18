@@ -20,6 +20,74 @@ from .tools.utils import create_batch_input_file
 configs = Config()
 SHARED_STATE = {}
 
+class DataFetchAndParseAgent(BaseAgent):
+    """Fetches raw spectra from HuggingFace, filtering, cropping, and log-scaling it into a unified parquet dataset."""
+    
+    @override
+    async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        inference_path = SHARED_STATE.get("inference_path")
+        if inference_path not in ["local", "batch"]:
+            return
+
+        out_path = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
+        if os.path.exists(out_path):
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Processed data file {out_path} already exists. Skipping fetch and parse.")]))
+            return
+            
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Fetching and processing spectra from HuggingFace... (this may take a moment)")]))
+        
+        import huggingface_hub
+        import pandas as pd
+        import numpy as np
+        
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        
+        REPO_ID = "CosmicDustGroup/cassini-cda-spectra"
+        FILENAME_INF = "data/lvl2/cda_qm_spectra_pre2008277_inf_lvl2.parquet"
+        FILENAME_TRAIN = "data/lvl2/cda_qm_spectra_pre2008277_train_lvl2.parquet"
+        
+        # Download files
+        file_inf_path = huggingface_hub.hf_hub_download(repo_id=REPO_ID, filename=FILENAME_INF, repo_type="dataset")
+        file_train_path = huggingface_hub.hf_hub_download(repo_id=REPO_ID, filename=FILENAME_TRAIN, repo_type="dataset")
+        
+        train_df = pd.read_parquet(file_train_path)
+        inf_df = pd.read_parquet(file_inf_path)
+        
+        # 1018 filtering
+        train_df_1018 = train_df[train_df['spectrum'].apply(len) == 1018].copy()
+        inf_df_1018 = inf_df[inf_df['spectrum'].apply(len) == 1018].copy()
+        
+        # Crop spectra to index 10 to 640
+        def crop_spectrum(spectrum):
+            return spectrum[10:641]
+            
+        train_df_1018['spectrum'] = train_df_1018['spectrum'].apply(crop_spectrum)
+        inf_df_1018['spectrum'] = inf_df_1018['spectrum'].apply(crop_spectrum)
+        
+        # Re-assign labels
+        train_df_1018['class'] = train_df_1018['class'].apply(lambda x: '?' if "X" in x else x)
+        
+        class_3_df_1018 = train_df_1018[train_df_1018['class'] == '3'].copy()
+        train_df_1018 = train_df_1018[train_df_1018['class'] != '3']
+        inf_df_1018 = pd.concat([inf_df_1018, class_3_df_1018], ignore_index=True)
+        
+        # Scaling
+        def qm_scaling(spectrum):
+            spectrum = np.log10(spectrum + np.abs(np.min(spectrum)))
+            spectrum = np.nan_to_num(spectrum, neginf=0)
+            spectrum = (spectrum - np.min(spectrum)) / (np.max(spectrum) - np.min(spectrum))
+            return spectrum
+
+        train_df_1018['spectrum'] = train_df_1018['spectrum'].apply(qm_scaling)
+        inf_df_1018['spectrum'] = inf_df_1018['spectrum'].apply(qm_scaling)
+        
+        # Unify for inference simulation (assuming inference file has no labels, or we just keep all data available for pipeline)
+        # We will keep train_df_1018 as our primary dataset for the pipeline to draw from, simulating the provided 'cda_sample'
+        train_df_1018.to_parquet(out_path)
+        
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Data fetched, cropped, scaled, and saved to {out_path}.")]))
+
+
 class RoutingAgent(BaseAgent):
     """Prompts the user to choose between local or batch inference."""
     
@@ -47,10 +115,12 @@ class RoutingAgent(BaseAgent):
 
 class FewShotAnnotationAgent(BaseAgent):
     """Interactively prompts user for few-shot explanations."""
-    data_path: str = "cda_dust_agent/data/raw/cda_sample.parquet"
+    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        import os
+        import json
         if SHARED_STATE.get("inference_path") not in ["local", "batch"]:
             return
             
@@ -61,9 +131,56 @@ class FewShotAnnotationAgent(BaseAgent):
         
         # Initialize
         if not fsa_state:
+            os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
+            cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
+            
+            if os.path.exists(cache_file):
+                import json
+                # Verify cache has items
+                with open(cache_file, "r") as f:
+                    if len(f.readlines()) > 0:
+                        SHARED_STATE["fsa_state"] = "check_cache"
+                        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Found cached explanations. Would you like to use them? [y/n] (Selecting 'n' will overwrite them): ")]))
+                        return
+                    
             SHARED_STATE["fsa_state"] = "ask_n"
             yield Event(author=self.name, content=Content(parts=[Part.from_text(text="How many few-shot examples per class should we use? [default: 2]: ")]))
             return
+                
+        if fsa_state == "check_cache":
+            use_cache = False
+            if ctx.user_content and ctx.user_content.parts:
+                text = ctx.user_content.parts[0].text.strip().lower()
+                if "y" in text:
+                    use_cache = True
+            
+            if use_cache:
+                import json
+                import base64
+                cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
+                cached_ex = []
+                with open(cache_file, "r") as f:
+                    for line in f:
+                        if line.strip():
+                            entry = json.loads(line)
+                            if "image_base64" in entry:
+                                # Reverse the base64 string back into bytes for the pipeline
+                                entry["image"] = base64.b64decode(entry["image_base64"])
+                            cached_ex.append(entry)
+                        
+                SHARED_STATE["few_shot_examples"] = cached_ex
+                SHARED_STATE["used_ids"] = [ex["sclk"] for ex in cached_ex]
+                SHARED_STATE["fsa_state"] = "done"
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Loaded {len(cached_ex)} cached examples. Proceeding to inference...")]))
+                return
+            else:
+                # Clear the cache file since we are intentionally ignoring it
+                cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
+                if os.path.exists(cache_file):
+                    os.remove(cache_file)
+                SHARED_STATE["fsa_state"] = "ask_n"
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="How many few-shot examples per class should we use? [default: 2]: ")]))
+                return
             
         if fsa_state == "ask_n":
             n_per_class = 2
@@ -90,8 +207,8 @@ class FewShotAnnotationAgent(BaseAgent):
             import matplotlib.pyplot as plt
             plt.figure(figsize=(12, 6))
             plt.semilogy(first_cand["spectrum"], color='black', linewidth=1.5)
-            plt.axvspan(180, 400, color='green', alpha=0.1, label='Class 4 Region')
-            plt.axvspan(0, 50, color='red', alpha=0.1, label='Noise Region')
+            plt.axvspan(170, 390, color='green', alpha=0.1, label='Class 4 Region')
+            plt.axvspan(0, 40, color='red', alpha=0.1, label='Noise Region')
             plt.title(f"{first_cand['label']} Sample {first_cand['sclk']}")
             plt.grid(True)
             plt.show(block=False)
@@ -116,12 +233,31 @@ class FewShotAnnotationAgent(BaseAgent):
             
             img_bytes = generate_spectrum_image_bytes(np.array(current_cand["spectrum"]), title=f"{current_cand['label']} Sample {current_cand['sclk']}")
             
-            SHARED_STATE["few_shot_examples"].append({
+            # Base64 Encode the image for immediate caching
+            import base64
+            img_b64 = base64.b64encode(img_bytes).decode('utf-8')
+            
+            new_example = {
                 "label": current_cand["label"],
                 "image": img_bytes,
                 "explanation": explanation,
                 "sclk": current_cand["sclk"]
-            })
+            }
+            SHARED_STATE["few_shot_examples"].append(new_example)
+            
+            # Eager Cache Saving
+            import json
+            import os
+            os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
+            cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
+            
+            save_ex = new_example.copy()
+            save_ex["image_base64"] = img_b64
+            del save_ex["image"]
+            
+            # Append this specific example to the file immediately
+            with open(cache_file, "a") as f:
+                f.write(json.dumps(save_ex) + "\n")
             
             import matplotlib.pyplot as plt
             if plt.fignum_exists(plt.gcf().number):
@@ -134,8 +270,8 @@ class FewShotAnnotationAgent(BaseAgent):
                 
                 plt.figure(figsize=(12, 6))
                 plt.semilogy(next_cand["spectrum"], color='black', linewidth=1.5)
-                plt.axvspan(180, 400, color='green', alpha=0.1, label='Class 4 Region')
-                plt.axvspan(0, 50, color='red', alpha=0.1, label='Noise Region')
+                plt.axvspan(170, 390, color='green', alpha=0.1, label='Class 4 Region')
+                plt.axvspan(0, 40, color='red', alpha=0.1, label='Noise Region')
                 plt.title(f"{next_cand['label']} Sample {next_cand['sclk']}")
                 plt.grid(True)
                 plt.show(block=False)
@@ -147,12 +283,14 @@ class FewShotAnnotationAgent(BaseAgent):
                 SHARED_STATE["fsa_state"] = "done"
                 yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Few-shot annotations complete.")]))
                 SHARED_STATE["used_ids"] = [ex["sclk"] for ex in SHARED_STATE["few_shot_examples"]]
+                
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="All explanations saved to cache for future runs.")]))
                 return
 
 class DataPrepAgent(BaseAgent):
     """Reads parquet data, extracts few-shot examples, and generates JSONL."""
     bucket_name: str
-    data_path: str = "cda_dust_agent/data/raw/cda_sample.parquet"
+    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
     limit: int = 0
     
     @override
@@ -183,7 +321,7 @@ class DataPrepAgent(BaseAgent):
 class LocalInferenceAgent(BaseAgent):
     """Runs local inference using Gemini SDK directly."""
     model_id: str
-    data_path: str = "cda_dust_agent/data/raw/cda_sample.parquet"
+    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
     limit: int = 5
     
     @override
@@ -484,16 +622,22 @@ class ResultAnalysisAgent(BaseAgent):
             
             # Load ground truth
             # We assume it matches the original data parsed in DataPrepAgent
-            df = pd.read_parquet("cda_dust_agent/data/raw/cda_sample.parquet")
+            df = pd.read_parquet("cda_dust_agent/data/raw/cda_processed_sample.parquet")
             
             y_true = []
             y_pred = []
             explanations = []
             matched_sclks = []
-            
-            used_ids = set(SHARED_STATE.get("used_ids", []))
+            # Ensure truth_map keys are strictly integer-strings to avoid float matching mismatch ('123.0' vs '123')
+            truth_map = {}
+            used_ids = set(SHARED_STATE.get("used_ids") or [])
             df_eval = df[~df['sclk'].isin(used_ids)]
-            truth_map = {str(k): str(v) for k, v in df_eval.set_index('sclk')['class'].to_dict().items()}
+            for k, v in df_eval.set_index('sclk')['class'].to_dict().items():
+                try:
+                    clean_k = str(int(float(k)))
+                except ValueError:
+                    clean_k = str(k)
+                truth_map[clean_k] = str(v)
             
             for p in preds:
                 resp_text = ""
@@ -526,6 +670,7 @@ class ResultAnalysisAgent(BaseAgent):
                 pred_id = parsed.get("id")
                 explanation = parsed.get("explanation", "")
                 if pred_id is not None:
+                    # Clean the ID string: Models sometimes return "123.0" instead of "123"
                     try:
                         clean_id = str(int(float(pred_id)))
                     except ValueError:
@@ -568,7 +713,8 @@ root_agent = SequentialAgent(
     name=configs.agent_settings.name,
     sub_agents=[
         RoutingAgent(name="Routing"),
-        FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_sample.parquet"),
+        DataFetchAndParseAgent(name="DataFetchAndParse"),
+        FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_processed_sample.parquet"),
         DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),
         LocalInferenceAgent(name="LocalInference", model_id=configs.agent_settings.model),
         BatchSubmissionAgent(name="BatchSubmission", project_id=configs.agent_settings.project_id, model_id=configs.agent_settings.model),

@@ -4,6 +4,7 @@
 venv/
 env/
 .agent
+.adk
 cda_dust_agent/.adk
 # Python
 __pycache__/

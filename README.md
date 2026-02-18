@@ -87,5 +87,4 @@ A brief overview of the high-level structures in this repository:
   - `tools/`: Supportive scripts like `utils.py` for dynamic image plotting, few-shot prompt construction, and JSON structure management.
   - `data/`: Contains project data organized by pipeline stages (`raw/`, `input/`, `output/`, `results/`).
 - `Notebooks/`: Contains raw experimental data exploration and parsing scratchpads.
-- `scripts/legacy/`: Contains previous, standalone scripts that were used before migrating to the structured ADK framework.
-- `optimize_prompt.py` (Legacy/Research): An automated script used to conduct recursive prompt engineering experiments and autowrite configurations like `SYSTEM_INSTRUCTION_TEXT` into the main application.
+- `scripts/`: Contains various scripts used in the development process, including updating the README.md file with the latest agent diagram.

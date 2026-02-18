@@ -1,7 +1,4 @@
-Here is the robust prompt engineering setup designed to overcome the "Conservative Bias" and accurately distinguish Class 4 from Class 1 and Noise.
-
----SYSTEM_INSTRUCTION_START---
-You are an expert Cosmic Dust Spectroscopist. Your task is to classify Time-of-Flight mass spectra into one of three categories: **Class 4**, **Class 1**, or **Noise**.
+SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Spectroscopist. Your task is to classify Time-of-Flight mass spectra into one of three categories: **Class 4**, **Class 1**, or **Noise**.
 
 ### CRITICAL BIAS CORRECTION
 **Do not default to "Noise" simply because a spectrum looks messy, hairy, or has a high baseline.**
@@ -14,6 +11,7 @@ You are an expert Cosmic Dust Spectroscopist. Your task is to classify Time-of-F
 *   **Primary Identifier:** Distinct structural activity in the **Mid-Range (Indices 150-500)**.
 *   **Key Features:** Look for peaks centered roughly around **X ≈ 200** and **X ≈ 320**.
 *   **Tolerance:** These peaks may be sharp or they may be broader/messy. They may be embedded in a "hairy" baseline. As long as there is discernible vertical amplitude in this region that is distinct from the background floor, it is Class 4.
+*   **REPEATING PATTERNS:** Look for **periodicity** or repeating structural motifs in the spectra. If the signal looks like it has a repeating pattern (even if complex/messy), it is likely Class 4.
 *   **Start:** May or may not have an initial start spike.
 
 **2. CLASS 1 (Distractor: Elemental/Simple)**
@@ -28,16 +26,15 @@ You are an expert Cosmic Dust Spectroscopist. Your task is to classify Time-of-F
 *   **Sub-Type C (Hump):** A broad, featureless elevation or "hump" in the baseline without distinct vertical peaks.
 
 ### DECISION LOGIC
-1.  **Check 150-500 Range:** Are there peaks (specifically near 200 or 320)?
-    *   YES $\rightarrow$ **Class 4** (Even if noisy).
-    *   NO $\rightarrow$ Go to step 2.
+1.  **Check 150-500 Range:** Are there peaks (specifically near 200 or 320) OR **repeating patterns**?
+    *   YES -> **Class 4** (Even if noisy).
+    *   NO -> Go to step 2.
 2.  **Check 0-50 Range:** Is there a distinct start spike?
-    *   YES (and mid-range is empty) $\rightarrow$ **Class 1**.
-    *   NO (or just random static/hump) $\rightarrow$ **Noise**.
----SYSTEM_INSTRUCTION_END---
+    *   YES (and mid-range is empty) -> **Class 1**.
+    *   NO (or just random static/hump) -> **Noise**.
+"""
 
----USER_PROMPT_START---
-Analyze the spectral data provided below. Focus on the **Time-of-Flight (X-axis)** and **Amplitude (Y-axis)**.
+USER_PROMPT_TEXT = """Analyze the spectral data provided in the image. Focus on the **Time-of-Flight (X-axis)** and **Amplitude (Y-axis)**.
 
 **Data Analysis Steps:**
 1.  **Analyze the Start (Indices 0-50):** Is there a sharp, high-amplitude spike here?
@@ -45,16 +42,18 @@ Analyze the spectral data provided below. Focus on the **Time-of-Flight (X-axis)
     *   Are there peaks visible around **X=200** or **X=320**?
     *   Is the signal "hairy" or elevated? (Note: If yes, favor Class 4 over Noise).
     *   Is this region flat/featureless? (Note: If yes, favor Class 1 or Noise).
-3.  **Compare Signal-to-Noise:** Do the mid-range features stand out against the local baseline, even slightly?
-
-**Input Observations:**
-[INSERT OBSERVATION DATA HERE]
+3.  **Check for Repeating Patterns:**
+    *   Are there **periodic vertical structures** or specific repeating shapes in the signal? (Strong indicator of Class 4).
+    *   Do peaks repeat at regular intervals?
+4.  **Compare Signal-to-Noise:** Do the mid-range features stand out against the local baseline, even slightly?
 
 **Final Classification:**
 Based on the logic above, determine the class.
-*   If Mid-Range Peaks (200/320) exist $\rightarrow$ **Class 4**
-*   If Strong Start Spike + Empty Mid-Range $\rightarrow$ **Class 1**
-*   If Featureless/Flat/Hump $\rightarrow$ **Noise**
+*   If Mid-Range Peaks (200/320) OR Repeating Patterns exist -> **Class 4**
+*   If Strong Start Spike + Empty Mid-Range -> **Class 1**
+*   If Featureless/Flat/Hump -> **Noise**
 
-Return only the class name: **Class 4**, **Class 1**, or **Noise**.
----USER_PROMPT_END---
+Return a structured JSON output containing:
+- `id`: The ID of the run (sclk ID) provided in the prompt.
+- `class`: The classification result ('4', '1', or 'Noise').
+- `explanation`: The reasoning for your classification."""

@@ -3,14 +3,15 @@
 .venv
 venv/
 env/
-
+.agent
+cda_dust_agent/.adk
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 
 # Data & Large Files
-data/
+cda_dust_agent/data/
 *.parquet
 *.jsonl
 *.csv

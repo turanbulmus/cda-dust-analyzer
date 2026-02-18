@@ -1,127 +1,56 @@
-# CDA Dust Analyzer
+# CDA Dust Analyzer Agent
 
-**A Multimodal Classification System for Cosmic Dust Analyzer (CDA) Spectra using Gemini 3.0 Pro.**
+This repository contains the **CDA Dust Analyzer Agent**, built with the Google Agent Development Kit (ADK). The agent is designed to classify Time-of-Flight (ToF) mass spectra into three distinct categories:
+- **Class 4**: Target organic/complex spectra with mid-range structural activity.
+- **Class 1**: Distractor elemental/simple spectra with a dominant early spike.
+- **Noise**: Artifacts lacking chemical structure.
 
-This project implements an automated pipeline to identify rare **Class 4** dust impact events from Time-of-Flight mass spectrometry data. It leverages Google's **Gemini 3.0 Pro - Preview** Model via Vertex AI to analyze spectral plots as images, achieving high recall through visually-grounded logical reasoning.
+It interacts with the Gemini API to run inference on samples using structured outputs. It supports both **local inference** (via direct Gemini SDK calls) and **batch inference** (via Vertex AI Batch Prediction API) allowing users to choose the right path dynamically.
 
-## 🚀 Key Features
+## Folder Structure
 
--   **Multimodal Analysis**: Converts raw spectral data into high-contrast visualizations for Gemini consumption.
--   **Automated Feature Discovery**: Includes a pipeline (`optimize_prompt.py`) that empirically derives classification rules from ground-truth samples.
--   **Global Batch Processing**: Implements a hybrid submission system (`Python` SDK + `curl`) to bypass regional model availability restrictions.
--   **High Accuracy**: Achieved **84% Recall** and **85% Accuracy** on a balanced dataset of 1800 samples.
+A brief overview of the high-level structures in this repository:
 
-## 📂 Repository Structure
+- `cda_dust_agent/`: Contains the core ADK agent components.
+  - `agent.py`: Defines the sequential agent graph (`RoutingAgent`, `FewShotAnnotationAgent`, `DataPrepAgent`, `LocalInferenceAgent`, `BatchSubmissionAgent`, `BatchPollingAgent`, `ResultAnalysisAgent`).
+  - `config.py`: Configuration settings using Pydantic, pulling from environment variables.
+  - `prompts.py`: Houses the core classification definitions and user prompts.
+  - `tools/`: Supportive scripts like `utils.py` for dynamic image plotting, few-shot prompt construction, and JSON structure management.
+  - `data/`: Contains project data organized by pipeline stages.
+    - `raw/`: Stores the raw dataset (e.g., `cda_sample.parquet`) for inference.
+    - `input/`: Generated artifacts sent directly to Gemini models (e.g., `local_requests.jsonl` and `batch_requests.jsonl`).
+    - `output/`: Local and downloaded batch model responses (e.g., `predictions.jsonl`).
+    - `results/`: Processed analysis and evaluation output produced by the ResultAnalysisAgent. Specifically, `results.csv` includes the explicit `sclk` target ID, the `true_class`, the `predicted_class`, and the detailed reasoning within `explanation`.
+- `scripts/legacy/`: Contains previous, standalone scripts (`batch_classify.py`, `analyze_results.py`) that were used before migrating to the structured ADK framework.
 
-| File | Description |
-| :--- | :--- |
-| `batch_classify.py` | **Core Pipeline.** Handles local evaluation and global batch submission. |
-| `optimize_prompt.py` | **Research Tool.** Derives classification rules from data. |
-| `analyze_results.py` | **Analysis.** Computes metrics from batch output. |
-| `download_results.py` | **Utility.** Downloads predictions from GCS. |
-| `data/` | **Data Directory.** Contains input parquet files. |
-| `archive/` | **History.** Initial prompts and baseline results. |
+## Prerequisites
 
-## 🛠️ Usage
+- [Google Agent Development Kit (ADK) Python SDK](https://github.com/google/agent-development-kit)
+- Python 3.10+
+- The `.venv` environment initialized and active.
+- Configured access to the Vertex AI API (Gemini 3.0 Pro).
 
-### 1. Setup Environment
+## Running the Agent
+
+This agent uses the interactive ADK CLI to trace state locally. Once inside your Virtual Environment (`source .venv/bin/activate`), run the agent and interact with it via the command line or the UI:
+
+### CLI Interaction
 ```bash
-# Clone the repository
-git clone https://github.com/turanbulmus/cda-dust-analyzer.git
-cd cda-dust-analyzer
-
-# Install dependencies
-pip install -r requirements.txt
+# Run the conversational agent via CLI
+adk run cda_dust_agent
 ```
+1. **Routing:** The agent will first prompt you to choose between **local** and **batch** inference.
+   - Type `local` to sample the parquet and intelligently generate inferences from Gemini synchronously.
+   - Type `batch` to generate the bulk payload, submit to the Vertex AI Batch prediction queue, and poll for results asynchronously.
+2. **Interactive Few-Shot Annotation:** Designed to give explicit feedback loops, the `FewShotAnnotationAgent` dynamically highlights samples utilizing `matplotlib`. You iteratively provide expert explanations for each class representation, guiding the multi-shot accuracy.
+3. **Execution & Analysis:** Following annotation, either `LocalInferenceAgent` or `BatchSubmissionAgent` invokes Gemini based on your routing choice. Finally, `ResultAnalysisAgent` correlates the sample ID outputs (`sclk`) and evaluation `explanation` alongside the metrics matrix, saving the comprehensive data table contextually.
 
-### 2. Authentication
-This project requires Google Cloud credentials.
-*   **Local Evaluation**: Copy the example environment file and fill in your configuration:
-    ```bash
-    cp .env.example .env
-    # Edit .env to set:
-    # - GOOGLE_CLOUD_API_KEY
-    # - GOOGLE_CLOUD_PROJECT
-    # - GCS_BUCKET_NAME
-    ```
-*   **Batch Processing**: requires Application Default Credentials (ADC):
-    ```bash
-    gcloud auth application-default login
-    ```
-
-### 3. Quick Start (Local)
-Run a rapid verification on 20 random samples to verify the model logic:
+### ADK Web Interface
 ```bash
-python batch_classify.py --local-eval
+# Host the UI development server
+adk web
 ```
+You can access the chat interface at `http://127.0.0.1:8000`.
 
-### 3. Automated Feature Research (Optimization)
-**Recommended Step**: Run this *before* large scale batch processing to ensure the prompt is tuned to the current data.
-```bash
-python optimize_prompt.py
-```
-**What this does:**
-1.  **Selects** random samples from each class.
-2.  **Analyzes** them using Gemini to extract features.
-3.  **Synthesizes** a new System Instruction and User Prompt.
-4.  **Updates** `batch_classify.py` automatically with the new prompt.
-
-### 4. Full Batch Processing
-Submit the entire dataset (e.g., 1800 samples) to Vertex AI, wait for completion, and automatically analyze results:
-
-If `GCS_BUCKET_NAME` is set in your `.env` file (recommended):
-```bash
-python batch_classify.py
-```
-
-Otherwise, specify the bucket manually:
-```bash
-python batch_classify.py --bucket gs://YOUR_BUCKET_NAME
-```
-
-**What this does:**
-1.  **Generates** a JSONL input file from the dataset.
-2.  **Uploads** it to your GCS bucket.
-3.  **Submits** a Batch Prediction Job to the Global Endpoint.
-4.  **Polls** the job status every 30 seconds until completion.
-5.  **Downloads** the predictions (`predictions.jsonl`) automatically.
-6.  **Runs Analysis** (`analyze_results.py`) to generate a report and log metrics to Vertex AI Experiments.
-
-### 5. Manual Analysis (Optional)
-If you need to re-run analysis on downloaded predictions or analyze a previous run:
-```bash
-python analyze_results.py
-```
-
-**Sample Output:**
-```text
-Overall Accuracy: 85.00%
-Micro F1: 0.85
-
-Per-Class Metrics:
-Class 4: Precision=0.82, Recall=0.90, F1=0.86
-Class 1: Precision=0.90, Recall=0.90, F1=0.90
-Class Noise: Precision=0.80, Recall=0.75, F1=0.77
-
-Confusion Matrix (Rows=True, Cols=Pred):
-Labels: ['4', '1', 'Noise']
-[[ 90   5   5]
- [  5  90   5]
- [ 15  10  75]]
-```
-
-
-
-## 🧠 Classification Logic
-
-The system identifies **Class 4** events by distinguishing them from specific distractor classes. Plots are generated using **Logarithmic Scale** to visualize full dynamic range.
-
-1.  **Class 4 (Target)**: Characterized by:
-    *   **Mid-Range Peaks**: Distinct peaks (e.g., at X=200, 320) rising available baseline.
-    *   **Repeating Patterns**: Periodic vertical structures or repeating motifs in the mid-range (even if messy).
-2.  **Class 1 (Distractor)**: Defined by a single **Early Spike** (X=10-20) with a quiet or featureless mid-range.
-3.  **Noise (Distractor)**: Defined by a sharp start spike (X~15) followed by a **Wall of Static** or completely featureless baseline noise throughout the mid-range.
-
-## 📄 License
-
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+## Batch Output
+For batch inferences, results are uploaded to the configured GCS bucket (e.g., `gs://<your-bucket-name>/output`), and optionally downloaded locally by the `ResultAnalysisAgent` once the job succeeds.

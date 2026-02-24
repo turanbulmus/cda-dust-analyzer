@@ -25,14 +25,41 @@ class DataFetchAndParseAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
+
+        if SHARED_STATE.get("data_fetched"):
+            return
+
         inference_path = SHARED_STATE.get("inference_path")
         if inference_path not in ["local", "batch"]:
             return
 
-        out_path = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
-        if os.path.exists(out_path):
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Processed data file {out_path} already exists. Skipping fetch and parse.")]))
-            return
+        train_out_path = "cda_dust_agent/data/raw/cda_train.parquet"
+        test_out_path = "cda_dust_agent/data/testing/cda_test.parquet"
+        inf_out_path = "cda_dust_agent/data/raw/cda_inf.parquet"
+        
+        if "data_fetch_prompted" not in SHARED_STATE:
+            if os.path.exists(train_out_path) and os.path.exists(test_out_path) and os.path.exists(inf_out_path):
+                SHARED_STATE["data_fetch_prompted"] = True
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Processed data files {train_out_path}, {test_out_path}, and {inf_out_path} already exist. Do you want to download and preprocess them again? [y/n]: ")]))
+                return
+            else:
+                SHARED_STATE["data_fetch_prompted"] = True
+                SHARED_STATE["data_fetch_choice"] = "y"
+                
+        if "data_fetch_choice" not in SHARED_STATE:
+            choice = "n"
+            if ctx.user_content and ctx.user_content.parts:
+                text = ctx.user_content.parts[0].text.strip().lower()
+                if "y" in text:
+                    choice = "y"
+            SHARED_STATE["data_fetch_choice"] = choice
+            
+            if choice == "n":
+                SHARED_STATE["data_fetched"] = True
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Skipping fetch and parse.")]))
+                return
             
         yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Fetching and processing spectra from HuggingFace... (this may take a moment)")]))
         
@@ -40,7 +67,8 @@ class DataFetchAndParseAgent(BaseAgent):
         import pandas as pd
         import numpy as np
         
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        os.makedirs(os.path.dirname(train_out_path), exist_ok=True)
+        os.makedirs(os.path.dirname(test_out_path), exist_ok=True)
         
         REPO_ID = "CosmicDustGroup/cassini-cda-spectra"
         FILENAME_INF = "data/lvl2/cda_qm_spectra_pre2008277_inf_lvl2.parquet"
@@ -81,46 +109,108 @@ class DataFetchAndParseAgent(BaseAgent):
         train_df_1018['spectrum'] = train_df_1018['spectrum'].apply(qm_scaling)
         inf_df_1018['spectrum'] = inf_df_1018['spectrum'].apply(qm_scaling)
         
-        # Unify for inference simulation (assuming inference file has no labels, or we just keep all data available for pipeline)
-        # We will keep train_df_1018 as our primary dataset for the pipeline to draw from, simulating the provided 'cda_sample'
-        train_df_1018.to_parquet(out_path)
+        from sklearn.model_selection import StratifiedShuffleSplit
         
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Data fetched, cropped, scaled, and saved to {out_path}.")]))
+        # Filter out classes with fewer than 2 samples to allow stratified splitting
+        class_counts = train_df_1018['class'].value_counts()
+        valid_classes = class_counts[class_counts >= 2].index
+        df_to_split = train_df_1018[train_df_1018['class'].isin(valid_classes)].reset_index(drop=True)
+        
+        sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+        for train_index, test_index in sss.split(df_to_split, df_to_split['class']):
+            train_data = df_to_split.iloc[train_index]
+            test_data = df_to_split.iloc[test_index]
+            
+        few_shot_n = SHARED_STATE.get("few_shot_n", 10)
+        test_n = SHARED_STATE.get("test_n", None)
+            
+        # Cap training data
+        train_data = train_data.groupby('class').head(few_shot_n).reset_index(drop=True)
+        
+        # Cap test data if test_n is set
+        if test_n is not None:
+            test_data = test_data.groupby('class').head(test_n).reset_index(drop=True)
+        
+        train_data.to_parquet(train_out_path)
+        test_data.to_parquet(test_out_path)
+        inf_df_1018.to_parquet(inf_out_path)
+        
+        SHARED_STATE["data_fetched"] = True
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Data fetched, split (80/20), capped at {few_shot_n} per class for training, and saved to {train_out_path}, {test_out_path}, and {inf_out_path}.")]))
 
 
 class RoutingAgent(BaseAgent):
-    """Prompts the user to choose between local or batch inference."""
+    """Prompts the user to choose between local or batch inference, and whether to use test mode."""
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if SHARED_STATE.get("inference_path") in ["local", "batch"]:
+        if SHARED_STATE.get("routing_done"):
             return
 
-        choice = None
-        if ctx.user_content and ctx.user_content.parts:
-            text = ctx.user_content.parts[0].text.strip().lower()
-            if text in ["local", "batch"]:
-                choice = text
-            elif "local" in text:
-                choice = "local"
-            elif "batch" in text:
-                choice = "batch"
+        if "inference_path" not in SHARED_STATE:
+            choice = None
+            if ctx.user_content and ctx.user_content.parts:
+                text = ctx.user_content.parts[0].text.strip().lower()
+                if text in ["local", "batch"]:
+                    choice = text
+                elif "local" in text:
+                    choice = "local"
+                elif "batch" in text:
+                    choice = "batch"
 
-        if not choice:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Run (local) inference or (batch) inference? [local/batch]: ")]))
+            if not choice:
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Run (local) inference or (batch) inference? [local/batch]: ")]))
+                return
+
+            SHARED_STATE["inference_path"] = choice
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Selected inference path: {choice}")]))
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Enable test mode? [y/n]: ")]))
             return
-
-        SHARED_STATE["inference_path"] = choice
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Selected inference path: {choice}")]))
+            
+        if "test_mode" not in SHARED_STATE:
+            test_mode = False
+            if ctx.user_content and ctx.user_content.parts:
+                text = ctx.user_content.parts[0].text.strip().lower()
+                if "y" in text:
+                    test_mode = True
+            
+            SHARED_STATE["test_mode"] = test_mode
+            if test_mode:
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Enter number of few-shot examples per class and number of test samples per class (e.g., '3 5'): ")]))
+                return
+            else:
+                SHARED_STATE["routing_done"] = True
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Test mode enabled: {test_mode}")]))
+                return
+                
+        if SHARED_STATE.get("test_mode") and not SHARED_STATE.get("routing_done"):
+            few_shot_n = 3
+            test_n = 5
+            if ctx.user_content and ctx.user_content.parts:
+                text = ctx.user_content.parts[0].text.strip()
+                parts = text.split()
+                if len(parts) >= 2:
+                    try:
+                        few_shot_n = int(parts[0])
+                        test_n = int(parts[1])
+                    except ValueError:
+                        pass
+            SHARED_STATE["few_shot_n"] = few_shot_n
+            SHARED_STATE["test_n"] = test_n
+            SHARED_STATE["routing_done"] = True
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Test mode configured: {few_shot_n} few-shot per class, {test_n} test samples per class.")]))
+            return
 
 class FewShotAnnotationAgent(BaseAgent):
-    """Interactively prompts user for few-shot explanations."""
-    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
+    """Automatically generates few-shot explanations using Gemini."""
+    data_path: str = "cda_dust_agent/data/raw/cda_train.parquet"
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         import os
         import json
+        if not SHARED_STATE.get("routing_done"):
+            return
         if SHARED_STATE.get("inference_path") not in ["local", "batch"]:
             return
             
@@ -140,12 +230,12 @@ class FewShotAnnotationAgent(BaseAgent):
                 with open(cache_file, "r") as f:
                     if len(f.readlines()) > 0:
                         SHARED_STATE["fsa_state"] = "check_cache"
-                        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Found cached explanations. Would you like to use them? [y/n] (Selecting 'n' will overwrite them): ")]))
+                        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Found cached explanations. Would you like to use them? [y/n] (Selecting 'n' will overwrite them and auto-generate new ones): ")]))
                         return
                     
-            SHARED_STATE["fsa_state"] = "ask_n"
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="How many few-shot examples per class should we use? [default: 2]: ")]))
-            return
+            SHARED_STATE["fsa_state"] = "auto_annotate"
+            fsa_state = "auto_annotate"
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="No cache found. Starting automatic few-shot annotation with Gemini...")]))
                 
         if fsa_state == "check_cache":
             use_cache = False
@@ -178,123 +268,97 @@ class FewShotAnnotationAgent(BaseAgent):
                 cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
                 if os.path.exists(cache_file):
                     os.remove(cache_file)
-                SHARED_STATE["fsa_state"] = "ask_n"
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="How many few-shot examples per class should we use? [default: 2]: ")]))
-                return
+                SHARED_STATE["fsa_state"] = "auto_annotate"
+                fsa_state = "auto_annotate"
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Starting automatic few-shot annotation with Gemini...")]))
             
-        if fsa_state == "ask_n":
-            n_per_class = 2
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip()
-                if text.isdigit():
-                    n_per_class = int(text)
-            SHARED_STATE["n_per_class"] = n_per_class
-            SHARED_STATE["fsa_state"] = "annotating"
-            SHARED_STATE["fsa_current_idx"] = 0
-            SHARED_STATE["few_shot_examples"] = []
-            
+        if fsa_state == "auto_annotate":
+            n_per_class = SHARED_STATE.get("few_shot_n", 10)
             df = pd.read_parquet(self.data_path)
-            from .tools.utils import get_few_shot_candidates
+            from .tools.utils import get_few_shot_candidates, generate_spectrum_image_bytes
             candidates = get_few_shot_candidates(df, n_per_class=n_per_class)
-            SHARED_STATE["fsa_candidates"] = candidates
             
             if not candidates:
                  SHARED_STATE["fsa_state"] = "done"
                  return
                  
-            # Prompt for first candidate
-            first_cand = candidates[0]
-            import matplotlib.pyplot as plt
-            plt.figure(figsize=(12, 6))
-            plt.semilogy(first_cand["spectrum"], color='black', linewidth=1.5)
-            plt.axvspan(170, 390, color='green', alpha=0.1, label='Class 4 Region')
-            plt.axvspan(0, 40, color='red', alpha=0.1, label='Noise Region')
-            plt.title(f"{first_cand['label']} Sample {first_cand['sclk']}")
-            plt.grid(True)
-            plt.show(block=False)
-            plt.pause(0.1)
+            SHARED_STATE["few_shot_examples"] = []
             
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Please provide an explanation for {first_cand['label']} (sclk: {first_cand['sclk']}): ")]))
-            return
-            
-        if fsa_state == "annotating":
-            candidates = SHARED_STATE["fsa_candidates"]
-            current_idx = SHARED_STATE["fsa_current_idx"]
-            
-            explanation = "No explanation provided."
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip()
-                if text:
-                    explanation = text
-                
-            current_cand = candidates[current_idx]
-            from .tools.utils import generate_spectrum_image_bytes
+            from google import genai
+            from google.genai import types
+            import base64
             import numpy as np
             
-            img_bytes = generate_spectrum_image_bytes(np.array(current_cand["spectrum"]), title=f"{current_cand['label']} Sample {current_cand['sclk']}")
+            client = genai.Client()
+            model_id = configs.agent_settings.model
             
-            # Base64 Encode the image for immediate caching
-            import base64
-            img_b64 = base64.b64encode(img_bytes).decode('utf-8')
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id}...")]))
             
-            new_example = {
-                "label": current_cand["label"],
-                "image": img_bytes,
-                "explanation": explanation,
-                "sclk": current_cand["sclk"]
-            }
-            SHARED_STATE["few_shot_examples"].append(new_example)
-            
-            # Eager Cache Saving
-            import json
-            import os
             os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
+            os.makedirs("cda_dust_agent/data/annotated_spectra", exist_ok=True)
             cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
             
-            save_ex = new_example.copy()
-            save_ex["image_base64"] = img_b64
-            del save_ex["image"]
-            
-            # Append this specific example to the file immediately
-            with open(cache_file, "a") as f:
-                f.write(json.dumps(save_ex) + "\n")
-            
-            import matplotlib.pyplot as plt
-            if plt.fignum_exists(plt.gcf().number):
-                plt.close() # close the current plot
-            
-            next_idx = current_idx + 1
-            if next_idx < len(candidates):
-                SHARED_STATE["fsa_current_idx"] = next_idx
-                next_cand = candidates[next_idx]
+            for i, cand in enumerate(candidates):
+                img_bytes = generate_spectrum_image_bytes(np.array(cand["spectrum"]), title=f"{cand['label']} Sample {cand['sclk']}")
+                img_b64 = base64.b64encode(img_bytes).decode('utf-8')
                 
-                plt.figure(figsize=(12, 6))
-                plt.semilogy(next_cand["spectrum"], color='black', linewidth=1.5)
-                plt.axvspan(170, 390, color='green', alpha=0.1, label='Class 4 Region')
-                plt.axvspan(0, 40, color='red', alpha=0.1, label='Noise Region')
-                plt.title(f"{next_cand['label']} Sample {next_cand['sclk']}")
-                plt.grid(True)
-                plt.show(block=False)
-                plt.pause(0.1)
+                prompt = f"You are an expert Cosmic Dust Spectroscopist. This is a time-of-flight mass spectrum for a particle belonging to the class '{cand['label']}'. The x-axis is the time-of-flight (index) and the y-axis is the signal amplitude (log scale). The entire spectrum is important. Crucially, understand that time-of-flight spectra are not directly comparable to standard mass spectra. Within a single class, the spectra peaks, the number of peaks, their amplitude, range, distance, and shift may vary significantly. Mass spectra are always particularly distinguishable. Noise data may also appear featureless, like static noise with no particular features. Please provide a brief, 1-2 sentence description of the key visual features that characterize this spectrum as '{cand['label']}'."
                 
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Please provide an explanation for {next_cand['label']} (sclk: {next_cand['sclk']}): ")]))
-                return
-            else:
-                SHARED_STATE["fsa_state"] = "done"
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Few-shot annotations complete.")]))
-                SHARED_STATE["used_ids"] = [ex["sclk"] for ex in SHARED_STATE["few_shot_examples"]]
+                contents = [
+                    types.Content(role="user", parts=[
+                        types.Part.from_text(text=prompt),
+                        types.Part.from_bytes(data=img_bytes, mime_type="image/png")
+                    ])
+                ]
                 
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="All explanations saved to cache for future runs.")]))
-                return
+                try:
+                    response = await client.aio.models.generate_content(
+                        model=model_id,
+                        contents=contents
+                    )
+                    explanation = response.text.strip()
+                except Exception as e:
+                    explanation = f"Failed to generate explanation: {e}"
+                    
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Annotated {i+1}/{len(candidates)}: {cand['label']} (sclk: {cand['sclk']})")]))
+                
+                new_example = {
+                    "label": cand["label"],
+                    "image": img_bytes,
+                    "explanation": explanation,
+                    "sclk": cand["sclk"]
+                }
+                SHARED_STATE["few_shot_examples"].append(new_example)
+                
+                # Save the annotated spectrum as a PNG file
+                import re
+                safe_class = re.sub(r'[^\w\s-]', '', cand['label']).replace(' ', '_')
+                png_filename = f"cda_dust_agent/data/annotated_spectra/{cand['sclk']}_{safe_class}.png"
+                with open(png_filename, "wb") as f:
+                    f.write(img_bytes)
+                
+                save_ex = new_example.copy()
+                save_ex["image_base64"] = img_b64
+                del save_ex["image"]
+                
+                with open(cache_file, "a") as f:
+                    f.write(json.dumps(save_ex) + "\n")
+                    
+            SHARED_STATE["fsa_state"] = "done"
+            SHARED_STATE["used_ids"] = [ex["sclk"] for ex in SHARED_STATE["few_shot_examples"]]
+            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Automatic few-shot annotations complete. Sent {len(candidates)} spectra to Gemini for few-shot learning. Saved to cache.")]))
+            return
 
 class DataPrepAgent(BaseAgent):
     """Reads parquet data, extracts few-shot examples, and generates JSONL."""
     bucket_name: str
-    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
+    data_path: str = "cda_dust_agent/data/testing/cda_test.parquet"
     limit: int = 0
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
         if SHARED_STATE.get("inference_path") != "batch":
             return
             
@@ -312,7 +376,7 @@ class DataPrepAgent(BaseAgent):
         used_ids = SHARED_STATE.get("used_ids", [])
         
         jsonl_file, _ = create_batch_input_file(df, few_shot_examples=few_shot_examples, limit=limit_val)
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Generated {jsonl_file} excluding few-shot IDs: {used_ids}")]))
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Generated {jsonl_file} with {len(df)} spectra for batch inference (excluding few-shot IDs: {used_ids})")]))
         
         # Save to shared workflow state
         SHARED_STATE["jsonl_file"] = jsonl_file
@@ -321,18 +385,21 @@ class DataPrepAgent(BaseAgent):
 class LocalInferenceAgent(BaseAgent):
     """Runs local inference using Gemini SDK directly."""
     model_id: str
-    data_path: str = "cda_dust_agent/data/raw/cda_processed_sample.parquet"
-    limit: int = 5
+    data_path: str = "cda_dust_agent/data/testing/cda_test.parquet"
+    limit: int = 0
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
         if SHARED_STATE.get("inference_path") != "local":
             return
             
         if SHARED_STATE.get("fsa_state") != "done":
             return
             
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Starting local inference on up to {self.limit} samples using {self.model_id}...")]))
+        limit_val = self.limit if self.limit > 0 else None
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Starting local inference on up to {limit_val if limit_val else 'all'} samples using {self.model_id}...")]))
         
         from google import genai
         from google.genai import types
@@ -362,7 +429,7 @@ class LocalInferenceAgent(BaseAgent):
                 type=types.Type.OBJECT,
                 properties={
                     "id": types.Schema(type=types.Type.STRING, description="The ID of the run (sclk)"),
-                    "class": types.Schema(type=types.Type.STRING, description="The predicted class ('4', '1', or 'Noise')"),
+                    "class": types.Schema(type=types.Type.STRING, description="The predicted class label"),
                     "explanation": types.Schema(type=types.Type.STRING, description="Explanation for the prediction")
                 },
                 required=["id", "class", "explanation"]
@@ -370,9 +437,11 @@ class LocalInferenceAgent(BaseAgent):
         )
         
         df_eval = df[~df['sclk'].isin(used_ids)]
-        limit_val = self.limit if self.limit > 0 else len(df_eval)
-        # Use random sampling instead of picking the first N samples
-        df_eval = df_eval.sample(n=limit_val, random_state=42) if limit_val < len(df_eval) else df_eval
+        if limit_val:
+            # Use random sampling instead of picking the first N samples
+            df_eval = df_eval.sample(n=limit_val, random_state=42) if limit_val < len(df_eval) else df_eval
+            
+        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Prepared {len(df_eval)} spectra for local inference.")]))
         
         preds = []
         
@@ -415,7 +484,7 @@ class LocalInferenceAgent(BaseAgent):
                 with open(local_reqs_file, "a") as f:
                     f.write(json.dumps(req_dict) + "\n")
                 
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Requesting prediction for item {i+1}/{limit_val}...")]))
+                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Requesting prediction for item {i+1}/{len(df_eval)} (sclk: {row['sclk']})...")]))
                 response = await client.aio.models.generate_content(
                     model=self.model_id,
                     contents=contents,
@@ -458,6 +527,8 @@ class BatchSubmissionAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
         if SHARED_STATE.get("inference_path") != "batch":
             return
             
@@ -526,6 +597,8 @@ class BatchPollingAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
         if SHARED_STATE.get("inference_path") != "batch":
             return
             
@@ -578,6 +651,8 @@ class ResultAnalysisAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not SHARED_STATE.get("routing_done"):
+            return
         inference_path = SHARED_STATE.get("inference_path")
         if inference_path not in ["local", "batch"]:
             return
@@ -622,7 +697,7 @@ class ResultAnalysisAgent(BaseAgent):
             
             # Load ground truth
             # We assume it matches the original data parsed in DataPrepAgent
-            df = pd.read_parquet("cda_dust_agent/data/raw/cda_processed_sample.parquet")
+            df = pd.read_parquet("cda_dust_agent/data/testing/cda_test.parquet")
             
             y_true = []
             y_pred = []
@@ -693,6 +768,9 @@ class ResultAnalysisAgent(BaseAgent):
             
             # Save results to CSV
             import os
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            
             os.makedirs("cda_dust_agent/data/results", exist_ok=True)
             results_df = pd.DataFrame({
                 "sclk": matched_sclks,
@@ -702,7 +780,16 @@ class ResultAnalysisAgent(BaseAgent):
             })
             results_df.to_csv("cda_dust_agent/data/results/results.csv", index=False)
             
-            analysis_text = f"\n--- Evaluation Results ---\n{report}\n\nConfusion Matrix (Rows=True, Cols=Pred):\nLabels: {target_names}\n{cm}\nSaved detailed results to cda_dust_agent/data/results/results.csv\n"
+            # Save confusion matrix plot
+            plt.figure(figsize=(8, 6))
+            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=target_names, yticklabels=target_names)
+            plt.xlabel('Predicted')
+            plt.ylabel('True')
+            plt.title('Confusion Matrix')
+            plt.savefig("cda_dust_agent/data/results/confusion_matrix.png")
+            plt.close()
+            
+            analysis_text = f"\n--- Evaluation Results ---\n{report}\n\nConfusion Matrix (Rows=True, Cols=Pred):\nLabels: {target_names}\n{cm}\nSaved detailed results to cda_dust_agent/data/results/results.csv\nSaved confusion matrix plot to cda_dust_agent/data/results/confusion_matrix.png\n"
             yield Event(author=self.name, content=Content(parts=[Part.from_text(text=analysis_text)]))
 
         except Exception as e:
@@ -714,7 +801,7 @@ root_agent = SequentialAgent(
     sub_agents=[
         RoutingAgent(name="Routing"),
         DataFetchAndParseAgent(name="DataFetchAndParse"),
-        FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_processed_sample.parquet"),
+        FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_train.parquet"),
         DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),
         LocalInferenceAgent(name="LocalInference", model_id=configs.agent_settings.model),
         BatchSubmissionAgent(name="BatchSubmission", project_id=configs.agent_settings.project_id, model_id=configs.agent_settings.model),

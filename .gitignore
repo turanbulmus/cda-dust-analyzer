@@ -28,3 +28,7 @@ batch_analysis_results.csv
 # Experiment Tracking
 last_run_config.json
 batch_request.json
+
+# GCP Cloud SDK custom installation
+google-cloud-sdk/
+google-cloud-cli-linux-x86_64.tar.gz

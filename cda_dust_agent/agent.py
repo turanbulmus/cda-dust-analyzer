@@ -296,6 +296,7 @@ class FewShotAnnotationAgent(BaseAgent):
             
             os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
             os.makedirs("cda_dust_agent/data/annotated_spectra", exist_ok=True)
+            os.makedirs("cda_dust_agent/data/input/store", exist_ok=True)
             cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
             
             for i, cand in enumerate(candidates):
@@ -336,6 +337,20 @@ class FewShotAnnotationAgent(BaseAgent):
                 png_filename = f"cda_dust_agent/data/annotated_spectra/{cand['sclk']}_{safe_class}.png"
                 with open(png_filename, "wb") as f:
                     f.write(img_bytes)
+                
+                # ALSO store in data/input/store
+                store_png_filename = f"cda_dust_agent/data/input/store/{cand['sclk']}_{safe_class}.png"
+                with open(store_png_filename, "wb") as f:
+                    f.write(img_bytes)
+                    
+                store_json_filename = f"cda_dust_agent/data/input/store/{cand['sclk']}_{safe_class}.json"
+                with open(store_json_filename, "w") as f:
+                    json.dump({
+                        "sclk": cand["sclk"],
+                        "label": cand["label"],
+                        "prompt": prompt,
+                        "explanation": explanation
+                    }, f, indent=2)
                 
                 save_ex = new_example.copy()
                 save_ex["image_base64"] = img_b64

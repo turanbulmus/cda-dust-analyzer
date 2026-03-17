@@ -1,16 +1,14 @@
-# Get a Pyhton image
+# Get a Python image
 FROM python:3.13.8-trixie
 
 WORKDIR /app
 
 # Set some meta information
 LABEL description="Remote Container for CDA project development"
-LABEL version="1.0"
+LABEL version="2.0"
 
-# Copy and install requirements first (for better layer caching)
-COPY requirements.txt ./
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Install uv (the new package manager replacing pip + requirements.txt)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
 # Don't copy the source code here - it will be mounted by devcontainer
-# The pip install -e . will be done in postCreateCommand in devcontainer.json
-# after the workspace is mounted
+# uv sync will be done in postCreateCommand after the workspace is mounted

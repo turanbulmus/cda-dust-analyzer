@@ -11,8 +11,6 @@ def generate_spectrum_image_bytes(spectrum_data, title=None):
     """Generates a PNG byte buffer of the spectrum plot."""
     plt.figure(figsize=(12, 6))
     plt.semilogy(spectrum_data, color='black', linewidth=1.5)
-    plt.axvspan(170, 390, color='green', alpha=0.1, label='Class 4 Region')
-    plt.axvspan(0, 40, color='red', alpha=0.1, label='Noise Region')
     if title:
         plt.title(title)
     plt.grid(True)
@@ -96,7 +94,7 @@ def create_batch_input_file(df, few_shot_examples, output_file='cda_dust_agent/d
                         "type": "OBJECT",
                         "properties": {
                             "id": {"type": "STRING", "description": "The ID of the run (sclk)"},
-                            "class": {"type": "STRING", "description": "The predicted class ('4', '1', or 'Noise')"},
+                            "class": {"type": "STRING", "description": "The predicted class label"},
                             "explanation": {"type": "STRING", "description": "Explanation for the prediction"}
                         },
                         "required": ["id", "class", "explanation"]

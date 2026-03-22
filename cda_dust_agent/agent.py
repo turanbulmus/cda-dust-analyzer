@@ -81,6 +81,12 @@ class DataFetchAndParseAgent(BaseAgent):
         train_df = pd.read_parquet(file_train_path)
         inf_df = pd.read_parquet(file_inf_path)
         
+        # Amplitude filtering
+        if 'qi_ampl' in train_df.columns:
+            train_df = train_df[train_df['qi_ampl'] >= 10 * 10**-15].copy()
+        if 'qi_ampl' in inf_df.columns:
+            inf_df = inf_df[inf_df['qi_ampl'] >= 10 * 10**-15].copy()
+        
         # 1018 filtering
         train_df_1018 = train_df[train_df['spectrum'].apply(len) == 1018].copy()
         inf_df_1018 = inf_df[inf_df['spectrum'].apply(len) == 1018].copy()
@@ -303,7 +309,8 @@ class FewShotAnnotationAgent(BaseAgent):
                 img_bytes = generate_spectrum_image_bytes(np.array(cand["spectrum"]), title=f"{cand['label']} Sample {cand['sclk']}")
                 img_b64 = base64.b64encode(img_bytes).decode('utf-8')
                 
-                prompt = f"You are an expert Cosmic Dust Spectroscopist. This is a time-of-flight mass spectrum for a particle belonging to the class '{cand['label']}'. The x-axis is the time-of-flight (index) and the y-axis is the signal amplitude (log scale). The entire spectrum is important. Crucially, understand that time-of-flight spectra are not directly comparable to standard mass spectra. Within a single class, the spectra peaks, the number of peaks, their amplitude, range, distance, and shift may vary significantly. Mass spectra are always particularly distinguishable. Noise data may also appear featureless, like static noise with no particular features. Please provide a brief, 1-2 sentence description of the key visual features that characterize this spectrum as '{cand['label']}'."
+                from .prompts import ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
+                prompt = ANNOTATION_USER_PROMPT.format(label=cand['label'])
                 
                 contents = [
                     types.Content(role="user", parts=[
@@ -315,7 +322,10 @@ class FewShotAnnotationAgent(BaseAgent):
                 try:
                     response = await client.aio.models.generate_content(
                         model=model_id,
-                        contents=contents
+                        contents=contents,
+                        config=types.GenerateContentConfig(
+                            system_instruction=SYSTEM_INSTRUCTION_TEXT
+                        )
                     )
                     explanation = response.text.strip()
                 except Exception as e:
@@ -421,7 +431,7 @@ class LocalInferenceAgent(BaseAgent):
         import pandas as pd
         import json
         from .tools.utils import generate_spectrum_image_bytes
-        from .prompts import SYSTEM_INSTRUCTION_TEXT, USER_PROMPT_TEXT
+        from .prompts import SYSTEM_INSTRUCTION_TEXT, CLASSIFICATION_USER_PROMPT
         
         client = genai.Client()
         df = pd.read_parquet(self.data_path)
@@ -429,7 +439,7 @@ class LocalInferenceAgent(BaseAgent):
         few_shot_examples = SHARED_STATE.get("few_shot_examples", [])
         used_ids = SHARED_STATE.get("used_ids", [])
         
-        few_shot_parts = [types.Part.from_text(text=USER_PROMPT_TEXT)]
+        few_shot_parts = [types.Part.from_text(text=CLASSIFICATION_USER_PROMPT)]
         if few_shot_examples:
             few_shot_parts.append(types.Part.from_text(text="Here are reference examples:"))
             for ex in few_shot_examples:

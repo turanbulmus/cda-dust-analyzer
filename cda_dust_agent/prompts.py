@@ -2,15 +2,20 @@ SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Spectroscopist analyz
 You will be provided with images of 1D spectra plotted on a logarithmic y-axis.
 - The x-axis represents the time-of-flight index.
 - The y-axis represents the signal amplitude.
-- The entire spectrum is important for classification.
+- The entire spectrum is important for analysis.
 
-Crucially, understand that time-of-flight spectra are not directly comparable to standard mass spectra. Within a single class, the spectra peaks, the number of peaks, their amplitude, range, distance, and shift may vary significantly. Mass spectra are always particularly distinguishable. Noise data may also appear featureless, like static noise with no particular features.
+CRITICAL SPECTRAL BEHAVIOR (TIME VS. MASS DOMAIN):
+Unlike standard mass spectra, these time-of-flight spectra exhibit specific physical variations. The hardware recording can cause spectra to be shifted in time by up to 50 index points. 
 
-You will first see several labeled examples of different particle classes, each accompanied by a description of its key visual features.
-Your task is to analyze a new, unlabeled spectrum image and classify it into one of the demonstrated classes based on visual similarity and structural patterns learned from the provided examples.
+Crucially, because of the non-linear mapping between the time domain (x-axis) and the underlying mass domain, this 50-point temporal shift causes the spectrum to visually stretch. While the peaks of a specific particle class are highly self-similar and stationary in true *mass-space*, they will appear both shifted and proportionally stretched in the *time domain* images you are analyzing.
+
+When classifying, do NOT rely on absolute x-axis index positions. Instead, look for relative structural patterns, peak sequence groupings, and shapes that preserve their underlying mass-space self-similarity despite being shifted and stretched across the time index. (Note: Noise data may appear completely featureless, like static, with no distinct structural patterns).
 """
 
-USER_PROMPT_TEXT = """Based on the provided examples, classify this new spectrum.
+ANNOTATION_USER_PROMPT = """This is a time-of-flight mass spectrum for a particle belonging to the known class '{label}'.
+Please provide a brief, 1-2 sentence description of the key visual features that characterize this spectrum as '{label}'. Do not output JSON, just the text description."""
+
+CLASSIFICATION_USER_PROMPT = """Based on the provided examples, classify this new spectrum.
 Carefully compare its visual features (peaks, baseline, noise levels, and overall structure) to the examples, keeping in mind that peak shifts and amplitude variations can occur within the same class.
 
 Return your analysis strictly in the following JSON format:

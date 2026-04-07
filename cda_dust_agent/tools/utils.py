@@ -5,8 +5,6 @@ import io
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from ..prompts import USER_PROMPT_TEXT
-
 def generate_spectrum_image_bytes(spectrum_data, title=None):
     """Generates a PNG byte buffer of the spectrum plot."""
     plt.figure(figsize=(12, 6))
@@ -45,8 +43,8 @@ def create_batch_input_file(df, few_shot_examples, output_file='cda_dust_agent/d
     used_sclk_ids = [ex['sclk'] for ex in few_shot_examples]
     
     # Needs to be imported from prompts inside the original context, handled here via relative import
-    from ..prompts import SYSTEM_INSTRUCTION_TEXT
-    prompt_text = USER_PROMPT_TEXT
+    from ..prompts import SYSTEM_INSTRUCTION_TEXT, CLASSIFICATION_USER_PROMPT
+    prompt_text = CLASSIFICATION_USER_PROMPT
 
     few_shot_parts = [{"text": prompt_text}]
     if few_shot_examples:

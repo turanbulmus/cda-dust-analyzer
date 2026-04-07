@@ -17,6 +17,15 @@ from google.genai.types import Content, Part
 from .config import Config
 from .tools.utils import create_batch_input_file
 
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - [%(name)s] - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def log_and_yield(author: str, text: str):
+    logger.info(f"[{author}] {text}")
+    return Event(author=author, content=Content(parts=[Part.from_text(text=text)]))
+
 configs = Config()
 SHARED_STATE = {}
 
@@ -25,43 +34,22 @@ class DataFetchAndParseAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-
-        if SHARED_STATE.get("data_fetched"):
-            return
-
-        inference_path = SHARED_STATE.get("inference_path")
-        if inference_path not in ["local", "batch"]:
+        if configs.agent_settings.inference_path not in ["local", "batch"]:
             return
 
         train_out_path = "cda_dust_agent/data/raw/cda_train.parquet"
         test_out_path = "cda_dust_agent/data/testing/cda_test.parquet"
         inf_out_path = "cda_dust_agent/data/raw/cda_inf.parquet"
         
-        if "data_fetch_prompted" not in SHARED_STATE:
+        if not configs.agent_settings.fetch_data:
             if os.path.exists(train_out_path) and os.path.exists(test_out_path) and os.path.exists(inf_out_path):
-                SHARED_STATE["data_fetch_prompted"] = True
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Processed data files {train_out_path}, {test_out_path}, and {inf_out_path} already exist. Do you want to download and preprocess them again? [y/n]: ")]))
+                yield log_and_yield(self.name, "Data files exist and fetch_data is False. Skipping fetch and parse.")
                 return
             else:
-                SHARED_STATE["data_fetch_prompted"] = True
-                SHARED_STATE["data_fetch_choice"] = "y"
-                
-        if "data_fetch_choice" not in SHARED_STATE:
-            choice = "n"
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip().lower()
-                if "y" in text:
-                    choice = "y"
-            SHARED_STATE["data_fetch_choice"] = choice
-            
-            if choice == "n":
-                SHARED_STATE["data_fetched"] = True
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Skipping fetch and parse.")]))
-                return
-            
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Fetching and processing spectra from HuggingFace... (this may take a moment)")]))
+                yield log_and_yield(self.name, "Data files do not exist but fetch_data is False. Proceeding anyway or this might fail later.")
+                # Note: We continue if files don't exist, though typically fetch_data should be true.
+
+        yield log_and_yield(self.name, "Fetching and processing spectra from HuggingFace... (this may take a moment)")
         
         import huggingface_hub
         import pandas as pd
@@ -127,8 +115,8 @@ class DataFetchAndParseAgent(BaseAgent):
             train_data = df_to_split.iloc[train_index]
             test_data = df_to_split.iloc[test_index]
             
-        few_shot_n = SHARED_STATE.get("few_shot_n", 10)
-        test_n = SHARED_STATE.get("test_n", None)
+        few_shot_n = configs.agent_settings.few_shot_n
+        test_n = configs.agent_settings.test_n if configs.agent_settings.test_mode else None
             
         # Cap training data
         train_data = train_data.groupby('class').head(few_shot_n).reset_index(drop=True)
@@ -141,71 +129,9 @@ class DataFetchAndParseAgent(BaseAgent):
         test_data.to_parquet(test_out_path)
         inf_df_1018.to_parquet(inf_out_path)
         
-        SHARED_STATE["data_fetched"] = True
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Data fetched, split (80/20), capped at {few_shot_n} per class for training, and saved to {train_out_path}, {test_out_path}, and {inf_out_path}.")]))
+        yield log_and_yield(self.name, f"Data fetched, split (80/20), capped at {few_shot_n} per class for training, and saved to {train_out_path}, {test_out_path}, and {inf_out_path}.")
 
 
-class RoutingAgent(BaseAgent):
-    """Prompts the user to choose between local or batch inference, and whether to use test mode."""
-    
-    @override
-    async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if SHARED_STATE.get("routing_done"):
-            return
-
-        if "inference_path" not in SHARED_STATE:
-            choice = None
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip().lower()
-                if text in ["local", "batch"]:
-                    choice = text
-                elif "local" in text:
-                    choice = "local"
-                elif "batch" in text:
-                    choice = "batch"
-
-            if not choice:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Run (local) inference or (batch) inference? [local/batch]: ")]))
-                return
-
-            SHARED_STATE["inference_path"] = choice
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Selected inference path: {choice}")]))
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Enable test mode? [y/n]: ")]))
-            return
-            
-        if "test_mode" not in SHARED_STATE:
-            test_mode = False
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip().lower()
-                if "y" in text:
-                    test_mode = True
-            
-            SHARED_STATE["test_mode"] = test_mode
-            if test_mode:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Enter number of few-shot examples per class and number of test samples per class (e.g., '3 5'): ")]))
-                return
-            else:
-                SHARED_STATE["routing_done"] = True
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Test mode enabled: {test_mode}")]))
-                return
-                
-        if SHARED_STATE.get("test_mode") and not SHARED_STATE.get("routing_done"):
-            few_shot_n = 3
-            test_n = 5
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip()
-                parts = text.split()
-                if len(parts) >= 2:
-                    try:
-                        few_shot_n = int(parts[0])
-                        test_n = int(parts[1])
-                    except ValueError:
-                        pass
-            SHARED_STATE["few_shot_n"] = few_shot_n
-            SHARED_STATE["test_n"] = test_n
-            SHARED_STATE["routing_done"] = True
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Test mode configured: {few_shot_n} few-shot per class, {test_n} test samples per class.")]))
-            return
 
 class FewShotAnnotationAgent(BaseAgent):
     """Automatically generates few-shot explanations using Gemini."""
@@ -215,71 +141,49 @@ class FewShotAnnotationAgent(BaseAgent):
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         import os
         import json
-        if not SHARED_STATE.get("routing_done"):
-            return
-        if SHARED_STATE.get("inference_path") not in ["local", "batch"]:
+        if configs.agent_settings.inference_path not in ["local", "batch"]:
             return
             
         if SHARED_STATE.get("fsa_state") == "done":
             return
             
-        fsa_state = SHARED_STATE.get("fsa_state")
+        fsa_state = "auto_annotate"
         
         # Initialize
-        if not fsa_state:
-            os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
-            cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
-            
-            if os.path.exists(cache_file):
-                import json
-                # Verify cache has items
-                with open(cache_file, "r") as f:
-                    if len(f.readlines()) > 0:
-                        SHARED_STATE["fsa_state"] = "check_cache"
-                        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Found cached explanations. Would you like to use them? [y/n] (Selecting 'n' will overwrite them and auto-generate new ones): ")]))
-                        return
-                    
-            SHARED_STATE["fsa_state"] = "auto_annotate"
-            fsa_state = "auto_annotate"
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="No cache found. Starting automatic few-shot annotation with Gemini...")]))
-                
-        if fsa_state == "check_cache":
-            use_cache = False
-            if ctx.user_content and ctx.user_content.parts:
-                text = ctx.user_content.parts[0].text.strip().lower()
-                if "y" in text:
-                    use_cache = True
-            
-            if use_cache:
-                import json
-                import base64
-                cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
-                cached_ex = []
-                with open(cache_file, "r") as f:
-                    for line in f:
+        os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
+        cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
+        
+        use_cache = not configs.agent_settings.force_new_annotations
+        
+        if use_cache and os.path.exists(cache_file):
+            import json
+            import base64
+            # Verify cache has items
+            with open(cache_file, "r") as f:
+                lines = f.readlines()
+                if len(lines) > 0:
+                    cached_ex = []
+                    for line in lines:
                         if line.strip():
                             entry = json.loads(line)
                             if "image_base64" in entry:
-                                # Reverse the base64 string back into bytes for the pipeline
                                 entry["image"] = base64.b64decode(entry["image_base64"])
                             cached_ex.append(entry)
-                        
-                SHARED_STATE["few_shot_examples"] = cached_ex
-                SHARED_STATE["used_ids"] = [ex["sclk"] for ex in cached_ex]
-                SHARED_STATE["fsa_state"] = "done"
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Loaded {len(cached_ex)} cached examples. Proceeding to inference...")]))
-                return
-            else:
-                # Clear the cache file since we are intentionally ignoring it
-                cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
-                if os.path.exists(cache_file):
-                    os.remove(cache_file)
-                SHARED_STATE["fsa_state"] = "auto_annotate"
-                fsa_state = "auto_annotate"
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Starting automatic few-shot annotation with Gemini...")]))
+                    
+                    SHARED_STATE["few_shot_examples"] = cached_ex
+                    SHARED_STATE["used_ids"] = [ex["sclk"] for ex in cached_ex]
+                    SHARED_STATE["fsa_state"] = "done"
+                    yield log_and_yield(self.name, f"Loaded {len(cached_ex)} cached examples. Proceeding to inference...")
+                    return
+        
+        # Clear the cache file since we are intentionally ignoring it or it's empty
+        if not use_cache and os.path.exists(cache_file):
+            os.remove(cache_file)
+        
+        yield log_and_yield(self.name, "Starting automatic few-shot annotation with Gemini...")
             
         if fsa_state == "auto_annotate":
-            n_per_class = SHARED_STATE.get("few_shot_n", 10)
+            n_per_class = configs.agent_settings.few_shot_n
             df = pd.read_parquet(self.data_path)
             from .tools.utils import get_few_shot_candidates, generate_spectrum_image_bytes
             candidates = get_few_shot_candidates(df, n_per_class=n_per_class)
@@ -298,7 +202,7 @@ class FewShotAnnotationAgent(BaseAgent):
             client = genai.Client()
             model_id = configs.agent_settings.model
             
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id}...")]))
+            yield log_and_yield(self.name, f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id}...")
             
             os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
             os.makedirs("cda_dust_agent/data/annotated_spectra", exist_ok=True)
@@ -331,7 +235,7 @@ class FewShotAnnotationAgent(BaseAgent):
                 except Exception as e:
                     explanation = f"Failed to generate explanation: {e}"
                     
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Annotated {i+1}/{len(candidates)}: {cand['label']} (sclk: {cand['sclk']})")]))
+                yield log_and_yield(self.name, f"Annotated {i+1}/{len(candidates)}: {cand['label']} (sclk: {cand['sclk']})")
                 
                 new_example = {
                     "label": cand["label"],
@@ -371,7 +275,7 @@ class FewShotAnnotationAgent(BaseAgent):
                     
             SHARED_STATE["fsa_state"] = "done"
             SHARED_STATE["used_ids"] = [ex["sclk"] for ex in SHARED_STATE["few_shot_examples"]]
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Automatic few-shot annotations complete. Sent {len(candidates)} spectra to Gemini for few-shot learning. Saved to cache.")]))
+            yield log_and_yield(self.name, f"Automatic few-shot annotations complete. Sent {len(candidates)} spectra to Gemini for few-shot learning. Saved to cache.")
             return
 
 class DataPrepAgent(BaseAgent):
@@ -382,15 +286,13 @@ class DataPrepAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-        if SHARED_STATE.get("inference_path") != "batch":
+        if configs.agent_settings.inference_path != "batch":
             return
             
         if SHARED_STATE.get("fsa_state") != "done":
             return
             
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Loading data from {self.data_path}")]))
+        yield log_and_yield(self.name, f"Loading data from {self.data_path}")
         df = pd.read_parquet(self.data_path)
         
         limit_val = self.limit if self.limit > 0 else None
@@ -401,7 +303,7 @@ class DataPrepAgent(BaseAgent):
         used_ids = SHARED_STATE.get("used_ids", [])
         
         jsonl_file, _ = create_batch_input_file(df, few_shot_examples=few_shot_examples, limit=limit_val)
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Generated {jsonl_file} with {len(df)} spectra for batch inference (excluding few-shot IDs: {used_ids})")]))
+        yield log_and_yield(self.name, f"Generated {jsonl_file} with {len(df)} spectra for batch inference (excluding few-shot IDs: {used_ids})")
         
         # Save to shared workflow state
         SHARED_STATE["jsonl_file"] = jsonl_file
@@ -415,16 +317,14 @@ class LocalInferenceAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-        if SHARED_STATE.get("inference_path") != "local":
+        if configs.agent_settings.inference_path != "local":
             return
             
         if SHARED_STATE.get("fsa_state") != "done":
             return
             
         limit_val = self.limit if self.limit > 0 else None
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Starting local inference on up to {limit_val if limit_val else 'all'} samples using {self.model_id}...")]))
+        yield log_and_yield(self.name, f"Starting local inference on up to {limit_val if limit_val else 'all'} samples using {self.model_id}...")
         
         from google import genai
         from google.genai import types
@@ -466,7 +366,7 @@ class LocalInferenceAgent(BaseAgent):
             # Use random sampling instead of picking the first N samples
             df_eval = df_eval.sample(n=limit_val, random_state=42) if limit_val < len(df_eval) else df_eval
             
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Prepared {len(df_eval)} spectra for local inference.")]))
+        yield log_and_yield(self.name, f"Prepared {len(df_eval)} spectra for local inference.")
         
         preds = []
         
@@ -509,7 +409,7 @@ class LocalInferenceAgent(BaseAgent):
                 with open(local_reqs_file, "a") as f:
                     f.write(json.dumps(req_dict) + "\n")
                 
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Requesting prediction for item {i+1}/{len(df_eval)} (sclk: {row['sclk']})...")]))
+                yield log_and_yield(self.name, f"Requesting prediction for item {i+1}/{len(df_eval)} (sclk: {row['sclk']})...")
                 response = await client.aio.models.generate_content(
                     model=self.model_id,
                     contents=contents,
@@ -533,7 +433,7 @@ class LocalInferenceAgent(BaseAgent):
                 preds.append(json.dumps(pred_record))
                 
             except Exception as e:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Record {i+1} failed: {e}")]))
+                yield log_and_yield(self.name, f"Record {i+1} failed: {e}")
         
         import os
         os.makedirs("cda_dust_agent/data/output", exist_ok=True)
@@ -543,7 +443,7 @@ class LocalInferenceAgent(BaseAgent):
                 f.write(p + "\n")
                 
         SHARED_STATE["job_success"] = True
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Local inference complete. Saved to {preds_file}")]))
+        yield log_and_yield(self.name, f"Local inference complete. Saved to {preds_file}")
         
 class BatchSubmissionAgent(BaseAgent):
     """Uploads the JSONL to GCS and submits the Vertex AI batch prediction job."""
@@ -552,9 +452,7 @@ class BatchSubmissionAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-        if SHARED_STATE.get("inference_path") != "batch":
+        if configs.agent_settings.inference_path != "batch":
             return
             
         if SHARED_STATE.get("fsa_state") != "done":
@@ -564,10 +462,10 @@ class BatchSubmissionAgent(BaseAgent):
         bucket_name = SHARED_STATE.get("bucket_name")
         
         if not jsonl_file or not bucket_name:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Missing state: jsonl_file or bucket_name")]))
+            yield log_and_yield(self.name, "Missing state: jsonl_file or bucket_name")
             return
             
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Uploading {jsonl_file} to GCS bucket: {bucket_name}")]))
+        yield log_and_yield(self.name, f"Uploading {jsonl_file} to GCS bucket: {bucket_name}")
         storage_client = storage.Client(project=self.project_id)
         bucket = storage_client.bucket(bucket_name.replace("gs://", ""))
         
@@ -575,7 +473,7 @@ class BatchSubmissionAgent(BaseAgent):
         blob.upload_from_filename(jsonl_file)
         gcs_source = f"gs://{bucket.name}/input/{jsonl_file}"
         
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Uploaded to {gcs_source}. Submitting Batch Job via curl...")]))
+        yield log_and_yield(self.name, f"Uploaded to {gcs_source}. Submitting Batch Job via curl...")
         
         # Fetching auth token
         access_token = os.popen("gcloud auth application-default print-access-token").read().strip()
@@ -608,11 +506,11 @@ class BatchSubmissionAgent(BaseAgent):
         if result.returncode == 0 and "name" in result.stdout:
             response_json = json.loads(result.stdout)
             job_name = response_json.get("name")
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Job Submitted Successfully! Job Name: {job_name}")]))
+            yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job_name}")
             SHARED_STATE["job_name"] = job_name
             SHARED_STATE["access_token"] = access_token
         else:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Error submitting job: {result.stderr}\\nResponse: {result.stdout}")]))
+            yield log_and_yield(self.name, f"Error submitting job: {result.stderr}\\nResponse: {result.stdout}")
 
         if os.path.exists("batch_request.json"):
             os.remove("batch_request.json")
@@ -622,9 +520,7 @@ class BatchPollingAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-        if SHARED_STATE.get("inference_path") != "batch":
+        if configs.agent_settings.inference_path != "batch":
             return
             
         if SHARED_STATE.get("fsa_state") != "done":
@@ -634,11 +530,11 @@ class BatchPollingAgent(BaseAgent):
         access_token = SHARED_STATE.get("access_token")
         
         if not job_name:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="No job_name in state to poll.")]))
+            yield log_and_yield(self.name, "No job_name in state to poll.")
             return
             
         check_url = f"https://aiplatform.googleapis.com/v1/{job_name}"
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Polling job status...")]))
+        yield log_and_yield(self.name, "Polling job status...")
         
         while True:
             check_cmd = [
@@ -649,22 +545,22 @@ class BatchPollingAgent(BaseAgent):
             check_res = subprocess.run(check_cmd, capture_output=True, text=True)
             
             if check_res.returncode != 0:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Error checking status: {check_res.stderr}")]))
+                yield log_and_yield(self.name, f"Error checking status: {check_res.stderr}")
                 time.sleep(30)
                 continue
                 
             status_data = json.loads(check_res.stdout)
             state = status_data.get("state", "UNKNOWN")
             
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Job State: {state}")]))
+            yield log_and_yield(self.name, f"Job State: {state}")
             
             if state == "JOB_STATE_SUCCEEDED":
                 SHARED_STATE["job_success"] = True
                 break
             elif state in ["JOB_STATE_FAILED", "JOB_STATE_CANCELLED", "JOB_STATE_PAUSED"]:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Job Ended with state: {state}")]))
+                yield log_and_yield(self.name, f"Job Ended with state: {state}")
                 if "error" in status_data:
-                    yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Error Details: {status_data['error']}")]))
+                    yield log_and_yield(self.name, f"Error Details: {status_data['error']}")
                 SHARED_STATE["job_success"] = False
                 break
                 
@@ -676,9 +572,7 @@ class ResultAnalysisAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if not SHARED_STATE.get("routing_done"):
-            return
-        inference_path = SHARED_STATE.get("inference_path")
+        inference_path = configs.agent_settings.inference_path
         if inference_path not in ["local", "batch"]:
             return
             
@@ -686,7 +580,7 @@ class ResultAnalysisAgent(BaseAgent):
             return
             
         if not SHARED_STATE.get("job_success"):
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Job was not successful; skipping analysis.")]))
+            yield log_and_yield(self.name, "Job was not successful; skipping analysis.")
             return
             
         if inference_path != "local":
@@ -698,18 +592,18 @@ class ResultAnalysisAgent(BaseAgent):
             prediction_blobs = [b for b in blobs if b.name.endswith(".jsonl") and "prediction" in b.name]
             
             if not prediction_blobs:
-                yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Warning: No prediction JSONL files found in output directory.")]))
+                yield log_and_yield(self.name, "Warning: No prediction JSONL files found in output directory.")
                 return
                 
             prediction_blobs.sort(key=lambda x: x.time_created, reverse=True)
             blob_to_download = prediction_blobs[0]
             
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Downloading {blob_to_download.name} to cda_dust_agent/data/output/predictions.jsonl...")]))
+            yield log_and_yield(self.name, f"Downloading {blob_to_download.name} to cda_dust_agent/data/output/predictions.jsonl...")
             blob_to_download.download_to_filename("cda_dust_agent/data/output/predictions.jsonl")
         else:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Using local cda_dust_agent/data/output/predictions.jsonl...")]))
+            yield log_and_yield(self.name, "Using local cda_dust_agent/data/output/predictions.jsonl...")
         
-        yield Event(author=self.name, content=Content(parts=[Part.from_text(text="Running inline analysis of cda_dust_agent/data/output/predictions.jsonl...")]))
+        yield log_and_yield(self.name, "Running inline analysis of cda_dust_agent/data/output/predictions.jsonl...")
         try:
             from sklearn.metrics import classification_report, confusion_matrix
             from .tools.utils import parse_response
@@ -782,7 +676,7 @@ class ResultAnalysisAgent(BaseAgent):
                         y_pred.append(pred_label)
                         explanations.append(explanation)
                 
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Parsed {len(y_true)} matched predictions.")]))
+            yield log_and_yield(self.name, f"Parsed {len(y_true)} matched predictions.")
 
             target_names = sorted(list({str(v) for v in truth_map.values()}))
             if not target_names:
@@ -815,16 +709,15 @@ class ResultAnalysisAgent(BaseAgent):
             plt.close()
             
             analysis_text = f"\n--- Evaluation Results ---\n{report}\n\nConfusion Matrix (Rows=True, Cols=Pred):\nLabels: {target_names}\n{cm}\nSaved detailed results to cda_dust_agent/data/results/results.csv\nSaved confusion matrix plot to cda_dust_agent/data/results/confusion_matrix.png\n"
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=analysis_text)]))
+            yield log_and_yield(self.name, analysis_text)
 
         except Exception as e:
-            yield Event(author=self.name, content=Content(parts=[Part.from_text(text=f"Error running analysis: {e}")]))
+            yield log_and_yield(self.name, f"Error running analysis: {e}")
 
 # The root agent that ADK expects
 root_agent = SequentialAgent(
     name=configs.agent_settings.name,
     sub_agents=[
-        RoutingAgent(name="Routing"),
         DataFetchAndParseAgent(name="DataFetchAndParse"),
         FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_train.parquet"),
         DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),

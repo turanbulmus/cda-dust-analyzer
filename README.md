@@ -12,7 +12,7 @@ The key features of the CDA Dust Analyzer Multi-Agent include:
 
 | Feature | Description |
 | --- | --- |
-| **Interaction Type:** | Conversational & Batch |
+| **Interaction Type:** | Headless Workflow & Batch |
 | **Complexity:**  | Advanced |
 | **Agent Type:**  | Multi Agent |
 | **Components:**  | ADK Core Tools, Dynamic Pipeline Processing, Few-Shot RAG, Human-in-the-Loop Feedback |
@@ -21,8 +21,7 @@ The key features of the CDA Dust Analyzer Multi-Agent include:
 ```mermaid
 flowchart LR
     subgraph "CDA_Dust_Analyzer_Agent (Sequential Agent)"
-        Routing([Routing])
-        Routing --> DataFetchAndParse([DataFetchAndParse])
+        DataFetchAndParse([DataFetchAndParse])
         DataFetchAndParse --> FewShotAnnotation([FewShotAnnotation])
         FewShotAnnotation --> DataPrep([DataPrep])
         DataPrep --> LocalInference([LocalInference])
@@ -59,15 +58,22 @@ This agent uses `uv` to manage the environment and dependencies. When you initia
 You can interact with the system via the command line or the UI development server:
 
 ### CLI Interaction
+### Configuration
+
+The execution of the workflow is entirely controlled via parameters defined in `cda_dust_agent/config.py` (which can also be overridden via `.env`). Key parameters include:
+- `inference_path`: Set to `"local"` or `"batch"`.
+- `fetch_data`: Set to `True` to force re-downloading parsing data from HuggingFace.
+- `test_mode`, `few_shot_n`, `test_n`: Controls sampling quantities for quick local validation.
+- `force_new_annotations`: Set to `True` to bypass the cached `jsonl` and force a new Gemini few-shot visual annotation step.
+
+### CLI Interaction
 ```bash
-# Sync dependencies and run the conversational agent via CLI
+# Sync dependencies and run the headless workflow agent via CLI
 uv run adk run cda_dust_agent
 ```
-1. **Routing:** The agent will first prompt you to choose between **local** and **batch** inference.
-   - Type `local` to sample the parquet and intelligently generate inferences from Gemini synchronously.
-   - Type `batch` to generate the bulk payload, submit to the Vertex AI Batch prediction queue, and poll for results asynchronously.
-2. **Interactive Few-Shot Annotation:** Designed to give explicit feedback loops, the `FewShotAnnotationAgent` dynamically highlights samples. First, it will check for `cda_dust_agent/data/input/examples/cached_examples.jsonl`. If previous explanations exist, you can instantly reload them to skip manual input. Otherwise, you iteratively provide expert explanations for each class representation, guiding the multi-shot accuracy. These are eagerly cached as you go to preserve progress.
-3. **Execution & Analysis:** Following annotation, either `LocalInferenceAgent` or `BatchSubmissionAgent` invokes Gemini based on your routing choice. Finally, `ResultAnalysisAgent` correlates the sample ID outputs (`sclk`) and evaluation `explanation` alongside the metrics matrix, saving the comprehensive data table contextually.
+1. **Automated Pipeline:** The agent will immediately execute based on the `config.py` definitions without pausing for user input.
+2. **Automated Few-Shot Annotation:** The `FewShotAnnotationAgent` dynamically generates explanations. It uses `cda_dust_agent/data/input/examples/cached_examples.jsonl` unless `force_new_annotations` is True.
+3. **Execution & Analysis:** Finally, `LocalInferenceAgent` or `BatchSubmissionAgent` invokes Gemini, and `ResultAnalysisAgent` correlates the sample outputs alongside the metrics matrix, saving the comprehensive data table contextually.
 
 ### ADK Web Interface
 ```bash

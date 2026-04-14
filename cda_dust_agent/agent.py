@@ -16,6 +16,7 @@ from google.genai.types import Content, Part
 
 from .config import Config
 from .tools.utils import create_batch_input_file
+from .tools.prompt_refinery import run_prompt_refinery
 
 import logging
 
@@ -278,6 +279,24 @@ class FewShotAnnotationAgent(BaseAgent):
             yield log_and_yield(self.name, f"Automatic few-shot annotations complete. Sent {len(candidates)} spectra to Gemini for few-shot learning. Saved to cache.")
             return
 
+class PromptOptimizerAgent(BaseAgent):
+    """Runs the prompt optimization study to improve prompts."""
+    
+    @override
+    async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if not configs.agent_settings.prompt_optimization:
+            yield log_and_yield(self.name, "Prompt optimization is disabled. Skipping.")
+            return
+            
+        yield log_and_yield(self.name, "Starting prompt optimization study...")
+        try:
+            system_prompt = await run_prompt_refinery(iterations=configs.agent_settings.prompt_opt_iterations)
+            yield log_and_yield(self.name, "Prompt optimization complete. Refined prompt generated.")
+            # We could update the system instruction here if needed, or just let the user use the file.
+            # For now, we just log it and save it to file (done in prompt_refinery).
+        except Exception as e:
+            yield log_and_yield(self.name, f"Prompt optimization failed: {e}")
+            
 class DataPrepAgent(BaseAgent):
     """Reads parquet data, extracts few-shot examples, and generates JSONL."""
     bucket_name: str
@@ -719,6 +738,7 @@ root_agent = SequentialAgent(
     name=configs.agent_settings.name,
     sub_agents=[
         DataFetchAndParseAgent(name="DataFetchAndParse"),
+        PromptOptimizerAgent(name="PromptOptimizer"),
         FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_train.parquet"),
         DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),
         LocalInferenceAgent(name="LocalInference", model_id=configs.agent_settings.model),

@@ -1,17 +1,5 @@
-SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Spectroscopist analyzing Cassini Cosmic Dust Analyzer (CDA) time-of-flight mass spectra.
-You will be provided with images of 1D spectra plotted on a logarithmic y-axis.
-- The x-axis represents the time-of-flight index.
-- The y-axis represents the signal amplitude.
-- The entire spectrum is important for analysis.
-
-CRITICAL SPECTRAL BEHAVIOR (TIME VS. MASS DOMAIN):
-Unlike standard mass spectra, these time-of-flight spectra exhibit specific physical variations. The hardware recording can cause spectra to be shifted in time by up to 50 index points. 
-
-Crucially, because of the non-linear mapping between the time domain (x-axis) and the underlying mass domain, this 50-point temporal shift causes the spectrum to visually stretch. While the peaks of a specific particle class are highly self-similar and stationary in true *mass-space*, they will appear both shifted and proportionally stretched in the *time domain* images you are analyzing.
-
-When classifying, do NOT rely on absolute x-axis index positions. Instead, look for relative structural patterns, peak sequence groupings, and shapes that preserve their underlying mass-space self-similarity despite being shifted and stretched across the time index.
-
-Here are the characteristic patterns for each class identified through autonomous hierarchical analysis:
+You are an expert system for classifying Cassini Cosmic Dust Analyzer (CDA) Time-of-Flight mass spectra.
+Here are the characteristic patterns for each class identified through hierarchical analysis:
 
 ### Class Noise
 Based on the synthesis of the provided spectrum analyses, here is a comprehensive, consolidated description of the characteristic patterns for the **Class 'Noise'** in Time-of-Flight (ToF) mass spectrometry data.
@@ -142,7 +130,7 @@ The most unique and structurally complex feature of the 3-KNa class is what happ
 
 #### Phase IV: The Abrupt Cutoff and Terminal Baseline (x ≈ 650 to 1000+)
 *   **The "Cliff":** The massive cluster plateau does not fade away smoothly. In almost every sample, the continuous signal encounters a sheer, cliff-like drop-off (typically around x ≈ 640–660). Over a very short horizontal span, the intensity plummets by two full orders of magnitude. *Interpretation:* This strict cutoff signifies either a physical limit to the maximum size of clusters that can survive the impact ionization process, or a hard instrumental/data-acquisition window limit.
-*   **The Terminal Baseline:** Beyond x ≈ 700, the spectrum returns to a state resembling the pre-signal baseline—sparse, isolated noise spikes near $10^{-6}$, eventually dropping to zero.
+*   **The Late-Stage Baseline:** Beyond x ≈ 700, the spectrum returns to a state resembling the pre-signal baseline—sparse, isolated noise spikes near $10^{-6}$, eventually dropping to zero.
 *   **Late-Stage Variations ("Islands"):** In several samples, immediately following the cliff drop-off, a small, detached, low-intensity "hump" or ringing artifact appears (x ≈ 680 to 750) before the signal dies completely. This may represent delayed extraction of ultra-heavy trace species.
 
 ### Summary of the Class '3-KNa' Signature
@@ -737,18 +725,4 @@ To positively identify a Class 2-X particle spectrum, look for these four hallma
 3.  **Elevated Continuum:** Severe peak broadening causing the signal to remain suspended in an unresolved plateau through the mid-mass range.
 4.  **Bimodal Resurgence:** A distinct, secondary clustering of heavy fragments peaking around ~580-630 before a steep high-mass cutoff.
 
-Use these patterns to classify the provided spectrum. Return the classification in the requested JSON format."""
-
-ANNOTATION_USER_PROMPT = """This is a time-of-flight mass spectrum for a particle belonging to the known class '{label}'.
-Please provide a brief, 1-2 sentence description of the key visual features that characterize this spectrum as '{label}'. Do not output JSON, just the text description."""
-
-CLASSIFICATION_USER_PROMPT = """Based on the provided examples, classify this new spectrum.
-Carefully compare its visual features (peaks, baseline, noise levels, and overall structure) to the examples, keeping in mind that peak shifts and amplitude variations can occur within the same class.
-
-Return your analysis strictly in the following JSON format:
-{
-    "id": "<the provided sclk id>",
-    "class": "<the predicted class label>",
-    "explanation": "<a brief 1-2 sentence explanation of why it belongs to this class based on visual features>"
-}
-"""
+Use these patterns to classify the provided spectrum. Return the classification in the requested JSON format.

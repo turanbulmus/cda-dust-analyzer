@@ -7,8 +7,31 @@ WORKDIR /app
 LABEL description="Remote Container for CDA project development"
 LABEL version="2.0"
 
+# Install gcloud CLI
+RUN apt-get update && apt-get install -y curl && \
+    ARCH=$(uname -m) && \
+    if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then GCLOUD_ARCH="arm"; \
+    elif [ "$ARCH" = "x86_64" ]; then GCLOUD_ARCH="x86_64"; \
+    else GCLOUD_ARCH="x86"; fi && \
+    curl -O "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-${GCLOUD_ARCH}.tar.gz" && \
+    tar -xf "google-cloud-cli-linux-${GCLOUD_ARCH}.tar.gz" -C /opt && \
+    /opt/google-cloud-sdk/install.sh --quiet && \
+    rm "google-cloud-cli-linux-${GCLOUD_ARCH}.tar.gz" && \
+    rm -rf /var/lib/apt/lists/*
+ENV PATH="/opt/google-cloud-sdk/bin:$PATH"
+
 # Install uv (the new package manager replacing pip + requirements.txt)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
-# Don't copy the source code here - it will be mounted by devcontainer
-# uv sync will be done in postCreateCommand after the workspace is mounted
+# Create a virtual environment outside the workspace so it persists when devcontainer mounts /app
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+ENV UV_KEYRING_PROVIDER=subprocess
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Pre-install the Google Artifact Registry keyring for uv
+RUN pip install keyrings.google-artifactregistry-auth
+
+COPY . /app
+RUN uv venv /opt/venv
+
+# After runup: gcloud auth application-default login & uv sync

@@ -30,33 +30,35 @@ configs = Config()
 SHARED_STATE = {}
 
 class DataFetchAndParseAgent(BaseAgent):
-    """Fetches raw spectra from HuggingFace, filtering, cropping, and log-scaling it into a unified parquet dataset."""
+    """Fetches raw spectra from HuggingFace, filtering, cropping, log-scaling and SAVGOL smoothing it into 4 datasets."""
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
         if configs.agent_settings.inference_path not in ["local", "batch"]:
             return
 
-        train_out_path = "cda_dust_agent/data/raw/cda_train.parquet"
-        test_out_path = "cda_dust_agent/data/testing/cda_test.parquet"
-        inf_out_path = "cda_dust_agent/data/raw/cda_inf.parquet"
+        train_L_out = "cda_dust_agent/data/raw/cda_train_L.parquet"
+        train_H_out = "cda_dust_agent/data/raw/cda_train_H.parquet"
+        inf_L_out = "cda_dust_agent/data/raw/cda_inf_L.parquet"
+        inf_H_out = "cda_dust_agent/data/raw/cda_inf_H.parquet"
+        
+        required_paths = [train_L_out, train_H_out, inf_L_out, inf_H_out]
         
         if not configs.agent_settings.fetch_data:
-            if os.path.exists(train_out_path) and os.path.exists(test_out_path) and os.path.exists(inf_out_path):
+            if all(os.path.exists(p) for p in required_paths):
                 yield log_and_yield(self.name, "Data files exist and fetch_data is False. Skipping fetch and parse.")
                 return
             else:
-                yield log_and_yield(self.name, "Data files do not exist but fetch_data is False. Proceeding anyway or this might fail later.")
-                # Note: We continue if files don't exist, though typically fetch_data should be true.
+                yield log_and_yield(self.name, "Data files do not exist but fetch_data is False. Proceeding anyway.")
 
         yield log_and_yield(self.name, "Fetching and processing spectra from HuggingFace... (this may take a moment)")
         
         import huggingface_hub
         import pandas as pd
         import numpy as np
+        from scipy.signal import savgol_filter
         
-        os.makedirs(os.path.dirname(train_out_path), exist_ok=True)
-        os.makedirs(os.path.dirname(test_out_path), exist_ok=True)
+        os.makedirs("cda_dust_agent/data/raw", exist_ok=True)
         
         REPO_ID = "CosmicDustGroup/cassini-cda-spectra"
         FILENAME_INF = "data/lvl2/cda_qm_spectra_pre2008277_inf_lvl2.parquet"
@@ -69,67 +71,120 @@ class DataFetchAndParseAgent(BaseAgent):
         train_df = pd.read_parquet(file_train_path)
         inf_df = pd.read_parquet(file_inf_path)
         
-        # Amplitude filtering
-        if 'qi_ampl' in train_df.columns:
-            train_df = train_df[train_df['qi_ampl'] >= 10 * 10**-15].copy()
-        if 'qi_ampl' in inf_df.columns:
-            inf_df = inf_df[inf_df['qi_ampl'] >= 10 * 10**-15].copy()
-        
         # 1018 filtering
-        train_df_1018 = train_df[train_df['spectrum'].apply(len) == 1018].copy()
-        inf_df_1018 = inf_df[inf_df['spectrum'].apply(len) == 1018].copy()
+        train_df = train_df[train_df['spectrum'].apply(len) == 1018].copy()
+        inf_df = inf_df[inf_df['spectrum'].apply(len) == 1018].copy()
         
         # Crop spectra to index 10 to 640
         def crop_spectrum(spectrum):
             return spectrum[10:641]
             
-        train_df_1018['spectrum'] = train_df_1018['spectrum'].apply(crop_spectrum)
-        inf_df_1018['spectrum'] = inf_df_1018['spectrum'].apply(crop_spectrum)
+        train_df['spectrum'] = train_df['spectrum'].apply(crop_spectrum)
+        inf_df['spectrum'] = inf_df['spectrum'].apply(crop_spectrum)
         
-        # Re-assign labels
-        train_df_1018['class'] = train_df_1018['class'].apply(lambda x: '?' if "X" in x else x)
+        # Re-assign labels X -> ? and move class 3
+        train_df['class'] = train_df['class'].apply(lambda x: '?' if isinstance(x, str) and "X" in x else x)
         
-        class_3_df_1018 = train_df_1018[train_df_1018['class'] == '3'].copy()
-        train_df_1018 = train_df_1018[train_df_1018['class'] != '3']
-        inf_df_1018 = pd.concat([inf_df_1018, class_3_df_1018], ignore_index=True)
-        
-        # Scaling
-        def qm_scaling(spectrum):
-            spectrum = np.log10(spectrum + np.abs(np.min(spectrum)))
-            spectrum = np.nan_to_num(spectrum, neginf=0)
-            spectrum = (spectrum - np.min(spectrum)) / (np.max(spectrum) - np.min(spectrum))
-            return spectrum
+        # Scaling and Smoothing
+        def qm_scaling_savgol(spectrum):
+            spectrum = np.array(spectrum, dtype=float)
+            log_spec = np.log10(spectrum + np.abs(np.min(spectrum)))
+            
+            finite_mask = np.isfinite(log_spec)
+            if np.any(finite_mask):
+                min_finite_val = np.min(log_spec[finite_mask])
+            else:
+                min_finite_val = 0
+                
+            log_spec = np.nan_to_num(log_spec, neginf=min_finite_val)
+            
+            spec_min = np.min(log_spec)
+            spec_max = np.max(log_spec)
+            range_val = spec_max - spec_min
+            
+            if range_val > 0:
+                scaled_spectrum = (log_spec - spec_min) / range_val
+            else:
+                scaled_spectrum = np.zeros_like(log_spec)
+                
+            return savgol_filter(scaled_spectrum, 11, 3)
 
-        train_df_1018['spectrum'] = train_df_1018['spectrum'].apply(qm_scaling)
-        inf_df_1018['spectrum'] = inf_df_1018['spectrum'].apply(qm_scaling)
+        train_df['spectrum'] = train_df['spectrum'].apply(qm_scaling_savgol)
+        inf_df['spectrum'] = inf_df['spectrum'].apply(qm_scaling_savgol)
         
-        from sklearn.model_selection import StratifiedShuffleSplit
+        # Split into L and H sets based on qi_ampl
+        # L: > 10 fC (1e-14), H: between 10 fC and 1 pC (1e-14 and 1e-12)
+        # Note: L means amplitude > 10 fC.
+        train_L = train_df[train_df['qi_ampl'] < 1e-14].copy()
+        train_H = train_df[(train_df['qi_ampl'] >= 1e-14) & (train_df['qi_ampl'] < 1e-12)].copy()
         
-        # Filter out classes with fewer than 2 samples to allow stratified splitting
-        class_counts = train_df_1018['class'].value_counts()
-        valid_classes = class_counts[class_counts >= 2].index
-        df_to_split = train_df_1018[train_df_1018['class'].isin(valid_classes)].reset_index(drop=True)
+        inf_L = inf_df[inf_df['qi_ampl'] < 1e-14].copy()
+        inf_H = inf_df[(inf_df['qi_ampl'] >= 1e-14) & (inf_df['qi_ampl'] < 1e-12)].copy()
         
-        sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
-        for train_index, test_index in sss.split(df_to_split, df_to_split['class']):
-            train_data = df_to_split.iloc[train_index]
-            test_data = df_to_split.iloc[test_index]
+        # Class filtering for L: keep "1", "2", "4", "5", "?", "Noise", convert the rest to "?"
+        valid_L_classes = {"1", "2", "4", "5", "?", "Noise"}
+        train_L['class'] = train_L['class'].apply(lambda x: x if x in valid_L_classes else "?")
+        
+        train_L.to_parquet(train_L_out)
+        train_H.to_parquet(train_H_out)
+        inf_L.to_parquet(inf_L_out)
+        inf_H.to_parquet(inf_H_out)
+        
+        yield log_and_yield(self.name, f"Processed, scaled, smoothed, and split data into L and H targets. Saved: {train_L_out}, {train_H_out}, {inf_L_out}, {inf_H_out}.")
+
+class DataSplitAgent(BaseAgent):
+    """Dynamically loads L or H parquet files and splits them into few-shot and validation datasets."""
+    
+    @override
+    async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
+        if configs.agent_settings.inference_path not in ["local", "batch"]:
+            return
             
-        few_shot_n = configs.agent_settings.few_shot_n
-        test_n = configs.agent_settings.test_n if configs.agent_settings.test_mode else None
+        import pandas as pd
+        import os
+        
+        # Pull chosen dataset type (L or H) from config. Default to 'L'.
+        target_dataset = getattr(configs.agent_settings, "target_dataset", "L")
+        train_source = f"cda_dust_agent/data/raw/cda_train_{target_dataset}.parquet"
+        
+        if not os.path.exists(train_source):
+            yield log_and_yield(self.name, f"Training source '{train_source}' not found. Cannot perform split.")
+            return
             
-        # Cap training data
-        train_data = train_data.groupby('class').head(few_shot_n).reset_index(drop=True)
+        yield log_and_yield(self.name, f"Loading scaled {target_dataset}-dataset from {train_source} for dynamic splitting...")
+        df = pd.read_parquet(train_source)
         
-        # Cap test data if test_n is set
-        if test_n is not None:
-            test_data = test_data.groupby('class').head(test_n).reset_index(drop=True)
+        few_shot_split_rule = getattr(configs.agent_settings, "few_shot_split_rules", configs.agent_settings.few_shot_n)
         
-        train_data.to_parquet(train_out_path)
-        test_data.to_parquet(test_out_path)
-        inf_df_1018.to_parquet(inf_out_path)
+        few_shot_list = []
+        val_list = []
         
-        yield log_and_yield(self.name, f"Data fetched, split (80/20), capped at {few_shot_n} per class for training, and saved to {train_out_path}, {test_out_path}, and {inf_out_path}.")
+        for cls, group in df.groupby('class'):
+            # Determine number of few-shot per class
+            n_few_shot = few_shot_split_rule.get(cls, 0) if isinstance(few_shot_split_rule, dict) else int(few_shot_split_rule)
+            
+            # Shuffle for random split
+            group = group.sample(frac=1, random_state=42).reset_index(drop=True)
+            
+            few_shot_list.append(group.head(n_few_shot))
+            val_list.append(group.tail(len(group) - n_few_shot))
+            
+        few_shot_df = pd.concat(few_shot_list, ignore_index=True) if few_shot_list else pd.DataFrame()
+        val_df = pd.concat(val_list, ignore_index=True) if val_list else pd.DataFrame()
+        
+        # Use test_n for capping validation set if in test_mode
+        test_n = getattr(configs.agent_settings, "test_n", None) if getattr(configs.agent_settings, "test_mode", False) else None
+        if test_n is not None and not val_df.empty:
+            val_df = val_df.groupby('class').head(test_n).reset_index(drop=True)
+        
+        os.makedirs("cda_dust_agent/data/testing", exist_ok=True)
+        train_out_path = "cda_dust_agent/data/raw/cda_train.parquet"
+        test_out_path = "cda_dust_agent/data/testing/cda_test.parquet"
+        
+        few_shot_df.to_parquet(train_out_path)
+        val_df.to_parquet(test_out_path)
+        
+        yield log_and_yield(self.name, f"Data splitted dynamically. Few-shot ({len(few_shot_df)}) -> {train_out_path}, Validation ({len(val_df)}) -> {test_out_path}")
 
 
 
@@ -719,6 +774,7 @@ root_agent = SequentialAgent(
     name=configs.agent_settings.name,
     sub_agents=[
         DataFetchAndParseAgent(name="DataFetchAndParse"),
+        DataSplitAgent(name="DataSplit"),
         FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_train.parquet"),
         DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),
         LocalInferenceAgent(name="LocalInference", model_id=configs.agent_settings.model),

@@ -16,9 +16,6 @@
 	// ADK web UI runs on port 8000 by default
 	"forwardPorts": [8000],
 
-	// Install all dependencies via uv after the workspace is mounted
-	"postCreateCommand": "uv sync",
-
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {

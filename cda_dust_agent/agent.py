@@ -83,8 +83,17 @@ class DataFetchAndParseAgent(BaseAgent):
         train_df['spectrum'] = train_df['spectrum'].apply(crop_spectrum)
         inf_df['spectrum'] = inf_df['spectrum'].apply(crop_spectrum)
         
-        # Re-assign labels X -> ? and move class 3
-        train_df['class'] = train_df['class'].apply(lambda x: '?' if isinstance(x, str) and "X" in x else x)
+        # Re-assign labels X -> ? and group class 3 sub-classes
+        def map_labels(x):
+            if not isinstance(x, str):
+                return x
+            if "X" in x:
+                return "?"
+            if x.startswith("3-") or x == "3":
+                return "3"
+            return x
+            
+        train_df['class'] = train_df['class'].apply(map_labels)
         
         # Scaling and Smoothing
         def qm_scaling_savgol(spectrum):
@@ -122,8 +131,8 @@ class DataFetchAndParseAgent(BaseAgent):
         inf_L = inf_df[inf_df['qi_ampl'] < 1e-14].copy()
         inf_H = inf_df[(inf_df['qi_ampl'] >= 1e-14) & (inf_df['qi_ampl'] < 1e-12)].copy()
         
-        # Class filtering for L: keep "1", "2", "4", "5", "?", "Noise", convert the rest to "?"
-        valid_L_classes = {"1", "2", "4", "5", "?", "Noise"}
+        # Class filtering for L: keep "1", "2", "3", "4", "5", "?", "Noise", convert the rest to "?"
+        valid_L_classes = {"1", "2", "3", "4", "5", "Noise"}
         train_L['class'] = train_L['class'].apply(lambda x: x if x in valid_L_classes else "?")
         
         train_L.to_parquet(train_L_out)

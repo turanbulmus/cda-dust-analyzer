@@ -15,6 +15,8 @@ class AgentSettings(BaseSettings):
     test_mode: bool = True
     few_shot_n: int = 3
     test_n: int = 5
+    target_dataset: str = "L"
+    few_shot_split_rules: int | dict = 3
     prompt_optimization: bool = True
     prompt_opt_iterations: int = 2
 

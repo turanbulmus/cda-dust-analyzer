@@ -11,7 +11,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 from ..tools.utils import parse_response
 
 import logging
@@ -35,15 +35,15 @@ class ResultAnalysisAgent(BaseAgent):
         if inference_path not in ["local", "batch"]:
             return
             
-        if SHARED_STATE.get("fsa_state") != "done":
+        if ctx.session.state.get("fsa_state") != "done":
             return
             
-        if not SHARED_STATE.get("job_success"):
+        if not ctx.session.state.get("job_success"):
             yield log_and_yield(self.name, "Job was not successful; skipping analysis.")
             return
             
         if inference_path != "local":
-            bucket_name = SHARED_STATE.get("bucket_name")
+            bucket_name = ctx.session.state.get("bucket_name")
             storage_client = storage.Client(project=self.project_id)
             bucket = storage_client.bucket(bucket_name.replace("gs://", ""))
             
@@ -80,7 +80,7 @@ class ResultAnalysisAgent(BaseAgent):
             explanations = []
             matched_sclks = []
             truth_map = {}
-            used_ids = set(SHARED_STATE.get("used_ids") or [])
+            used_ids = set(ctx.session.state.get("used_ids") or [])
             df_eval = df[~df['sclk'].isin(used_ids)]
             for k, v in df_eval.set_index('sclk')['class'].to_dict().items():
                 try:

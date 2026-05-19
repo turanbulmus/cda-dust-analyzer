@@ -8,7 +8,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 from ..tools.utils import create_batch_input_file
 
 import logging
@@ -33,22 +33,22 @@ class DataPrepAgent(BaseAgent):
         if configs.agent_settings.inference_path != "batch":
             return
             
-        if SHARED_STATE.get("fsa_state") != "done":
+        if ctx.session.state.get("fsa_state") != "done":
             return
             
         yield log_and_yield(self.name, f"Loading data from {self.data_path}")
         df = pd.read_parquet(self.data_path)
         
         limit_val = self.limit if self.limit > 0 else None
-        if limit_val:
-            df = df.head(limit_val)
+        if limit_val and limit_val < len(df):
+            df = df.sample(n=limit_val, random_state=42)
             
-        few_shot_examples = SHARED_STATE.get("few_shot_examples", [])
-        used_ids = SHARED_STATE.get("used_ids", [])
+        few_shot_examples = ctx.session.state.get("few_shot_examples", [])
+        used_ids = ctx.session.state.get("used_ids", [])
         
         jsonl_file, _ = create_batch_input_file(df, few_shot_examples=few_shot_examples, limit=limit_val)
         yield log_and_yield(self.name, f"Generated {jsonl_file} with {len(df)} spectra for batch inference (excluding few-shot IDs: {used_ids})")
         
         # Save to shared workflow state
-        SHARED_STATE["jsonl_file"] = jsonl_file
-        SHARED_STATE["bucket_name"] = self.bucket_name
+        ctx.session.state["jsonl_file"] = jsonl_file
+        ctx.session.state["bucket_name"] = self.bucket_name

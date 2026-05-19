@@ -31,7 +31,7 @@ class PromptOptimizerAgent(BaseAgent):
             
         yield log_and_yield(self.name, "Starting prompt optimization study...")
         try:
-            system_prompt = await run_prompt_refinery(iterations=configs.agent_settings.prompt_opt_iterations)
+            system_prompt = await run_prompt_refinery(max_levels=configs.agent_settings.prompt_opt_iterations)
             yield log_and_yield(self.name, "Prompt optimization complete. Refined prompt generated.")
         except Exception as e:
             yield log_and_yield(self.name, f"Prompt optimization failed: {e}")

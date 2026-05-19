@@ -19,20 +19,28 @@ The key features of the CDA Dust Analyzer Multi-Agent include:
 
 ### Architecture
 ```mermaid
-flowchart LR
-    subgraph "CDA_Dust_Analyzer_Agent (Sequential Agent)"
-        DataFetchAndParse([DataFetchAndParse])
-        DataFetchAndParse --> FewShotAnnotation([FewShotAnnotation])
-        FewShotAnnotation --> DataPrep([DataPrep])
-        DataPrep --> LocalInference([LocalInference])
-        LocalInference --> BatchSubmission([BatchSubmission])
+flowchart TD
+    subgraph "CdaWorkflowAgent (Custom Workflow Agent)"
+        DataFetchAndParse([DataFetchAndParse]) --> PromptOptimizer([PromptOptimizer])
+        PromptOptimizer --> FewShotAnnotation([FewShotAnnotation])
+        
+        FewShotAnnotation --> Cond{Inference Path?}
+        
+        Cond -- "local" --> LocalInference([LocalInference])
+        Cond -- "batch" --> DataPrep([DataPrep])
+        
+        DataPrep --> BatchSubmission([BatchSubmission])
         BatchSubmission --> BatchPolling([BatchPolling])
-        BatchPolling --> ResultAnalysis([ResultAnalysis])
+        
+        LocalInference --> ResultAnalysis([ResultAnalysis])
+        BatchPolling --> ResultAnalysis
+        
+        ResultAnalysis --> VertexAIExperimentsLogging([VertexAIExperimentsLogging])
     end
 ```
 ### Key Features
 
-* **Multi-Agent Architecture:** Utilizes a top-level `SequentialAgent` orchestrator to seamlessly string together independent data processing, polling, and execution modules.
+* **Multi-Agent Architecture:** Utilizes a top-level custom `CdaWorkflowAgent` orchestrator to seamlessly string together independent data processing, polling, and execution modules with custom logic.
 * **Automated Data Fetching:** Built-in integration with HuggingFace Hub to dynamically download, parse, and scale incoming `.parquet` files for standardized agent consumption.
 * **Interactive Human-in-the-loop (with Caching):** The `FewShotAnnotationAgent` visually iterates through subset samples, plotting regions of interest using `matplotlib` with **Logarithmic Scale Visualization (`plt.semilogy()`)**. This allows researchers to extract dynamic expert explanations that ground the LLM's multi-shot prompt, specifically focusing on dynamic range features and "Repeating Patterns". Inferences are eagerly saved to a local `.jsonl` cache, permitting instant reloading on subsequent runs without redundant manual annotation.
 * **Vertex AI Batch Integration:** Asynchronous pipeline logic to bundle thousands of mass spectrometer readings into `jsonl` payloads, submitting jobs to Google Cloud, polling for completion, and automatically executing `ResultAnalysis`.
@@ -87,7 +95,8 @@ You can access the chat interface at `http://127.0.0.1:8000`.
 A brief overview of the high-level structures in this repository:
 
 - `cda_dust_agent/`: Contains the core ADK agent components.
-  - `agent.py`: Defines the sequential agent graph (`RoutingAgent`, `DataFetchAndParseAgent`, `FewShotAnnotationAgent`, `DataPrepAgent`, `LocalInferenceAgent`, `BatchSubmissionAgent`, `BatchPollingAgent`, `ResultAnalysisAgent`).
+  - `agent.py`: Defines the root agent (`CdaWorkflowAgent`) that ADK expects.
+  - `sub_agent/`: Contains the sub-agents and the workflow definition (`workflow.py`).
   - `config.py`: Configuration settings using Pydantic, pulling from environment variables.
   - `prompts.py`: Houses the core classification definitions and user prompts.
   - `tools/`: Supportive scripts like `utils.py` for dynamic image plotting, few-shot prompt construction, and JSON structure management.

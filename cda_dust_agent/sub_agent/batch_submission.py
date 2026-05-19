@@ -12,7 +12,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 
 import logging
 
@@ -35,11 +35,11 @@ class BatchSubmissionAgent(BaseAgent):
         if configs.agent_settings.inference_path != "batch":
             return
             
-        if SHARED_STATE.get("fsa_state") != "done":
+        if ctx.session.state.get("fsa_state") != "done":
             return
 
-        jsonl_file = SHARED_STATE.get("jsonl_file")
-        bucket_name = SHARED_STATE.get("bucket_name")
+        jsonl_file = ctx.session.state.get("jsonl_file")
+        bucket_name = ctx.session.state.get("bucket_name")
         
         if not jsonl_file or not bucket_name:
             yield log_and_yield(self.name, "Missing state: jsonl_file or bucket_name")
@@ -55,42 +55,22 @@ class BatchSubmissionAgent(BaseAgent):
         
         yield log_and_yield(self.name, f"Uploaded to {gcs_source}. Submitting Batch Job via curl...")
         
-        # Fetching auth token
-        access_token = os.popen("gcloud auth application-default print-access-token").read().strip()
-        job_display_name = f"cda-batch-{datetime.now().strftime('%Y%m%d-%H%M%S')}"    
-        global_batch_req = {
-            "displayName": job_display_name,
-            "model": f"publishers/google/models/{self.model_id}",
-            "inputConfig": {
-                "instancesFormat": "jsonl",
-                "gcsSource": {"uris": [gcs_source]}
-            },
-            "outputConfig": {
-                "predictionsFormat": "jsonl",
-                "gcsDestination": {"outputUriPrefix": f"gs://{bucket.name}/output"}
-            }
-        }
+        from google.cloud import aiplatform
         
-        with open("batch_request.json", "w") as f:
-            json.dump(global_batch_req, f)
-            
-        curl_command = [
-            "curl", "-s", "-X", "POST",
-            f"https://aiplatform.googleapis.com/v1/projects/{self.project_id}/locations/global/batchPredictionJobs",
-            "-H", f"Authorization: Bearer {access_token}",
-            "-H", "Content-Type: application/json; charset=utf-8",
-            "-d", "@batch_request.json"
-        ]
+        aiplatform.init(project=self.project_id, location="global")
         
-        result = subprocess.run(curl_command, capture_output=True, text=True)
-        if result.returncode == 0 and "name" in result.stdout:
-            response_json = json.loads(result.stdout)
-            job_name = response_json.get("name")
-            yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job_name}")
-            SHARED_STATE["job_name"] = job_name
-            SHARED_STATE["access_token"] = access_token
-        else:
-            yield log_and_yield(self.name, f"Error submitting job: {result.stderr}\\nResponse: {result.stdout}")
-
-        if os.path.exists("batch_request.json"):
-            os.remove("batch_request.json")
+        job_display_name = f"cda-batch-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+        
+        try:
+            job = aiplatform.BatchPredictionJob.create(
+                job_display_name=job_display_name,
+                model_name=f"publishers/google/models/{self.model_id}",
+                instances_format="jsonl",
+                gcs_source=gcs_source,
+                predictions_format="jsonl",
+                gcs_destination_prefix=f"gs://{bucket.name}/output",
+            )
+            yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job.name}")
+            ctx.session.state["job_name"] = job.name
+        except Exception as e:
+            yield log_and_yield(self.name, f"Error submitting job: {e}")

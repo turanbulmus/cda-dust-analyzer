@@ -10,7 +10,7 @@ import pandas as pd
 from google.cloud import storage
 from google.cloud import aiplatform
 
-from google.adk.agents import BaseAgent, SequentialAgent
+from google.adk.agents import BaseAgent
 from google.adk.agents.invocation_context import InvocationContext
 from google.adk.events import Event
 from google.genai.types import Content, Part
@@ -31,29 +31,7 @@ def log_and_yield(author: str, text: str):
 configs = Config()
 
 
-from .sub_agent.data_fetch_and_parse import DataFetchAndParseAgent
-from .sub_agent.few_shot_annotation import FewShotAnnotationAgent
-from .sub_agent.prompt_optimizer import PromptOptimizerAgent
-from .sub_agent.data_prep import DataPrepAgent
-from .sub_agent.local_inference import LocalInferenceAgent
-from .sub_agent.batch_submission import BatchSubmissionAgent
-from .sub_agent.batch_polling import BatchPollingAgent
-from .sub_agent.result_analysis import ResultAnalysisAgent
-from .sub_agent.vertex_ai_logging import VertexAIExperimentsLoggingAgent
+from .sub_agent.workflow import CdaWorkflowAgent
 
 # The root agent that ADK expects
-root_agent = SequentialAgent(
-    name=configs.agent_settings.name,
-    sub_agents=[
-        DataFetchAndParseAgent(name="DataFetchAndParse"),
-        PromptOptimizerAgent(name="PromptOptimizer"),
-        FewShotAnnotationAgent(name="FewShotAnnotation", data_path="cda_dust_agent/data/raw/cda_train.parquet"),
-        DataPrepAgent(name="DataPrep", bucket_name=configs.agent_settings.bucket_name, limit=0),
-        LocalInferenceAgent(name="LocalInference", model_id=configs.agent_settings.model),
-        BatchSubmissionAgent(name="BatchSubmission", project_id=configs.agent_settings.project_id, model_id=configs.agent_settings.model),
-        BatchPollingAgent(name="BatchPolling"),
-        ResultAnalysisAgent(name="ResultAnalysis", project_id=configs.agent_settings.project_id),
-        VertexAIExperimentsLoggingAgent(name="VertexAIExperimentsLogging", project_id=configs.agent_settings.project_id)
-    ],
-    description="Orchestrates the data prep, job submission, polling, results analysis, and logging sequentially."
-)
+root_agent = CdaWorkflowAgent(name=configs.agent_settings.name)

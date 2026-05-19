@@ -10,7 +10,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 from ..tools.utils import get_few_shot_candidates, generate_spectrum_image_bytes
 from ..prompts import ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
 
@@ -36,7 +36,7 @@ class FewShotAnnotationAgent(BaseAgent):
         if configs.agent_settings.inference_path not in ["local", "batch"]:
             return
             
-        if SHARED_STATE.get("fsa_state") == "done":
+        if ctx.session.state.get("fsa_state") == "done":
             return
             
         fsa_state = "auto_annotate"
@@ -62,9 +62,9 @@ class FewShotAnnotationAgent(BaseAgent):
                                 entry["image"] = base64.b64decode(entry["image_base64"])
                             cached_ex.append(entry)
                     
-                    SHARED_STATE["few_shot_examples"] = cached_ex
-                    SHARED_STATE["used_ids"] = [ex["sclk"] for ex in cached_ex]
-                    SHARED_STATE["fsa_state"] = "done"
+                    ctx.session.state["few_shot_examples"] = cached_ex
+                    ctx.session.state["used_ids"] = [ex["sclk"] for ex in cached_ex]
+                    ctx.session.state["fsa_state"] = "done"
                     yield log_and_yield(self.name, f"Loaded {len(cached_ex)} cached examples. Proceeding to inference...")
                     return
         
@@ -80,10 +80,10 @@ class FewShotAnnotationAgent(BaseAgent):
             candidates = get_few_shot_candidates(df, n_per_class=n_per_class)
             
             if not candidates:
-                 SHARED_STATE["fsa_state"] = "done"
+                 ctx.session.state["fsa_state"] = "done"
                  return
                  
-            SHARED_STATE["few_shot_examples"] = []
+            ctx.session.state["few_shot_examples"] = []
             
             from google import genai
             from google.genai import types
@@ -133,7 +133,7 @@ class FewShotAnnotationAgent(BaseAgent):
                     "explanation": explanation,
                     "sclk": cand["sclk"]
                 }
-                SHARED_STATE["few_shot_examples"].append(new_example)
+                ctx.session.state["few_shot_examples"].append(new_example)
                 
                 # Save the annotated spectrum as a PNG file
                 import re
@@ -163,7 +163,7 @@ class FewShotAnnotationAgent(BaseAgent):
                 with open(cache_file, "a") as f:
                     f.write(json.dumps(save_ex) + "\n")
                     
-            SHARED_STATE["fsa_state"] = "done"
-            SHARED_STATE["used_ids"] = [ex["sclk"] for ex in SHARED_STATE["few_shot_examples"]]
+            ctx.session.state["fsa_state"] = "done"
+            ctx.session.state["used_ids"] = [ex["sclk"] for ex in ctx.session.state["few_shot_examples"]]
             yield log_and_yield(self.name, f"Automatic few-shot annotations complete. Sent {len(candidates)} spectra to Gemini for few-shot learning. Saved to cache.")
             return

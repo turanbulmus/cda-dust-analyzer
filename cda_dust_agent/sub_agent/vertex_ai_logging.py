@@ -11,7 +11,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 
 import logging
 

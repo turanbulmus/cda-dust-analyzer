@@ -1,5 +1,7 @@
 import os
 import json
+
+os.environ["GOOGLE_API_USE_MTLS"] = "never"
 from typing import AsyncGenerator
 from typing_extensions import override
 
@@ -10,7 +12,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-from .state import SHARED_STATE
+
 from ..tools.utils import generate_spectrum_image_bytes
 from ..prompts import SYSTEM_INSTRUCTION_TEXT, CLASSIFICATION_USER_PROMPT
 
@@ -33,46 +35,37 @@ class LocalInferenceAgent(BaseAgent):
     
     @override
     async def _run_async_impl(self, ctx: InvocationContext) -> AsyncGenerator[Event, None]:
-        if configs.agent_settings.inference_path != "local":
-            return
+
             
-        if SHARED_STATE.get("fsa_state") != "done":
+        if ctx.session.state.get("fsa_state") != "done":
             return
             
         limit_val = self.limit if self.limit > 0 else None
         yield log_and_yield(self.name, f"Starting local inference on up to {limit_val if limit_val else 'all'} samples using {self.model_id}...")
         
-        from google import genai
-        from google.genai import types
+        import vertexai
+        from vertexai.generative_models import GenerativeModel, Part, GenerationConfig
         import pandas as pd
         import json
         
-        client = genai.Client()
+        vertexai.init(project=configs.agent_settings.project_id, location="global")
+        model = GenerativeModel(self.model_id, system_instruction=SYSTEM_INSTRUCTION_TEXT)
+        
         df = pd.read_parquet(self.data_path)
         
-        few_shot_examples = SHARED_STATE.get("few_shot_examples", [])
-        used_ids = SHARED_STATE.get("used_ids", [])
+        few_shot_examples = ctx.session.state.get("few_shot_examples", [])
+        used_ids = ctx.session.state.get("used_ids", [])
         
-        few_shot_parts = [types.Part.from_text(text=CLASSIFICATION_USER_PROMPT)]
+        few_shot_parts = [CLASSIFICATION_USER_PROMPT]
         if few_shot_examples:
-            few_shot_parts.append(types.Part.from_text(text="Here are reference examples:"))
+            few_shot_parts.append("Here are reference examples:")
             for ex in few_shot_examples:
-                few_shot_parts.append(types.Part.from_text(text=f"Example: {ex['label']} ({ex['explanation']})"))
-                few_shot_parts.append(types.Part.from_bytes(data=ex['image'], mime_type="image/png"))
-            few_shot_parts.append(types.Part.from_text(text="Now, analyze the following spectrum:"))
+                few_shot_parts.append(f"Example: {ex['label']} ({ex['explanation']})")
+                few_shot_parts.append(Part.from_data(data=ex['image'], mime_type="image/png"))
+            few_shot_parts.append("Now, analyze the following spectrum:")
             
-        config = types.GenerateContentConfig(
-            system_instruction=SYSTEM_INSTRUCTION_TEXT,
+        config = GenerationConfig(
             response_mime_type="application/json",
-            response_schema=types.Schema(
-                type=types.Type.OBJECT,
-                properties={
-                    "id": types.Schema(type=types.Type.STRING, description="The ID of the run (sclk)"),
-                    "class": types.Schema(type=types.Type.STRING, description="The predicted class label"),
-                    "explanation": types.Schema(type=types.Type.STRING, description="Explanation for the prediction")
-                },
-                required=["id", "class", "explanation"]
-            )
         )
         
         df_eval = df[~df['sclk'].isin(used_ids)]
@@ -99,35 +92,13 @@ class LocalInferenceAgent(BaseAgent):
                 img_bytes = generate_spectrum_image_bytes(spect, title=f"Sample {row['sclk']}")
                 
                 parts = list(few_shot_parts)
-                parts.append(types.Part.from_bytes(data=img_bytes, mime_type="image/png"))
-                parts.append(types.Part.from_text(text=f"Sample ID (sclk): {row['sclk']}"))
-                
-                contents = [types.Content(role="user", parts=parts)]
-                
-                req_dict = {
-                    "request": {
-                        "contents": [{"role": "user", "parts": []}],
-                        "systemInstruction": {"parts": [{"text": SYSTEM_INSTRUCTION_TEXT}]},
-                    }
-                }
-                for p in parts:
-                    if p.text:
-                        req_dict["request"]["contents"][0]["parts"].append({"text": p.text})
-                    elif p.inline_data:
-                        req_dict["request"]["contents"][0]["parts"].append({
-                            "inline_data": {
-                                "mime_type": p.inline_data.mime_type,
-                                "data": base64.b64encode(p.inline_data.data).decode('utf-8')
-                            }
-                        })
-                with open(local_reqs_file, "a") as f:
-                    f.write(json.dumps(req_dict) + "\n")
+                parts.append(Part.from_data(data=img_bytes, mime_type="image/png"))
+                parts.append(f"Sample ID (sclk): {row['sclk']}")
                 
                 yield log_and_yield(self.name, f"Requesting prediction for item {i+1}/{len(df_eval)} (sclk: {row['sclk']})...")
-                response = await client.aio.models.generate_content(
-                    model=self.model_id,
-                    contents=contents,
-                    config=config
+                response = await model.generate_content_async(
+                    parts,
+                    generation_config=config
                 )
                 
                 # Format to match batch prediction output shape for analysis agent
@@ -156,5 +127,5 @@ class LocalInferenceAgent(BaseAgent):
             for p in preds:
                 f.write(p + "\n")
                 
-        SHARED_STATE["job_success"] = True
+        ctx.session.state["job_success"] = True
         yield log_and_yield(self.name, f"Local inference complete. Saved to {preds_file}")

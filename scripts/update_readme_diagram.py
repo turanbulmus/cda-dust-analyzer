@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+This is a utility script for documentation. It reads the agent definition
+and updates the Mermaid diagram in README.md.
+"""
 import os
 import sys
 import re

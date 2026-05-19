@@ -1,3 +1,10 @@
+"""
+This script runs a specific large-scale batch inference job on a sample of 1000 rows
+from the training dataset (excluding prompt study samples).
+
+This differs from the standard agent run which typically evaluates on the test dataset
+defined in the config.
+"""
 import os
 import json
 import time

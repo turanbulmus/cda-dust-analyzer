@@ -1,3 +1,7 @@
+"""
+This script is a standalone utility to download datasets from Hugging Face.
+Note that the agent can also do this automatically if `fetch_data=True` in the config.
+"""
 import os
 import shutil
 import huggingface_hub

@@ -1,3 +1,10 @@
+"""
+This script runs an ablation study to evaluate how the number of few-shot examples (k)
+affects classification performance.
+
+It automates running the evaluation across multiple k values (1, 2, 4, 8, 16, 32, 64).
+This is a meta-experiment outside the standard single-pass agent run.
+"""
 import os
 import json
 import base64

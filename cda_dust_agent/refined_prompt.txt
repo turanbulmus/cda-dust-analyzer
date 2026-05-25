@@ -1,43 +1,84 @@
 You are an expert system for classifying Cassini Cosmic Dust Analyzer (CDA) Time-of-Flight mass spectra.
 Here are the characteristic patterns for each class identified through autonomous hierarchical analysis:
 
-### Class Noise
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
 ### Class 1
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+A unified dual-component morphology consisting of a periodic, decaying sequence of broad, asymmetric (tailing) peak clusters with progressively decreasing spacing, punctuated by one or more exceptionally narrow, maximum-intensity spikes. The baseline typically exhibits a characteristic transition from an early erratic state with sharp downward zero-signal dropouts to a stable, elevated plateau in the higher mass range.
 
 ### Class 2
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
-### Class ?
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
-### Class 3-KNa
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
-### Class 5-Na
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+A bifurcated structural topology consisting of a low-mass region (x=0 to ~150) with a low, noisy baseline punctuated by one or more extremely sharp, saturated spikes at varying positions (e.g., <10, 20, 35, or 125). This early region is followed by an abrupt and dramatic baseline elevation around x≈150-160, which transitions into a defining sequence of broad, periodic, unresolved oscillating 'humps' or waves. These humps generally decay in amplitude while exhibiting non-linear spacing typical of time-of-flight spectra, eventually settling into an elevated, continuous, and noisy tail baseline beyond x≈500.
 
 ### Class 4
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+Pattern 1:
+Discrete Periodic Envelopes Pattern: Characterized by a quasi-periodic sequence of broad mass envelopes or humps centered roughly around x ≈ 120-125, 215-220, 310-320, and 435-445, separated by approximately 100-120 units. The signal generally returns to a low, flat baseline between these broad envelopes. This pattern also features one or more sharp, needle-like spikes that dominate the overall intensity of the spectrum, though the exact position of the absolute maximum spike may vary (e.g., occurring at x ≈ 5-10 or x ≈ 190).
+
+Pattern 2:
+Continuous Massive Humps and Plateau Pattern: Characterized by a single dominant low-mass spike (x ≈ 25) followed by a series of massive, continuous, broad signal humps that dominate the mid-to-high mass regions. The baseline is elevated at higher masses and does not return to the initial low noise floor. A defining, unique structural feature is a flattened plateau (x ≈ 300-360) that terminates in a sharp V-shaped dip and immediate secondary spike (x ≈ 380), along with distinct massive doublet peaks (e.g., x ≈ 150-160 and x ≈ 490-520).
 
 ### Class 3-Cl
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+Pattern 1:
+Pattern 1: A spectrum characterized by a continuous, uniform high-frequency 'grassy' noise baseline across the entire x-axis. The chemical signal manifests as a primary broad, asymmetrical peak cluster around x ≈ 180-200, followed by multiple distinct, relatively symmetrical peak pairs at higher masses (e.g., x ≈ 335/385 and x ≈ 485/520). Extreme, single-point artifact spikes may appear.
+
+Pattern 2:
+Pattern 2: A strongly bimodal spectrum dominated by a severe transitional event or discontinuity around x ≈ 170-175 (often a precipitous signal drop or a massive spike reaching maximum intensity). The low-mass region (x < 170) features a noisy baseline with an early peak cluster around x ≈ 15-25. The high-mass region (x > 175) completely changes character, shifting to an elevated, continuous plateau or rising baseline containing broad, low-resolution humps rather than discrete peaks.
 
 ### Class 3-OH
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+Unified 3-OH Pattern: Characterized by an extreme bimodal structure observed on a logarithmic scale. The low-mass region (m/z 0-180) features a low, erratic baseline with isolated, sharp spikes, prominently including a highly intense peak around m/z 15-20 (and/or 25-30). A critical transitional feature occurs at m/z 180-185 as a very narrow, intense spike. This is immediately followed by a massive, broad, unresolved cluster hump from m/z 190 to 220. Following this complex, the spectrum does not return to the initial low baseline; instead, the high-mass region (>250) maintains an elevated continuum featuring rhythmically spaced broad humps (most notably around m/z 340-370) before gradually decaying into a noisy tail devoid of discrete peaks.
 
 ### Class 3-Car
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
-### Class 5
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
-
-### Class 3-K
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+A distinct bifurcated spectrum that divides sharply around x ≈ 190-200. The low-mass region features an isolated, extremely sharp, maximum-intensity spike at x ≈ 20, followed by a featureless, grassy noise floor. A dramatic, near-vertical baseline shift occurs at x ≈ 190-200, leading into an elevated high-mass region. This later region is defined by a broad continuum and repeating, asymmetric mass envelopes or humps (commonly observed peaking near x ≈ 210-270, x ≈ 340-370, and x ≈ 500-530) that gradually decay, completely lacking sharp discrete peaks.
 
 ### Class 3-P
-Failed to consolidate: Failed to send request to https://aiplatform.mtls.googleapis.com/v1beta1/projects/turan-genai-bb/locations/global/publishers/google/models/gemini-3.1-pro-preview:generateContent.
+Bipartite spectrum with an abrupt baseline step-up: The spectrum is fundamentally divided into two distinct morphological regions. The low-mass region (roughly x < 160-200) is noisy and features one or more sharp, discrete, and often saturated elemental peaks (commonly observed at x ≈ 5, x ≈ 20, and occasionally scattered up to x ≈ 135). This is followed by a sudden, massive elevation in the baseline intensity (a 'wall' or 'step') occurring between x ≈ 160 and 200. The high-mass region (x > 200) never returns to the initial baseline, indicating continuous chemical noise, and is characterized by a periodic sequence of broad, unresolved structural humps or molecular clusters. These broad envelopes consistently peak at characteristic intervals, typically around x ≈ 175-210, 330-350, 480-500, and 580-620.
+
+### Class Noise
+Pattern 1:
+Pattern 1: A continuous, flat, high-frequency baseline noise oscillating around 10^-1, devoid of any genuine chemical peaks, but interrupted by multiple (e.g., four) isolated, ultra-narrow artifact spikes that saturate at the maximum intensity of 10^0.
+
+Pattern 2:
+Pattern 2: A continuous, high-frequency baseline noise with a slight upward drift, oscillating around 10^-1, completely lacking chemical structure, but featuring a single, ultra-narrow artifact spike early in the spectrum that saturates at 10^0.
+
+### Class ?
+Pattern 1:
+Pattern 1: Spectra dominated by a broad, complex baseline envelope or hump peaking around m/z 200-220. This is accompanied by a high, continuous background noise floor and multiple extremely narrow, non-physical saturation spikes (reaching exactly 10^0) at higher mass ranges (e.g., ~380, ~515) that lack isotopic distribution, indicating instrumental artifacts.
+
+Pattern 2:
+Pattern 2: Spectra characterized by a wavy, highly structured baseline continuum featuring a broad hump peaking near m/z 200, a subsequent valley, and a rising tail. They completely lack distinct chemical peak sequences, exhibit dense high-frequency "hash" noise with negative signal dropouts, and contain a single, isolated, full-scale artifact spike (e.g., at m/z 333).
+
+Pattern 3:
+Pattern 3: Bimodal spectra defined by an extreme dynamic range event (a massive saturation peak at m/z 15-20) in a noisy, low-mass comb-like region, followed by a sudden, unnatural step-up in the baseline near m/z 190-200. This step-up leads to a sustained, elevated, continuous high-mass plateau characterized by broad undulations and sharp V-shaped notches rather than discrete chemical peaks.
+
+### Class 3-KNa
+Pattern 1:
+Pattern 1: Uncalibrated TOF spectrum characterized by a sharp prompt spike followed by two major peaks at x~140 (Sodium) and x~210 (Potassium), ending with a sustained, elevated, noisy post-impact baseline.
+
+Pattern 2:
+Pattern 2: Uncalibrated TOF spectrum featuring a dominant sharp primary peak at x~97 and a secondary doublet/cluster around x~168, which decays into a massive, broad continuum covering the higher values.
+
+Pattern 3:
+Pattern 3: Calibrated mass-to-charge (m/z) spectrum defined by extremely sharp elemental peaks at m/z 23 (Na+) and m/z 39 (K+), followed by distinct broad mid-mass molecular peaks at m/z ~100 and ~175, and a continuous elevated high-mass plateau.
+
+### Class 5-Na
+Pattern 1:
+Pattern 1: A profoundly bipartite spectrum featuring only a single, dominant discrete peak in the low-mass region (Na+ at x~23), followed by an abrupt, near-vertical baseline jump around x=175 into a broad, continuous, featureless elevated hump that dominates the high-mass region.
+
+Pattern 2:
+Pattern 2: A bipartite spectrum characterized by a sequence of multiple (5-6) highly intense, saturated discrete peaks in the early time-of-flight region (including Na+), which then transitions around x=125-150 into a continuous, elevated, and noisy baseline devoid of distinct heavy mass signatures.
+
+Pattern 3:
+Pattern 3: A bipartite spectrum containing exactly two extremely intense, narrow discrete peaks in the low-mass region (including Na+), followed by an abrupt baseline rise at x=140 that forms a broad, elevated, grassy continuum dome throughout the high-mass range.
+
+### Class 5
+Pattern 1:
+Pattern A: Characterized by one or more highly saturated, zero-width 'needle' spikes (typically between x=150 and x=180) reaching the maximum absolute intensity ($10^0$). These intense spikes are immediately followed by a distinct 'double-hump' morphology consisting of two massive, broad, and heavily asymmetric peak envelopes with long exponential decay tails dominating the mid-mass range.
+
+Pattern 2:
+Pattern B: Characterized by two prominent, saturated, zero-width artifact spikes widely separated from each other (e.g., at x=200 and x=575) reaching maximum intensity ($10^0$). These are accompanied by more traditional, discrete clustered ion sequences at the extreme low (x=0-100) and high (x=500-650) mass ranges, with a mostly flat, noisy baseline in the center.
+
+### Class 3-K
+Pattern 1:
+Bimodal with High-Mass Repeating Humps: Spectra characterized by extremely sharp, isolated low-mass peaks (notably around x=10-20) followed by a low-signal intermediate region, and then an abrupt rise or step (around x=200-240). This high-mass region consists of a series of broad, repeating, unresolved mounds extending past x=500, indicating simple atomic ions existing alongside complex, heavy polymeric or carbonaceous clusters.
+
+Pattern 2:
+Bimodal with Mid-Mass Envelopes and High-Mass Noise: Spectra featuring a dominant sharp low-mass peak (x~20) and broad mid-mass envelopes (x=150-210), but lacking repeating structures at higher masses. The region beyond x=250 consists of an elevated, continuous band of noise characterized by sharp negative spikes (zero-count instrumental artifacts) and no distinct molecular envelopes.
 
 Use these patterns to classify the provided spectrum. Return the classification in the requested JSON format.

@@ -4,7 +4,7 @@
 
 This project demonstrates a multi-agent system designed for the advanced classification and analysis of Cassini's Cosmic Dust Analyzer (CDA) Time-of-Flight mass spectra. The agent is built utilizing the Google Agent Development Kit (ADK) as a standalone scientific study to automate massive scientific dataset analysis. 
 
-It handles the entire data pipeline: from fetching raw datasets dynamically via HuggingFace hub to interactive Few-Shot expert annotation, all the way through to inference processing and metric evaluations. The agent interacts with the powerful Gemini 3.0 Pro API and allows the researcher to choose between synchronous **Local Inference** and asynchronous **Vertex AI Batch Prediction**.
+It handles the entire data pipeline: from fetching raw datasets dynamically via HuggingFace hub to interactive Few-Shot expert annotation, all the way through to inference processing and metric evaluations. The agent interacts with the powerful Gemini 3.1 Pro Preview API and allows the researcher to choose between synchronous **Local Inference** and asynchronous **Vertex AI Batch Prediction**.
 
 ## Agent Details
 
@@ -52,7 +52,7 @@ flowchart TD
 
 ### Prerequisites
 
-*   **Google Cloud Account:** Configured access to the Vertex AI API (Gemini 3.0 Pro). You must have Application Default Credentials configured.
+*   **Google Cloud Account:** Configured access to the Vertex AI API (Gemini 3.1 Pro Preview). You must have Application Default Credentials configured.
 *   **Python 3.10+:** Ensure you have Python 3.10 or a later version installed.
 *   **uv:** Install the astral `uv` package manager by following the instructions on the official uv website:
     [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/)
@@ -65,7 +65,6 @@ This agent uses `uv` to manage the environment and dependencies. When you initia
 
 You can interact with the system via the command line or the UI development server:
 
-### CLI Interaction
 ### Configuration
 
 The execution of the workflow is entirely controlled via parameters defined in `cda_dust_agent/config.py` (which can also be overridden via `.env`). Key parameters include:
@@ -75,13 +74,26 @@ The execution of the workflow is entirely controlled via parameters defined in `
 - `force_new_annotations`: Set to `True` to bypass the cached `jsonl` and force a new Gemini few-shot visual annotation step.
 
 ### CLI Interaction
+
+You can run the agent via the command line in either interactive or non-interactive mode.
+
+#### Interactive Mode
 ```bash
-# Sync dependencies and run the headless workflow agent via CLI
+# Sync dependencies and run the agent interactively
 uv run adk run cda_dust_agent
 ```
-1. **Automated Pipeline:** The agent will immediately execute based on the `config.py` definitions without pausing for user input.
-2. **Automated Few-Shot Annotation:** The `FewShotAnnotationAgent` dynamically generates explanations. It uses `cda_dust_agent/data/input/examples/cached_examples.jsonl` unless `force_new_annotations` is True.
-3. **Execution & Analysis:** Finally, `LocalInferenceAgent` or `BatchSubmissionAgent` invokes Gemini, and `ResultAnalysisAgent` correlates the sample outputs alongside the metrics matrix, saving the comprehensive data table contextually.
+The agent will start a REPL session and wait for your input. You can type a prompt (e.g., "run analysis") to trigger the workflow.
+
+#### Non-Interactive Mode (Pure Workflow)
+To run the agent without manual text input and without creating a file, you can pipe the input command directly to the CLI:
+
+```bash
+echo "run analysis" | uv run adk run cda_dust_agent
+```
+> [!IMPORTANT]
+> Make sure to update `cda_dust_agent/config.py` (or set environment variables) with your desired preferences (e.g., `test_n`, `inference_path`) before running, as the agent will execute immediately based on those settings.
+
+The agent will receive the command, execute the workflow, and exit automatically upon completion.
 
 ### ADK Web Interface
 ```bash

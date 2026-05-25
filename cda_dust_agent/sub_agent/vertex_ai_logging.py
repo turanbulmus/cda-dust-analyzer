@@ -79,13 +79,12 @@ class VertexAIExperimentsLoggingAgent(BaseAgent):
                 experiment=experiment_name
             )
             
-            aiplatform.start_run(run=run_name)
-            
-            yield log_and_yield(self.name, f"Logging parameters: {params}")
-            aiplatform.log_params(params)
-            
-            yield log_and_yield(self.name, f"Logging metrics: {metrics}")
-            aiplatform.log_metrics(metrics)
+            with aiplatform.start_run(run=run_name):
+                yield log_and_yield(self.name, f"Logging parameters: {params}")
+                aiplatform.log_params(params)
+                
+                yield log_and_yield(self.name, f"Logging metrics: {metrics}")
+                aiplatform.log_metrics(metrics)
             
             yield log_and_yield(self.name, "Vertex AI Experiments logging complete.")
             

@@ -14,7 +14,7 @@ class AgentSettings(BaseSettings):
     force_new_annotations: bool = False
     test_mode: bool = True
     few_shot_n: int = 3
-    test_n: int = 100
+    test_n: int = 5
     prompt_optimization: bool = True
     prompt_opt_iterations: int = 2
 

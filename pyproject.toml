@@ -19,6 +19,8 @@ dependencies = [
     "tqdm>=4.66.0",
     "pyarrow>=14.0.0",
     "seaborn>=0.13.2",
+    "spiceypy",
+    "beautifulsoup4"
 ]
 
 [dependency-groups]

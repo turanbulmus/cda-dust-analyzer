@@ -117,7 +117,7 @@ class DataFetchAndParseAgent(BaseAgent):
             else:
                 scaled_spectrum = np.zeros_like(log_spec)
                 
-            return savgol_filter(scaled_spectrum, 11, 3)
+            return savgol_filter(scaled_spectrum, 5, 3)
 
         train_df['spectrum'] = train_df['spectrum'].apply(qm_scaling_savgol)
         inf_df['spectrum'] = inf_df['spectrum'].apply(qm_scaling_savgol)
@@ -267,26 +267,64 @@ class FewShotAnnotationAgent(BaseAgent):
             client = genai.Client()
             model_id = configs.agent_settings.model
             
-            yield log_and_yield(self.name, f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id}...")
+            # Group candidates by label
+            candidates_by_label = {}
+            for cand in candidates:
+                lbl = cand["label"]
+                if lbl not in candidates_by_label:
+                    candidates_by_label[lbl] = []
+                candidates_by_label[lbl].append(cand)
+                
+            # Pre-render all candidate images and cache them
+            image_cache = {}
+            for cand in candidates:
+                img_ref_bytes = generate_spectrum_image_bytes(
+                    np.array(cand["spectrum"]),
+                    title=f"{cand['label']} Reference Sample {cand['sclk']}"
+                )
+                image_cache[cand['sclk']] = img_ref_bytes
+
+            yield log_and_yield(self.name, f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id} with dynamic contrastive references...")
             
             os.makedirs("cda_dust_agent/data/input/examples", exist_ok=True)
             os.makedirs("cda_dust_agent/data/annotated_spectra", exist_ok=True)
             os.makedirs("cda_dust_agent/data/input/store", exist_ok=True)
             cache_file = "cda_dust_agent/data/input/examples/cached_examples.jsonl"
             
+            import random
+            random.seed(123)
+            
             for i, cand in enumerate(candidates):
                 img_bytes = generate_spectrum_image_bytes(np.array(cand["spectrum"]), title=f"{cand['label']} Sample {cand['sclk']}")
                 img_b64 = base64.b64encode(img_bytes).decode('utf-8')
                 
-                from .prompts import ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
-                prompt = ANNOTATION_USER_PROMPT.format(label=cand['label'])
+                target_label = cand["label"]
+                references = []
+                for other_label, other_cands in candidates_by_label.items():
+                    if other_label != target_label:
+                        other_cand = random.choice(other_cands)
+                        references.append((other_label, image_cache[other_cand['sclk']]))
+                        
+                from .prompts import CONTRASTIVE_ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
                 
-                contents = [
-                    types.Content(role="user", parts=[
-                        types.Part.from_text(text=prompt),
-                        types.Part.from_bytes(data=img_bytes, mime_type="image/png")
-                    ])
+                ref_descriptions = ""
+                for idx, (other_label, _) in enumerate(references):
+                    char_code = chr(66 + idx) # B, C, D, E...
+                    ref_descriptions += f"- Image {char_code}: Reference Spectrum of '{other_label}'\n"
+                    
+                prompt = CONTRASTIVE_ANNOTATION_USER_PROMPT.format(
+                    label=target_label,
+                    reference_descriptions=ref_descriptions.strip()
+                )
+                
+                parts = [
+                    types.Part.from_text(text=prompt),
+                    types.Part.from_bytes(data=img_bytes, mime_type="image/png") # Image A
                 ]
+                for _, other_img_bytes in references:
+                    parts.append(types.Part.from_bytes(data=other_img_bytes, mime_type="image/png"))
+                    
+                contents = [types.Content(role="user", parts=parts)]
                 
                 try:
                     response = await client.aio.models.generate_content(

@@ -26,17 +26,47 @@ from cda_dust_agent.config import Config
 from cda_dust_agent.prompts import SYSTEM_INSTRUCTION_TEXT, CLASSIFICATION_USER_PROMPT, ANNOTATION_USER_PROMPT
 from cda_dust_agent.tools.utils import generate_spectrum_image_bytes, parse_response
 
-async def generate_explanation(client, model_id, spectrum_array, label, sclk, semaphore):
+async def generate_explanation(client, model_id, spectrum_array, label, sclk, semaphore, references=None):
     async with semaphore:
-        img_bytes = generate_spectrum_image_bytes(np.array(spectrum_array), title=f"{label} Sample {sclk}")
-        prompt = ANNOTATION_USER_PROMPT.format(label=label)
-        
-        contents = [
-            types.Content(role="user", parts=[
+        # Standardize labels
+        def format_class_label(cls):
+            cls_str = str(cls)
+            if cls_str.lower().startswith("class"):
+                return cls_str
+            return f"Class {cls_str}" if cls_str.lower() != 'noise' else "Noise"
+
+        target_label = format_class_label(label)
+        img_bytes = generate_spectrum_image_bytes(np.array(spectrum_array), title=f"{target_label} Sample {sclk}")
+        if references:
+            from cda_dust_agent.prompts import CONTRASTIVE_ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
+            
+            ref_descriptions = ""
+            for idx, (other_cls, _) in enumerate(references):
+                char_code = chr(66 + idx) # B, C, D, E...
+                ref_descriptions += f"- Image {char_code}: Reference Spectrum of '{format_class_label(other_cls)}'\n"
+                
+            prompt = CONTRASTIVE_ANNOTATION_USER_PROMPT.format(
+                label=target_label,
+                reference_descriptions=ref_descriptions.strip()
+            )
+            
+            parts = [
                 types.Part.from_text(text=prompt),
-                types.Part.from_bytes(data=img_bytes, mime_type="image/png")
-            ])
-        ]
+                types.Part.from_bytes(data=img_bytes, mime_type="image/png") # Image A
+            ]
+            for _, other_img_bytes in references:
+                parts.append(types.Part.from_bytes(data=other_img_bytes, mime_type="image/png"))
+                
+            contents = [types.Content(role="user", parts=parts)]
+        else:
+            from cda_dust_agent.prompts import ANNOTATION_USER_PROMPT, SYSTEM_INSTRUCTION_TEXT
+            prompt = ANNOTATION_USER_PROMPT.format(label=label)
+            contents = [
+                types.Content(role="user", parts=[
+                    types.Part.from_text(text=prompt),
+                    types.Part.from_bytes(data=img_bytes, mime_type="image/png")
+                ])
+            ]
         
         retries = 3
         for attempt in range(retries):
@@ -150,20 +180,54 @@ async def generate_nested_explanations_pool(client, model_id, pool_df, max_k=32,
             '5-Na': 16
         }
         
-    api_semaphore = asyncio.Semaphore(10)
-    explanation_tasks = []
-    
-    print(f"Sampling up to {max_k} examples per class from training pool...")
+    # Sample training samples first and build train_sclks and train_df
+    train_sclks = {}
+    sampled_rows = []
     for cls in pool_df['class'].unique():
         cls_pool = pool_df[pool_df['class'] == cls]
         k_actual = min(max_k, max_train_map.get(cls, max_k), len(cls_pool))
         
         class_samples = cls_pool.sample(n=k_actual, random_state=123)
-        for _, row in class_samples.iterrows():
-            task = generate_explanation(client, model_id, row['spectrum'], row['class'], row['sclk'], api_semaphore)
-            explanation_tasks.append(task)
+        train_sclks[cls] = class_samples['sclk'].tolist()
+        sampled_rows.append(class_samples)
+        
+    train_df = pd.concat(sampled_rows, ignore_index=True)
+    
+    # Pre-render and cache all training spectrum images once
+    print("Pre-rendering and caching training spectrum images...")
+    from cda_dust_agent.tools.utils import generate_spectrum_image_bytes
+    import random
+    
+    image_cache = {}
+    for _, row in train_df.iterrows():
+        sclk = row['sclk']
+        cls = row['class']
+        label = f"Class {cls}" if str(cls).lower() != 'noise' else "Noise"
+        img_bytes = generate_spectrum_image_bytes(np.array(row['spectrum']), title=f"{label} Reference Sample {sclk}")
+        image_cache[sclk] = img_bytes
+        
+    api_semaphore = asyncio.Semaphore(10)
+    explanation_tasks = []
+    
+    # Set seed for reproducible dynamic sampling
+    random.seed(123)
+    
+    print(f"Generating explanations for {len(train_df)} training samples concurrently with dynamic contrastive references...")
+    for _, row in train_df.iterrows():
+        target_sclk = row['sclk']
+        target_cls = row['class']
+        
+        # Select one random reference SCLK from each of the other classes
+        references = []
+        for other_cls, other_sclks in train_sclks.items():
+            if other_cls != target_cls:
+                other_sclk = random.choice(other_sclks)
+                references.append((other_cls, image_cache[other_sclk]))
+                
+        task = generate_explanation(client, model_id, row['spectrum'], row['class'], row['sclk'], api_semaphore, references=references)
+        explanation_tasks.append(task)
             
-    print(f"Generating {len(explanation_tasks)} reference explanations online...")
+    print(f"Generating {len(explanation_tasks)} reference explanations online with dynamic contrastive references...")
     results = await asyncio.gather(*explanation_tasks)
     
     explanations_pool = [r for r in results if r is not None]
@@ -183,14 +247,16 @@ def create_ablation_batch_input_file(test_df, explanations_pool, k_values, outpu
     test_image_cache = {}
     
     # Re-use a single figure and axes to prevent memory leaks
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig, ax = plt.subplots(figsize=(12, 6), dpi=60)
     
     for idx, row in test_df.reset_index(drop=True).iterrows():
         sclk = row['sclk']
         if sclk not in test_image_cache:
             ax.clear()
-            ax.semilogy(row['spectrum'], color='black', linewidth=1.5)
+            ax.plot(row['spectrum'], color='black', linewidth=1.5)
             ax.set_title(f"Sample {sclk}")
+            ax.set_ylim(-0.02, 1.02)
+            ax.set_xlim(0, 630)
             ax.grid(True)
             
             buf = io.BytesIO()
@@ -286,7 +352,48 @@ def submit_and_poll_batch_job(configs, local_jsonl_path):
     
     gcs_input_path = f"input/{filename}"
     blob = bucket.blob(gcs_input_path)
-    blob.upload_from_filename(local_jsonl_path)
+    
+    import tqdm
+    class ProgressFileWrapper(object):
+        def __init__(self, fileobj, total_size):
+            self.fileobj = fileobj
+            self.total_size = total_size
+            self.pbar = tqdm.tqdm(
+                total=total_size,
+                unit='B',
+                unit_scale=True,
+                desc="Uploading to GCS",
+                leave=True
+            )
+            self.bytes_read = 0
+
+        def read(self, size=-1):
+            chunk = self.fileobj.read(size)
+            if chunk:
+                self.bytes_read += len(chunk)
+                self.pbar.update(len(chunk))
+            return chunk
+
+        def seek(self, offset, whence=0):
+            self.fileobj.seek(offset, whence)
+            current_pos = self.fileobj.tell()
+            self.pbar.n = current_pos
+            self.pbar.refresh()
+
+        def tell(self):
+            return self.fileobj.tell()
+
+        def close(self):
+            self.pbar.close()
+            self.fileobj.close()
+
+    total_size = os.path.getsize(local_jsonl_path)
+    with open(local_jsonl_path, 'rb') as f:
+        wrapped_file = ProgressFileWrapper(f, total_size)
+        # Set chunk size to 10MB (must be a multiple of 256KB) and increase timeout to 10 minutes
+        blob.chunk_size = 10 * 1024 * 1024
+        blob.upload_from_file(wrapped_file, content_type="application/json", timeout=600)
+        
     gcs_source = f"gs://{bucket.name}/{gcs_input_path}"
     print(f"Uploaded to {gcs_source}")
     
@@ -335,6 +442,9 @@ def submit_and_poll_batch_job(configs, local_jsonl_path):
     check_url = f"https://aiplatform.googleapis.com/v1/{job_name}"
     print("Polling job status every 30 seconds...")
     while True:
+        # Refresh access token inside the loop as batch jobs can run for hours
+        access_token = os.popen("gcloud auth application-default print-access-token").read().strip()
+        
         check_cmd = [
             "curl", "-s", "-X", "GET",
             check_url,

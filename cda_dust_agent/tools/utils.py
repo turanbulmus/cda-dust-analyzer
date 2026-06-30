@@ -5,12 +5,14 @@ import io
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def generate_spectrum_image_bytes(spectrum_data, title=None):
+def generate_spectrum_image_bytes(spectrum_data, title=None, dpi=60):
     """Generates a PNG byte buffer of the spectrum plot."""
-    plt.figure(figsize=(12, 6))
-    plt.semilogy(spectrum_data, color='black', linewidth=1.5)
+    plt.figure(figsize=(12, 6), dpi=dpi)
+    plt.plot(spectrum_data, color='black', linewidth=1.5)
     if title:
         plt.title(title)
+    plt.ylim(-0.02, 1.02)
+    plt.xlim(0, 630)
     plt.grid(True)
     
     buf = io.BytesIO()

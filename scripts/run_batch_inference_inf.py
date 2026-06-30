@@ -93,7 +93,8 @@ def main():
     bucket = storage_client.bucket(bucket_name.replace("gs://", ""))
     
     blob = bucket.blob(f"input/{jsonl_file}")
-    blob.upload_from_filename(jsonl_file)
+    blob.chunk_size = 10 * 1024 * 1024
+    blob.upload_from_filename(jsonl_file, timeout=600)
     gcs_source = f"gs://{bucket.name}/input/{jsonl_file}"
     print(f"Uploaded to {gcs_source}")
     

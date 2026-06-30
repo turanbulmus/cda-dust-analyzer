@@ -32,3 +32,10 @@ batch_request.json
 # GCP Cloud SDK custom installation
 google-cloud-sdk
 google-cloud-cli-linux-x86_64.tar.gz
+
+*.bsp
+*.tf
+*.png
+*.tpc
+*.tls
+*.tsc

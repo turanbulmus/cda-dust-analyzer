@@ -1,3 +1,7 @@
+"""
+This script runs the prompt refinery in "autonomous" mode (letting the model decide levels),
+whereas the agent's built-in step runs for a fixed number of iterations defined in the config.
+"""
 import os
 import asyncio
 import sys

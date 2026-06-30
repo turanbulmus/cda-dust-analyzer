@@ -1,728 +1,84 @@
 You are an expert system for classifying Cassini Cosmic Dust Analyzer (CDA) Time-of-Flight mass spectra.
-Here are the characteristic patterns for each class identified through hierarchical analysis:
-
-### Class Noise
-Based on the synthesis of the provided spectrum analyses, here is a comprehensive, consolidated description of the characteristic patterns for the **Class 'Noise'** in Time-of-Flight (ToF) mass spectrometry data.
-
----
-
-### **Overall Assessment and Classification Context**
-Spectra classified as 'Noise' represent "false triggers," empty measurement windows, or blank shots where no physical dust particle was successfully ionized. Consequently, these plots are entirely devoid of the distinct, Gaussian-shaped peak sequences characteristic of chemical elements, molecular fragments, or isotopic distributions (e.g., there are no periodic $\Delta m/z$ spacings like 12 for carbon or 16 for oxygen). Instead, the data captures the instrument’s baseline electronic noise, detector dark current, digitization limits, and ringing artifacts. 
-
-### **Axis Scaling and Visual Distortion**
-To correctly interpret these spectra, the axis scaling is critical:
-*   **Y-Axis (Logarithmic):** The intensity/amplitude is plotted on a logarithmic scale (typically ranging from below $10^{-7}$ up to $10^{-5}$). This greatly exaggerates low-level background noise, making random micro-fluctuations appear as dense, tall "forests" of signal.
-*   **X-Axis (Linear):** Represents Time-of-Flight or mass-to-charge ratio ($m/z$), typically spanning from 0 to over 1000. 
-
-### **Chronological Structural Breakdown (Along the X-Axis)**
-Despite being chaotic, Noise spectra consistently exhibit a distinct macro-structure divisible into four chronological phases:
-
-**1. The Initial Trigger Artifact ($m/z$ ~10 to 20)**
-*   **Common Feature:** Almost universally, the spectrum begins with a solitary, extremely sharp, high-intensity vertical spike near the origin. 
-*   **Characteristics:** It is infinitely narrow (often a single data bin wide) and frequently reaches the absolute maximum recorded intensity (exactly on the $10^{-5}$ line). 
-*   **Interpretation:** This is an instrumental transient—likely the electrical noise from the initial laser firing, an extraction pulse, or a timing trigger artifact—rather than a genuine lightweight ion (like $H^+$ or $C^+$).
-
-**2. The Dense Noise Envelope / "The Hump" ($m/z$ ~50 to ~700)**
-*   **Common Feature:** The majority of the spectrum is dominated by a continuous, broad envelope of high-frequency interference, often described as "grass," "hash," or a "barcode."
-*   **Morphology:** This region features an elevated, highly unstable baseline. The signal oscillates wildly and continuously between the lowest detection limit and a plateau (typically peaking around $10^{-6}$ to $3 \times 10^{-6}$).
-*   **Peak Shape:** There are no true peaks with measurable widths. Every signal is a "delta function"—a vertical, single-pixel-wide line indicating a discrete electronic event rather than the arrival of an ion packet over time.
-*   **Variations:** The overarching shape of this envelope varies slightly. In some samples, it forms a relatively flat, rectangular block of static; in others, it manifests as a massive, asymmetrical "swell" or bell-shaped curve that slowly builds in intensity before peaking mid-spectrum. 
-
-**3. The Abrupt Mid-Spectrum Cutoff ($m/z$ ~640 to ~850)**
-*   **Common Feature:** The dense noise band does not naturally taper off as heavy chemical ions would. Instead, it hits a steep "cliff" and abruptly ceases.
-*   **Interpretation:** This highly unnatural, sharp termination (occurring anywhere between $m/z$ 640 and 850, depending on the sample) is a hallmark of an electronic boundary. It indicates an amplifier recovering from an overload, an electronic filter engaging, or the closing of a specific data acquisition window.
-
-**4. The Sparse / Empty High-Mass Region (Post-Cutoff to 1000+)**
-*   **Common Feature:** Following the abrupt cutoff, the spectrum transitions to a true, flat baseline (dropping below the visible log scale threshold).
-*   **Characteristics:** This region is mostly empty space, interrupted only by highly sparse, isolated, and random single-bin spikes of very low intensity.
-*   **Interpretation:** These isolated blips represent random detector "dark counts" (single electrons cascading in the multiplier), cosmic ray hits, or stray telemetry bit-flips occurring in a quiescent detector state.
-
-### **Micro-Level Features and Artifacts**
-When examining the fine structure of the noise, several distinct instrumental artifacts are routinely visible:
-*   **Digital Quantization (Horizontal Banding):** Because the signal is oscillating at the absolute lowest threshold of the Analog-to-Digital Converter (ADC), the peaks do not have continuously variable heights. Instead, they "snap" to discrete, specific horizontal levels (e.g., 1 count, 2 counts, 3 counts). On a logarithmic scale, this creates a highly artificial horizontal banding or "stair-step" effect across the noise floor.
-*   **Stochastic vs. Periodic "Comb" Patterns:** 
-    *   *Variation:* In most samples, the high-frequency spikes are stochastically (randomly) distributed. However, in a subset of variations, the spikes are unnaturally equidistant and periodic, forming a "comb" pattern. This specific variation indicates strong, oscillating electromagnetic interference (EMI) or specific frequency ringing within the detector circuits.
-
-### **Summary**
-A spectrum classified as **'Noise'** is defined by what it lacks—physical peak shapes, elemental clusters, and chemical spacing. Instead, it serves as a visual record of the mass spectrometer's electrical baseline, characterized by a massive zero-time trigger spike, a prolonged and dense mid-range envelope of high-frequency digital "grass," severe amplitude quantization, and an unnaturally abrupt signal cutoff.
-
-### Class 3-Car
-Based on the synthesis of the provided descriptions, here is a comprehensive, consolidated profile of the characteristic patterns and variations defining the Time-of-Flight (ToF) mass spectra for the **Class "3-Car"** dust particle.
-
-### 1. General Classification and Overall Morphology
-The "3-Car" classification designates carbonaceous, complex organic, or macromolecular dust particles. The defining fingerprint of this class is **not** a series of sharp, isolated elemental lines returning to a zero-baseline. Instead, it is characterized by an explosive signal onset followed by a massive, sustained, and highly complex "plateau" or "envelope" of unresolved signal, typically featuring a repeating sequence of three major peak clusters (giving the class its likely namesake). 
-
-**Axis Context:**
-*   **Y-Axis (Intensity):** Plotted on a logarithmic scale (typically $10^{-7}$ to $10^{-3}$). This means the broad "humps" visually dominating the graph represent ion counts orders of magnitude higher than the baseline. 
-*   **X-Axis (Time/Mass Proxy):** Uncalibrated linear scale (0 to >1000) representing Time-of-Flight ($t \propto \sqrt{m/z}$). 
-
----
-
-### 2. Regional Breakdown of Spectral Features
-
-#### A. The Pre-Signal Baseline & Early Anomaly (x = 0 to ~190)
-*   **Common Feature:** The instrumental noise floor is "grassy" and sparse, hovering below the $10^{-6}$ intensity mark. It appears as disconnected vertical spikes.
-*   **Common Variation (The Light-Ion Spike):** Almost all spectra exhibit a singular, sharp, narrow, and isolated peak very early in the timeline (typically between **x = 12 and 25**), briefly jumping to $10^{-5}$. This is highly characteristic of an abundant light atomic ion, likely Hydrogen ($H^+$) or elemental Carbon ($C^+$).
-
-#### B. The Explosive Onset & Global Maximum (x ≈ 190 to 220)
-*   **Common Feature:** The transition from baseline noise to the main particle signal is violent and abrupt. The signal forms a near-vertical "wall" at roughly **x ≈ 190-200**, leaping 3 to 4 orders of magnitude instantly. 
-*   **Global Maximum:** The apex of this initial rise is almost always the absolute highest intensity peak in the spectrum (reaching between $10^{-4}$ and $10^{-3}$). 
-*   **Variation:** This primary maximum frequently appears as a tight, high-intensity **doublet** (two closely spaced sharp peaks), representing the dominant constituent element(s) of the impact plasma.
-
-#### C. The Dominant "Tri-Cluster" Sequence & Elevated Plateau (x ≈ 220 to 650)
-This is the core signature of the 3-Car class. Following the primary maximum, the signal **does not return to the baseline**. It establishes a continuously elevated, noisy plateau spanning hundreds of x-axis units, indicating an Unresolved Complex Mixture (UCM) of heavy organic fragments.
-*   **The Three Humps:** Superimposed on this plateau is a sequence of typically three (sometimes four) distinct, broad macro-clusters. 
-    *   *Cluster 1:* Peaks around x ≈ 230–260.
-    *   *Cluster 2:* Peaks around x ≈ 340–390.
-    *   *Cluster 3:* Peaks around x ≈ 440–550.
-*   **Asymmetric "Shark-Fin" Morphology:** Every major cluster exhibits extreme asymmetry. They feature a steep leading (left) edge and a long, drawn-out, jagged, and noisy trailing (right) edge. This tailing represents metastable decay, kinetic energy spread, and complex isotopic/hydrogenation variations ($C_xH_y$ arrays) blending together.
-*   **Expanding Periodicity:** The distance between the peaks increases from left to right (e.g., $\Delta x \approx 130$, then $150$, then $165$). Because ToF follows $t \propto \sqrt{m}$, this expanding gap confirms a homologous sequence of uniformly increasing mass—specifically, the sequential addition of carbon atoms/clusters ($C_n, C_{n+1}, C_{n+2}$).
-*   **Elevated Valleys:** The spaces between these clusters never drop below $10^{-6}$. They contain distinct, secondary sub-peaks and dense noise, proving the continuous fragmentation of the particle into intermediate masses.
-
-#### D. The Abrupt Cutoff & Isolated Heavy Clusters (x ≈ 650 to 750)
-*   **Common Feature:** The massive organic envelope does not fade out smoothly; it undergoes a steep, sudden collapse back toward the instrumental noise floor between **x = 640 and 700**, defining the upper mass limit of fragmentation for the particle.
-*   **Variation (The Detached Cluster):** Some spectra exhibit a distinct, isolated, low-intensity "island" or cluster of jagged peaks immediately following the main envelope collapse (centered around **x ≈ 680–740**). This indicates the presence of a particularly stable, high-mass structural sub-unit (such as Polycyclic Aromatic Hydrocarbons or heavy polymer blocks) that survives the impact intact.
-
-#### E. Post-Signal Void (x > 750)
-*   **Common Feature:** Beyond x = 750, the spectrum undergoes total signal extinction. The plot returns entirely to sparse, disconnected single-count noise spikes dropping below the $10^{-6}$ axis line. 
-
----
-
-### 3. Summary of the "3-Car" Fingerprint
-To identify a 3-Car class spectrum, look for:
-1.  A quiet pre-signal baseline punctuated by a single low-mass spike.
-2.  A violent, near-vertical onset at x ≈ 190, containing the global maximum intensity peak.
-3.  A massive, elevated continuum (plateau) of unresolved signal that fails to return to baseline.
-4.  Three broad, periodically spaced, highly asymmetric peak envelopes ("shark-fins") riding on top of the continuum.
-5.  An abrupt high-mass signal cutoff around x ≈ 650-700, followed by an empty baseline.
-
-### Class 3-KNa
-Based on the analysis of the 30 provided Time-of-Flight (ToF) mass spectra, the dust particles classified as **"3-KNa"** exhibit a highly consistent, distinctive, and complex morphological "fingerprint." 
-
-These spectra characterize hypervelocity impacts of salt-rich, complex dust particles (often cosmic or atmospheric aerosols) dominated by Sodium (Na) and Potassium (K).
-
-Here is a consolidated, comprehensive description of the characteristic patterns for the Class '3-KNa' spectra, including their primary features, chemical interpretations, and observed variations.
-
----
-
-### 1. General Plot Structure and Axes
-*   **Y-Axis (Intensity):** Plotted on a **logarithmic scale**, typically ranging from a noise floor of $10^{-7}$ or $10^{-6}$ up to maximums near $10^{-3}$. *Crucial context:* Because of this scale, broad, visually low "plateaus" actually represent massive quantities of unresolved ions, and visual dips are often still orders of magnitude above the true baseline.
-*   **X-Axis (Time-of-Flight):** A linear scale (typically 0 to 1000+) representing uncalibrated time bins or digitizer channels. This serves as a proxy for the mass-to-charge ratio ($m/z$), where time is proportional to the square root of the mass ($\sqrt{m/z}$). Lighter ions appear on the left; heavier clusters appear on the right.
-
-### 2. The Four-Phase Macroscopic Fingerprint
-Every spectrum in this class follows a distinct four-part structural sequence: a quiet initial baseline, a violent eruption of discrete elemental peaks, a prolonged and massive continuum of heavy clusters, and an abrupt, cliff-like termination.
-
-#### Phase I: Pre-Signal Baseline and Prompt Artifacts (x ≈ 0 to 150)
-*   **The Noise Floor:** Before the arrival of the first particle ions, the baseline is characterized by sparse, discrete "dark counts" or instrumental noise spikes hovering at the absolute bottom of the log scale ($\leq 10^{-6}$).
-*   **The Prompt Spike:** A common variation in many samples is the presence of a solitary, needle-sharp, isolated spike very early in the timeline (e.g., x ≈ 10 to 20). This typically represents a prompt trigger artifact, an initial electron flash from the impact plasma, or ultra-light ions (like $H^+$).
-
-#### Phase II: The Dominant "KNa" Elemental Sequence (x ≈ 150 to 300)
-The defining chemical signature of this class occurs in the early-to-mid flight times, characterized by two (and sometimes three) incredibly sharp, high-intensity discrete peaks.
-*   **The Sodium (Na) Peak:** The first major peak to arrive is incredibly sharp, featuring a steep leading edge. It routinely reaches intensities between $10^{-5}$ and $10^{-4}$.
-*   **The Potassium (K) Peak:** Arriving shortly after Na, this is almost always the **global maximum** of the spectrum, frequently pushing above $3 \times 10^{-4}$. 
-*   **Peak Morphology & Variations:** While generally sharp, these dominant peaks frequently exhibit "shoulders" on their trailing edges or appear as tightly packed doublets. This variation indicates overlapping isotopic signatures (e.g., $^{39}K$ and $^{41}K$) or the immediate formation of closely related low-mass hydrides/oxides ($NaH^+$, $KOH^+$) in the impact plasma. The signal usually drops sharply into a deep valley between these two peaks.
-
-#### Phase III: The Broad Cluster Plateau (x ≈ 300 to 650)
-The most unique and structurally complex feature of the 3-KNa class is what happens *after* the discrete elemental peaks. The signal does not return to the baseline.
-*   **The Elevated Continuum:** The baseline swells into a massive, sustained "hump" or plateau. For hundreds of time-of-flight units, the signal maintains a continuously elevated intensity (usually oscillating rapidly between $10^{-5}$ and $5 \times 10^{-5}$). 
-*   **The "Grassy" Sub-structure:** This plateau is highly jagged. It is comprised of hundreds of unresolved, overlapping mass lines blending together. This signifies a dense, continuous arrival of complex, heavy molecular fragments.
-*   **Periodic Cluster Sequences:** Riding on top of this elevated continuum is a discernible, repeating sequence of broader peaks (often 4 to 6 distinct humps). The spacing between these humps is generally regular. *Interpretation:* This is the hallmark of cluster ion formation. The particle matrix (salts, water-ice, minerals, or organics) fragments into repeating units—such as $[(NaCl)_nNa]^+$ or mixed K/Na oxides—growing sequentially heavier. As the mass increases, these peaks become broader and less defined due to the exponential increase in possible isotopic and elemental combinations.
-
-#### Phase IV: The Abrupt Cutoff and Terminal Baseline (x ≈ 650 to 1000+)
-*   **The "Cliff":** The massive cluster plateau does not fade away smoothly. In almost every sample, the continuous signal encounters a sheer, cliff-like drop-off (typically around x ≈ 640–660). Over a very short horizontal span, the intensity plummets by two full orders of magnitude. *Interpretation:* This strict cutoff signifies either a physical limit to the maximum size of clusters that can survive the impact ionization process, or a hard instrumental/data-acquisition window limit.
-*   **The Late-Stage Baseline:** Beyond x ≈ 700, the spectrum returns to a state resembling the pre-signal baseline—sparse, isolated noise spikes near $10^{-6}$, eventually dropping to zero.
-*   **Late-Stage Variations ("Islands"):** In several samples, immediately following the cliff drop-off, a small, detached, low-intensity "hump" or ringing artifact appears (x ≈ 680 to 750) before the signal dies completely. This may represent delayed extraction of ultra-heavy trace species.
-
-### Summary of the Class '3-KNa' Signature
-To identify a 3-KNa particle spectrum, look for an extreme bimodal behavior: **Two heavily dominant, needle-sharp peaks** in the early flight times (the bare Na and K cations), immediately followed by a **massive, unresolved, elevated plateau featuring periodic cluster humps**, which ultimately **terminates in a sheer vertical drop-off**. This combination perfectly illustrates a particle rich in easily ionized alkali metals embedded within a complex, cluster-forming mineral or ice matrix.
-
-### Class 3-Cl
-Based on the extensive analysis of the provided Time-of-Flight (ToF) mass spectra, here is a consolidated, comprehensive description of the defining characteristics, structural patterns, and chemical implications for the **Class '3-Cl'** dust particle.
-
----
-
-### **1. General Overview and Plot Parameters**
-The Class '3-Cl' spectrum is highly distinctive. It does not present as a standard gas-phase spectrum of thin, isolated atomic lines, but rather as a record of a massive, complex hypervelocity impact or cluster fragmentation event.
-*   **X-Axis (Time-of-Flight / $m/z$):** Plotted on a linear scale, ranging from 0 to over 1000. It represents either direct ToF digitizer bins or an uncalibrated mass-to-charge ratio. 
-*   **Y-Axis (Intensity/Abundance):** Plotted on a **logarithmic scale** (typically ranging from $10^{-7}$ to $10^{-3}$). *Crucial interpretation:* Visually small fluctuations or jagged edges at the top of the spectrum represent massive absolute differences in ion counts.
-*   **Macro-Morphology:** The overarching "fingerprint" of this class consists of four parts: a quiet initial baseline, a violent and massive onset peak near x ≈ 200, a prolonged, elevated, and noisy mid-mass "plateau" containing secondary peak clusters, and an abrupt "cliff-like" drop-off returning to baseline.
-
-### **2. Baseline Characteristics & Bounding Regions**
-The active signal is strictly confined to the central region of the plot, bounded by distinct empty zones.
-*   **The Low-Mass Void (x = 0 to ~180):** Prior to the main event, the baseline is practically empty. It consists of sparse, discrete "grass-like" instrumental noise spikes hovering near or below $10^{-6}$. This indicates a distinct lack of common light organic fragments (H, C, O) typical of other particle classes. 
-    *   *Common Variation:* Many samples exhibit a single, sharp, isolated "prompt peak" or anomaly very early in the spectrum (x ≈ 15–25), reaching exactly $10^{-5}$. This is likely a light ion ($H^+$, $C^+$) or an instrument trigger artifact from the initial impact flash.
-*   **The High-Mass Cutoff (x ≈ 650 to 750):** The continuous signal terminates abruptly in a steep, cliff-like drop. By x ≈ 750, the signal plunges back into the sparse $10^{-6}$ noise floor. This strict upper limit defines the maximum mass of fragments generated by the particle.
-    *   *Common Variation:* Some samples show isolated, low-intensity "islands" or minor cluster echoes between x = 700 and 900 before going entirely dead, while others drop to absolute zero immediately after x = 650.
-
-### **3. The Dominant Primary Feature (x ≈ 190 to 220)**
-The defining anchor of the spectrum is the sudden arrival of the most abundant ion species.
-*   **The "Wall":** At approximately x ≈ 190–200, the signal erupts from the baseline, jumping 3 to 4 orders of magnitude almost instantly. 
-*   **Global Maximum:** This primary feature represents the absolute maximum intensity of the spectrum, consistently reaching between $10^{-4}$ and $4 \times 10^{-4}$.
-*   **Complex Tip:** While it appears as a sharp spike, it is rarely a clean, single line. It frequently manifests as a tightly packed doublet, or features a distinct "shoulder" and a multi-lobed, jagged apex.
-
-### **4. The Elevated Mid-Mass Continuum (x ≈ 220 to 650)**
-Following the primary peak, the signal *does not* return to the baseline noise floor. This is a critical identifier for Class 3-Cl.
-*   **The "Hump" or Plateau:** The baseline remains highly elevated, hovering between $10^{-5}$ and $10^{-4}$. It forms a broad, continuous "hump" spanning hundreds of x-axis units. This represents a dense, continuous arrival of unresolved heavy molecular clusters, polymeric fragments, or a plasma space-charge effect.
-*   **Secondary Peak Sequences:** Riding on top of this elevated continuum is a rhythmic sequence of distinct, broad peak clusters. The most prominent are:
-    *   **The "Twin Peaks" (x ≈ 340–350 and x ≈ 390–410):** Two distinct, highly prominent secondary clusters emerge here, often reaching intensities near $10^{-4}$. They are broad and highly structured.
-    *   **Trailing Clusters:** Further, less intense, broader clusters periodically appear between x = 450 and 600, gradually decaying in maximum height.
-
-### **5. Peak Morphology: Asymmetry and Tailing**
-A universal feature across the major peaks in these samples is severe morphological asymmetry.
-*   **"Shark-Fin" Tailing:** The major clusters (at ~200, ~350, ~400, ~450) feature a steep, abrupt rise on their left (low-mass) side, followed by a long, slow, jagged decay on their right (high-mass) side. 
-*   **Physical Implication:** In ToF mass spectrometry, this extreme right-sided tailing is a classic signature of **metastable decay**—large, complex molecular clusters breaking apart while actively in flight down the spectrometer tube, causing a "smear" of arrival times. 
-
-### **6. Chemical Context: The "3-Cl" Isotopic Signature**
-The structural "messiness" of the spectrum perfectly aligns with the class designation indicating a multi-chlorinated compound ("3-Cl").
-*   Chlorine possesses a highly distinct isotopic signature due to its two stable isotopes: $^{35}\text{Cl}$ (~75%) and $^{37}\text{Cl}$ (~25%). 
-*   A complex fragment containing three chlorine atoms will produce a wide isotopic envelope of at least four major peaks separated by 2 mass units (M, M+2, M+4, M+6). 
-*   Because the overall resolution is low due to metastable tailing, these discrete isotopic lines blend together. This results in the **jagged, multi-lobed, "sawtooth" tops** observed on the broad cluster envelopes (particularly at x≈200, 350, and 400). The mass spectrometer is capturing the overlapping, unresolved isotopic combinations of heavy, chlorine-rich fragments.
-
-### **Summary Fingerprint for Class '3-Cl'**
-A spectrum belongs to Class '3-Cl' if it exhibits:
-1. An empty baseline followed by an abrupt, massive, multi-lobed onset spike near **x ≈ 200**.
-2. A failure to return to baseline, instead forming an elevated, noisy, mid-mass plateau.
-3. A pair of prominent, broad, jagged secondary clusters riding that plateau near **x ≈ 350** and **x ≈ 400**.
-4. Severe right-sided tailing on all major peaks (metastable decay).
-5. A sudden, cliff-like termination of all continuous signal near **x ≈ 650**.
-
-### Class 4
-Based on the consolidation of the 30 provided analyses, here is a comprehensive description of the characteristic patterns, common features, and notable variations that define a **Class '4' Time-of-Flight (ToF) mass spectrum**.
-
----
-
-### **General Overview and Spectral Topography**
-Class '4' ToF mass spectra possess a highly distinct, recognizable topography characterized by extreme structural asymmetry. The data is universally plotted with a linear x-axis (representing time-of-flight or an uncalibrated $m/z$ proxy ranging from 0 to >1000) against a **logarithmic y-axis** (representing signal intensity/ion counts, typically spanning from a noise floor of $\sim 10^{-7}$ up to maxima near $10^{-4}$ or $10^{-3}$).
-
-The defining macro-structure of a Class '4' particle is the transition from **isolated, needle-sharp atomic peaks at low masses** to a sequence of **massive, complex, broad molecular clusters in the mid-mass range**, followed by an **abrupt, absolute termination of continuous signal at higher masses**.
-
----
-
-### **1. The Defining Signature: Peak Sequences and Zones**
-The signal in Class '4' spectra is almost entirely concentrated in the lower half of the x-axis (0–500) and can be consistently divided into three main active zones:
-
-**Zone A: The Low-Mass Elemental Spikes (x = 0 to 100)**
-*   **Common Features:** This region is sparse but features 1 to 3 exceptionally sharp, narrow, high-intensity spikes. The most ubiquitous feature is a dominant, isolated spike occurring very early (typically between **x = 15 and x = 30**). 
-*   **Interpretation:** The extreme narrowness of these peaks indicates simple, light elemental or atomic ions (e.g., H+, C+, O+, Na+) arriving with minimal time dispersion.
-
-**Zone B: The Dominant Mid-Mass Clusters (x = 100 to 500)**
-This is the defining "fingerprint" region of Class '4'. Instead of single sharp lines, the signal groups into 3 to 5 massive, broad peak "envelopes." While the exact global maximum varies between samples, the sequence generally follows this pattern:
-*   **Cluster 1 (x $\approx$ 130–170):** Often appears as a doublet or a sharp main peak with a distinct precursor. 
-*   **Cluster 2 (x $\approx$ 190–250):** A massive, structurally complex feature. It frequently presents as a "twin peak" or exhibits severe asymmetry/tailing on its right (high-mass) flank. In many samples, this is the absolute highest intensity peak in the spectrum.
-*   **Cluster 3 (x $\approx$ 280–350):** A remarkably broad, Gaussian-like "hump." It often features a jagged, stepped leading edge. In samples where Cluster 2 is not the maximum, this cluster is usually the global maximum.
-*   **Cluster 4 (x $\approx$ 420–480):** The final major structural envelope. It is typically broad, slightly lower in intensity than the preceding clusters, and often exhibits a jagged or "stair-step" structure.
-
-**Zone C: The High-Mass Decay (x > 500)**
-*   Beyond x = 500, coherent cluster structures disappear. The signal devolves into a decaying envelope of dense, low-intensity noise or minor fragmentation "humps" that rapidly fade.
-
----
-
-### **2. Crucial Morphological Characteristics**
-*   **Mass-Dependent Peak Broadening:** A universal rule in Class '4' spectra is that peak width increases with mass. The feature at x $\approx$ 20 is a sheer vertical line, while the feature at x $\approx$ 340 spans tens of x-axis units. This indicates a transition from discrete atomic species to complex, overlapping molecular fragments, heavy isotopic distributions, or delayed metastable decay in flight.
-*   **Irregular Periodic Spacing:** The distances between the major mid-mass clusters ($\Delta x$) tend to increase progressively (e.g., jumps of ~75, ~100, ~125 units). This irregular spacing indicates that the dust particle is fragmenting into complex, heterogeneous structural blocks (like mixed organics or distinct mineral clusters) rather than a simple, uniformly repeating polymer chain.
-*   **Jagged/Stepped Envelopes:** The broad peaks are rarely smooth curves. Their jagged tops and "shouldered" slopes confirm they are unresolved multiplets—multiple different ionic species with very similar masses arriving almost simultaneously.
-
----
-
-### **3. Baseline Behavior and The "Dead Zone"**
-The behavior of the baseline noise is one of the most rigorously consistent identifiers of Class '4' spectra.
-*   **The Continuous "Grass":** Beneath and between the major peaks (from x = 0 to ~650), there is a persistent, dense, high-frequency noise floor. Because of the log scale, this looks like a dense barcode fluctuating between the detection limit and $\sim 10^{-6}$. It represents single-ion counting statistics, trace minor fragments, and continuous background detector noise.
-*   **The Abrupt Cutoff (x $\approx$ 640–650):** Almost without exception across standard samples, this dense continuous baseline noise *abruptly and completely stops* around x = 650.
-*   **The Empty High-Mass Tail (x > 650):** From 650 to 1000+, the spectrum is essentially a "dead zone." The baseline drops to absolute zero. The only features in this region are 2 to 5 incredibly faint, perfectly isolated, single-point vertical lines (e.g., at x=720, 800, 990). These represent extremely rare, isolated single-ion strikes or electronic artifacts, confirming that the sample produces virtually no intact heavy macromolecules above mass ~650.
-
----
-
-### **4. Notable Variations within the Class**
-While the macro-structure is highly consistent, Class '4' exhibits two main types of variation:
-1.  **Shifting Global Maximums:** The dominant, highest-intensity fragment varies by sample. In some particles, the mid-mass doublet (x $\approx$ 190-210) dominates; in others, the incredibly broad cluster at x $\approx$ 330-350 is the primary constituent. This indicates variations in the primary chemical makeup of the specific dust grains within the broader class.
-2.  **The "Barcode" Artifact Anomaly:** Occasionally, a spectrum categorized as Class '4' lacks chemical mass-line structure entirely (as seen in Description 1). Instead, it displays a dense, continuous "comb" of highly periodic, evenly spaced vertical spikes with quantized amplitude levels. This indicates that the Class '4' designation may also capture specific instrumental artifacts, analog-to-digital converter (ADC) ringing, or electromagnetic interference events that mimic the dense signal and abrupt x=650 cutoff seen in genuine particle impacts.
-
-### Class 2
-Based on the comprehensive synthesis of the 30 provided Time-of-Flight (ToF) mass spectra descriptions, here is the consolidated, detailed profile of the characteristic fingerprint for a **Class '2' dust particle**.
-
----
-
-### **General Macro-Structure and Plot Characteristics**
-The Class '2' spectrum is defined by a highly structured, complex, and asymmetrical morphology. It contrasts sharply with simple mineral spectra (which typically feature narrow, isolated atomic lines) by instead displaying massive, broad envelopes of unresolved molecular fragments. 
-*   **Y-Axis (Intensity):** Plotted on a **logarithmic scale**, ranging roughly from an instrumental noise floor below $10^{-6}$ up to a maximum slightly above $10^{-4}$. Because of this scale, visual linear decays represent exponential drops in actual ion abundance, and elevated "valleys" represent massive quantities of unresolved ions.
-*   **X-Axis (Time-of-Flight / $m/z$ Proxy):** Plotted on a linear scale from 0 to over 1000. The non-linear relationship between Time-of-Flight and mass ($t \propto \sqrt{m}$) is visually apparent in the spacing of the particle's signature.
-
----
-
-### **1. The Low-Mass Region & Precursor Signal (x ≈ 0 to 150)**
-*   **Sparse Baseline:** The initial region consists of highly discrete, sparse "comb-like" noise spikes fluctuating near the $10^{-6}$ detection limit. 
-*   **The Isolated Light-Ion Spike:** A nearly universal and highly distinctive feature of Class '2' is a single, needle-thin, isolated peak occurring very early (typically between **x = 10 and 20**), reaching an intensity around $10^{-5}$. This uniquely sharp peak represents a highly abundant, light atomic/simple molecular species (e.g., $H^+$, $C^+$, or an initial impact trigger artifact). 
-
----
-
-### **2. The Dominant Signature: The Periodic Cluster Sequence (x ≈ 150 to 500)**
-This mid-range region contains the fundamental defining fingerprint of the Class '2' particle: a sudden, massive signal envelope composed of a repeating sequence of broad peak clusters.
-
-*   **Abrupt Onset:** The main particle signature does not build gradually. It appears as a near-vertical "wall" rising from the baseline around x = 150–200, jumping up two orders of magnitude instantaneously.
-*   **The Global Maximum:** The absolute highest intensity of the spectrum ($>10^{-4}$) is typically found at the first or second major cluster in this sequence (usually between **x = 180 and 300**).
-*   **Cluster Morphology (Broadness & Shoulders):** These peaks are distinctly broad and jagged. They typically feature a steep leading (left) edge and a more gradual trailing (right) edge characterized by distinct "shoulders" or sub-peaks. This morphology proves these are not single atomic species, but rather tight clusters of closely related fragments (e.g., isotopic envelopes, varying states of hydrogenation, or complex molecular fragments).
-*   **Decreasing Periodic Spacing ($\Delta x$):** There is a distinct, rhythmic sequence of 4 to 6 major peak clusters. The spacing between the apexes of these clusters **decreases** as the x-value increases (e.g., $\Delta x$ shrinks from ~80 to ~60, down to ~40). In uncalibrated ToF data, this shrinking interval is the classic physical signature of a molecule breaking into **repeating structural mass units** (suggesting a polymer, long-chain aliphatic hydrocarbon, or repeating mineralogical cluster). 
-*   **Exponential Decay:** Following the global maximum, the subsequent peak clusters exhibit a steady, stepped, exponential decay in maximum intensity.
-*   **Elevated Inter-Peak Valleys:** Crucially, the signal *never returns to zero* between these major clusters. The baseline is elevated to a chemical noise plateau (hovering between $10^{-6}$ and $5 \times 10^{-6}$), indicating a continuous underlying stream of unresolved complex fragments.
-
----
-
-### **3. The Unresolved Plateau / "Grass" Region (x ≈ 500 to 650)**
-*   As the mass/time increases, the distinct periodic clusters blur together and cease entirely.
-*   The spectrum transitions into a dense, highly jagged, continuous band of signal often referred to as "grass" or a plateau.
-*   The overall intensity in this region slowly trends downward. This represents an incredibly dense mixture of heavy, complex molecular fragments that are too varied and closely spaced in mass to be resolved by the instrument.
-
----
-
-### **4. The Abrupt Cutoff and High-Mass Region (x > 650)**
-*   **The "Cliff" Cutoff:** One of the most striking shared features of Class '2' spectra is how the dense plateau ends. Between **x = 640 and 700**, the continuous signal experiences a hard, near-vertical drop-off, plunging back down to the $10^{-6}$ noise floor. This likely represents an absolute upper mass limit to the particle's fragmentation pattern (or a specific instrumental data-acquisition gating).
-*   **Barren High-Mass Zone:** From x = 700 to 1000+, the spectrum is entirely devoid of continuous signal, reverting to the sparse, low-level statistical noise seen at the beginning of the plot.
-
----
-
-### **Common Variations and Anomalies**
-While the profile above is highly consistent, a few variations occur across the samples:
-*   **Isolated High-Mass Spikes:** In the otherwise barren region (> x = 700), a few spectra exhibit very rare, solitary, single-point spikes (e.g., at x = 800, 920, or 1010). These represent the rare survival of intact, highly robust macromolecular parent fragments.
-*   **Target Ion Spike:** Rarely (noted distinctly in one sample), a massive, singular spike may occur right at the cutoff boundary (x ≈ 640), likely representing an overwhelming plasma yield from the target plate material rather than the dust particle itself.
-*   **Maximum Peak Shift:** While the overall envelope is always present, the absolute global maximum can occasionally shift between the first major cluster (~x=190) and the second major cluster (~x=250), depending on the specific impact velocity and fragmentation energy of that individual particle. 
-
-### **Conclusion / Chemical Interpretation**
-The Class '2' dust particle is defined by its extreme chemical heterogeneity. It is **not** a simple, pure crystalline mineral. The combination of decreasing peak spacing, broad sub-structured clusters, and elevated chemical noise strongly indicates a **complex, organic, or polymeric composition** (such as heavy hydrocarbons or organic-rich aggregates) that shatters into a predictable, repeating sequence of structural sub-units upon hypervelocity impact.
+Here are the characteristic patterns for each class identified through autonomous hierarchical analysis:
 
 ### Class 1
-Based on the synthesis of the 30 detailed spectral descriptions, the Time-of-Flight (ToF) mass spectra for **Class '1'** dust particles exhibit a highly consistent, rigidly structured, and distinctly asymmetric "fingerprint." 
+A unified dual-component morphology consisting of a periodic, decaying sequence of broad, asymmetric (tailing) peak clusters with progressively decreasing spacing, punctuated by one or more exceptionally narrow, maximum-intensity spikes. The baseline typically exhibits a characteristic transition from an early erratic state with sharp downward zero-signal dropouts to a stable, elevated plateau in the higher mass range.
 
-Here is the consolidated, comprehensive description of the characteristic patterns, defining features, and variations for Class '1' spectra.
+### Class 2
+A bifurcated structural topology consisting of a low-mass region (x=0 to ~150) with a low, noisy baseline punctuated by one or more extremely sharp, saturated spikes at varying positions (e.g., <10, 20, 35, or 125). This early region is followed by an abrupt and dramatic baseline elevation around x≈150-160, which transitions into a defining sequence of broad, periodic, unresolved oscillating 'humps' or waves. These humps generally decay in amplitude while exhibiting non-linear spacing typical of time-of-flight spectra, eventually settling into an elevated, continuous, and noisy tail baseline beyond x≈500.
 
----
+### Class 4
+Pattern 1:
+Discrete Periodic Envelopes Pattern: Characterized by a quasi-periodic sequence of broad mass envelopes or humps centered roughly around x ≈ 120-125, 215-220, 310-320, and 435-445, separated by approximately 100-120 units. The signal generally returns to a low, flat baseline between these broad envelopes. This pattern also features one or more sharp, needle-like spikes that dominate the overall intensity of the spectrum, though the exact position of the absolute maximum spike may vary (e.g., occurring at x ≈ 5-10 or x ≈ 190).
 
-### 1. General Plot Structure and Topography
-All Class '1' spectra share a foundational macroscopic topology defined by the plot axes:
-*   **Logarithmic Y-Axis:** Signal intensity is universally plotted on a logarithmic scale (typically ranging from a noise floor near $10^{-7}$ up to $10^{-4}$ or $10^{-5}$). This visually amplifies low-abundance ions, making trace fragments and detector noise highly prominent.
-*   **Linear X-Axis:** The x-axis (representing ToF channels or mass-to-charge ratio, $m/z$) ranges from 0 to over 1000.
-*   **Bipartite/Tripartite Division:** The overall spectrum is heavily front-loaded. It is defined by massive early peaks, a dense mid-range plateau of fragments, a sudden and abrupt termination midway through the plot, and a barren high-mass tail.
+Pattern 2:
+Continuous Massive Humps and Plateau Pattern: Characterized by a single dominant low-mass spike (x ≈ 25) followed by a series of massive, continuous, broad signal humps that dominate the mid-to-high mass regions. The baseline is elevated at higher masses and does not return to the initial low noise floor. A defining, unique structural feature is a flattened plateau (x ≈ 300-360) that terminates in a sharp V-shaped dip and immediate secondary spike (x ≈ 380), along with distinct massive doublet peaks (e.g., x ≈ 150-160 and x ≈ 490-520).
 
-### 2. The Dominant Signatures (Low to Mid-Mass Region)
-The chemical signature of Class '1' is characterized by a specific sequence of high-intensity peak clusters exhibiting an exponential decay envelope.
+### Class 3-Cl
+Pattern 1:
+Pattern 1: A spectrum characterized by a continuous, uniform high-frequency 'grassy' noise baseline across the entire x-axis. The chemical signal manifests as a primary broad, asymmetrical peak cluster around x ≈ 180-200, followed by multiple distinct, relatively symmetrical peak pairs at higher masses (e.g., x ≈ 335/385 and x ≈ 485/520). Extreme, single-point artifact spikes may appear.
 
-*   **The Early Light-Element Spike ($m/z$ 10–20):** Almost every sample features a singular, incredibly sharp, isolated peak at the very beginning of the spectrum. Reaching intensities near $10^{-5}$, it is often an order of magnitude taller than the surrounding baseline, indicative of abundant light atomic ions (e.g., $H^+$, $C^+$, $O^+$) resulting from the initial impact atomization.
-*   **The Global Maximum ($m/z$ 80–100):** The absolute highest intensity signal in the spectrum (excluding the early light-element spike) consistently occurs as a broad cluster centered roughly around $m/z$ 80–90.
-*   **The Periodic Decay Sequence ($m/z$ 100–450):** Following the global maximum, a series of 3 to 7 prominent peak clusters appears. 
-    *   **Common Locations:** These major clusters regularly center around **~140-150, ~200-210, ~250, and ~300**.
-    *   **Spacing:** There is a distinct, repeating interval of approximately **$\Delta$ 50 to 70 mass units** between these major clusters. This "comb-like" spacing is a classic signature of repeating structural subunits (like polymer fragmentation) or sequential elemental additions.
-    *   **Morphology:** These are rarely single sharp lines; they are broadened "envelopes" or multiplets featuring distinct shoulders and right-side (high-mass) tailing, indicating isotopic complexity or the loss of small mass units (like hydrogen) from the core fragment.
-
-### 3. Baseline Characteristics: The Dense "Grass" ($m/z$ 0 to ~650)
-Beneath and between the major peaks lies a defining structural characteristic of Class '1'.
-*   **Continuous Density:** The entire region from $m/z$ 0 up to roughly 650 is packed with a continuous, dense "forest" or "grass" of low-level signals. Almost every mass channel registers a hit.
-*   **Signal Quantization:** Because of the logarithmic scale, the lowest signals form distinct horizontal bands or "tiers" (e.g., a solid floor at $\sim1.5 \times 10^{-7}$, a second tier at $\sim3.5 \times 10^{-7}$). This is a visual artifact of **single-ion counting statistics**, where the dense grass represents a massive array of fragments arriving as 1-count, 2-count, or 3-count discrete events.
-*   **Chemical Implication:** This unbroken density indicates highly complex, heterogeneous material (likely macromolecular organics or complex mineral mixtures) that shatters into fragments of nearly every possible intermediate size upon impact.
-
-### 4. The Abrupt Cutoff and Sparse High-Mass Region
-The most universally unique and striking feature of the Class '1' spectrum is the transition into the high-mass region.
-*   **The "650 Wall":** The dense, continuous "grass" and fragment sequence does not taper off gradually. Instead, it hits a hard, near-vertical cutoff at approximately **$m/z$ 640–650**. The continuous signal drops instantly to zero.
-*   **The High-Mass "Desert" ($m/z$ > 650):** From $m/z$ 650 to the end of the plot (1000+), the spectrum is essentially empty. The baseline is totally flat, indicating that no continuous fragmentation occurs in this weight class.
-*   **Isolated Trace Spikes:** The only signals in this upper region are incredibly sparse, isolated, single-line "blips" resting at the absolute minimum detection threshold. Common locations for these trace anomalies are loosely grouped around ~680, ~750, ~830, ~870, and ~950–980.
-
----
-
-### Common Variations within Class '1'
-While the macro-structure is rigid, slight sample-to-sample variations exist:
-*   **Length of the Peak Sequence:** Some particles show only 3 distinct major clusters before blending into the baseline grass, while others show a prolonged, slowly decaying sequence of up to 7 distinct clusters stretching out to $m/z$ 500.
-*   **Cluster Spacing:** While the average gap is $\Delta$ 50-70, some samples show a slight tightening of the gap at higher masses (e.g., dropping from a $\Delta$ 80 gap early on to a $\Delta$ 40 gap later), suggesting complex mixed-cluster formations rather than a perfectly uniform polymer chain.
-*   **High-Mass Blips:** The exact locations of the isolated spikes in the empty $>650$ region vary from particle to particle, as these likely represent ultra-rare, randomly surviving large molecular chunks or random cosmic ray/detector noise artifacts rather than a uniform chemical signature.
-
-### Summary Fingerprint
-A Class '1' particle is definitively identified by: **(1)** A massive early light-ion peak, **(2)** an exponentially decaying sequence of complex peak clusters spaced $\sim50-70$ amu apart peaking around $m/z$ 85, **(3)** a continuous, quantized background "grass" of fragments, and **(4)** an abrupt, absolute termination of all dense signal near $m/z$ 650, leaving a barren high-mass tail.
-
-### Class ?
-Based on the synthesis of the provided analyses, here is a comprehensive, consolidated description of the characteristic patterns, common features, and notable variations that define the Time-of-Flight (ToF) mass spectra for **Class '?'** dust particles.
-
----
-
-### **General Architecture and Bipartite Morphology**
-The defining spectral fingerprint of Class '?' is a **stark bipartite (two-part) structure** plotted on a linear x-axis (mass-to-charge ratio, *m/z*, 0 to >1000) and a **logarithmic y-axis** (intensity/abundance, typically $10^{-7}$ to $10^{-3}$). 
-
-Unlike standard inorganic mineral dust (which yields a few isolated, sharp atomic lines), Class '?' spectra are characterized by an **Unresolved Complex Mixture (UCM)**. The samples exhibit a hyper-dense, continuous region of fragmentation in the low-to-mid mass range that abruptly terminates, leaving a barren, nearly empty high-mass region. This profile strongly indicates the presence of complex, high-molecular-weight organic macromolecules, heavy polymers, or tholin-like materials.
-
----
-
-### **1. Low-Mass Region (*m/z* 0 to ~150): The Anchor Peaks**
-While much of this region contains low-level instrumental noise, it almost universally features one or two highly dominant, isolated signals.
-*   **The Primary Sharp Spike (*m/z* 10–20):** Most spectra in this class are anchored by a single, extremely sharp, high-intensity needle-peak very early in the plot. Reaching intensities of $10^{-5}$ or higher, this represents a highly abundant, light elemental ion—most likely Carbon ($C^+$) or Oxygen ($O^+$), which are common foundations of organic networks.
-*   **Secondary Fragments (*m/z* 60–120):** Many samples exhibit a secondary, broader cluster in this range. Unlike the initial elemental spike, these are jagged multiplets featuring "tailing" or stepped shoulders, indicating complex small-molecular fragments or isotopic envelopes.
-
----
-
-### **2. Mid-Mass Region (*m/z* 150 to ~650): The "Forest" and Polymer Humps**
-This is the most diagnostically significant region of Class '?'. It is characterized by a massive, continuous band of signal that takes one of two primary forms: a dense, flat "grass" plateau, or a massive, rolling "envelope."
-*   **The Dense "Grass" / Thicket:** Because of the logarithmic scale, the baseline here is not flat. It is a solid, continuous block of closely spaced, low-intensity peaks. This signifies that almost every mass bin contains *some* detectable fragment, representing chaotic, overlapping fragmentation of a highly complex matrix.
-*   **Quantization / Single-Ion Counting:** A frequent and highly unique visual artifact in this "grass" is horizontal banding. Peak tops frequently terminate at exact, discrete horizontal levels (e.g., $1.75 \times 10^{-7}, 3.5 \times 10^{-7}$). This indicates the instrument is operating at the absolute limits of detection, plotting raw **single-ion counting statistics** (1 ion, 2 ions, 3 ions, etc.) rather than an analog voltage curve.
-*   **Periodic Clustering (The "Scalloped" Pattern):** Within the broad envelope, the signal frequently pulses in a repeating, wave-like sequence of distinct humps. These local maxima are typically spaced by regular intervals of **~40 to 50 amu** (and occasionally 60–90 amu). This rhythmic spacing is a classic hallmark of **polymeric fragmentation**, where repeating structural sub-units (monomers) are sequentially stripped away from a macromolecular chain.
-
----
-
-### **3. The Defining Boundary: The Abrupt Cutoff (*m/z* ~640–650)**
-The single most unifying and striking feature of Class '?' is the **"Cliff" or "Wall"** that occurs midway through the spectrum. 
-*   At approximately ***m/z* 640 to 650** (sometimes stretching slightly to 700), the dense continuous fragmentation, the periodic humps, and the grassy baseline **abruptly and entirely cease**. 
-*   The signal drops precipitously—often by several orders of magnitude—back to a true zero baseline over the span of just a few mass units. This indicates a strict physical limit to the size of the stable fragments these particles can generate upon impact ionization.
-
----
-
-### **4. High-Mass Region (*m/z* > 650): The Barren Tail**
-Following the cutoff cliff, the high-mass region is distinctly stark.
-*   **Empty Baseline:** The dense chemical noise vanishes entirely, leaving a flat, empty baseline.
-*   **Isolated Anomalies:** The only signals in this region are exceedingly sparse, solitary "stick" spikes (frequently noted around *m/z* 710, 740, 890, 940, and 1000). Because they stand completely alone without surrounding fragment clusters, these represent either incredibly rare, intact heavy molecular species that survived ionization, or random instrumental dark counts/cosmic ray strikes.
-
----
-
-### **Notable Variations Within the Class**
-While the bipartite "dense-then-empty" rule holds, Class '?' samples exhibit a few distinct sub-variations in how the mid-mass signal presents:
-*   **The "Delayed Wall" Onset:** While some spectra build dense grass from *m/z* 0, others show an empty gap after the initial Carbon peak, followed by a near-vertical jump in intensity (a sudden "wall") around ***m/z* 180–220**, before beginning the polymeric hump sequence.
-*   **Exponential Decay vs. Plateau:** In some samples, the mid-mass region forms a relatively flat, prolonged plateau of noise. In others, the maximum intensity is reached quickly (around *m/z* 200–300) and forms a jagged, straight downward slope on the log plot, indicating a strict **exponential decay** in fragment size abundance.
-*   **The Rare High-Mass Anchor:** A very rare variation (e.g., Description 1) lacks the mid-mass polymer humps entirely, instead featuring a singular, unbelievably intense spike at *m/z* ~640, followed immediately by the characteristic empty high-mass region. 
-
-### **Summary Interpretation**
-Class '?' spectra represent **highly complex, heavy organic or polymeric macromolecules**. The signature fingerprint is an anchor peak of a light organic element, followed by a continuous, dense, and often periodically "scalloped" sequence of complex fragmentation that universally and abruptly terminates at a hard mass limit of ~640-650 amu.
-
-### Class 5
-Based on the synthesis of the provided analyses, here is a consolidated, comprehensive description of the characteristic patterns and features defining a **Class '5' dust particle** Time-of-Flight (ToF) mass spectrum.
-
----
-
-### **General Spectrum Overview & Axis Setup**
-The visual fingerprint of a Class '5' particle is highly distinct, asymmetrical, and segmented into clearly defined structural zones. 
-*   **X-Axis (Time-of-Flight / $m/z$):** Spans linearly from 0 to over 1000. 
-*   **Y-Axis (Intensity/Abundance):** Plotted on a **logarithmic scale** (typically ranging from $10^{-7}$ to $10^{-3}$ or $10^{-4}$). This is a critical interpretive factor: it visually amplifies low-level background noise and trace fragments, making them appear prominent, while compressing the massive absolute differences in the dominant peaks.
-*   **Data Representation:** Data is typically presented as a "stick" or centroided plot (discrete vertical lines) rather than continuous smooth curves, often revealing discrete ion-counting statistics at lower intensities.
-
----
-
-### **1. The Dominant Low-Mass Region (Approx. 0 to 150 $m/z$)**
-This region contains the vast majority of the total ion yield and defines the primary chemical or elemental composition of the particle.
-*   **The Primary Peak/Cluster:** The spectrum is anchored by an overwhelmingly massive signal in the early ToF/low-mass region (most frequently observed between **60 and 90 $m/z$**, peaking near 70-75, though some variations show this delayed to 150-250 depending on instrument calibration). This signal is 1 to 2 orders of magnitude stronger than anything else in the plot.
-*   **Extreme Asymmetry and Tailing:** These dominant peaks are rarely clean, single lines. They typically feature a very steep, near-vertical leading (left) edge and a pronounced, gradual **exponential decay tail** on the trailing (right) edge. 
-*   **"Shouldering":** The trailing edge often contains distinct "shoulders" or stepped, unresolved secondary peaks, indicating complex molecular clusters, isotopic distributions, or delayed ion extraction from a dense impact plasma cloud.
-*   **Early Precursor Spikes:** Preceding the main mass, there is almost always a very sharp, isolated, single-line spike very early in the spectrum (around **10-20 $m/z$**), indicative of highly volatile, light elements (like $H^+$, $C^+$, or $O^+$) or an initial trigger artifact.
-
----
-
-### **2. The Dense Mid-Mass "Grass" Continuum (Approx. 150 to 640 $m/z$)**
-Following the decay of the dominant low-mass peaks, the spectrum transitions into a fundamentally different pattern that dominates the middle of the plot.
-*   **The "Comb" or "Barcode" Pattern:** This region is characterized by a highly dense, continuous thicket of low-intensity peaks. It resembles a barcode, a picket fence, or dense "grass." There are virtually no empty baseline gaps in this zone.
-*   **Uniform Intensity Banding:** Because of the logarithmic scale and low ion counts, the peaks in this region fluctuate within a very tight, uniform band (mostly between the $10^{-7}$ noise floor and $10^{-6}$). 
-*   **Quantization / Horizontal Shelves:** A unique visual artifact in this region is horizontal banding—many peaks terminate at the exact same horizontal heights. This indicates discrete ion counting (e.g., a shelf of peaks representing exactly 1 ion hit, a slightly higher shelf representing 2 hits, etc.).
-*   **Physical Interpretation:** This continuous sequence represents massive, complex fragmentation. It indicates that the particle is breaking apart into an almost infinite variety of overlapping fragment combinations, typical of complex heterogeneous macromolecular organics or heavy mineral clusters.
-
----
-
-### **3. The Abrupt Cutoff (The "Wall" at ~640-650 $m/z$)**
-The most defining and universally unique structural anomaly of a Class '5' spectrum is how the mid-mass region ends.
-*   At exactly **640 to 650 $m/z$**, the dense, continuous "grass" abruptly terminates. 
-*   There is no gradual fading or tapering off of the signal; it acts as a hard vertical wall where the continuous fragmentation data simply ceases. 
-*   This feature is highly indicative of an instrumental data-acquisition mass gate, a software thresholding limit, or a strict physical upper limit to the stability of the cluster ions generated by this specific particle class.
-
----
-
-### **4. The Sparse High-Mass Void (> 650 $m/z$)**
-Following the abrupt cutoff, the character of the spectrum flips from maximum density to almost complete emptiness.
-*   **Empty Baseline:** The baseline drops to absolute zero (empty white space on the plot). The continuous noise floor vanishes entirely.
-*   **Isolated Artifacts/Spikes:** The region spanning from 650 to 1000+ is punctuated only by a handful of extremely sparse, isolated, single-line vertical spikes (e.g., occasionally seen near 720, 850, 950).
-*   **Physical Interpretation:** Because these spikes are utterly isolated, sit near the absolute detection threshold, and lack any surrounding isotopic peak envelopes, they likely represent extreme statistical outliers—such as single stray ion strikes, detector dark counts, or cosmic ray hits, rather than robust, intact heavy molecular signatures.
-
----
-
-### **Summary of the Class '5' Fingerprint**
-A Class '5' dust particle is distinctly recognized by a **bimodal extreme**: an overwhelmingly intense, heavily tailing low-mass primary constituent, followed by a dense, unresolvable, and uniform "barcode" of mid-mass fragments that crashes into a hard, abrupt cutoff wall at $\sim$650 $m/z$, leaving the high-mass tail of the spectrum virtually blank.
+Pattern 2:
+Pattern 2: A strongly bimodal spectrum dominated by a severe transitional event or discontinuity around x ≈ 170-175 (often a precipitous signal drop or a massive spike reaching maximum intensity). The low-mass region (x < 170) features a noisy baseline with an early peak cluster around x ≈ 15-25. The high-mass region (x > 175) completely changes character, shifting to an elevated, continuous plateau or rising baseline containing broad, low-resolution humps rather than discrete peaks.
 
 ### Class 3-OH
-Based on the comprehensive synthesis of the provided descriptions, here is a consolidated, detailed profile of the characteristic Time-of-Flight (ToF) mass spectrometry fingerprint for the **Class "3-OH"** dust particle.
+Unified 3-OH Pattern: Characterized by an extreme bimodal structure observed on a logarithmic scale. The low-mass region (m/z 0-180) features a low, erratic baseline with isolated, sharp spikes, prominently including a highly intense peak around m/z 15-20 (and/or 25-30). A critical transitional feature occurs at m/z 180-185 as a very narrow, intense spike. This is immediately followed by a massive, broad, unresolved cluster hump from m/z 190 to 220. Following this complex, the spectrum does not return to the initial low baseline; instead, the high-mass region (>250) maintains an elevated continuum featuring rhythmically spaced broad humps (most notably around m/z 340-370) before gradually decaying into a noisy tail devoid of discrete peaks.
 
-### **1. General Topology and Scale Characteristics**
-The defining visual characteristic of the Class 3-OH spectrum is its extreme complexity. Unlike simple elemental spectra that feature isolated, sharp vertical lines returning to a zero baseline, the 3-OH class is dominated by **massive, broad, unresolved continuous envelopes** (humps) of signal. 
-
-*   **Axes:** The x-axis (typically representing ToF or uncalibrated mass-to-charge ratio, $m/z$) is linear, spanning 0 to >1000. The y-axis (intensity/ion counts) is universally plotted on a **logarithmic scale** (typically $10^{-7}$ to $10^{-3}$).
-*   **Significance:** Because of the logarithmic scale, the broad "humps" represent massive, sustained abundances of complex, overlapping cluster ions or heavily fragmented macromolecules, typical of high-velocity ice/water impacts (forming hydronium/water clusters, hence the "OH" designation) or complex organic polymers.
-
----
-
-### **2. Chronological Regional Breakdown (Left to Right)**
-
-#### **Zone A: The Low-Mass Baseline (x ≈ 0 to 180)**
-*   **Sparse Noise Floor:** This region is largely devoid of complex structures. It consists of a "grassy," discontinuous baseline fluctuating near the instrumental detection limit ($10^{-7}$ to $10^{-6}$).
-*   **The Early Indicator Spike:** Piercing through this noise floor is consistently a single, sharp, highly distinct isolated peak very early in the spectrum, typically located between **x ≈ 15 and x ≈ 35**. Reaching intensities of $10^{-5}$ to $10^{-4}$, this likely represents an abundance of very light, fast-traveling fragments (such as $H^+$, $OH^+$, or $H_2O^+$).
-*   **The "Dead Zone":** Just prior to the main signal onset (around x ≈ 150–180), the signal often drops completely to zero, creating a distinct gap before the main particle mass arrives.
-
-#### **Zone B: The Abrupt Onset and Global Maximum (x ≈ 180 to 240)**
-*   **The "Wall":** The primary mass of the particle registers with a violent, near-vertical spike in signal starting abruptly at **x ≈ 185 to 200**. 
-*   **The Primary Complex:** This surge establishes the absolute maximum intensity of the spectrum (often $10^{-4}$ to $>10^{-3}$). It is rarely a single clean line; it frequently presents as a sharp doublet, twin-peak, or complex multiplet spanning **x ≈ 200 to 220**. 
-*   **The Trough:** Immediately following the maximum apex, the signal drops precipitously—falling an order of magnitude or more into a "valley" around x ≈ 230–250—but crucially, it *does not* return to the baseline.
-
-#### **Zone C: The Unresolved Continuum & Embedded Peaks (x ≈ 250 to 650)**
-This region is the most defining diagnostic fingerprint of the 3-OH class.
-*   **The "Mesa" Plateau:** Rising out of the trough, the signal forms a massive, elevated, continuous plateau that dominates the middle of the spectrum. The line texture is "hairy" or jagged, indicating hundreds of overlapping, unresolvable mass peaks arriving in a continuous stream.
-*   **The Dominant Secondary Spike (x ≈ 340 to 370):** Riding directly on top of, or piercing through, this broad noisy continuum is a highly prominent, sharp secondary peak. Consistently located near **x ≈ 350 or 360**, it represents a highly favored, stable mass fragment standing out amidst the chaotic cluster background.
-*   **The Tertiary Swell (x ≈ 450 to 500):** A broader, slightly lower-intensity maximum often occurs in this range, marking the widest, highest bulk of the plateau before it begins to decay.
-*   **The Decay Tail:** From x ≈ 500 to 650, the broad continuum undergoes a steady, jagged logarithmic decay. 
-
-#### **Zone D: The "Cliff" and High-Mass Islands (x ≈ 650 to 800)**
-*   **The Drop-off (x ≈ 640 to 650):** The massive continuous plateau does not fade smoothly into the baseline. Instead, it hits a sheer, vertical "cliff," plummeting one to two orders of magnitude almost instantly.
-*   **The Late-Stage "Echo" Cluster (x ≈ 680 to 730):** Following the cliff, the signal often bottoms out momentarily before rising into a distinct, isolated, rounded "hump" or shoulder. Centered roughly around **x ≈ 700**, this feature (intensity $\sim 10^{-6}$ to $10^{-5}$) represents a specific population of heavier, stable cluster molecules arriving late to the detector.
-
-#### **Zone E: The Terminal Void (x > 800)**
-*   Beyond x ≈ 750–800, the spectrum returns to the true instrumental noise floor. 
-*   While a few spectra show a very faint, sparse grouping of discrete trace spikes between 800 and 900, the signal universally terminates and goes completely blank by **x ≈ 900 to 950**.
-
----
-
-### **3. Notable Variations within the Class**
-While the vast majority of 3-OH spectra follow the exact morphological sequence described above, a highly distinct variation exists in a minority of the samples (e.g., Descriptions 2, 14, 27):
-*   **The 640 Anomaly:** In these specific samples, the continuous elevated plateau operates normally until x ≈ 640. However, instead of dropping off a "cliff," the spectrum produces a **singular, razor-sharp, astronomically intense spike** at exactly **x ≈ 640**. This spike reaches near $10^0$ intensity, becoming the dominant feature of the entire plot and hijacking the ionization profile. 
-
-### **Summary of the Class 3-OH Fingerprint**
-To identify a 3-OH particle, look for:
-1. An isolated, sharp low-mass indicator peak (~x=15-35).
-2. A near-vertical, massive onset resulting in a clustered global maximum (~x=200-220).
-3. A continuous, unresolved, noisy plateau (~x=250-650) featuring a sharp embedded spike dead-center at **~x=350/360**.
-4. An abrupt cliff-like drop-off (~x=650) followed by a distinct, isolated "island" hump of high-mass clusters (~x=700).
+### Class 3-Car
+A distinct bifurcated spectrum that divides sharply around x ≈ 190-200. The low-mass region features an isolated, extremely sharp, maximum-intensity spike at x ≈ 20, followed by a featureless, grassy noise floor. A dramatic, near-vertical baseline shift occurs at x ≈ 190-200, leading into an elevated high-mass region. This later region is defined by a broad continuum and repeating, asymmetric mass envelopes or humps (commonly observed peaking near x ≈ 210-270, x ≈ 340-370, and x ≈ 500-530) that gradually decay, completely lacking sharp discrete peaks.
 
 ### Class 3-P
-Based on the provided analyses, here is a consolidated, comprehensive description of the characteristic Time-of-Flight (ToF) mass spectrum for a **Class "3-P"** dust particle. 
+Bipartite spectrum with an abrupt baseline step-up: The spectrum is fundamentally divided into two distinct morphological regions. The low-mass region (roughly x < 160-200) is noisy and features one or more sharp, discrete, and often saturated elemental peaks (commonly observed at x ≈ 5, x ≈ 20, and occasionally scattered up to x ≈ 135). This is followed by a sudden, massive elevation in the baseline intensity (a 'wall' or 'step') occurring between x ≈ 160 and 200. The high-mass region (x > 200) never returns to the initial baseline, indicating continuous chemical noise, and is characterized by a periodic sequence of broad, unresolved structural humps or molecular clusters. These broad envelopes consistently peak at characteristic intervals, typically around x ≈ 175-210, 330-350, 480-500, and 580-620.
 
-### General Overview & Macro-Morphology
-The defining characteristic of a Class 3-P spectrum is a **"burst-and-trail" signature** consisting of broad, unresolved mass envelopes rather than sharp, isolated single-element lines. Plotted on a logarithmic y-axis (intensity) against an uncalibrated x-axis (Time-of-Flight, proportional to $\sqrt{m/z}$), the spectrum shows an explosive initial signal that decays into a long, highly structured, and elevated continuum of heavy molecular clusters before abruptly terminating.
+### Class Noise
+Pattern 1:
+Pattern 1: A continuous, flat, high-frequency baseline noise oscillating around 10^-1, devoid of any genuine chemical peaks, but interrupted by multiple (e.g., four) isolated, ultra-narrow artifact spikes that saturate at the maximum intensity of 10^0.
 
-This pattern is highly indicative of complex agglomerated particles—such as heavy organic polymers, tholins, or highly heterogeneous mineral matrices—that shatter into cascades of structurally related molecular fragments and isotopes upon impact ionization.
+Pattern 2:
+Pattern 2: A continuous, high-frequency baseline noise with a slight upward drift, oscillating around 10^-1, completely lacking chemical structure, but featuring a single, ultra-narrow artifact spike early in the spectrum that saturates at 10^0.
 
----
+### Class ?
+Pattern 1:
+Pattern 1: Spectra dominated by a broad, complex baseline envelope or hump peaking around m/z 200-220. This is accompanied by a high, continuous background noise floor and multiple extremely narrow, non-physical saturation spikes (reaching exactly 10^0) at higher mass ranges (e.g., ~380, ~515) that lack isotopic distribution, indicating instrumental artifacts.
 
-### Detailed Regional Breakdown (Low to High Mass)
+Pattern 2:
+Pattern 2: Spectra characterized by a wavy, highly structured baseline continuum featuring a broad hump peaking near m/z 200, a subsequent valley, and a rising tail. They completely lack distinct chemical peak sequences, exhibit dense high-frequency "hash" noise with negative signal dropouts, and contain a single, isolated, full-scale artifact spike (e.g., at m/z 333).
 
-**1. Pre-Signal Baseline & Initial Spike (x ≈ 0 to 180)**
-*   **Baseline Noise:** This early region is characterized by sparse, "grass-like" instrumental noise or dark counts hovering generally below the $10^{-6}$ intensity mark.
-*   **The Prompt Spike:** A nearly universal feature in this class is a single, sharp, isolated spike occurring very early in the flight time, consistently around **x ≈ 10 to 20**. Reaching an intensity of roughly $10^{-5}$, this likely represents an early-arriving, highly abundant light ion (like $H^+$) or a prompt electronic trigger artifact from the impact event.
+Pattern 3:
+Pattern 3: Bimodal spectra defined by an extreme dynamic range event (a massive saturation peak at m/z 15-20) in a noisy, low-mass comb-like region, followed by a sudden, unnatural step-up in the baseline near m/z 190-200. This step-up leads to a sustained, elevated, continuous high-mass plateau characterized by broad undulations and sharp V-shaped notches rather than discrete chemical peaks.
 
-**2. The Dominant Primary Complex (x ≈ 180 to 300)**
-*   **The Onset:** The chemical signature begins explosively. Between x = 175 and 205, the signal undergoes a near-vertical jump of several orders of magnitude. 
-*   **The Maximum:** This complex contains the absolute maximum intensity of the entire spectrum, generally peaking between **x = 190 and 220** and reaching intensities of **$1.5 \times 10^{-4}$ to $4 \times 10^{-4}$**.
-*   **Morphology:** This is never a clean, single peak. It is a massive, unresolved multiplet. It frequently features a double-peak structure at its apex or prominent "shoulders" on its leading/trailing edges. In some instances, the ion density is so high that it causes localized detector saturation, resulting in a flattened top.
-*   **Exponential Tailing:** Following the peak maximum, the signal does not return to baseline. It features a heavy, jagged, right-leaning tail that extends continuously out to x ≈ 300, representing a sequential arrival of slightly heavier, related fragments.
+### Class 3-KNa
+Pattern 1:
+Pattern 1: Uncalibrated TOF spectrum characterized by a sharp prompt spike followed by two major peaks at x~140 (Sodium) and x~210 (Potassium), ending with a sustained, elevated, noisy post-impact baseline.
 
-**3. The Secondary Major Peak (x ≈ 320 to 380)**
-*   Emerging from the tail of the primary complex is a distinct, solitary, and structurally significant secondary peak.
-*   It is consistently centered around **x ≈ 330 to 345**. 
-*   While it is roughly a half to a full order of magnitude less intense than the primary peak (peaking near $6 \times 10^{-5}$ to $10^{-4}$), it remains one of the most prominent features in the spectrum. It often exhibits slight broadening or bifurcation at its top.
+Pattern 2:
+Pattern 2: Uncalibrated TOF spectrum featuring a dominant sharp primary peak at x~97 and a secondary doublet/cluster around x~168, which decays into a massive, broad continuum covering the higher values.
 
-**4. The Elevated High-Mass Continuum & Periodic Clusters (x ≈ 400 to 700)**
-*   **The "Chemical Noise" Plateau:** The most unique feature of the 3-P class is that past x = 400, the baseline **never returns to zero**. Instead, the signal rests on an elevated "cushion" or continuous envelope fluctuating between $10^{-6}$ and $10^{-5}$. This indicates a continuous bombardment of thousands of slightly varying, heavy molecular fragments.
-*   **Superimposed Clusters:** Riding on top of this elevated continuum is a rhythmic sequence of broad hummocks or lobes. Because ToF relates to the square root of mass, the spacing between these sequential clusters visually decreases at higher x-values. Common recurring clusters are centered around:
-    *   **x ≈ 480 – 510**
-    *   **x ≈ 550 – 580**
-    *   **x ≈ 610 – 630** (Often the most prominent of the late-stage clusters, reaching up to $3 \times 10^{-5}$).
-
-**5. High-Mass Cutoff and Termination (x > 700)**
-*   Immediately following the final cluster in the 600s, the spectrum undergoes a rapid, sheer structural collapse. 
-*   Between **x = 650 and 750**, the signal drops vertically by two orders of magnitude, crashing back into the pre-signal instrumental noise floor.
-*   Beyond x = 750 (out to 1000+), the plot is entirely flat, populated only by negligible, sparse digitization spikes, indicating a strict upper mass limit to the fragments generated by the 3-P particles.
-
----
-
-### Summary: Common Features vs. Variations
-
-**Core Defining Commonalities:**
-*   **Extreme Asymmetry:** A massive initial burst followed by a long, trailing decay.
-*   **Unresolved Envelopes:** A complete lack of sharp, isolated elemental lines; all major features are broad multiplets.
-*   **The "Big Two":** The massive primary complex (x~200) and the distinct secondary peak (x~340).
-*   **The Elevated Continuum:** A persistent, noisy, raised baseline carrying periodic high-mass lobed clusters (spanning x~400 to 650).
-*   **Sudden Truncation:** A steep and definitive signal drop-off before x=750.
-
-**Observed Variations Between Samples:**
-*   **Primary Peak Fine Structure:** While the location and broadness are constant, the exact apex shape varies. Some samples show a sharp doublet (e.g., maxes at 210 and 220), others show a distinct leading shoulder (x~190), and some show a saturated, flattened top.
-*   **Prominence of High-Mass Clusters:** The distinctness of the late-stage humps (x=450-650) varies. In some samples, they are clearly resolved, highly structured waves (especially the peak at ~620); in others, they appear as a highly chaotic, "hairy" smear with less discernible boundaries. 
-*   **Cutoff Point:** The exact point of signal termination fluctuates slightly, with the drop-off beginning anywhere from x = 650 to x = 740, reflecting slight variances in the maximum constituent mass of the specific particle struck.
-
-### Class 3-K
-Based on the synthesis of the 22 provided Time-of-Flight (ToF) mass spectra descriptions, here is a consolidated, comprehensive description of the characteristic patterns, common features, and variations that define **Class 3-K dust particles**.
-
----
-
-# Comprehensive Spectral Profile of Class '3-K' Dust Particles
-
-## 1. Executive Summary: The "3-K" Fingerprint
-The defining signature of a Class 3-K spectrum is its stark departure from simple, discrete atomic line spectra. Instead, it is characterized by a massive, highly asymmetric **primary dominant peak (or cluster)** at lower masses, immediately followed by an **Unresolved Complex Mixture (UCM)**—a broad, elevated, continuous "plateau" of dense noise containing structured secondary peak sequences. This highly active mid-range abruptly terminates in a **precipitous, cliff-like cutoff**, leaving the highest mass ranges entirely devoid of signal. This profile strongly suggests a particle composed of complex, heavy molecular clusters, polymers, or dense organic/mineral networks that fragment into closely related mass groups upon impact.
-
-## 2. Graphical Context & Scale
-*   **Y-Axis (Intensity):** Universally plotted on a **logarithmic scale** (typically ranging from below $10^{-6}$ up to $10^{-3}$). It is critical to note that seemingly minor graphical bumps in the mid-range represent massive, order-of-magnitude increases in actual ion counts compared to the baseline.
-*   **X-Axis (ToF / Surrogate *m/z*):** Linear scale spanning from 0 to over 1000 units.
-
-## 3. Chronological Spectral Breakdown (Left to Right)
-
-### Zone A: The Sparse Low-Mass Region (x ≈ 0 to 200)
-*   **Baseline:** The pre-signal baseline represents the instrument's true noise floor. It is sparse, consisting of discrete, single-ion counting events ("grass") that frequently drop off the bottom of the graph.
-*   **Depletion of Light Elements:** This region is largely devoid of contiguous signal, indicating a strong depletion of common, distinct light rock-forming elements.
-*   **Common Variation (The Early Spike):** Many samples exhibit a single, highly isolated, narrow spike very early in the spectrum (typically between **x ≈ 15 and 35**). This usually reaches $\sim10^{-5}$ intensity and likely represents a trace, highly specific light element (e.g., Carbon or Oxygen).
-
-### Zone B: The Primary Dominant Peak (Onset x ≈ 150 to 280)
-*   **The Defining Event:** The transition out of the low-mass region is marked by an explosive, near-vertical rise in signal, resulting in the absolute maximum intensity of the entire spectrum (reaching between $10^{-4}$ and nearly $10^{-3}$).
-*   **Morphology:** This peak is rarely a clean, single line. It is highly asymmetric and complex.
-    *   *Leading/Trailing Shoulders:* It frequently features distinct "shoulders" or step-like structures on its leading or trailing edges.
-    *   *Multiplets:* The apex is often split, bifurcated, or bimodal (a doublet), indicating the simultaneous arrival of highly abundant, closely related isotopes or nearly identical heavy molecular fragments.
-
-### Zone C: The Elevated Plateau & Secondary Sequences (x ≈ 300 to 680)
-*   **The "Hairy" Continuum:** Following the primary peak, the signal **does not** return to the pre-signal noise floor. Instead, it establishes an elevated, dense, continuous plateau of "grassy" noise (hovering consistently between $10^{-6}$ and $2 \times 10^{-5}$). This continuous arrival of ions signifies an Unresolved Complex Mixture (UCM) of overlapping heavy fragments.
-*   **Secondary Peak Sequences:** Riding atop this elevated plateau are distinct, broad secondary envelopes or clusters. While their exact positions vary slightly by sample, they consistently appear in structured sequences:
-    *   *Mid-Range Clusters:* Usually found around **x ≈ 380–430** and **x ≈ 460–510**. The peak near ~480 is frequently the second-most intense feature in the entire spectrum.
-    *   *Late-Range Clusters:* Broader, noisier, and lower-intensity humps typically centered around **x ≈ 580–630**.
-    *   *Morphology:* These secondary peaks are broad and jagged, indicating clusters of closely spaced masses rather than pure elements. Some samples show distinct periodic spacing ($\Delta$ 40-50 or $\Delta$ 170) between these peaks, hinting at repeating polymeric or mineral sub-units.
-
-### Zone D: The Abrupt Cutoff (x ≈ 650 to 850)
-*   **The "Cliff-Edge":** One of the most unique and universal features of the 3-K class is the sudden death of the signal. The elevated plateau of complex molecules does not slowly fade out; rather, it drops precipitously over a span of 10-30 units, falling vertically back to the zero-count noise floor. 
-*   *Interpretation:* This sharp cutoff typically occurs around **x ≈ 650–680** (though occasionally as late as ~850). It is often interpreted as an instrumental artifact (e.g., an acquisition window limit or voltage switch) or a strict physical mass limit to the fragment clusters generated by the dust grain.
-
-### Zone E: The Terminal High-Mass Baseline (x > cutoff to 1000+)
-*   **Dead Zone:** Following the cliff-edge cutoff, the spectrum returns to an essentially empty, zero-count baseline.
-*   **Common Variation (Trace Islets):** While mostly empty, many spectra exhibit highly isolated, faint clusters of trace signals in the deep high-mass range (e.g., isolated bumps near **x ≈ 720–760** or stray detector hits near **x ≈ 900–1000**). These never exceed the $10^{-6}$ threshold and appear as discrete isotopic islands disconnected from the main spectral body.
-
-## 4. Summary of Chemical/Physical Interpretation
-The visual evidence of Class 3-K spectra dictates that these particles are **not** simple, homogenous inorganic minerals. The lack of low-mass peaks, the overwhelming dominance of a complex heavy primary cluster, and the sustained mid-mass plateau of unresolved fragments point toward high-molecular-weight compounds. The 3-K particle is likely composed of complex organic polymers, heavy hydrocarbons, or intricate molecular aggregate networks that shatter into a vast array of closely related, heavy cluster-ions upon impact.
+Pattern 3:
+Pattern 3: Calibrated mass-to-charge (m/z) spectrum defined by extremely sharp elemental peaks at m/z 23 (Na+) and m/z 39 (K+), followed by distinct broad mid-mass molecular peaks at m/z ~100 and ~175, and a continuous elevated high-mass plateau.
 
 ### Class 5-Na
-Based on the synthesis of the provided analyses, here is a consolidated, comprehensive description of the characteristic Time-of-Flight (ToF) mass spectrum fingerprint for the **Class '5-Na'** cosmic/impact dust particle.
+Pattern 1:
+Pattern 1: A profoundly bipartite spectrum featuring only a single, dominant discrete peak in the low-mass region (Na+ at x~23), followed by an abrupt, near-vertical baseline jump around x=175 into a broad, continuous, featureless elevated hump that dominates the high-mass region.
 
----
+Pattern 2:
+Pattern 2: A bipartite spectrum characterized by a sequence of multiple (5-6) highly intense, saturated discrete peaks in the early time-of-flight region (including Na+), which then transitions around x=125-150 into a continuous, elevated, and noisy baseline devoid of distinct heavy mass signatures.
 
-### **General Overview and Macroscopic Topology**
-The defining characteristic of a Class '5-Na' spectrum is its striking departure from traditional, high-resolution mass spectra. Rather than displaying a sequence of distinct, well-separated vertical lines corresponding to individual elements or isotopes, the '5-Na' class is defined by a highly anomalous **bipartite (two-part) structure**. 
+Pattern 3:
+Pattern 3: A bipartite spectrum containing exactly two extremely intense, narrow discrete peaks in the low-mass region (including Na+), followed by an abrupt baseline rise at x=140 that forms a broad, elevated, grassy continuum dome throughout the high-mass range.
 
-Plotted on a linear X-axis (uncalibrated time-of-flight bins or channels, roughly 0 to >1000) against a **logarithmic Y-axis** (signal intensity, typically $10^{-7}$ to $10^{-3}$), the spectrum is overwhelmingly dominated by a single, extreme-intensity initial spike followed immediately by a massive, unresolved, continuous plateau of noise.
+### Class 5
+Pattern 1:
+Pattern A: Characterized by one or more highly saturated, zero-width 'needle' spikes (typically between x=150 and x=180) reaching the maximum absolute intensity ($10^0$). These intense spikes are immediately followed by a distinct 'double-hump' morphology consisting of two massive, broad, and heavily asymmetric peak envelopes with long exponential decay tails dominating the mid-mass range.
 
-### **Sequential Feature Analysis (Left to Right)**
+Pattern 2:
+Pattern B: Characterized by two prominent, saturated, zero-width artifact spikes widely separated from each other (e.g., at x=200 and x=575) reaching maximum intensity ($10^0$). These are accompanied by more traditional, discrete clustered ion sequences at the extreme low (x=0-100) and high (x=500-650) mass ranges, with a mostly flat, noisy baseline in the center.
 
-#### **1. Pre-Signal Baseline & The Low-Mass Region (x ≈ 0 to 130)**
-*   **Baseline State:** This region generally represents the instrumental noise floor before the main ion packet arrives. It consists of sparse, intermittent, low-amplitude noise spikes hovering at or below the $10^{-6}$ limit. 
-*   **The Early "Na" Peak Variation:** In some calibrated samples within this class, a highly distinct, sharp, but lower-intensity peak is noted very early in the spectrum (around **x ≈ 15 to 25**). This location corresponds to the true atomic mass of Sodium ($Na^+$, mass 23), confirming the particle's chemical classification before the main impact artifact occurs.
+### Class 3-K
+Pattern 1:
+Bimodal with High-Mass Repeating Humps: Spectra characterized by extremely sharp, isolated low-mass peaks (notably around x=10-20) followed by a low-signal intermediate region, and then an abrupt rise or step (around x=200-240). This high-mass region consists of a series of broad, repeating, unresolved mounds extending past x=500, indicating simple atomic ions existing alongside complex, heavy polymeric or carbonaceous clusters.
 
-#### **2. The Dominant Primary Spike (x ≈ 135 to 160)**
-*   **Visual Profile:** This is the most visually striking feature of the spectrum. It is an incredibly sharp, narrow, almost vertical spike that erupts suddenly from the baseline.
-*   **Extreme Intensity:** Reaching maximum intensities of $10^{-4}$ or higher, this peak is an order of magnitude (often multiple orders) taller than any other feature on the log-scale plot. 
-*   **Physical Interpretation:** This represents a massive, instantaneous influx of easily ionized atoms striking the detector. Because alkali metals ionize with high efficiency upon hypervelocity impact, this primary event is overwhelmingly dominated by the Sodium yield of the particle. 
-
-#### **3. The Post-Spike Trough (x ≈ 160 to 200)**
-*   Immediately following the primary spike, the signal intensity crashes precipitously. However, **it does not return to the pre-signal baseline**. Instead, it bottoms out at a local minimum (a "valley" roughly around $2 \times 10^{-6}$ to $5 \times 10^{-6}$) before immediately rising again.
-
-#### **4. The Unresolved Continuum / "The Hump" (x ≈ 200 to 650)**
-*   **The Defining Anomaly:** Instead of resolving into further individual mass peaks (like Mg, Si, Fe, etc.), the signal swells into a massive, broad, elevated envelope spanning hundreds of x-axis units. 
-*   **Texture and Intensity:** This plateau maintains a consistently high average intensity (fluctuating between $10^{-5}$ and $8 \times 10^{-5}$). It is highly jagged, "hairy," and densely packed with high-frequency noise.
-*   **Absence of Mass Sequences:** There are **no distinct periodic peak sequences** in this region. Individual heavier elements are completely masked.
-*   **Physical Interpretation:** In the context of impact ionization mass spectrometry, this broad continuum is a well-known artifact of a massive, sodium-rich impact. It represents **detector saturation/ringing** (the electronics struggling to recover from the massive initial charge), **plasma shielding** (a dense plasma cloud delaying ion extraction), or a massive, unresolved continuous distribution of heavy, complex **cluster ions** (e.g., sodium bonded with varying numbers of water molecules or organic fragments).
-
-#### **5. The Abrupt Termination "Cliff" (x ≈ 640 to 680)**
-*   The massive plateau does not taper off smoothly or gradually. It ends with a dramatic, near-vertical drop-off. 
-*   Within a span of 30 to 50 x-axis units, the signal plummets by more than an order of magnitude, cascading rapidly back toward the instrumental noise floor. 
-*   *Variation:* A few samples exhibit a minor secondary "step" or "shoulder" (x ≈ 680 to 750) where the signal pauses briefly before the final collapse to zero.
-
-#### **6. The Post-Event "Dead Zone" (x > 700)**
-*   Following the cliff, the spectrum returns to a state identical to the pre-signal baseline. 
-*   This region is a flat, essentially empty baseline characterized only by sporadic, disconnected vertical lines representing single-ion digitizer noise limits (below $10^{-6}$). No significant heavy ions are detected past this point.
-
----
-
-### **Summary of the Class '5-Na' Fingerprint**
-The Class '5-Na' spectrum is not a clean map of chemical composition; rather, it is the signature of an **extreme physical impact event dominated by a single, highly ionizable element**. Its unmistakable fingerprint is strictly bipartite:
-1.  A singular, overwhelmingly intense, sharp triggering spike (the Sodium payload).
-2.  A delayed, prolonged, highly noisy, and completely unresolved continuous block of signal (the plateau/hump) that abruptly cuts off at higher mass ranges, completely masking any heavier trace elements.
-
-### Class X
-Based on the analysis of the provided samples, here is a consolidated, comprehensive description of the characteristic Time-of-Flight (ToF) mass spectra for Class 'X' particles. 
-
-### 1. General Spectrum Morphology
-Class 'X' spectra are plotted on a linear x-axis (mass-to-charge ratio, $m/z$, or time-of-flight) and a **logarithmic y-axis** (intensity/ion counts). 
-
-The defining morphological characteristic of Class 'X' is a **bimodal (two-humped), broad, and continuous signal distribution**. Rather than exhibiting clean, isolated molecular ion peaks, the spectra are dominated by massive, jagged envelopes of heavily fragmented or clustered signals. This "hairy" or serrated continuous signal is highly indicative of complex organic mixtures, polymers, or highly heterogeneous materials undergoing sequential fragmentation.
-
-### 2. Characteristic Common Features (By Region)
-
-**A. Low-Mass Baseline & The Isolated Light Peak ($x \approx 0$ to Primary Onset)**
-*   **Sparse Baseline:** The initial baseline consists of sparse, discrete vertical spikes fluctuating near the detection limit, representing instrumental noise or single-ion counts.
-*   **The Isolated Low-Mass Peak:** A universal signature in this class is a single, notably sharp, and isolated peak occurring very early in the spectrum (between **$x \approx 10$ and $20$**). This peak spikes significantly above the baseline noise, consistently reaching an intensity near the $10^{-5}$ mark, representing a specific light elemental ion or consistent low-mass fragment.
-
-**B. The Primary Envelope (Onset, Maximum, and Decay)**
-*   **Abrupt Onset:** The continuous organic signal does not build gradually; it begins with a sudden, near-vertical, massive onset.
-*   **Absolute Maximum:** Immediately following the onset, the signal reaches its absolute highest intensity for the entire spectrum, pushing up toward the $10^{-4}$ mark. This maximum is a saturated, jagged cluster rather than a single peak.
-*   **Exponential Decay Tail:** Following the maximum, the signal exhibits a prolonged, serrated tail. Because the y-axis is logarithmic, the relatively straight downward slope indicates an exponential decay in intensity. This tail is characterized by repeating rhythmic clusters (hills and valleys spaced by 10-15 mass units), indicating the sequential loss of repeating molecular fragments (e.g., aliphatic hydrocarbon fragmentation).
-
-**C. Mid-Mass Plateau/Trough ($x \approx 300$ to $500$)**
-*   The steep decay eventually ceases, transitioning into a continuous, unresolved plateau or gentle trough. In this region, the continuous jagged signal hovers roughly between $10^{-6}$ and a few times $10^{-6}$ in intensity, extending up to $x \approx 500$.
-
-**D. The Secondary Hump (Bimodal Feature)**
-*   Starting around $x \approx 500$, the signal consistently climbs again to form a distinct secondary broad feature or "hump." This secondary peak cluster is less intense than the primary one (peaking in the mid-to-high $10^{-6}$ or low $10^{-5}$ range) but maintains the same jagged, unresolved, multi-peak characteristic.
-
-**E. Precipitous High-Mass Drop-off**
-*   Regardless of where the secondary hump peaks, the continuous complex signal undergoes a steep and precipitous drop-off at or very near **$x \approx 650$**. 
-*   Beyond this cutoff, the spectrum collapses back into the sparse, low-intensity noise characteristic of the initial baseline.
-
----
-
-### 3. Key Variations Within Class 'X'
-
-While the overarching bimodal and continuous structure is rigid, Class 'X' spectra exhibit distinct positional shifts along the x-axis, likely due to variations in the specific macromolecular composition or size of the individual dust particles. 
-
-*   **Shift in Primary Onset and Maximum:** The exact location where the primary mass envelope begins can vary significantly. In some samples, the abrupt onset occurs around $x \approx 130-140$ (with a maximum at $x \approx 150$). In others, the onset is delayed until $x \approx 190$ (with a maximum between $x \approx 200-220$). 
-*   **Shift in the Secondary Hump Peak:** The apex of the secondary bimodal hump also shifts. It can peak shortly after the mid-mass trough (around $x \approx 520-530$) or extend further out, peaking broadly just before the cutoff (around $x \approx 620-650$).
-*   **High-Mass Anomalies:** While the region beyond $x \approx 650$ is generally entirely blank (returning to baseline noise), occasional, highly isolated single peaks can appear at extreme high masses (e.g., a solitary sharp peak at $x \approx 1020$). These are sample-specific anomalies rather than defining class features.
-
-### Summary
-Class 'X' is defined by a bimodal, highly jagged, and continuous signal profile indicative of complex organics or polymers. It is easily identified by an isolated sharp peak at $x \approx 10-20$, a massive and sudden primary signal onset that decays exponentially, a mid-mass plateau, a secondary broad mass cluster after $x=500$, and a strict, precipitous signal cutoff at $x \approx 650$. Variations within the class are primarily translational shifts of the primary and secondary maxima along the x-axis.
-
-### Class 2-X
-Based on the visual evidence and detailed analyses of multiple Time-of-Flight (ToF) mass spectra, here is a consolidated, comprehensive description of the characteristic patterns, common features, and specific variations that define the **Class '2-X'** particle profile.
-
-### General Morphology and Spectrum Layout
-The defining hallmark of the Class 2-X spectrum is its **massive, continuous, and highly broadened signal envelope**. Unlike typical laboratory spectra that show sharply defined, highly resolved elemental mass lines, Class 2-X presents a dense, continuous "mountain range" or undulating "hump" across the mid-mass range. 
-
-*   **Axes & Scale:** The X-axis represents Time-of-Flight (a linear proxy for mass-to-charge ratio, $m/z$). The Y-axis utilizes a **logarithmic scale**, meaning the baseline consists of discrete, single-ion detection noise (comb-like spikes usually below $10^{-6}$), while visually small vertical variations at the top of the signal envelope represent massive fluctuations in actual ion counts.
-*   **Physical Interpretation:** The severe peak broadening and continuous baseline elevation indicate hypervelocity impact ionization of a complex particle (likely complex organics, polymers, or mixed minerals) that shatters into a vast, unresolved array of intermediate-weight molecular fragments with a wide kinetic energy spread.
-
----
-
-### Characteristic Sequence and Regional Breakdown
-
-A standard Class 2-X spectrum can be divided into five chronological phases along the x-axis:
-
-#### 1. Pre-Signal Baseline & The Early Spike (x = 0 to ~190)
-*   **Common Features:** The low-mass region is generally a "quiet zone" consisting only of sparse, discrete, needle-like baseline noise well below $10^{-6}$.
-*   **Key Anomaly:** Nearly all samples exhibit a solitary, isolated, and extremely sharp spike very early in the spectrum (variously appearing between **x = 10 and x = 20**, or occasionally near ~160 depending on instrument calibration). This spike often reaches up to $10^{-5}$ and represents either a highly abundant, very light ion (such as $H^+$) or a standard pre-impact trigger/artifact.
-
-#### 2. Abrupt Onset & Primary Maximum Complex (x = ~190 to ~350)
-*   **Common Features:** The main event is triggered by a sudden, dramatic vertical onset just before **x = 200**, where the signal climbs multiple orders of magnitude almost instantaneously.
-*   **The Global Maximum:** The absolute peak intensity of the entire spectrum resides in this primary cluster, cresting broadly between **x = 200 and x = 240** (reaching heights between $3 \times 10^{-5}$ and $>10^{-4}$). 
-*   **Internal Structure:** While highly broadened, this dense complex features distinct repeating shoulders or sub-clusters. Common local maxima consistently appear around **x = 240**, **x = 280-300**, and a trailing twin/cluster set between **x = 340 and 380**. 
-
-#### 3. The Elevated Mid-Mass Plateau / Valley (x = ~350 to ~550)
-*   **Common Features:** Instead of decaying back to the baseline noise floor, the signal remains persistently elevated. This creates a dense, continuous, unresolved "hairy" baseline or broad tail hovering between $10^{-6}$ and $10^{-5}$.
-*   **Periodic Lumps:** This region often exhibits repeating, broad "lumps" (e.g., around x ≈ 410–430), characteristic of complex molecules breaking apart into fragments that differ by repeating molecular subunits.
-
-#### 4. The Secondary Heavy Resurgence (x = ~550 to ~700)
-*   **Common Features:** A defining structural fingerprint of Class 2-X is a distinct, late-arriving resurgence in signal, creating an overall **macro-bimodal (two-humped) structure**. 
-*   **Peak Location:** Emerging from the mid-mass plateau, a prominent secondary heavy peak cluster centers between **x = 580 and x = 630**. This indicates a highly specific, stable, heavy molecular subunit characteristic of the parent particle.
-
-#### 5. High-Mass Cutoff (x > 650 - 750)
-*   **Common Features:** Immediately following the secondary heavy resurgence, the signal undergoes a precipitous, cliff-like drop. 
-*   **Signal Death:** Between x = 650 and x = 750, the spectrum abruptly reverts to empty, single-channel baseline noise, indicating the absolute upper mass limit of the fragments generated under these impact conditions. 
-
----
-
-### Observed Variations Within the Class
-While the bimodal, heavily broadened envelope is standard, individual samples exhibit minor morphological variations:
-*   **Valley Depth:** The transition between the primary maximum and the secondary resurgence varies. Some samples show a continuous, relatively flat elevated plateau (Sample 1), while others show a distinct "valley" or dip around x = 500 where the signal drops significantly before rising again (Sample 2).
-*   **Pre-Peak Position:** The sharp early anomaly varies in location; some samples register it extremely early (x = 10-20), while others register a sharp pre-peak closer to the main onset (x ≈ 160).
-*   **Decay Tail Length:** The final cutoff point varies slightly based on the specific particle mass, terminating anywhere from x = 650 to x = 750.
-
-### Summary Fingerprint of Class '2-X'
-To positively identify a Class 2-X particle spectrum, look for these four hallmarks:
-1.  **Anomalous Early Spike:** An isolated, sharp spike preceding a quiet baseline.
-2.  **Abrupt Primary Maximum:** A massive, unresolved, densely clustered primary envelope abruptly initiating at ~190-200 and peaking by ~240.
-3.  **Elevated Continuum:** Severe peak broadening causing the signal to remain suspended in an unresolved plateau through the mid-mass range.
-4.  **Bimodal Resurgence:** A distinct, secondary clustering of heavy fragments peaking around ~580-630 before a steep high-mass cutoff.
+Pattern 2:
+Bimodal with Mid-Mass Envelopes and High-Mass Noise: Spectra featuring a dominant sharp low-mass peak (x~20) and broad mid-mass envelopes (x=150-210), but lacking repeating structures at higher masses. The region beyond x=250 consists of an elevated, continuous band of noise characterized by sharp negative spikes (zero-count instrumental artifacts) and no distinct molecular envelopes.
 
 Use these patterns to classify the provided spectrum. Return the classification in the requested JSON format.

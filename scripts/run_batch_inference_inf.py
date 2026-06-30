@@ -1,3 +1,10 @@
+"""
+This script runs a specific large-scale batch inference job on a sample of 1000 rows
+from the training dataset (excluding prompt study samples).
+
+This differs from the standard agent run which typically evaluates on the test dataset
+defined in the config.
+"""
 import os
 import json
 import time
@@ -20,24 +27,40 @@ configs = Config()
 configs.agent_settings.inference_path = "batch" # Force batch mode
 
 def main():
-    print("Starting batch inference on inference dataset...")
+    print("Starting batch inference on training dataset sample...")
     
     # 1. Load data
-    inf_data_path = "cda_dust_agent/data/raw/cda_inf.parquet"
-    if not os.path.exists(inf_data_path):
-        print(f"Error: {inf_data_path} does not exist.")
+    train_data_path = "cda_dust_agent/data/raw/cda_train.parquet"
+    sampled_data_path = "cda_dust_agent/data/prompt_optimizer/sampled_train.parquet"
+    
+    if not os.path.exists(train_data_path):
+        print(f"Error: {train_data_path} does not exist.")
         return
         
-    print(f"Loading data from {inf_data_path}")
-    df = pd.read_parquet(inf_data_path)
+    print(f"Loading data from {train_data_path}")
+    df = pd.read_parquet(train_data_path)
     
+    # Exclude samples used in prompt study
+    if os.path.exists(sampled_data_path):
+        print(f"Loading excluded samples from {sampled_data_path}")
+        sampled_df = pd.read_parquet(sampled_data_path)
+        excluded_sclks = set(sampled_df['sclk'].dropna().astype(str))
+        print(f"Excluding {len(excluded_sclks)} samples used in prompt study.")
+        # Ensure sclk is string for matching
+        df['sclk_str'] = df['sclk'].astype(str)
+        df_filtered = df[~df['sclk_str'].isin(excluded_sclks)].drop(columns=['sclk_str'])
+        print(f"Rows remaining after exclusion: {len(df_filtered)}")
+    else:
+        print("No sampled_train.parquet found, proceeding with all training data.")
+        df_filtered = df
+        
     # 2. Sample 1000 rows
     print("Sampling 1000 rows...")
-    if len(df) > 1000:
-        df_sample = df.sample(n=1000, random_state=42).reset_index(drop=True)
+    if len(df_filtered) > 1000:
+        df_sample = df_filtered.sample(n=1000, random_state=42).reset_index(drop=True)
     else:
-        df_sample = df
-        print(f"Warning: Dataset only has {len(df)} rows, using all.")
+        df_sample = df_filtered
+        print(f"Warning: Dataset only has {len(df_filtered)} rows, using all.")
         
     # 3. Load few-shot examples from cache if available
     few_shot_examples = []
@@ -122,6 +145,9 @@ def main():
     print("Polling job status...")
     
     while True:
+        # Refresh token in case it expires
+        access_token = os.popen("gcloud auth application-default print-access-token").read().strip()
+        
         check_cmd = [
             "curl", "-s", "-X", "GET",
             check_url,
@@ -171,16 +197,30 @@ def main():
     print(f"Downloading {blob_to_download.name} to {out_file}...")
     blob_to_download.download_to_filename(out_file)
     
-    # 9. Parse and save to CSV
-    print("Parsing results to CSV...")
+    # 9. Parse and save to CSV with full analysis
+    print("Parsing results and running analysis...")
     from cda_dust_agent.tools.utils import parse_response
+    from sklearn.metrics import classification_report, confusion_matrix
     
     preds = []
     with open(out_file, 'r') as f:
         for line in f:
             preds.append(json.loads(line))
             
-    parsed_data = []
+    # Create a truth map from the sampled data
+    truth_map = {}
+    for k, v in df_sample.set_index('sclk')['class'].to_dict().items():
+        try:
+            clean_k = str(int(float(k)))
+        except ValueError:
+            clean_k = str(k)
+        truth_map[clean_k] = str(v)
+        
+    y_true = []
+    y_pred = []
+    explanations = []
+    matched_sclks = []
+    
     for p in preds:
         resp_text = ""
         try:
@@ -198,21 +238,59 @@ def main():
         elif not isinstance(parsed, dict):
             parsed = {}
             
+        raw_label = parsed.get("class") or parsed.get("class_label") or "Noise"
+        raw_label_str = str(raw_label).strip().lower()
+        
+        # Dynamic matching based on unique classes in truth_map
+        unique_classes_lower = {str(k).lower(): str(k) for k in truth_map.values()}
+        pred_label = "Noise"
+        for cls_lower, cls_real in unique_classes_lower.items():
+            if cls_lower in raw_label_str:
+                pred_label = cls_real
+                break
+                
         pred_id = parsed.get("id")
-        pred_class = parsed.get("class") or parsed.get("class_label") or "Noise"
         explanation = parsed.get("explanation", "")
         
-        parsed_data.append({
-            "sclk": pred_id,
-            "predicted_class": pred_class,
-            "explanation": explanation
-        })
-        
-    results_df = pd.DataFrame(parsed_data)
+        if pred_id is not None:
+            try:
+                clean_id = str(int(float(pred_id)))
+            except ValueError:
+                clean_id = str(pred_id)
+                
+            if clean_id in truth_map:
+                matched_sclks.append(clean_id)
+                y_true.append(truth_map[clean_id])
+                y_pred.append(pred_label)
+                explanations.append(explanation)
+                
+    print(f"Parsed {len(y_true)} matched predictions.")
+    
+    # Save to CSV (overwriting the same file as requested)
+    results_df = pd.DataFrame({
+        "sclk": matched_sclks,
+        "true_class": y_true,
+        "predicted_class": y_pred,
+        "explanation": explanations
+    })
     results_csv = "cda_dust_agent/data/results/inf_results.csv"
     os.makedirs(os.path.dirname(results_csv), exist_ok=True)
     results_df.to_csv(results_csv, index=False)
     print(f"Saved results to {results_csv}")
+    
+    # Run evaluation
+    target_names = sorted(list({str(v) for v in truth_map.values()}))
+    if not target_names:
+        target_names = ['4', '1', 'Noise']
+        
+    report = classification_report(y_true, y_pred, labels=target_names)
+    cm = confusion_matrix(y_true, y_pred, labels=target_names)
+    
+    print("\n--- Evaluation Results ---")
+    print(report)
+    print("\nConfusion Matrix (Rows=True, Cols=Pred):")
+    print(f"Labels: {target_names}")
+    print(cm)
 
 if __name__ == "__main__":
     main()

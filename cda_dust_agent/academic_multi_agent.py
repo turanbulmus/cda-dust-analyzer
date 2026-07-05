@@ -254,7 +254,7 @@ class AcademicCriticAgent:
 
 TASK:
 Evaluate the proposed prompt modifications and scientific arguments from the Academic Research Agent.
-Identify potential weaknesses, risks of overfitting, physical inconsistencies with CDA instrument physics, ambiguous wording, or edge cases where the proposed rules might cause false positives (e.g., misclassifying Class 2 dirty water ice as Class 3 organics, or misclassifying Class 3-P as Class 5-Na).
+Identify potential weaknesses, risks of overfitting, physical inconsistencies with CDA instrument physics, ambiguous wording, or edge cases where the proposed rules might cause false positives (e.g., misclassifying Class 2 dirty water ice as Class 3 organics, or misclassifying Class 3-P as Class 5-Na). Use web/search grounding to verify literature claims and find supporting or contradicting papers.
 
 RESEARCH AGENT PROPOSAL:
 {research_proposal}
@@ -267,7 +267,15 @@ Please provide a detailed ACADEMIC CRITIQUE REPORT:
 2. Points of Contention & Counterarguments: Specific proposed rules that are overly restrictive, prone to false positives, or physically misinformed.
 3. Refinements & Alternative Formulations: Specific modifications to sharpen the distinction between Class 3 and Class 3-P, and between Class 1/2/4/5/5-Na.
 """
-        response = safe_generate_content(self.client, MODEL_ID, prompt)
+        try:
+            config = types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())]
+            )
+            response = self.client.models.generate_content(model=MODEL_ID, contents=prompt, config=config)
+        except Exception as e:
+            print(f"Google Search fallback: {e}")
+            response = safe_generate_content(self.client, MODEL_ID, prompt)
+
         critique = response.text.strip()
         print("Academic Critic Agent Report generated.")
         return critique

@@ -39,8 +39,9 @@ class DataPrepAgent(BaseAgent):
         yield log_and_yield(self.name, f"Loading data from {self.data_path}")
         df = pd.read_parquet(self.data_path)
         
-        limit_val = self.limit if self.limit > 0 else None
+        limit_val = self.limit if self.limit > 0 else (configs.agent_settings.test_n if configs.agent_settings.test_mode else None)
         if limit_val and limit_val < len(df):
+            yield log_and_yield(self.name, f"Sampling exactly {limit_val} test spectra from {len(df)} total spectra...")
             df = df.sample(n=limit_val, random_state=42)
             
         few_shot_examples = ctx.session.state.get("few_shot_examples", [])

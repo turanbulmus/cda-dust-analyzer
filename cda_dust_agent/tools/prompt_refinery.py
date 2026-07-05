@@ -96,7 +96,7 @@ async def run_prompt_refinery(autonomous: bool = True, max_levels: int = 5, use_
                 prompt_data=vx_types.PromptData(
                     contents=[
                         generative_models.Content(role="user", parts=[
-                            generative_models.Part(text=before_prompt_text)
+                            generative_models.Part.from_text(before_prompt_text)
                         ])
                     ],
                     model=configs.agent_settings.model

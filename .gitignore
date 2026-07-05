@@ -13,6 +13,7 @@ __pycache__/
 
 # Data & Large Files
 cda_dust_agent/data/
+papers/
 *.parquet
 *.jsonl
 *.csv

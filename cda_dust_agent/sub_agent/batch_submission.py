@@ -61,10 +61,11 @@ class BatchSubmissionAgent(BaseAgent):
         
         job_display_name = f"cda-batch-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
         
+        model_to_use = f"publishers/google/models/{self.model_id}"
         try:
             job = aiplatform.BatchPredictionJob.create(
                 job_display_name=job_display_name,
-                model_name=f"publishers/google/models/{self.model_id}",
+                model_name=model_to_use,
                 instances_format="jsonl",
                 gcs_source=gcs_source,
                 predictions_format="jsonl",
@@ -73,4 +74,19 @@ class BatchSubmissionAgent(BaseAgent):
             yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job.name}")
             ctx.session.state["job_name"] = job.name
         except Exception as e:
-            yield log_and_yield(self.name, f"Error submitting job: {e}")
+            if "404" in str(e) or "NOT_FOUND" in str(e):
+                fallback_model = "publishers/google/models/gemini-2.5-flash"
+                yield log_and_yield(self.name, f"Model {model_to_use} not found (404), falling back to {fallback_model}...")
+                job = aiplatform.BatchPredictionJob.create(
+                    job_display_name=job_display_name,
+                    model_name=fallback_model,
+                    instances_format="jsonl",
+                    gcs_source=gcs_source,
+                    predictions_format="jsonl",
+                    gcs_destination_prefix=f"gs://{bucket.name}/output",
+                )
+                yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job.name}")
+                ctx.session.state["job_name"] = job.name
+            else:
+                logger.error(f"Error submitting job: {e}")
+                yield log_and_yield(self.name, f"Error submitting job: {e}")

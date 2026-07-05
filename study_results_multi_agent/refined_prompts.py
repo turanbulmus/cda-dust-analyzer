@@ -1,4 +1,4 @@
-SYSTEM_INSTRUCTION_TEXT = """Because of hardware trigger recording differences and variations in impact-induced plasma generation/ion extraction dynamics, these spectra can be shifted in time by up to 50 index points. Due to the non-linear mapping between time-of-flight and mass, this shift causes the peaks to visually stretch. Do NOT rely on absolute x-axis index positions. Instead, focus on relative shapes, relative peak sequences, and overall topography.
+REFINED_SYSTEM_INSTRUCTION_TEXT = """Because of hardware trigger recording differences and variations in impact-induced plasma generation/ion extraction dynamics, these spectra can be shifted in time by up to 50 index points. Due to the non-linear mapping between time-of-flight and mass, this shift causes the peaks to visually stretch. Do NOT rely on absolute x-axis index positions. Instead, focus on relative shapes, relative peak sequences, and overall topography.
 
 CRITICAL DIFFERENTIATION GUIDE FOR CLASS 3 VS CLASS 3-P:
 1.  **Class 3 (Macromolecular Organics):** Features multiple broad, asymmetric "shark-fin" peak clusters with expanding periodicity (representing macromolecular carbon series, often with average 12-13 u spacing, and including aromatic and N/O-bearing species). Crucially, on the scaled [0, 1] y-axis, the valleys between clusters drop significantly lower (down to y < 0.15), and it lacks a singular early maximum (e.g., *typically observed around* index ~200-220) that *overwhelmingly* dominates the entire spectrum by a factor of 5-10.
@@ -14,36 +14,24 @@ CLASS SPECIFIC PROFILES:
 *   **Class 5-Na:** Bipartite structure dominated by Sodium chemistry (Type III). Erupts with a singular, overwhelmingly intense, sharp spike (the Sodium payload) (e.g., *typically appearing* at index 135-160). Followed by a delayed, prolonged, highly noisy, and completely unresolved plateau (e.g., *often from* index 200 to 650) (representing detector saturation due to high sodium/salt content, plasma shielding, or complex sodium-water clusters) that terminates in a hard cliff. These spectra are indicative of ice grains with particularly high sodium and other salt (e.g., K+, Cl-, HCO3-, CO3^2-) concentrations (0.5–2% by mass), formed from frozen droplets of Enceladus's subsurface ocean.
 *   **Class 3-P:** Characterized by a 'burst-and-trail' signature consisting of broad, unresolved mass envelopes rather than sharp, isolated single-element lines. Features a massive primary complex (e.g., *typically observed* around index ~200-220) which is the absolute maximum, followed by a distinct secondary peak (e.g., *often around* index ~330-345). Displays a unique elevated baseline/plateau past index 400 that never returns to zero (chemical noise plateau), with superimposed broad rhythmic hummocks, terminating in a rapid collapse/cutoff between index 650 and 750. This spectrum is often observed from impacts of physically agglomerated or highly porous particles, leading to a sustained, diffuse ion cloud."""
 
-ANNOTATION_USER_PROMPT = """This is a time-of-flight mass spectrum for a particle belonging to the known class '{label}'.
-Please provide a brief, 1-2 sentence description of the key visual features that characterize this spectrum as '{label}'. Do not output JSON, just the text description."""
+REFINED_SYSTEM_INSTRUCTION_TEXT_SELF_CORRECT = """When classifying, always double-check the following critical differentiation criteria:
+1.  **Primary Peak Dominance:**
+    *   **Class 3-P:** Must have a single, explosive primary peak complex (e.g., *typically observed around* index ~200-220) that is the absolute global maximum (y = 1.0) and dominates the rest of the spectrum by a factor of 5 to 10. This represents an initial 'burst' of ionization from an agglomerated particle.
+    *   **Class 3:** Has multiple broad peak clusters (e.g., macromolecular carbon chain clusters, often with 12-13 u periodicity, aromatic signatures, and N/O-bearing species) of relatively comparable heights across the index range, without a single early maximum *overwhelmingly* dominating the entire spectrum. The signal strength is distributed across several organic components.
+2.  **Valley Depth between Clusters:**
+    *   **Class 3:** The valleys between the broad peak clusters drop significantly lower, returning close to the noise floor (down to y < 0.15), reflecting discrete organic components with relatively clean separation.
+    *   **Class 3-P:** The signal remains highly elevated throughout, even in regions between major envelopes, indicating a pervasive, complex background signal characteristic of agglomerate impacts.
+3.  **Baseline Plateau Cushion (past index 400):**
+    *   **Class 3-P:** Crucially, past index 400, the signal rests on a continuous, flat "chemical noise" plateau (baseline cushion) that remains highly elevated (y ≈ 0.3 to 0.5) and never returns to zero before dropping off sharply near index 650-750. This sustained elevated baseline is a hallmark of the 'trail' left by a diffuse, energetic agglomerate impact.
+    *   **Class 3:** The baseline past index 400 decays back close to zero, as typical for fragmented molecular species where the signal diminishes after the primary ionization events."""
 
-CONTRASTIVE_ANNOTATION_USER_PROMPT = """You are an expert Cosmic Dust Spectroscopist.
-We want you to write a brief, 1-2 sentence description of the key visual features of the Target Spectrum (labeled as Class '{label}') to be used as a reference example for class '{label}'.
-
-To help you write a contrastive explanation that clearly distinguishes '{label}' from all other classes, we have provided the Target Spectrum (Image A) alongside reference spectra from the other classes.
-
-Please review all the provided images:
-- Image A (Target): This is the spectrum of '{label}' you must describe.
-{reference_descriptions}
-
-Key Spectral Guidelines to remember:
-- Class 1: Pure water ice. Clear, sharp sequence of hydronium cluster peaks ($H_3O^+(H_2O)_n$) at mass 19, 37, 55, 73... (index locations ~85, ~120, ~146, ~169, ~189). Global maximum is early (~80-100). Valleys between peaks return fully to baseline.
-- Class 2: Organic-rich water ice. Same hydronium peaks as Class 1, but with significant valley-filling, organic background, or intermediate peaks between them. Global maximum is often in the 180-300 range.
-- Class 4: Mineral spectrum. Needle-sharp atomic spikes (Mg+, Si+, Fe+) with a quiet baseline, and completely lacks the repeating water-ice cluster sequence. Mid-mass envelopes with global maximum at index 280-350 and a distinct late cluster around index 420-480.
-- Class 3: Organics. Continuous, highly elevated "mesa" plateau or broad asymmetric shark-fin peaks representing carbon clusters.
-- Class 5: Bimodal extreme (overwhelmingly intense early peak with long trailing decay, rest is dense low-amplitude barcode noise).
-- Class 5-Na: Singular sharp Sodium payload peak at index 135-160, followed by a delayed, noisy detector-saturation plateau.
-- Noise: Narrow initial trigger spike followed by broad envelope of digitizer noise ("grass"), devoid of chemical peaks.
-
-Write a 1-2 sentence description of the visual features of Image A (Target) that characterize it as '{label}', highlighting specific details (such as peak spacing trend, peak shape, or noise baseline) that help distinguish it from the other classes. Do not output JSON, just return the text description."""
-
-CLASSIFICATION_USER_PROMPT = """Based on the provided examples, classify this new spectrum.
-Carefully compare its visual features (peaks, baseline, noise levels, and overall structure) to the examples, keeping in mind that peak shifts and amplitude variations can occur within the same class.
-
-Return your analysis strictly in the following JSON format:
-{
-    "id": "<the provided sclk id>",
-    "class": "<the predicted class label>",
-    "explanation": "<a brief 1-2 sentence explanation of why it belongs to this class based on visual features>"
+REFINED_GENERAL_PROFILES = {
+  "Noise": "Instrumental digitizer noise showing a narrow trigger spike and high-frequency 'grass', completely devoid of chemical peaks or distinct spectral features.",
+  "1": "Pure water ice (Type I) sequence of regularly spaced hydronium cluster peaks ($H_3O^+(H_2O)_n$) with a *typically* early global maximum and valleys returning fully to baseline, indicating minimal impurities.",
+  "2": "Organic-bearing or dirty water ice (Type II) featuring hydronium peaks similar to Class 1, but with prominent organic/siliceous background noise filling the valleys between peaks, without the distinct macromolecular structure of Class 3.",
+  "3": "Complex macromolecular organic chains (HMOCs), a subset of Type II, consisting of multiple broad, asymmetric 'shark-fin' peak clusters (e.g., carbon series with 12-13 u periodicity, and aromatic/N/O-bearing species), lacking a singular early dominant peak and with valleys dropping significantly between clusters.",
+  "4": "Mineral/silicate spectrum showing isolated, needle-sharp atomic spikes (e.g., Mg+, Si+, Fe+) with a very quiet, flat baseline in between, consistent with Mg-rich silicates and potential Fe depletion.",
+  "5": "Bimodal extreme featuring an overwhelmingly intense primary peak in the early region (~70-75 Da), potentially representing a light, abundant cation (e.g., K+, Mg+) or intense target signal, with a long trailing decay and a **low-amplitude noisy background ('barcode' or 'grass' band)**, possibly indicative of altered, highly concentrated salt grains (literature's 'Type 5'), a highly fragmented diffuse ion cloud, or the detector's recovery from an intense early saturation event.",
+  "5-Na": "Bipartite sodium chemistry (Type III) dominated by a singular, overwhelmingly intense early sodium spike (~135-160 Da) followed by a delayed, noisy detector-saturation plateau, characteristic of highly salt-rich (Na+, K+, Cl-, HCO3-) frozen ocean droplets.",
+  "3-P": "Burst-and-trail signature from agglomerate impacts showing an explosive early maximum (~200-220 Da), a distinct secondary peak (~340 Da), and a continuous elevated chemical noise baseline past index 400, reflecting a sustained diffuse ion cloud."
 }
-"""

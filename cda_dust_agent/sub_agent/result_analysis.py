@@ -106,15 +106,20 @@ class ResultAnalysisAgent(BaseAgent):
                 elif not isinstance(parsed, dict):
                     parsed = {}
                     
-                raw_label = parsed.get("class") or parsed.get("class_label") or "Noise"
-                raw_label_str = str(raw_label).strip().lower()
-                
-                unique_classes_lower = {str(k).lower(): str(k) for k in truth_map.values()}
-                pred_label = "Noise"
-                for cls_lower, cls_real in unique_classes_lower.items():
-                    if cls_lower in raw_label_str:
-                        pred_label = cls_real
-                        break
+                raw_label = str(parsed.get("class") or parsed.get("class_label") or "Noise").strip()
+                valid_classes = ['Noise', '1', '2', '3', '4', '5', '5-Na', '3-P']
+                if raw_label in valid_classes:
+                    pred_label = raw_label
+                elif "3-p" in raw_label.lower():
+                    pred_label = "3-P"
+                elif "5-na" in raw_label.lower():
+                    pred_label = "5-Na"
+                else:
+                    pred_label = "Noise"
+                    for cls in ['Noise', '1', '2', '3', '4', '5']:
+                        if cls.lower() == raw_label.lower():
+                            pred_label = cls
+                            break
                         
                 pred_id = parsed.get("id")
                 explanation = parsed.get("explanation", "")

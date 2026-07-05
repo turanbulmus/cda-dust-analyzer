@@ -5,10 +5,16 @@ We used an **autonomous hierarchical approach** where the agent decided the leve
 
 ## Final Patterns Identified
 ### Class 1
-Identified 1 fundamental patterns.
+Identified 4 fundamental patterns.
 
 ### Class 2
-Identified 1 fundamental patterns.
+Identified 3 fundamental patterns.
+
+### Class ?
+Identified 3 fundamental patterns.
+
+### Class 3-KNa
+Identified 2 fundamental patterns.
 
 ### Class 4
 Identified 2 fundamental patterns.
@@ -17,30 +23,24 @@ Identified 2 fundamental patterns.
 Identified 2 fundamental patterns.
 
 ### Class 3-OH
-Identified 1 fundamental patterns.
+Identified 2 fundamental patterns.
 
-### Class 3-Car
+### Class 5
+Identified 3 fundamental patterns.
+
+### Class 3-K
 Identified 1 fundamental patterns.
 
 ### Class 3-P
 Identified 1 fundamental patterns.
 
 ### Class Noise
-Identified 2 fundamental patterns.
-
-### Class ?
-Identified 3 fundamental patterns.
-
-### Class 3-KNa
 Identified 3 fundamental patterns.
 
 ### Class 5-Na
 Identified 3 fundamental patterns.
 
-### Class 5
-Identified 2 fundamental patterns.
-
-### Class 3-K
+### Class 3-Car
 Identified 2 fundamental patterns.
 
 ## Final Prompt

@@ -90,7 +90,7 @@ class FewShotAnnotationAgent(BaseAgent):
             import base64
             import numpy as np
             
-            client = genai.Client()
+            client = genai.Client(vertexai=True, project=configs.agent_settings.project_id, location="us-central1")
             model_id = configs.agent_settings.model
             
             yield log_and_yield(self.name, f"Generating explanations for {len(candidates)} examples ({n_per_class} per class) using {model_id}...")

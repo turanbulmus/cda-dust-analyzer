@@ -10,14 +10,14 @@ class AgentSettings(BaseSettings):
     
     # Workflow Execution Parameters
     inference_path: str = "batch" # 'local' or 'batch'
-    fetch_data: bool = False
+    fetch_data: bool = True
     force_new_annotations: bool = False
-    test_mode: bool = True
+    test_mode: bool = False
     few_shot_n: int = 3
     test_n: int = 5
     target_dataset: str = "L"
     few_shot_split_rules: int | dict = 3
-    prompt_optimization: bool = True
+    prompt_optimization: bool = False
     prompt_opt_iterations: int = 2
 
 class Config:

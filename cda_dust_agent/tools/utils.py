@@ -87,7 +87,8 @@ def create_batch_input_file(df, few_shot_examples, output_file='cda_dust_agent/d
 
             current_parts = few_shot_parts.copy()
             current_parts.append({"inline_data": {"mime_type": "image/png", "data": img_b64}})
-            current_parts.append({"text": f"Sample ID (sclk): {row['sclk']}"})
+            qi_val = row.get('qi_ampl', 'N/A')
+            current_parts.append({"text": f"Sample ID (sclk): {row['sclk']} | Target Charge (qi_ampl): {qi_val} C"})
 
             request = {
                 "request": {

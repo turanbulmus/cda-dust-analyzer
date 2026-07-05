@@ -43,6 +43,8 @@ class ResultAnalysisAgent(BaseAgent):
             return
             
         if inference_path != "local":
+            os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
+            os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
             bucket_name = ctx.session.state.get("bucket_name")
             storage_client = storage.Client(project=self.project_id)
             bucket = storage_client.bucket(bucket_name.replace("gs://", ""))

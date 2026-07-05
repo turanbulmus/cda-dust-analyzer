@@ -1,8 +1,29 @@
-SYSTEM_INSTRUCTION_TEXT = """Because of hardware trigger recording differences and variations in impact-induced plasma generation/ion extraction dynamics, these spectra can be shifted in time by up to 50 index points. Due to the non-linear mapping between time-of-flight and mass (t ∝ √m), this shift causes peaks to visually stretch non-linearly. Do NOT rely strictly on absolute x-axis index positions. Instead, use Relative Mass Ratio Anchoring (t2/t1 ≈ √(m2/m1)) relative to prominent early anchor peaks (e.g., H3O+ at 19 Da, Na+ at 23 Da, Mg+ at 24 Da), and focus on relative shapes, envelope sequences, and overall spectral topography.
+SYSTEM_INSTRUCTION_TEXT = """Because of hardware trigger recording differences and variations in impact-induced plasma generation/ion extraction dynamics, these spectra can be shifted in time by up to 50 index points. Due to the non-linear mapping between time-of-flight and mass (t ∝ √m), this shift causes peaks to visually stretch non-linearly. Do NOT rely strictly on absolute x-axis index positions. Instead, use Relative Mass Ratio Anchoring (t2/t1 ≈ √(m2/m1)) relative to prominent early anchor peaks (e.g., H3O+ at 19 Da, Na+ at 23 Da, Mg+ at 24 Da, K+ at 39 Da), and focus on relative shapes, envelope sequences, and overall spectral topography.
 
-CRITICAL DIFFERENTIATION GUIDE FOR CLASS 3 VS CLASS 3-P:
-1.  **Class 3 (Macromolecular Organics / HMOCs):** Features multiple broad, asymmetric "shark-fin" peak envelope clusters with expanding periodicity (representing macromolecular carbon series C_n with typical 12-14 Da envelope spacing, plus broad aromatic/nitrogenous fragments around ~77-80 Da). Crucially, on the scaled [0, 1] y-axis, the valleys between major organic clusters drop significantly lower (down to y < 0.15), returning near the baseline. It lacks a singular early maximum that overwhelmingly dominates the entire spectrum by a factor of 5-10.
-2.  **Class 3-P (Burst-and-Trail Agglomerate):** Dominated by an explosive primary multi-peak agglomerate complex (global maximum y = 1.0) and a distinct secondary envelope peak. Crucially, past the primary clusters, it rests on a continuous, flat "chemical noise" baseline cushion that remains elevated (y ≈ 0.25 to 0.50) and does not return to zero before a sharp trailing collapse (around index 650-750). EXCLUSION RULE: If the early peak is a single needle-sharp atomic alkali spike (e.g., Na+ at 23 Da or K+ at 39 Da) followed by a flat detector saturation plateau or ringing, classify as Class 5-Na or Class 5, NOT 3-P.
+MANDATORY DISQUALIFICATION AUDIT (Apply in sequence before assigning final class):
+
+1. RULE 0 (NOISE GATE & LOW-S/N CHECK):
+   - If QI_AMPL < 5.0e-14 C OR Peak SNR < 4.0, the spectrum is physically near the instrumental noise floor. Do NOT interpret baseline wander or high-frequency digitizer grass as chemical features or organic envelopes. Classify strictly as Noise unless explicit, resolved chemical peaks exceed SNR > 3.0.
+
+2. RULE 1 (DIGITIZER GRASS VS. ORGANIC CONTINUUM):
+   - High-frequency single-pixel digitizer quantization grass MUST NOT be classified as Class 2 organic valley filling or Class 3 envelopes.
+   - Class 1 & 2 REQUIRE a regular sequence of hydronium cluster peaks (H3O+(H2O)_n at m/z 19, 37, 55, 73 Da) verified by relative mass ratios.
+   - If the hydronium inter-peak valleys drop near the baseline (y < 0.15), classify as Class 1 (Pure Water Ice). Class 2 requires smooth, resolved intermediate VOC peaks or broad background humps.
+
+3. RULE 2 (CLASS 5 ALKALI DOUBLET VERIFICATION):
+   - A single sharp early peak followed by flat baseline grass MUST NOT be classified as Class 5 unless verified as Na+ (23 Da) or K+ (39 Da) with characteristic K+/Na+ doublet mass ratios (t_K/t_Na ≈ 1.30).
+   - A single early peak at m/z 19 (H3O+) or m/z 1 (H+) with flat baseline MUST be classified as low-signal Class 1, NOT Class 5.
+
+4. RULE 3 (SODIUM ORTHOPHOSPHATE REQUIREMENT FOR CLASS 5-Na):
+   - A detector saturation plateau (y > 0.8) alone DOES NOT constitute Class 5-Na.
+   - Class 5-Na MANDATES an early Na+ payload spike (23 Da) AND diagnostic sodium orthophosphate cluster peaks at t/t_Na = √(125/23) ≈ 2.33, √(165/23) ≈ 2.68, or √(187/23) ≈ 2.85. If saturation follows an organic precursor envelope without orthophosphate mass clusters, classify as Class 3.
+
+5. RULE 4 (CLASS 3-P EXCLUSION RULE):
+   - Class 3-P requires an explosive primary multi-peak complex (global max y = 1.0) and a continuous elevated chemical noise cushion (y ≈ 0.25-0.50).
+   - EXCLUSIONS: If repeating hydronium cluster peaks (19, 37, 55 Da) are present, classify as Class 1 or 2, NOT 3-P. If the early peak is a single needle-sharp atomic alkali spike, classify as Class 5 or 5-Na, NOT 3-P. If deep valleys (y < 0.15) separate envelopes, classify as Class 3.
+
+6. RULE 5 (CLASS 4 SILICATE ELEMENTAL ATOMIC SPIKE REQUIREMENT):
+   - Class 4 MANDATES narrow, sharp elemental atomic cation spikes in the low-mass region (Mg+ at 24 Da / Si+ at 28 Da / Ca+ at 40 Da with FWHM ≤ 3 channels) preceding mid-mass silicate envelopes. Broad mid-mass envelopes without early Mg+/Si+ spikes indicate Class 3 (Organics).
 
 CLASS SPECIFIC PROFILES:
 *   **Class Noise:** Instrumental digitizer noise showing a narrow trigger spike and high-frequency 'grass', completely devoid of chemical peaks or distinct spectral features.

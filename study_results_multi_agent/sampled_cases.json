@@ -1,0 +1,102 @@
+[
+  {
+    "type": "False Negative",
+    "sample_num": 1,
+    "sclk": "1519605316",
+    "true_class": "1",
+    "predicted_class": "Noise",
+    "qi_ampl": 1.5390499713151175e-15,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays high-frequency, low-amplitude digitizer 'grass' throughout the entire range, showing no signs of repeating hydronium cluster intervals or resolved chemical peaks."
+  },
+  {
+    "type": "False Negative",
+    "sample_num": 2,
+    "sclk": "1530415456",
+    "true_class": "1",
+    "predicted_class": "2",
+    "qi_ampl": 1.6836899526629723e-15,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays hydronium cluster peaks at regular intervals with significantly filled inter-peak valleys and high chemical noise background, characteristic of an organic-bearing dirty water ice profile (Type II)."
+  },
+  {
+    "type": "False Negative",
+    "sample_num": 3,
+    "sclk": "1557518477",
+    "true_class": "2",
+    "predicted_class": "3-P",
+    "qi_ampl": 6.32995005966485e-15,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays an explosive multi-peak primary complex reaching a global maximum of near 1.0 around index 170, a distinct secondary cluster near index 320, and a continuously elevated chemical noise baseline cushion past index 400 that stays well above zero."
+  },
+  {
+    "type": "False Negative",
+    "sample_num": 4,
+    "sclk": "1489102912",
+    "true_class": "5",
+    "predicted_class": "Noise",
+    "qi_ampl": 1.9224200478577293e-15,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays high-frequency grass-like fluctuations across the entire range with no distinct repeating chemical peaks, matching the typical profile of instrumental digitizer noise."
+  },
+  {
+    "type": "False Negative",
+    "sample_num": 5,
+    "sclk": "1579173144",
+    "true_class": "4",
+    "predicted_class": "3",
+    "qi_ampl": 2.6328699488068104e-14,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays multiple broad, asymmetric macromolecular carbon cluster envelopes with expanding periodicity, where the valleys between the major organic peaks drop near the baseline (y < 0.20) rather than resting on an elevated continuous baseline cushion."
+  },
+  {
+    "type": "False Positive",
+    "sample_num": 1,
+    "sclk": "1543799133",
+    "true_class": "Noise",
+    "predicted_class": "3",
+    "qi_ampl": 1.9103899777210553e-14,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays a broad, highly asymmetric 'shark-fin' macromolecular carbon envelope peaking near index 200 with valleys dropping down significantly, followed by secondary cluster-like variations on a baseline that returns near the noise floor rather than staying continuously elevated."
+  },
+  {
+    "type": "False Positive",
+    "sample_num": 2,
+    "sclk": "1489091779",
+    "true_class": "Noise",
+    "predicted_class": "2",
+    "qi_ampl": 2.033239977208487e-13,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays characteristic water-ice hydronium cluster peaks starting past index 200, which are heavily contaminated and filled by a significant organic precursor background that prevents the baseline from returning to zero."
+  },
+  {
+    "type": "False Positive",
+    "sample_num": 3,
+    "sclk": "1533132722",
+    "true_class": "Noise",
+    "predicted_class": "3-P",
+    "qi_ampl": 1.3089300422621658e-13,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays an extremely broad, unresolved primary multi-peak complex that peaks near index 180 and slowly decays to an elevated, continuous chemical noise baseline cushion around y \u2248 0.55. It matches the Porous/Agglomerate (Class 3-P) profile characterized by this specific topography and a failure to drop back to near-zero levels."
+  },
+  {
+    "type": "False Positive",
+    "sample_num": 4,
+    "sclk": "1489095794",
+    "true_class": "1",
+    "predicted_class": "5",
+    "qi_ampl": 1.630270019899367e-15,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays a sharp, intense atomic peak near index 60 followed by a rapid decay, and rests on a highly dense, low-amplitude noisy 'barcode' baseline that remains flat across the higher index range."
+  },
+  {
+    "type": "False Positive",
+    "sample_num": 5,
+    "sclk": "1506226373",
+    "true_class": "3",
+    "predicted_class": "5-Na",
+    "qi_ampl": 2.3686001077161123e-13,
+    "spectrum_length": 1018,
+    "explanation": "The spectrum displays an intense, sharp early primary peak near index 200 which is followed by a prolonged, highly elevated detector-saturation plateau at y-values above 0.8 extending across the rest of the profile, matching the bipartite sodium chemistry signature of Class 5-Na."
+  }
+]

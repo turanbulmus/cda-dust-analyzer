@@ -73,7 +73,7 @@ class DataFetchAndParseAgent(BaseAgent):
         # QM scaling with Savitzky-Golay filter
         def qm_scaling_savgol(spectrum):
             spectrum = np.array(spectrum, dtype=float)
-            log_spec = np.log10(spectrum + np.abs(np.min(spectrum)))
+            log_spec = np.log10(spectrum + np.abs(np.min(spectrum)) + 1e-12)
             finite_mask = np.isfinite(log_spec)
             min_finite_val = np.min(log_spec[finite_mask]) if np.any(finite_mask) else 0
             log_spec = np.nan_to_num(log_spec, neginf=min_finite_val, nan=min_finite_val)

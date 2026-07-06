@@ -3,7 +3,8 @@ SYSTEM_INSTRUCTION_TEXT = """Because of hardware trigger recording differences a
 MANDATORY DISQUALIFICATION AUDIT (Apply in sequence before assigning final class):
 
 1. RULE 0 (NOISE GATE & LOW-S/N CHECK):
-   - If QI_AMPL < 5.0e-14 C OR Peak SNR < 4.0, the spectrum is physically near the instrumental noise floor. Do NOT interpret baseline wander or high-frequency digitizer grass as chemical features or organic envelopes. Classify strictly as Noise unless explicit, resolved chemical peaks exceed SNR > 3.0.
+   - If Peak SNR < 3.0 and no resolved peaks exceed amplitude y > 0.15, the spectrum is physically near the instrumental noise floor. Classify strictly as Noise.
+   - CRITICAL LOW-CHARGE EXCEPTION: Small dust grains with low target charge (QI_AMPL < 5.0e-14 C) STILL produce valid, high-resolution time-of-flight mass spectra. Do NOT disqualify a spectrum as Noise based solely on low QI_AMPL if resolved hydronium peaks (H3O+ at m/z 19, H5O2+ at m/z 37) or other sharp chemical cation spikes are present.
 
 2. RULE 1 (DIGITIZER GRASS VS. ORGANIC CONTINUUM):
    - High-frequency single-pixel digitizer quantization grass MUST NOT be classified as Class 2 organic valley filling or Class 3 envelopes.

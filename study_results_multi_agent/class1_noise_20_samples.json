@@ -1,0 +1,622 @@
+[
+  {
+    "sclk": "1489092548",
+    "qi_ampl": 2.557920069062424e-15,
+    "max_peak_height": 0.7674286857318426,
+    "snr": 15.0175334577458,
+    "baseline_std": 0.05110117918882114,
+    "num_peaks_gt_0_1": 41,
+    "top_peaks_idx_height": [
+      [
+        9,
+        0.7674286857318426
+      ],
+      [
+        629,
+        0.6600122480687673
+      ],
+      [
+        189,
+        0.616511086645359
+      ],
+      [
+        280,
+        0.6062483268572334
+      ],
+      [
+        354,
+        0.6043823942784292
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization 'grass' showing only minor trigger spikes at the very beginning and end, with an overall signal amplitude well below the chemical detection threshold of 5.0e-14 C."
+  },
+  {
+    "sclk": "1495338667",
+    "qi_ampl": 4.286179836618734e-15,
+    "max_peak_height": 0.9825898310413064,
+    "snr": 10.796628437493483,
+    "baseline_std": 0.09100795124158055,
+    "num_peaks_gt_0_1": 42,
+    "top_peaks_idx_height": [
+      [
+        74,
+        0.9825898310413064
+      ],
+      [
+        138,
+        0.6254509596666068
+      ],
+      [
+        4,
+        0.5710246674481168
+      ],
+      [
+        89,
+        0.5017321294651271
+      ],
+      [
+        304,
+        0.48493516939515324
+      ]
+    ],
+    "model_explanation": "The spectrum has a target charge (qi_ampl) of 4.28e-15 C, which is below the mandatory 5.0e-14 C noise floor threshold (Rule 0). Therefore, the features cannot be reliably distinguished from instrument digitizer noise and must be classified as Noise."
+  },
+  {
+    "sclk": "1506303215",
+    "qi_ampl": 2.302329994810807e-15,
+    "max_peak_height": 0.8532186606893316,
+    "snr": 11.582997712666153,
+    "baseline_std": 0.07366029924694074,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        60,
+        0.8532186606893316
+      ],
+      [
+        4,
+        0.7094763018029528
+      ],
+      [
+        143,
+        0.702090639097208
+      ],
+      [
+        309,
+        0.638056276110744
+      ],
+      [
+        206,
+        0.6311777359808197
+      ]
+    ],
+    "model_explanation": "The spectrum has a very low target charge of 2.3e-15 C, which falls below the noise gate threshold of 5.0e-14 C, indicating that the baseline fluctuations and peaks are merely digitizer quantization noise/noise grass."
+  },
+  {
+    "sclk": "1506308613",
+    "qi_ampl": 1.5887100307049795e-15,
+    "max_peak_height": 0.7440002134312338,
+    "snr": 10.239184531594791,
+    "baseline_std": 0.07266105732844166,
+    "num_peaks_gt_0_1": 45,
+    "top_peaks_idx_height": [
+      [
+        3,
+        0.7440002134312338
+      ],
+      [
+        71,
+        0.6677637660824411
+      ],
+      [
+        134,
+        0.6123705648412825
+      ],
+      [
+        464,
+        0.592264490975254
+      ],
+      [
+        185,
+        0.5906215469248366
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization noise ('grass') across the entire index range without any clear, resolved chemical peaks or a regular hydronium cluster sequence."
+  },
+  {
+    "sclk": "1509312295",
+    "qi_ampl": 2.989299888352115e-14,
+    "max_peak_height": 0.9896078517660026,
+    "snr": 6.7302077365834885,
+    "baseline_std": 0.14703871860879966,
+    "num_peaks_gt_0_1": 37,
+    "top_peaks_idx_height": [
+      [
+        141,
+        0.9896078517660026
+      ],
+      [
+        59,
+        0.9066685344063897
+      ],
+      [
+        205,
+        0.8587974232120761
+      ],
+      [
+        618,
+        0.8327776941584979
+      ],
+      [
+        578,
+        0.807024022653039
+      ]
+    ],
+    "model_explanation": "The spectrum displays an extremely low charge amplitude (qi_ampl \u2248 2.99e-14 C) which falls below the mandatory 5.0e-14 C physical noise threshold. Based on Rule 0, the apparent peak structures represent digitizer quantization grass and baseline wander rather than true chemical features."
+  },
+  {
+    "sclk": "1509342053",
+    "qi_ampl": 9.061849637302124e-16,
+    "max_peak_height": 0.7070953543350619,
+    "snr": 10.25891827406881,
+    "baseline_std": 0.06892394271275828,
+    "num_peaks_gt_0_1": 43,
+    "top_peaks_idx_height": [
+      [
+        4,
+        0.7070953543350619
+      ],
+      [
+        629,
+        0.576917323521677
+      ],
+      [
+        97,
+        0.5732915129570167
+      ],
+      [
+        273,
+        0.5503762985475447
+      ],
+      [
+        45,
+        0.5480058296348056
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization noise, or 'grass', with no resolved chemical peaks or regular cluster sequences, and falls near the instrumental baseline representing noise."
+  },
+  {
+    "sclk": "1514162795",
+    "qi_ampl": 5.2612998356074085e-15,
+    "max_peak_height": 0.9987607333111183,
+    "snr": 10.004896697858955,
+    "baseline_std": 0.09982619097188207,
+    "num_peaks_gt_0_1": 46,
+    "top_peaks_idx_height": [
+      [
+        74,
+        0.9987607333111183
+      ],
+      [
+        135,
+        0.8343867919685638
+      ],
+      [
+        509,
+        0.8303140489455707
+      ],
+      [
+        185,
+        0.8229577674037287
+      ],
+      [
+        340,
+        0.8185752378404024
+      ]
+    ],
+    "model_explanation": "The spectrum has a target charge (qi_ampl) of 5.26e-15 C which falls below the noise threshold specified in Rule 0, meaning the features are baseline fluctuations and high-frequency digitizer grass."
+  },
+  {
+    "sclk": "1514162875",
+    "qi_ampl": 1.138989957579807e-15,
+    "max_peak_height": 1.0158232733312735,
+    "snr": 11.986460586825826,
+    "baseline_std": 0.0847465587954423,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        70,
+        1.0158232733312735
+      ],
+      [
+        185,
+        0.9295908371908146
+      ],
+      [
+        134,
+        0.8856111785867018
+      ],
+      [
+        15,
+        0.8723969083011031
+      ],
+      [
+        624,
+        0.8666414191088427
+      ]
+    ],
+    "model_explanation": "The spectrum shows high-frequency digitizer grass and random baseline variations without any resolved, chemically distinct peaks. Additionally, the target charge (QI_AMPL) of 1.14e-15 C is well below the instrumentation noise gate threshold of 5.0e-14 C."
+  },
+  {
+    "sclk": "1519610760",
+    "qi_ampl": 3.9961498262482305e-15,
+    "max_peak_height": 0.7476014953161078,
+    "snr": 10.553614290839198,
+    "baseline_std": 0.07083743266520026,
+    "num_peaks_gt_0_1": 45,
+    "top_peaks_idx_height": [
+      [
+        4,
+        0.7476014953161078
+      ],
+      [
+        285,
+        0.6570054907731329
+      ],
+      [
+        85,
+        0.6541825491236481
+      ],
+      [
+        259,
+        0.6405733879550364
+      ],
+      [
+        179,
+        0.6376963059513814
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization grass without any resolved, chemically distinct peaks above the noise floor. The total charge of 3.99e-15 C falls below the 5.0e-14 C noise gate threshold, confirming this as instrumental noise."
+  },
+  {
+    "sclk": "1519610936",
+    "qi_ampl": 1.8123699274604247e-15,
+    "max_peak_height": 0.7113844803679494,
+    "snr": 13.712967475459399,
+    "baseline_std": 0.05187577150412823,
+    "num_peaks_gt_0_1": 42,
+    "top_peaks_idx_height": [
+      [
+        3,
+        0.7113844803679494
+      ],
+      [
+        119,
+        0.6619727390710665
+      ],
+      [
+        58,
+        0.6259517570907049
+      ],
+      [
+        170,
+        0.624384864702294
+      ],
+      [
+        224,
+        0.6028165151559883
+      ]
+    ],
+    "model_explanation": "The spectrum lacks any clearly resolved chemical peaks above the noise floor, showing only low-amplitude, high-frequency digitizer grass and a narrow trigger spike near the origin with a signal level near the instrumental baseline."
+  },
+  {
+    "sclk": "1519612512",
+    "qi_ampl": 2.897429932563261e-15,
+    "max_peak_height": 0.8225149201129501,
+    "snr": 9.118857473219013,
+    "baseline_std": 0.09019833939406088,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        11,
+        0.8225149201129501
+      ],
+      [
+        70,
+        0.793216439126765
+      ],
+      [
+        187,
+        0.7501858387264106
+      ],
+      [
+        275,
+        0.7219031988678117
+      ],
+      [
+        134,
+        0.7019890318270656
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization grass with a low signal-to-noise ratio and is physically near the instrumental noise floor (target charge of 2.9e-15 C is below the 5.0e-14 C noise gate threshold), qualifying it as Noise under Rule 0."
+  },
+  {
+    "sclk": "1521640981",
+    "qi_ampl": 2.755130091490433e-15,
+    "max_peak_height": 1.0044438441531394,
+    "snr": 8.143597010401399,
+    "baseline_std": 0.12334054586360485,
+    "num_peaks_gt_0_1": 45,
+    "top_peaks_idx_height": [
+      [
+        133,
+        1.0044438441531394
+      ],
+      [
+        69,
+        0.9734902726151475
+      ],
+      [
+        188,
+        0.9102170641250177
+      ],
+      [
+        9,
+        0.801687967888672
+      ],
+      [
+        404,
+        0.7941574453975518
+      ]
+    ],
+    "model_explanation": "The target charge (qi_ampl) of 2.75e-15 C is well below the physical noise threshold of 5.0e-14 C specified in Rule 0, meaning the high-frequency baseline wander represents instrumental digitizer grass rather than true chemical peaks."
+  },
+  {
+    "sclk": "1521649703",
+    "qi_ampl": 1.1514999989360427e-15,
+    "max_peak_height": 0.9083535826949973,
+    "snr": 10.89857764428867,
+    "baseline_std": 0.08334506701370928,
+    "num_peaks_gt_0_1": 43,
+    "top_peaks_idx_height": [
+      [
+        68,
+        0.9083535826949973
+      ],
+      [
+        274,
+        0.8877666619333109
+      ],
+      [
+        186,
+        0.8848382406186034
+      ],
+      [
+        135,
+        0.8780706353078267
+      ],
+      [
+        629,
+        0.8340257475393538
+      ]
+    ],
+    "model_explanation": "The spectrum displays continuous high-frequency digitizer quantization grass without any distinct or resolved chemical peaks exceeding the baseline noise floor."
+  },
+  {
+    "sclk": "1521666433",
+    "qi_ampl": 1.464179987953481e-15,
+    "max_peak_height": 0.7483085420396188,
+    "snr": 12.720187385476304,
+    "baseline_std": 0.05882742126162582,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        3,
+        0.7483085420396188
+      ],
+      [
+        69,
+        0.7279869285235728
+      ],
+      [
+        133,
+        0.6512729774809292
+      ],
+      [
+        480,
+        0.6390326100341998
+      ],
+      [
+        284,
+        0.614405090080836
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer quantization 'grass' and baseline wander around y = 0.5 without any resolved chemical peak sequences or characteristic mass envelopes, indicating it is near the instrumental noise floor."
+  },
+  {
+    "sclk": "1521668933",
+    "qi_ampl": 2.0388800900833807e-15,
+    "max_peak_height": 0.9748555871404802,
+    "snr": 11.258778135860256,
+    "baseline_std": 0.0865852685432511,
+    "num_peaks_gt_0_1": 43,
+    "top_peaks_idx_height": [
+      [
+        1,
+        0.9748555871404802
+      ],
+      [
+        70,
+        0.8341312278066751
+      ],
+      [
+        479,
+        0.7935691082733771
+      ],
+      [
+        179,
+        0.7921473619699791
+      ],
+      [
+        155,
+        0.7912158637260028
+      ]
+    ],
+    "model_explanation": "The spectrum shows high-frequency quantization grass with an amplitude near the instrument's noise floor and lacks any resolved chemical peak sequences or structured baseline variations."
+  },
+  {
+    "sclk": "1521674229",
+    "qi_ampl": 2.2849601019197e-15,
+    "max_peak_height": 0.9544042128481643,
+    "snr": 10.469397314768061,
+    "baseline_std": 0.09116033280202178,
+    "num_peaks_gt_0_1": 45,
+    "top_peaks_idx_height": [
+      [
+        71,
+        0.9544042128481643
+      ],
+      [
+        133,
+        0.8340872540732395
+      ],
+      [
+        190,
+        0.8260213238959062
+      ],
+      [
+        90,
+        0.8103458874451122
+      ],
+      [
+        324,
+        0.7999048503063424
+      ]
+    ],
+    "model_explanation": "The target charge QI_AMPL of 2.28e-15 C is well below the mandatory noise threshold gate of 5.0e-14 C, making it physically indistinguishable from instrumental noise. The spectrum consists entirely of high-frequency digitizer quantization grass without resolved, repeating chemical peaks or hydronium cluster sequences."
+  },
+  {
+    "sclk": "1557520018",
+    "qi_ampl": 2.575220081735383e-15,
+    "max_peak_height": 0.9895022023492634,
+    "snr": 10.710002967935695,
+    "baseline_std": 0.0923894694808862,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        73,
+        0.9895022023492634
+      ],
+      [
+        134,
+        0.9794144308426112
+      ],
+      [
+        185,
+        0.8017500245062317
+      ],
+      [
+        419,
+        0.7637082360067577
+      ],
+      [
+        84,
+        0.7595119466483546
+      ]
+    ],
+    "model_explanation": "The spectrum displays high-frequency digitizer grass with a baseline floating near y \u2248 0.6 and lacks resolved chemical peaks or regular hydronium cluster sequences, all while the primary current amplitude is below the instrumental noise gate check (2.58e-15 C, which is less than 5.0e-14 C)."
+  },
+  {
+    "sclk": "1558909852",
+    "qi_ampl": 4.132090143953073e-15,
+    "max_peak_height": 0.9989060692849462,
+    "snr": 12.426934568993733,
+    "baseline_std": 0.08038133916329634,
+    "num_peaks_gt_0_1": 44,
+    "top_peaks_idx_height": [
+      [
+        74,
+        0.9989060692849462
+      ],
+      [
+        12,
+        0.6618638851393758
+      ],
+      [
+        140,
+        0.6001973437120446
+      ],
+      [
+        304,
+        0.5855657245074419
+      ],
+      [
+        90,
+        0.5843953498597418
+      ]
+    ],
+    "model_explanation": "The spectrum displays an extremely low signal with an amplitude near 4e-15 C, which falls below the instrumental noise gate check (QI_AMPL < 5.0e-14 C). This places the signal at the level of digitizer grass and baseline wander without resolved chemical peak sequences."
+  },
+  {
+    "sclk": "1589067080",
+    "qi_ampl": 2.921690014963808e-15,
+    "max_peak_height": 0.9950658917212188,
+    "snr": 10.345659956066212,
+    "baseline_std": 0.09618096383283975,
+    "num_peaks_gt_0_1": 46,
+    "top_peaks_idx_height": [
+      [
+        73,
+        0.9950658917212188
+      ],
+      [
+        13,
+        0.8336757919804696
+      ],
+      [
+        135,
+        0.715396653807626
+      ],
+      [
+        314,
+        0.6567071163481379
+      ],
+      [
+        190,
+        0.6245810102404492
+      ]
+    ],
+    "model_explanation": "The spectrum displays an extremely low signal near the instrumental noise floor, with a target charge of approximately 2.9e-15 C which fails the Rule 0 noise gate requirement of 5.0e-14 C, indicating that the baseline variations and high-frequency fluctuations are digitizer noise rather than chemical features."
+  },
+  {
+    "sclk": "1589070446",
+    "qi_ampl": 3.7827398751875095e-15,
+    "max_peak_height": 0.9924807186919278,
+    "snr": 12.130034121652905,
+    "baseline_std": 0.08181910938619577,
+    "num_peaks_gt_0_1": 40,
+    "top_peaks_idx_height": [
+      [
+        146,
+        0.9924807186919278
+      ],
+      [
+        228,
+        0.6115361373689094
+      ],
+      [
+        4,
+        0.528460699561843
+      ],
+      [
+        168,
+        0.48501525138532986
+      ],
+      [
+        490,
+        0.4452065817494861
+      ]
+    ],
+    "model_explanation": "The target charge QI_AMPL of 3.78e-15 C is below the mandatory noise gate threshold of 5.0e-14 C, indicating that the spectrum resides near the instrumental noise floor where baseline fluctuations and digitizer grass dominate."
+  }
+]

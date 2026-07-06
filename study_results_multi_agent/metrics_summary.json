@@ -1,0 +1,57 @@
+{
+  "total_samples": 2000,
+  "accuracy": 0.3205,
+  "macro_precision": 0.05256252562525625,
+  "macro_recall": 0.06554192229038855,
+  "macro_f1": 0.05833902161547213,
+  "per_class": {
+    "Noise": {
+      "recall": 0.9831288343558282,
+      "precision": 0.7884378843788438,
+      "f1": 0.875085324232082,
+      "count": 652
+    },
+    "1": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 403
+    },
+    "2": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 271
+    },
+    "3": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 230
+    },
+    "4": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 247
+    },
+    "5": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 170
+    },
+    "5-Na": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 22
+    },
+    "3-P": {
+      "recall": 0.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "count": 5
+    }
+  }
+}

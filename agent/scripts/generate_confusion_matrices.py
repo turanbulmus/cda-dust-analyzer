@@ -34,8 +34,8 @@ def process_run(csv_path, run_name):
     cm_df = pd.DataFrame(cm, index=display_labels, columns=display_labels)
     
     # Save CSVs
-    out_dir_study = "study_results_multi_agent"
-    out_dir_results = "cda_dust_agent/data/results"
+    out_dir_study = "agent/study_results_multi_agent"
+    out_dir_results = "agent/cda_dust_agent/data/results"
     os.makedirs(out_dir_study, exist_ok=True)
     os.makedirs(out_dir_results, exist_ok=True)
     
@@ -62,7 +62,7 @@ def process_run(csv_path, run_name):
     plt.close()
     print(f"Saved PNG confusion matrix plot to {png_study_path} and {png_results_path}")
 
-process_run("cda_dust_agent/data/results/results_2000.csv", "2000")
-process_run("cda_dust_agent/data/results/results_1000.csv", "1000")
+process_run("agent/cda_dust_agent/data/results/results_2000.csv", "2000")
+process_run("agent/cda_dust_agent/data/results/results_1000.csv", "1000")
 
 print("\nAll confusion matrices generated and saved successfully!")

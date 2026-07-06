@@ -5,7 +5,7 @@ from google.cloud import aiplatform
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 
 print("=================================================================")
-print(" LOGGING 2,000 SAMPLE BASELINE EXPERIMENT TO VERTEX AI EXPERIMENTS ")
+print(" LOGGING 1,000 SAMPLE EXPERIMENT TO VERTEX AI EXPERIMENTS ")
 print("=================================================================")
 
 project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "turan-genai-bb")
@@ -14,7 +14,7 @@ location = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
 os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
 
-results_csv = "cda_dust_agent/data/results/results_2000.csv"
+results_csv = "agent/cda_dust_agent/data/results/results_1000.csv"
 if not os.path.exists(results_csv):
     raise FileNotFoundError(f"Results file not found at {results_csv}")
 
@@ -45,13 +45,13 @@ params = {
     "inference_path": "batch",
     "few_shot_n": 16,
     "test_n": len(df),
-    "prompt_version": "baseline_unconstrained_prompt",
-    "disqualification_rules": "None (Baseline)",
-    "qi_ampl_metadata_injected": False
+    "prompt_version": "rules_0_to_5_with_qi_metadata",
+    "disqualification_rules": "0-NoiseGate,1-GrassVsOrg,2-AlkaliDoublet,3-Orthophosphate,4-Class3PExcl,5-SilicateSpike",
+    "qi_ampl_metadata_injected": True
 }
 
 experiment_name = "cda-dust-analyzer-experiment"
-run_name = f"run-2000samples-baseline-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+run_name = f"run-1000samples-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
 print(f"Initializing Vertex AI Experiment: {experiment_name}, Run: {run_name}")
 
@@ -72,4 +72,4 @@ with aiplatform.start_run(run=run_name):
         print(f"  {k}: {v:.4f}")
     aiplatform.log_metrics(metrics)
 
-print("\nVertex AI Experiments logging for 2,000 sample baseline complete successfully!")
+print("\nVertex AI Experiments logging complete successfully!")

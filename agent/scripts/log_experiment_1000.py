@@ -14,7 +14,7 @@ location = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
 os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
 
-results_csv = "agent/cda_dust_agent/data/results/results_1000.csv"
+results_csv = "cda_dust_agent/data/results/results_1000.csv"
 if not os.path.exists(results_csv):
     raise FileNotFoundError(f"Results file not found at {results_csv}")
 

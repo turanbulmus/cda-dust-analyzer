@@ -3,11 +3,11 @@ import json
 import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix
 
-dest_path = "agent/cda_dust_agent/data/output/predictions_1000.jsonl"
+dest_path = "cda_dust_agent/data/output/predictions_1000.jsonl"
 
 print(f"Loading predictions from {dest_path}...")
 
-from agent.cda_dust_agent.tools.utils import parse_response
+from cda_dust_agent.tools.utils import parse_response
 
 preds = []
 with open(dest_path, 'r') as f:
@@ -17,7 +17,7 @@ with open(dest_path, 'r') as f:
 
 print(f"Loaded {len(preds)} prediction lines from JSONL.")
 
-df = pd.read_parquet("agent/cda_dust_agent/data/testing/cda_test.parquet")
+df = pd.read_parquet("cda_dust_agent/data/testing/cda_test.parquet")
 
 def normalize_key(k):
     try:
@@ -93,12 +93,12 @@ print("Labels:", present_labels)
 cm_df = pd.DataFrame(cm, index=present_labels, columns=present_labels)
 print(cm_df)
 
-os.makedirs("agent/cda_dust_agent/data/results", exist_ok=True)
+os.makedirs("cda_dust_agent/data/results", exist_ok=True)
 pd.DataFrame({
     "sclk": matched_sclks,
     "true_class": y_true,
     "predicted_class": y_pred,
     "explanation": explanations
-}).to_csv("agent/cda_dust_agent/data/results/results_1000.csv", index=False)
+}).to_csv("cda_dust_agent/data/results/results_1000.csv", index=False)
 
-print("\nSaved detailed prediction results to agent/cda_dust_agent/data/results/results_1000.csv")
+print("\nSaved detailed prediction results to cda_dust_agent/data/results/results_1000.csv")

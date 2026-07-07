@@ -1,0 +1,1536 @@
+Icarus 193 (2008) 438–454
+www.elsevier.com/locate/icarus
+
+The E-ring in the vicinity of Enceladus
+II. Probing the moon’s interior—The composition of E-ring particles
+F. Postberg a,∗ , S. Kempf a,b , J.K. Hillier c , R. Srama a , S.F. Green c , N. McBride c , E. Grün a,d
+a Max-Planck-Institut für Kernphysik, Saupfercheckweg 1, D-69117 Heidelberg, Germany
+b Institut für Geophysik und Extraterrestrische Physik, Universität Braunschweig, Mendelssohnstr. 3, 38106 Braunschweig, Germany
+c Planetary and Space Sciences Research Institute, The Open University, Walton Hall, Milton Keynes, MK7 6AA, UK
+d Hawaii Institute of Geophysics and Planetology, University of Hawaii, 1680 East West Road, Honolulu, HI 96822, USA
+
+Received 8 January 2007; revised 3 September 2007
+Available online 29 September 2007
+
+Abstract
+The population of Saturn’s outermost tenuous E-ring is dominated by tiny water ice particles. Active volcanism on the moon Enceladus,
+embedded in the E-ring, has since late 2005 been known to be a major source of particles replenishing the ring. Therefore particles in the vicinity
+of Enceladus may provide crucial information about the dynamical and chemical processes occurring below the moon’s icy surface. Here we
+present a statistical evaluation of more than 2000 impact ionisation mass spectra of Saturn’s E-ring particles, with sizes predominantly below
+1 µm, detected by the Cosmic Dust Analyser onboard the Cassini spacecraft. We focus on the identification of non-water features in spectra
+otherwise dominated by water ice signatures. Here we specify the categorisation of two different spectrum types, which probably represent two
+particle populations. Type I spectra imply pure water ice particles, whereas in Type II spectra organic compounds and/or silicate minerals are
+identified as impurities within the icy particles. This finding supports the hypothesis of a dynamic interaction of Enceladus’ rocky core with liquid
+water.
+© 2007 Elsevier Inc. All rights reserved.
+Keywords: Saturn; Enceladus; Interplanetary dust; Planetary rings
+
+1. Introduction
+One of the major tasks of the Cassini spacecraft, which entered orbit around Saturn in July 2004, is to investigate the interactions between Saturn’s moons and ring system. For decades
+Saturn’s icy moon Enceladus was suspected to be the major
+source of particles feeding the planet’s outer E-ring (Baum et
+al., 1981). Enceladus orbits Saturn at a distance of 3.95 saturnian radii (Saturn’s radius RS = 60,330 km) and is one of five
+satellites embedded in the huge diffuse E-ring. The effective diameter of the moon is 504 km with an average density of about
+1610 kg m−3 (Porco et al., 2006). In 2005 Cassini’s instruments
+detected a major collimated particle and gas flow being emitted
+from Enceladus. During a close flyby our dust detector discov* Corresponding author.
+
+E-mail address: frank.postberg@mpi-hd.mpg.de (F. Postberg).
+0019-1035/$ – see front matter © 2007 Elsevier Inc. All rights reserved.
+doi:10.1016/j.icarus.2007.09.001
+
+ered a dust jet emerging from Enceladus’ southern polar region
+(Spahn et al., 2006b)—a site characterised by elongated cracks
+(Porco et al., 2006) significantly warmer than their surroundings (Spencer et al., 2006). The dust jet was accompanied by
+a neutral (predominantly water) gas cloud detected by both the
+Cassini magnetometer (Dougherty et al., 2006) and the ultraviolet imaging spectrometer (Hansen et al., 2006). The density
+and composition of the neutral gas cloud was also measured by
+the Ion and Neutral Mass Spectrometer (Waite et al., 2006).
+This is one of two papers presenting the properties of the Ering in the vicinity of Enceladus, as seen by the Cosmic Dust
+Analyser (CDA) onboard Cassini. The first paper (Kempf et al.,
+2008) discusses the radial and vertical structure, and dust size
+distribution of the E-ring, together with the dynamical properties of the ring particles. This work presents our findings regarding the elemental composition of the ring particles, which
+in turn have implications for the composition of Enceladus and
+the particle generation mechanisms beneath its icy surface.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+Due to its low optical depth, the composition of the faint
+E-ring could be only poorly investigated by remote sensing
+(reflectance spectroscopy) and, until Cassini’s arrival, was basically inferred from the composition of the icy surfaces of
+its embedded moons (Showalter et al., 1991; Nicholson et al.,
+1996). In situ CDA measurements, obtained during Cassini’s
+first E-ring crossing in October 2004, confirmed that the particle composition in the outer E-ring is dominated by water ice
+(Hillier et al., 2007b). A minor but significant contribution to
+the particle composition by other substances was also identified. About 98% of all resolved spectra obtained in subsequent
+orbits are dominated by water and water cluster ions. As will
+be shown in this paper, the water spectra can be divided into
+two subtypes. Of those spectra which are not water dominated,
+less than 1% show basically meteoritic metals, and do not play
+a role in the vicinity of Enceladus. In a further 1% of spectra
+only ambiguous mass calibrations could be applied at best, due
+to difficulties in peak identification or indistinct peak shapes.
+This paper is about the two types of spectra dominated by water ice, the bulk material of the E-ring.
+Results of the close Enceladus flyby in June 2005 (E11)
+characterised the emissions from Enceladus’ active source into
+the E-ring:
+• There was a large confined neutral water vapour plume in
+the south polar region of Enceladus (Hansen et al., 2006).
+• There was also a strong particle flow which decoupled from
+the gas flow early after emission (Spahn et al., 2006b; Waite
+et al., 2006).
+• The inferred column densities revealed a surprisingly high
+particle to gas ratio of less than 1:3 (Spahn et al., 2006b;
+Waite et al., 2006; Hansen et al., 2006).
+• The neutral gas emission was dominated by H2 O (≈91%),
+containing N2 and/or CO (≈4%), CO2 (≈3%), CH4
+(≈1.5%) and possible traces of C2 H2 and C3 H8 (Waite et
+al., 2006).
+• The moon’s plasma environment consisted mainly of water
+ions and water dissociation products H3 O+ , H2 O+ , OH+ ,
++
+O+ and H+ as well as nitrogen ions N+
+2 and N (Tokar et
+al., 2006).
+• The otherwise pure water ice surface of the moon was enriched with CO2 and light organics in certain parts of the
+active south polar region (Brown et al., 2006).
+Due to the presence of the active moon, the particle density of the E-ring in the vicinity of Enceladus is significantly
+higher than in other regions. This region of enhanced density
+we call the Enceladus torus. Since the horizontal density distribution appears to follow two power laws (see Kempf et al.,
+2008), centered approximately around Enceladus orbit, the definition of the borders of the torus is somewhat arbitrary. In this
+paper we define the torus as the region of the E-ring extending
+from 3.65 to 4.3 RS .
+Cassini crossed Enceladus’ plume twice in 2005: At the
+close flyby in June 2005 (E11) and, as was discovered recently, in February 2005 during orbit E3 at a greater distance
+(see Kempf et al., 2008). Unfortunately the data transfer from
+
+439
+
+instrument to Earth is limited and during those flybys the transmission of spectra was reduced for the sake of impact rate
+measurements. The compression method used, for the 15 possible plume particle spectra obtained from the closest Enceladus
+flyby (E11), reduced the number of datapoints in each spectrum by a factor of 8, which led to a substantial loss of mass
+resolution. Fortunately better spectra from 20 possible plume
+particle impacts were obtained during the first Enceladus encounter where the compression factor was only 2.
+Despite the reduced resolution, two major types of water ice
+spectra could be identified in both plume crossings. These types
+of spectra are also found in Enceladus’ torus and elsewhere in
+the E-ring. This fact enables us to use the uncompressed data
+acquired in the torus for a better characterisation of spectra obtained in the vicinity of the plume. Furthermore, the thousands
+of spectra of both types taken elsewhere in the E-ring provide
+a dataset from which statistically significant conclusions may
+be drawn. In this work a representative sample of about 2500
+well-resolved spectra from over 5000 Chemical Analyser (CA)
+impacts (see Section 2), obtained between February and November 2005 throughout the E-ring, has been used. The data
+were recorded at ring plane crossings 3, 4, 7, 8, 9, 10, 11 and 20,
+the geometries of which are described in Kempf et al. (2008).
+The initial dataset is based on all transmitted data which has
+been manually calibrated for the identification of CA impacts.
+Then we selected spectra of a compression factor 2 or less with
+at least two distinct mass lines.
+During ring plane crossings the transmission bandwidth only
+allows the transmission of data from a selection of impact
+events. The selection is performed by the onboard software
+with varying criteria. To what extent this affects the selection
+(and subsequent transmission) of certain spectral types is not
+yet fully understood and currently under investigation. Preliminary analysis of the transmission statistics indicate that there is
+no strong bias in the transmission of mass spectra. However, we
+note that the returned dataset might be prone to unknown bias
+effects.
+The accurate derivation of particle speeds and masses is
+much more difficult for impacts which produce a spectrum than
+for other CDA impacts (see Section 2 and Kempf et al., 2008).
+For this reason we do not state individual dynamical particle
+properties for the measurements presented in this paper. The
+size and velocity regime of the particle ensemble considered
+here is therefore derived from the investigations in Kempf et
+al. (2008), since Impact Ionisation Target (IIT) impacts (see
+Section 2) represent approximately the same particle ensemble. Particle sizes are predominantly distributed between 0.1
+and 1.0 µm, impact velocities between 8 and 25 km s−1 (see
+Kempf et al., 2008 for details).
+We introduce the instrument in Section 2. The results are
+presented in Section 3. In Sections 3.1 and 3.2 the appearance of
+water in our mass spectra is described, whereas in Sections 3.3
+to 3.6 a deeper analysis and interpretation of contributions from
+non-aqueous particle components are performed. The discussion in Sections 4.1 and 4.2 deals with the implications of the
+conclusions reached in Section 3.6 for Enceladus. Section 4.3
+provides an outlook on further analysis and upcoming close
+
+440
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+Enceladus flybys. In Section 5 the results and conclusions are
+summarised.
+2. The chemical analyser
+The Chemical Analyser (CA) is the subsystem of the Cosmic Dust Analyser (CDA) which provides chemical information about an impacting dust particle. Depending on the trajectory of the particle, it either hits the central rhodium target
+(Chemical Analyser Target—CAT, diameter: 0.17 m), the surrounding gold target (IIT, diameter: 0.41 m), or the inner wall of
+the instrument. This work only deals with impacts on the CAT
+because these provide high resolution mass spectra. The other
+CDA components are described in Kempf et al. (2008) and in
+greater detail by Srama et al. (2004).
+If a dust particle impacts the CAT with sufficient energy the
+particle is totally vaporised and partly ionised, forming an impact plasma of target and particle ions, together with electrons
+and neutral molecules and atoms. The instrument separates this
+plasma, the positive component of which is used to generate a
+time of flight (TOF) spectrum (see Fig. 1 for a more detailed
+explanation of the instrument operation).
+The high rate sampling mode of the multiplier, recording
+the spectrum, can be triggered by charge thresholds being exceeded on either the CAT or the multiplier (MP) (see Fig. 1).
+In the latter case recording can be triggered up to several µs after the actual impact by the arrival of ions, for water dominated
+particles these are, in most cases, hydronium ions (H3 O+ ). As
+a consequence, mass lines of species with lower masses than
+H3 O+ (19 amu), as well as the hydronium signature itself, do
+not appear in the fraction of spectra triggered by the multiplier,
+although the hydronium is an abundant component of the impact plasma.
+The spectra are logarithmically amplified, digitised at 8 bit
+resolution and sampled at 100 MHz for a period of 6.4 µs after triggering. Since the TOF is proportional to the square root
+of the mass to charge ratio of ions, this ideally also represents
+a mass spectrum for identical ion-charges. Unfortunately the
+TOF is also influenced by the broad distribution of initial ion
+velocities, varying flight paths, and plasma shielding effects
+(Hillier et al., 2006). The recording period of the high rate sampling mode allows the detection of ions with masses of up to
+approximately 190 atomic mass units (amu), assuming instrument recording is triggered by the impact itself and the ions are
+singly charged. During high particle fluxes, as may occur during crossings of the saturnian ring plane, only a fraction of the
+detected events are transmitted (to reduce the space required
+for storage, as well as make best use of the limited instrument
+bandwidth).
+The spectrometer is sensitive to positive ions only. The mass
+resolution (m/m), derived from laboratory experiments with
+the instrument, depends on the atomic masses of the ions. At
+1 amu, m/m is 10, increasing to 30 at 100 amu and up to
+50 at 190 amu, although these values strongly vary with impact conditions (Stübig, 2002). In general this does not allow a
+detailed analysis of complex chemical structures and only very
+limited differentiation of isotopes. Nevertheless the spectra al-
+
+Fig. 1. A dust impact on the Chemical Analyser Target (CAT) creates a TOF
+spectrum. The CAT, which is composed of rhodium, is held at a potential of
+about +1000 V. An electrically grounded grid is mounted 3 mm in front of it.
+Following the projectile impact, a plasma cloud expands from the target surface.
+The strong electric field (340 kV m−1 ) separates the plasma: while the electrons and negative ions are collected at the CAT (QC signal), the positive ions
+are accelerated towards the grounded grid. After passage through this accelerator grid, the ions drift over a distance of 0.1924 m through a weak electric field
+(1.8 kV m−1 ) towards the multiplier mounted in the centre of the instrument.
+Depending on their mass-to-charge ratio (m/q) the ions reach the multiplier
+separated by their time of flight. About 50% of the incoming ions are collected
+by concentric grids in front of the multiplier where their integrated charge is
+registered by the QI channel. Behind these grids the passing ions enter a strong
+field region (100 kV m−1 ) for final acceleration into the multiplier. Their amplified signal (MP signal) is recorded as a positive ion TOF spectrum. Since
+√
+TOF = s/v ∼ (m/q), this ideally also represents a mass spectrum for identical ion-charges. In reality this equation is influenced by a broad distribution
+of the initial ion velocities v0 , varying flight paths s, and plasma shielding
+effects.
+
+low classification of different projectile types such as silicates,
+water ice, organic- or Fe/Ni-particles.
+The limited instrument sampling rates, together with the
+short charge signal duration (due to the strong electric fields
+used to generate TOF spectra), mean that particle speed and
+mass determination from CAT impacts cannot be done via signal risetimes (as with IIT or High Rate Detector impacts—
+Kempf et al., 2008).1
+3. Spectra analysis
+In all spectra shown in this paper the spectrum amplitude is
+shown on a linear scale. The x-axis is, however, non-linear in
+time of flight and scales with the ion mass. In the following,
+the term “occurrence of features” is used to refer to how many
+1 An alternative method of mass/velocity determination for E-ring ice particles, namely considering the ratio of the QC and QI channel amplitudes (Srama,
+2000) and the occurrence of certain spectral features, is currently under investigation. In future this may provide a method for deducing the impact speeds of
+CAT impacts.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+441
+
+(a)
+
+(b)
+Fig. 2. Examples of E-ring water ice spectra. All labelled peaks are due to ions formed from water molecules. The mass in atomic mass units (amu) is labelled below
+the molecular species. The hydronium ion (H3 O+ ) with a mass of 19 amu is followed by a sequence of cluster ions of the form (H–(H2 O)+
+x ) with 18 amu gaps in
+between. Both impacts have similar total ion yields and amplitudes. Different impact conditions lead to a different appearance of water clusters—e.g. high energy
+densities preferably lead to short clusters (see Section 3.2). The spectrum amplitude has been slightly smoothed.
+
+spectra contain a certain feature, whilst “abundance” refers to
+the number of ions of a certain species in a spectrum. The “total
+ion yield” is derived from the QI-amplitude which represents
+the ion charge of all species measured at the ion grid in front of
+the multiplier. Depending on their initial energy, approximately
+30% of the ions produced at an impact are focussed here by the
+electric fields. About 50% of those incoming ions are collected
+by the grid. Thus, the “total ion yield” is proportional to the
+number of ions produced by an impact and hence is a function
+of particle mass and speed (Reber, 1997; Srama, 2000; Stübig,
+2002; Srama et al., 2004). The majority of the remaining ions
+that pass through the grid form the TOF spectrum.
+
+The mass calibration of spectra is in general done with the
+early water peaks. The analysis of the individual spectra is performed by a processing routine, providing an unbiased identification of features. Only reasonably shaped peaks with at least
+2.5σ significance above the noise amplitude are considered.
+Whenever further restrictions apply to the dataset it is mentioned in the text.
+3.1. Appearance of water in CDA TOF mass spectra
+The vast majority of registered events are due to impacts of
+water ice particles. A good understanding of the appearance of
+
+442
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+(a)
+
+(b)
+
+Fig. 3. Neutral water molecules cluster with hydronium ions. Oxygen—as the electron rich part of the water dipole—establishes a loose bond with the hydrogen
+atoms of the neighbouring molecule. In this way large cluster ions can be generated. (Right figure from http://www.lsbu.ac.uk/water.)
+
+this bulk material in our spectra is vital for the identification
+of particle impurities. The CA spectra of water ice are typically dominated by cluster-peaks (Fig. 2) and are similar to
+spectra obtained in laboratory experiments (Timmerman, 1989;
+Timmermann and Grün, 1991). The size of the water clusters
+(H–(H2 O)+
+x ) in spectra can vary from x = 1 (no cluster formation) up to x > 15 (Figs. 2 and 4). The relative amplitudes
+change as well—many showing an exponential decrease with
+increasing cluster length, others following an envelope; maxima generally varying from x = 1 to x = 4.
+In some spectra a peak at the left flank of the far bigger hydronium peak can be identified. This may be H2 O+ at 18 amu
+as observed by Timmerman (1989), but it has to be noted that
+this signature, to an unknown extent, could be due to NH+
+4 with
+an identical molecular mass.
+
+molecule—before the plasma can be penetrated by the electric
+field (after about 10–100 ns). Within this timeframe the energetic state of the molecule ensemble can be further optimised
+by clustering (Fig. 3). Since the energy gain goes down, the
+process gets slower with increasing cluster size.
+Clusters are formed when molecules interact and their relative kinetic energy is lower than the cluster energy. Thus the
+final size distribution of cluster ions depends on:
+
+3.2. Clustering mechanisms
+
+In Fig. 4, a spectrum is shown where water molecules cluster with the target material rhodium. This is one example of
+water molecules clustering with other species. The abundance
+of water molecules in the impact plasma and their strong dipole
+moments encourages the formation of clusters with any type of
+ions present.
+As well as with rhodium, water clusters with the target contaminant sodium are frequently observed when sodium ions
+(Na+ ) are present in great abundance within the plasma (see
+Section 3.3). Thus, a high sodium peak is in general accompanied by distinct sodium water cluster peaks at higher masses.
+There are—fortunately rare—examples where sodium water
+clusters dominate the whole range of the spectrum (Fig. 5).
+
+Since the study of clustering phenomena is not within the
+scope of this paper, we give only a brief introduction here.
+The clustering of water molecules after ionisation in the gas
+phase is a well investigated phenomenon (e.g., Shi et al., 1993;
+Wang et al., 2003). The only reliable investigation of water clustering inside an impact plasma is that by Timmerman (1989)
+and Timmermann and Grün (1991). These laboratory and our
+E-ring spectra are similar in appearance to those examined extensively with other ionisation methods (e.g., Shi et al., 1993;
+Wang et al., 2003). Thus the clustering mechanisms seem to be
+comparable.
+Within the initial impact cloud, neutral species are likely to
+be dominant: H2 O and to a minor extent H and O. However,
+ions are formed as well: basically H2 O+ , H+ and OH− . The
+negative species are removed, collected at the target and cannot be observed with our instrument (as mass spectra). From
+this initial mixture the formation of hydronium ions (H3 O+ )
+occurs very rapidly—yielding an enthalpy of H = 7.2 eV per
+
+• the number density of ions, molecules and atoms in the
+plasma cloud;
+• the kinetic energy of species (temperature);
+• the time interval until the plasma cloud is disrupted by the
+electric field;
+• the ion/neutrals ratio.
+
+3.3. Non-water spectral features
+In E-ring spectra obtained in the torus, a lot of mostly small,
+non-water signatures show up occasionally (Fig. 6). Several of
+these features appear frequently at a specific TOF and these are
+described in this section.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+443
+
+Fig. 4. Example of a water ice spectrum with little water–water clustering. Neutral water molecules do cluster with other ion species as well: At higher masses the
+target material rhodium (103 amu) is apparent as Rh+ , with a target–projectile cluster of the form Rh–(H2 O)+ (121 amu) and Rh–(H2 O)+
+2 (139 amu). The spectrum
+amplitudes have been slightly smoothed.
+
+Fig. 5. This spectrum shows peaks occurring due to sodium ions clustering with water molecules. With a large enough proportion of Na+ not only a species of
++
+the type Na–(H2 O)+
+x is formed but also (Na2 OH)–(H2 O)x . Sodium is a surface contaminant on the impact target and unlikely to play a role in the particle’s
+composition. The spectrum amplitude has been slightly smoothed.
+
+The distinctive peaks of the alkali metals sodium (23 amu)
+and potassium (39 amu) can be identified in many spectra, although the latter might often be swamped with ions from the
+second water cluster (37 amu). Both species are most likely to
+be due to a well investigated target contamination which has
+been observed in several other CDA datasets recorded both in
+space (Kempf et al., 2005b; Postberg et al., 2006) and laboratory (Stübig, 2002). They cover the target’s surface inhomogeneously to about 30% (Na) or 15% (K) (Postberg, 2007).
+Because of their very low ionisation potentials, alkali metals
+
+show up in spectra each time the impact plasma affects one or
+more of the “alkali islands.” This results in an increase in the observed alkali occurrence (found to be about 65% of the spectra)
+in very good agreement, based on numerical simulation with the
+expected target contamination and area affected by submicron
+impacts.
+Other small peaks which are occasionally present are at+
+tributed to hydrogen in the form of H+ , H+
+2 and H3 (1, 2,
+3 amu), and carbon (12 amu). Both species are homogeneously distributed at, or slightly below, the entire target surface
+
+444
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+Fig. 7. Distribution of peak maxima between 25 and 32 amu. Only uncompressed spectra with strong signals are considered here. At least two, probably
+more, mass lines are present between 26 and 31 amu.
+Fig. 6. Histogram of peak maxima detected in a representative sample of
+672 spectra obtained in the Enceladus torus. Many of the smaller impact signals have been triggered late by H3 O+ ions (see Section 2). Mass lines with
+m ⩽ 19 amu are therefore under-represented.
+
+(Postberg et al., 2006; Postberg, 2007). As a consequence carbon and hydrogen ions can neither be excluded or confirmed to
+be of particle origin.2
+At a position in the spectra corresponding to 15 amu or
+slightly higher, a small peak can occasionally be identified.
+It might represent CH+
+3 (15 amu). A contribution from oxygen ions (16 amu) which, typically for species which prefer to
+form negative ions, are known to appear “too early” (Postberg
+et al., 2006) is also possible. However, laboratory experiments
+(Timmerman, 1989; Stübig, 2002; Goldsworthy et al., 2003)
+indicate that impact speeds (8–25 km s−1 , see Kempf et al.,
+2008) are possibly not high enough for O+ formation (Postberg,
+2007). If present, O+ may be due to surface contamination or
+particle origin. This will be discussed in Sections 3.6 and 4 further on.
+As previously discussed in Section 3.1, an occasional peak
+at a time of flight corresponding to 18 amu cannot only be interpreted as H2 O+ but also as NH+
+4 . Thus, the presence of the
+latter cannot be excluded. Statistical investigations are currently
+in progress to determine the likelihood of NH+
+4 in E-ring spectra.
+There is one obvious, frequently occurring, larger spectral
+signature, which is not attributable to water-, target- or targetcontamination ions and their respective clusters. It mostly
+shows up as a broad, low peak with a maximum corresponding to a mass between 28 and 29.5 amu. With few exceptions,
+its amplitude is far below the dominant water peaks. Sometimes barely resolved small peaks in this mass region indicate
+2 In hypervelocity (100–400 km s−1 ) impacts of jovian (Postberg et al.,
+2006) and saturnian dust stream particles (Kempf et al., 2005b), carbon and
+hydrogen—which both have quite high ionisation energies (Table 3)—could be
+observed in every spectrum. In the E-ring spectra presented in this work, C+
+and hydrogen ion peaks reach the 2.5σ detection limit each time the energy densities were high enough to ionise a sufficient amount of neutral species. Thus,
+the observed correlated appearance of C+ and H+
+x with water clusters of small
+size ((H–(H2 O)+
+x ) with low x) is a plausible indicator for high energy densities.
+
+Table 1
+Candidates for ions within the mass range of the 29 amu signature
+Ion mass
+
+Ion species
+
+26 amu
+27 amu
+
+–
++
+Al+ , C2 H+
+3 , HCN
+
+28 amu
+29 amu
+30 amu
+31 amu
+
+Si+ , CO+ , N+
+2
+
+C2 H+
+5
+C–H2 O+
+C–H3 O+ , CH3 O+a
+
+a Methanol-like methoxy ion.
+
+that the broad feature actually represents several overlapping
+species. An analysis of peak-maxima positions of a couple of
+hundred distinct spectra with this signature reveals that there are
+indeed at least two or three mass lines present between a time
+of flight of 2.45 and 2.67 µs (26–31 amu) (Fig. 7). One mass
+line is likely equivalent to the maximum at about 27 amu and
+is distributed between 2.45 and 2.51 µs (26–27.5 amu). Most
+of the signatures, however, peak between 2.54 and 2.61 µs (28–
+29.5 amu), which indicates at least one other species within this
+range. A third mass line might lie at about 30 amu. The whole
+resolved or unresolved complex, within a time of flight ranging from 2.45 to 2.67 µs, described in this paragraph, will be
+addressed henceforth as the “29 amu signature.”
+Unfortunately there are many atomic and molecular ions
+which have compatible, and similar, masses within this range.
+The obvious candidates are listed in Table 1.
+A closer look at the plausibility of each of the candidates and
+the consequent implications for the particle composition will be
+given in Sections 3.6 and 4. Other spectral features, that in general have a concomitant appearance with the 29 amu signature,
+will be discussed in Section 3.5.
+3.4. Classification of spectra
+It is striking that in most cases the overall appearance of the
+spectra changes if a 29 amu signature is present (Figs. 8, 9 and
+10). It seems to be the characterising peak for a whole class of
+spectra which we now define.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+445
+
+Fig. 8. Bipolar distribution of peaks’ mean width (FWHM). In most of the wide
+type spectra a 29 amu signature could be identified (light grey), while the narrow type mostly does not have a mass line there (dark grey). In contrast to a
+similar plot shown in Hillier et al. (2007b), this sample of the first E-ring crossing in late 2004 is restricted to a narrow regime of total ion yields.
+
+An analysis of the mean peak width (the full width half maximum, FWHM) of all peaks in each spectrum from the first
+sample of E-ring spectra collected in 2004, has already revealed
+a bipolar distribution of “wide and narrow type” spectra (Hillier
+et al., 2007b). This bipolarity becomes more pronounced when
+the influence of the “natural” peak broadening towards higher
+total ion yields is reduced (Fig. 8), by binning the sample over
+a series of impact charge ranges. Though this method is still
+subject to bias effects which tend to smooth out any contours
+in such a distribution, the bimodality is apparent in each of
+those narrow “impact charge groups.” About 85% of the “wide
+type” spectra in a sample of intermediate impact charges show
+a 29 amu signature (Fig. 8). Furthermore the broadening of
+peaks is correlated with a substantial increase of oscillations
+overlaying the spectrum. This cannot be interpreted as an increase of overall noise because the baseline in the low mass
+region of the spectrum shows the same low noise levels common in CDA spectra. Here maybe the particle structure (e.g.,
+lower bulk density), morphology or impact characteristics affect the disintegration of the particle. This could lead to plasma
+conditions which favour interactions that result in peak broadening and the fuzzy appearance of those spectra at longer TOF.3
+Pure water ice spectra hardly ever show such oscillation and
+wide peaks only appear at the highest total ion yields. Here Debye shielding and possible delayed ionisation within the large
+impact plasma clouds may be responsible for a widening of
+peaks and this can be observed in all CDA mass spectra with
+increasing frequency at higher total ion yields.
+Another typical difference between the two spectrum types
+is the pattern of the water cluster peaks (Figs. 9 and 10). While
+in pure water ice spectra the highest signature usually is the
+hydronium peak at 19 amu, the probability of the second or
+
+3 Another interpretation could be many tiny unresolved mass lines which appear as oscillations of the spectrum amplitude (see Section 3.6.2).
+
+Fig. 9. Comparison between a Type I (grey) and a Type II (bright) spectrum. The
+only non-water features observed in Type I spectra are due to target material
+(Rh) or known target contaminants. Here hydrogen (1 amu), sodium (23 amu)
+and its first water cluster Na–H2 O+ (41 amu) are clearly visible. Besides the
+defining multiple-component peak at 29 amu, Type II spectra often show another wide feature peaking between 42 and 43 amu and a bulge at a time of
+flight corresponding to 65–68 amu. The FWHM of Type II peaks are higher
+and in the second half of the spectrum oscillations with amplitudes far above
+the baseline noise level can be observed. While the first two water peaks (19
+and 37 amu) are at identical positions in both spectra, there is an increasing
+shift towards longer times of flight for the larger water clusters in the Type II
+spectrum.
+
+third water cluster peak (37 or 55 amu) being the most abundant
+is increased in spectra showing a 29 amu signature.
+As is shown in Section 3.5, several other common as well as
+‘exotic’ unidentified peaks accompany a 29 amu signature. Together with broad peaks and large amplitude oscillations these
+characteristics (Figs. 9 and 10) imply a rather complex chemistry to be present in the impact plasma.
+Definition
+From our initial examination of the spectra, we find that
+there are two main types of water ice spectra: without (henceforth Type I) and with a 29 amu signature (henceforth Type II).4
+Type I spectra show hardly any traces of ions other than the
+E-ring bulk material—water, and occasionally target or target
+contamination. In contrast, Type II spectra exhibit a significant
+contribution from other particle components and, as for Type I,
+4 Many of the exceptions where a spectrum of narrow peaks appear together
+with a peak between 26 and 31 amu do not show the usual broad feature here,
+but only a narrow peak between 30 and 31 amu. Thus, the carbon water clusters (C–H2 O+ and/or C–H3 O+ , see Table 1) forming that peak are mostly not
+linked to the water peak broadening. Therefore spectra with a single narrow
+peak in the range of 30 and 31 amu are not considered to be Type II spectra.
+
+446
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+Fig. 10. The same Type I spectrum (grey) as in Fig. 9 with a different typical
+Type II spectrum (white). Here, the widening of peaks in Type II is even more
+apparent. A possible species with a mass of about 42 amu is not resolved any
+more. The bulge between the third and fourth water cluster is present, although
+at slightly shorter TOF than in Fig. 9. Here, the typical case is shown where only
+the H–(H2 O)+
+4 cluster seems to be shifted (F6), while the other water cluster
+peaks appear at the same times as in Type I. In this example the largest water
+cluster of the Type II spectrum is H–(H2 O)+
+2 ; it shows a rhodium signature and
+a mass line at 18 amu directly in front of the hydronium peak. Note: In contrast
+to Figs. 2–5, the spectra shown here are raw data and have not been subject to
+any filtering.
+
+sometimes signatures of the target or known target contaminants.
+3.5. Statistics and correlations
+To aid the identification of species forming the 29 amu signature and help interpret Type II spectra, we looked for coincident
+features. The most obvious coincidence is within the 29 amu
+peak itself. Its extent indicates the presence of at least two ion
+species with masses between 27 and 29 amu. But there are other
+peaks—mostly small or quite broad—as well as other spectrum
+characteristics correlated with this feature (Figs. 9, 10, 11 and
+Table 2).
+Small features may seem to correlate simply because they
+are not likely to be found in faint or compressed spectra. To reduce this effect we used only uncompressed spectra with a total
+ion yield of over 90,000 ions for the statistics in Fig. 11 and Table 2. Above this level even small features become statistically
+(at the 2.5σ level) significant above the noise amplitude. Furthermore, at high ion yields the impact is normally triggered
+by the impact signal (see Section 2) and therefore unknown
+selection effects are reduced. To increase the statistical significance further, we considered the reproducibility of the features
+(repetitive occurrence) over a large set of E-ring spectra. For
+
+this purpose data from outside Enceladus’ torus was also considered. Thus, the statistical significance of the features (Fx)
+attributed below (Fig. 11, Table 2) is above 99%.
+The attribution of typical Type II signatures, “Fx,” (Table 2)
+becomes even more pronounced if only spectra with abundant
+29 amu signatures are taken into account. F6 and F8 mostly
+appear “instead of” and not “together with” the adjacent water cluster peak. This is reflected by the reduced occurrence of
++
+H–(H2 O)+
+4 and H–(H2 O)5 in Type II spectra. Thus, F6 and F8
+could be seen as water cluster features shifted towards longer
+TOF (Figs. 9 and 10). F6 and F8 are exemplary for all larger
+water cluster (H–(H2 O)+
+4 and higher) peaks, where this phenomenon is frequent. F6 is especially noticeable, since in many
+Type II spectra it appears as the only shifted water cluster (see
+Fig. 10). In contrast F1, F2, F3, F5, and F7 appear as additional
+peaks. F4 is a special case. It is sometimes clearly separated
+from the second water peak (Fig. 9), while other times it seems
+to merge with it (Fig. 10). In rare cases F4 even appears to dominate H–(H2 O)+
+2 , which leads to a seeming shift of the 37 amu
+water peak towards higher masses. Whether this is also the
+mechanism which leads to the shifting phenomenon observed
+with F6 and F8 is currently unclear. It has to be pointed out
+that F4 (42–43 amu) is not a slightly shifted sodium cluster
+Na–H2 O+ (41 amu), which is also present in Type I spectra
+(Fig. 11, Table 2). While Na–H2 O+ correlates—qualitatively
+and quantitatively—with Na+ , F4 does not and often appears
+in spectra in which no sodium ions are present (e.g., Type II
+spectrum in Fig. 9).
+Though rare, F1, F3 and in most cases F7 are well-defined
+narrow peaks. In contrast, all other “Fx” features are broader
+and could consist of multiple mass lines. This is especially evident for F5, the peak with the widest FWHM of all regularly
+appearing spectral features.
+Possible candidates for F1–F8 are discussed in Section 3.6.
+Type II spectra have been detected in abundance everywhere
+in the E-ring: at 3 RS as well as outside Rhea’s orbit (8.7 RS ),
+both within and far above (or below) the ringplane. The occurrence of Type II spectra varies little between different ring plane
+crossings. Between 20 and 80% of spectra show particle impurities with a slightly increasing probability for higher total ion
+yields.5
+3.6. Analysis of Type II spectra
+Type II spectra exhibit a significant contribution from nonwater particle components. In this section we evaluate the likelihood with which ion species can be assigned to the 29 amu
+signature and other possible non-water features in those spectra. This is done without making any assumptions about their
+physical origin. The compositional implications of Enceladus’
+plumes as a source are taken into account in Section 4.
+5 However, during ring plane crossings, the transmission bandwidth only allows the transmission of data from a selection of impact events (see Section 1).
+Therefore we note that the returned dataset might be prone to unknown—
+though probably not very significant—bias effects. A more precise evaluation
+of the spatial occurrence of Type II spectra in the E-ring is in progress.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+447
+
+Table 2
+Appearance of selected features in E-ring spectra. All unnamed features (Fx) are much more frequent in Type II spectra. The spectra considered are identical to
+those used for Fig. 11. The total number of spectra in the sample is 417 of which 205 (48.5%) are of Type II. The total number of mass lines in all Type II spectra
+is 4270 and 2736 in Type I (ratio 1.6:1). The percentages given, refer to the distribution of the respective feature between Type I and Type II spectra (sum of both
+values is always 100%)
+Feature
+
+TOF [µs]
+
+Mass range
+[amu]
+
+Total #
+
+Type II
+spectra
+
+Type I
+spectra
+
+Ratio
+T II:T I
+
+Hydrogen
+Carbon
+F1
+Sodium
+F2
+F3
+Na–(H2 O)
+F4
+F5
+H–(H2 O)4
+F6
+F7
+H–(H2 O)5
+F8
+Rhodium
+
+0.45–0.86
+1.59–1.70
+1.84–1.89
+2.27–2.33
+2.45–2.67
+2.72–2.80
+3.06–3.09
+3.09–3.17
+3.84–3.96
+4.04–4.12
+4.16–4.24
+4.40–4.48
+4.53–4.60
+4.40–4.48
+4.80–4.90
+
+0.9–3.2
+11.0–12.5
+14.8–15.5
+22.4–23.6
+26.0–31.0
+32.1–34.0
+40.6–41.4
+41.5–43.5
+64.0–68.0
+71.0–74.0
+75.0–78.0
+84.0–87.0
+89.0–92.0
+93.0–96.0
+100–104
+
+110
+33
+41
+280
+209
+27
+90
+84
+126
+230
+135
+30
+229
+138
+142
+
+36 (33%)
+15 (45%)
+38 (93%)
+108 (39%)
+205 (98%)
+23 (85%)
+44 (49%)
+74 (88%)
+103 (82%)
+74 (32%)
+116 (86%)
+25 (83%)
+97 (42%)
+113 (82%)
+74 (52%)
+
+74 (67%)
+18 (55%)
+3 (7%)
+172 (61%)
+4 (2%)
+4 (15%)
+46 (51%)
+10 (12%)
+23 (18%)
+156 (68%)
+19 (14%)
+5 (17%)
+132 (58%)
+25 (18%)
+68 (48%)
+
+0.49:1
+0.83:1
+12.7:1
+0.63:1
+50:1
+5.8:1
+0.96:1
+7.4:1
+7.9:1
+0.47:1
+6.1:1
+5:1
+0.73:1
+4.5:1
+1.09:1
+
+Note. Because of the exception in the definition of Type II spectra (see footnote 4 in Section 3.4), F2 in rare occasions can be found in Type I spectra as well.
+
+Fig. 11. Occurrence of peak positions for Type I (dark grey) and Type II (light grey) spectra. The y-axis is relative to all spectra of the respective spectrum type. The
+typical Type II spectrum features are labelled (Fx). The histogram is extensively discussed in the text.
+
+The 29 amu signature is likely to be formed by the superposition of at least two or three mass lines (Fig. 7). A list of
+appropriate ions is given in Table 1.
+Carbon water clusters C–H2 O+ and/or C–H3 O+ form ions
+between 30 and 31 amu. In some rare cases a single peak not
+embedded in a wider 29 amu signature appears in the 30–
+31 amu region (see footnote 4). This peak is correlated with
+a C+ signature (12 amu), from which we infer that the respective massline(s) is (are) indeed due to carbon water clusters. The
+carbon in the cluster probably originates from the known carbon
+contamination which covers the whole target homogeneously
+
+(Postberg et al., 2006; Postberg, 2007; see also Section 3.3).
+CH3 O+ cannot only be interpreted as a carbon water cluster but
+also as a methoxy ion, an ion fragment of alcohols. It is possible that this species is sometimes present within the 29 amu
+signature broadening it towards longer TOF.
+This leaves us with at least two further species between 26
+and 29 amu which appear conjointly and form the majority of
+ions within the 29 amu signature. Most of the peak maxima contributing to the 29 amu signature are distributed between a TOF
+corresponding to 28.5 and 29 amu (Fig. 7) with an average of
+28.8 amu. Nonetheless, there are reasons to justify the consider-
+
+448
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+Table 3
+Atomic masses, ionisation energies and electron affinitiesa of some relevant
+elements and molecules
+Species
+
+Main isotope
+
+E0 → E+
+
+E0 → E−
+
+Hydrogen
+Carbon
+Nitrogen (N)
+Oxygen
+Water (H2 O)
+Sodium
+Magnesium
+Aluminium
+HCN
+Nitrogen (N2 )
+Carbon monoxide (CO)
+Silicon
+Potassium
+Calcium
+Silicon monoxide (SiO)
+Carbon dioxide (CO2 )
+Iron
+Rhodium
+
+1 amu
+12 amu
+14 amu
+16 amu
+18 amu
+23 amu
+24 amu
+27 amu
+27 amu
+28 amu
+28 amu
+28 amu
+39 amu
+40 amu
+44 amu
+44 amu
+56 amu
+103 amu
+
+13.60 eV
+11.25 eV
+14.53 eV
+13.62 eV
+12.62 eV
+5.14 eV
+7.65 eV
+5.99 eV
+13.61 eV
+15.58 eV
+14.01 eV
+8.16 eV
+4.34 eV
+6.11 eV
+11.49 eV
+13.78 eV
+7.91 eV
+7.46 eV
+
+−0.76 eV
+−1.60 eV
+>0.00 eV
+−1.46 eV
+>0.00 eV
+−0.55 eV
+>0.00 eV
+−0.43 eV
+<−1.00 eV
+>0.00 eV
+−1.33 eV
+−1.39 eV
+−0.50 eV
+−0.02 eV
+–
+>0.00 eV
+−0.16 eV
+−1.14 eV
+
+a Electron affinity is the energy required to add an electron to the neutral.
+Thus, negative numbers mean that energy is liberated. Species with high (negative) electron affinity and high (positive) ionisation energy (e.g., oxygen) tend
+to form negative ions. In the cases where energy is needed to form the negative
+species the value is set to >0.00.
+
+ation of 28 amu ions, too. The mass calibration is done with the
+early water peaks. A small relative shift of the other mass lines
+is not unreasonable and has been observed at several other occasions in CDA mass spectra (Stübig, 2002; Postberg et al., 2006;
+Hillier et al., 2007a). The other plausible possibility is the hydrogenation of 28 amu species. In principle all 28 amu can+
+didates (Si+ , CO+ , N+
+2 ) form protonated cluster ions (SiH ,
++
++
+COH+ , N2 H+ or even XH2 and XH3 ) if there is sufficient hydrogen. The ratio of hydrogenated species strongly depends on
+the amount of hydrogen present. With water being the bulk material of the particles, hydrogen is an abundant constituent of the
+impact cloud. Furthermore, the rhodium target is another hydrogen source (Postberg et al., 2006; Postberg, 2007). Together
+with ions (H+ ), we can expect neutral molecules (H2 ) and neutral elemental radicals (H·), probably the most abundant water
+breakup product for the given energy regime.
+The ionisation energy of atoms, and to some extent their
+electron affinity (Table 3), are key parameters for the relative
+cation yields (Kissel and Krüger, 1987). They are an important
+indicator for the formation and recombination probability of
+ions and electrons inside the impact plasma before they can be
+accelerated by the external electric field. The relative abundance
+of cations for a given energy density decreases exponentially
+with increasing ionisation energy (Krueger, 1996).
+3.6.1. Carbon oxide and nitrogen compounds
++
+On the first glance conjointly appearing N+
+2 and HCN seem
+to be a pair of ions which could explain the 29 amu signature.
+However, molecular nitrogen has a substantial higher ionisation energy than water and hydrogen (Table 3). Furthermore,
+the ionisation energy exceeds the dissociation energy of the N2
+molecule (D0 (N2 ) = 9.8 eV) by far. Thus the appearance of N2
+
+as positive ions in CDA mass spectra is highly improbable. The
+formation of N2 H+ would be a more energetically favourable
+ionisation path than direct ionisation. But this would require the
+presence of enough H+ ions for an abundant charge transfer to
+a cluster ion. Since we only occasionally observe the presence
+of H+ ions, which are not in correlation with the appearance
+of the 29 amu signature, this is an unlikely mechanism. Similarly the high ionisation potential of HCN also does not favour
+abundant cation formation.
+CO+ and COH+ are other species which could be responsible for the majority of ions forming the 29 amu signature. The
+ionisation energy again does not favour the formation of CO+ ,
+although it is not as extreme as in the case of N2 . On one hand,
+the correlation with a small signature which can be attributed
+to O+ (F1) is as expected. On the other hand, C+ would be expected to correlate as well, which is not the case (Table 2). As
+with N2 , it would furthermore be difficult to explain the other
+typical Type II peaks.6 Carbon dioxide ions (44 amu) might
+contribute a little to the right flank of F4, but probably do not
+play a major role either.
+The probability of carbon oxides and inorganic nitrogen
+compounds being an important impurity observed in E-ring particle spectra is very low. Nevertheless, the presence, of CO or
+HCN in particular, as minor constituents, cannot be excluded.
+3.6.2. Organic compounds
+The simplest interpretation of the 29 amu feature is as unresolved mass lines of vinyl or ethyl radical ions (C2 H3 )+
+(27 amu), (C2 H5 )+ (29 amu) and maybe (C2 H4 )+ (28 amu)
+as the sought-after ions. These probable breakup fragments of
+hydrocarbons, with quite low ionisation energies (⩽8.5 eV),
+would perfectly explain the two or more species between 27
+and 29 amu. The assumption seems tempting that those organic
+molecules are of the same origin as the occasionally observed
+carbon ions, which are probably due to an homogeneous target contamination (see Section 3.3). However, this is unlikely
+for several reasons: (1) There is clearly no correlation between
+the occurrence of carbon ions and the 29 amu signature (Table 2). (2) A target coverage of organic material would release
+vinyl- or ethyl-like ions on every impact which produced sufficiently high energy density. The release of hydrogen and carbon
+cations are a good example for this threshold effect (Kempf
+et al., 2005b; Postberg et al., 2006). In contrast to those ions,
+there is no indication that impacts leading to a 29 amu signature
+are subject to a special energy-density-regime. The irregular (in
+this regard) occurrence of the feature is not in agreement with
+homogeneously distributed organic contamination (Postberg,
+2007).
++
+If C2 H+
+3 and C2 H5 play a role, they are likely to be of
+particle origin. Considering the impact velocities, which are
+in general above 8 km s−1 (see Kempf et al., 2008), it is unlikely that many large hydrocarbon fragments survive (Srama
+6 With the exception of F5, which could be a water cluster of the form CO–
++
++
+(H2 O)+
+2 or COH–(H2 O)2 , respectively N2 H–(H2 O)2 , none of the other frequent signatures in Type II spectra can be linked to carbon oxides or obvious
+inorganic nitrogen species.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+449
+
+Fig. 12. High resolution positive ion spectrum of an organic particle impact obtained in the laboratory. The particle consists of an aromatic polymer
+(poly-[bis(4-vinylthiophenyl)sulfide]) 0.4 µm in size. The impact speed was 14.6 km s−1 . The large organic molecules decompose to only three major positively
+charged impact fragment groups: 27 + 29 amu, 41 + 43 + 45 amu and 53 + 55 + 57 amu which represent C2 Hx , C3 Hx and C4 Hx breakup ions of the aromatic structure. These signatures are in good agreement with the major non-water components observed in Type II spectra. The C4 component would be hidden by dominant
+water cluster signatures. The peaks at 107 and 109 amu are ions of the target material silver, the peaks at 23, 39 and 73 amu are due to contamination.
+
+and Woiwode, 2006, personal communications; Goldsworthy et
+al., 2003). Larger organic molecules are disrupted into smaller
+Cx Hy fragments, with x and y depending on the impact conditions and the organic substances. CDA calibration experiments with polystyrene particles yielded unsaturated hydrocarbon fragment ions dominating the spectrum at speeds below
+17 km s−1 (Goldsworthy et al., 2003). Recent laboratory experiments with two types of aromatic long-chain hydrocarbon
+projectiles (Srama and Woiwode, 2006, personal communications), demonstrated that for certain impact speeds the most
+abundant resulting positive ions are C2 and C3 species of the
++
++
+form C2 H+
+3 (27 amu) and C2 H5 (29 amu), respectively C3 H5
+(41 amu) and C3 H+
+7 (43 amu) (see Fig. 12). The C2 species
+can be attributed as the main constituents of the 29 amu signature (F2) and the correlating F4 feature could be attributed to
+the expected propyl analogues with C3 H+
+7 being the dominant
+species.7 The observed correlation with a mass line at about
+15 amu could imply CH+
+3 as another smaller hydrogen fragment, also known from laboratory experiments.
+There are few candidates for F3, which must be the signature of an ion species with a mass of about 33 amu. Since there
+is no atomic ion of that mass, molecular or cluster ions have
+7 It is known from laboratory experiments (Stübig, 2002; Goldsworthy et al.,
+2003; Srama and Woiwode, 2006, personal communications) that, of the possible fragments of aromatic polymers, C2 H+
+3 (27 amu) is the more abundant ion
+of the C2 species in most cases. In contrast, our results (Fig. 7) would indicate
+C2 H+
+5 (29 amu) to be the dominant ion. However, impact ionisation spectra of
+other than aromatic polymers have not yet been experimentally investigated.
+
+to be considered, of which CH3 –H2 O (33 amu) is the most
+probable when considering organic species. F5 can also be interpreted as a water cluster, in this case of the 29 amu signature
+ions with two water molecules (65 amu). However, F5 and F7
+can be attributed to larger—purely organic—cluster ions which
+have been observed in the laboratory (Srama and Woiwode,
+2006, personal communications). The latter has to be treated
+with reservation, since in principle every atomic mass above
+50 amu can be assigned to an organic ion fragment or cluster
+ion, especially when hetero atoms like N, O or S are considered. Nevertheless, the pattern of non-water species observed in
+Type II spectra matches the results of high resolution accelerator experiments with organic projectiles (Srama and Woiwode,
+2006, personal communications) surprisingly well (see Fig. 12).
+The nature of F6 and F8, which are good examples of the
+putative shift of larger water peaks towards longer TOF (see
+Fig. 9), cannot be as easily explained with organic material.
+Of course one could think of certain organic cluster species
+with the required masses, but that would not justify the “replacement” of the adjacent water cluster peak. A more plausible
+explanation would be to assume a matrix effect (reflecting the
+interaction of different molecular or atomic species after impact). This sometimes seems to cause a delayed release of large
+water cluster ions from the impact plasma. However, this is implausible in cases where this shift applies to F6 but does not
+occur with ions of the target material rhodium and other large
+water clusters (Fig. 10). Thus, at least for the latter type of spectra a general plasma shielding effect as the exclusive reason for
+water peak shifting can be ruled out.
+
+450
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+There are two more characteristics in Type II spectra that
+are in good agreement with organic ions: (1) The strong oscillations in Type II spectra typically start at a time of flight
+equivalent to about 25–50 amu and continue up to the end of
+the spectrum recording at about 200 amu. The low mass part
+of the spectrum only shows the noise oscillations common for
+CDA spectra. (2) The same applies to the peak broadening: In
+contrast to the rest of the spectrum, the low mass part at least
+up to the H3 O+ peak, usually shows narrow features (Figs. 9
+and 10). Both observations are in agreement with unresolved
+multiple mass line spectra typical for complex organic materials (Stübig, 2002).
+We conclude that many but not all effects frequently occurring in Type II spectra are in good agreement with organic
+impurities embedded in water ice particles.
+3.6.3. Silicates
+Cations of silicon are also good candidates for the 29 amu
+feature. In contrast to N2 and CO, the relatively low ionisation potential favours the abundant formation of positive ions
+in a water environment, even with only traces of Si present.8
+In addition Si+ is known to hydrogenate with neutral H species
+even at low hydrogen concentrations (e.g., Tardy et al., 1981),
+which would explain the shift of the peak towards 29 amu due to
++
+SiH+ . Other hydrogenated species (SiH+
+2 and/or SiH3 ; Tardy
+et al., 1981) could be responsible for further peak broadening
+towards higher masses. Note that in contrast to e.g. N2 the formation of hydrogenated ions occurs not only with H+ , but with
+more abundant neutral hydrogen species as well. Silicate fragment ions SiO+ (44 amu) could be a minor contributor to the
+right flank of F4.
+Since pure quartz (SiO2 ) is quite rare, Si cations would
+most probably originate from metal bearing silicate minerals.
+The most abundant metals generally present in minerals are
+magnesium and iron followed by calcium and aluminium. Despite their ionisation energies being lower than that of silicon,
+none of these species has a regularly appearing distinct elemental mass line in the E-ring spectra. Recent high resolution
+impact ionisation experiments indicate that—in contrast to silicon ions—in many minerals the formation of atomic metal ions
+is suppressed (Mocker, 2006, personal communications). This
+might be due to matrix effects, but a total absence of metal mass
+lines seems to be unlikely. However, though subtle, in most
+cases signatures which can be attributed to metals were identified, as we will now explain.
+Al+ can be assigned to the observed conjoint 27 amu mass
+line broadening the 29 amu signature to the left. In some cases
+8 Because of the strong bonds within minerals, the direct formation of Si+
+from silicates requires more than just the ionisation energy of silicon (8.2 eV).
+The more probable mechanism here is a two step ionisation. After an impact the
+particle will be totally vaporised and silicon from possible mineral compounds
+will likely be present in the form of SiO (Atterer, 1959). Through collisions with
+fast components of the impact plasma, a fraction of the SiO is partly dissociated
+(D0 (SiO) = 7.8 eV). In a subsequent step the ionisation of neutral Si occurs.
+Since the ionisation energy of SiO (11.5 eV) is above its dissociation energy,
+SiO will always yield a small fraction of Si+ in an environment of sufficient
+energy density.
+
+two matching peaks are resolved. Its low abundance in comparison to silicon could be explained by an aluminium-poor
+mineral. But in contrast to aluminium, many minerals like
+olivine and pyroxene are expected to be magnesium-rich. In
+rare cases, small mass lines which are in agreement with Mg+
+(24 amu) can be observed accompanying the 29 amu signature.
+Of course this observation alone is not sufficient to indicate
+Mg-rich silicates. However, the positions of the correlating signatures F4, F6, F8 are in good agreement with magnesium
+water clusters Mg–(H2 O)+ (42 amu), Mg–(H2 O)+
+3 (78 amu)
+and Mg–(H2 O)+
+(96
+amu).
+This
+matches
+the
+relatively
+high
+4
+cluster energy liberated when forming such clusters (Mg+ +
+(H2 O) → Mg–(H2 O)+ + 1.3 eV, compared to: Na+ + (H2 O)
+→ Na–(H2 O)+ + 0.9 eV). Thus, the tendency of magnesium
+ions to “mask” as water clusters could be justified. Iron, the
+other abundant metal expected in minerals, would be hidden:
+With water clusters dominating the spectra, the presence of minor contributions of Fe+ (56 amu) and its water clusters can
+never be detected with the CDA due to the generally large overlying H–(H2 O)+
+3 feature (55 amu). A similar problem is found
+with possible calcium peaks and the dominant H–(H2 O)+
+2 signature (37 amu). As in the case of magnesium, a Ca+ (40 amu)
+line, as well as its water clusters, could be responsible for
+the observed peak broadening and shifting of pure water clusters.
+F3 cannot be attributed to a metallic silicate species. Its
+rare occurrence and general low abundance characterises it
+as a rather subordinate feature. The most plausible inorganic
+ion is hydrogenated sulphur, SH+ , which would indicate occasional traces of sulphur in the mineral. F5 and F7 more or less
+match clusters of silicon with two and three water molecules
+respectively, and F1 can be attributed to O+ as an expected
+minor mass line accompanying silicates at high energy densities.
+The identification of F6 and F8 with Mg–(H2 O)+
+3 (78 amu)
+and Mg–(H2 O)+
+(96
+amu)
+could
+explain
+the
+putative
+shift of
+4
+respective pure water clusters: at large masses neutral water
+molecules clustering with hydronium ions and with—5 amu
+heavier—magnesium ions would create two overlaying, unresolved broad peaks with the maximum shifted between the two
+extreme cases. If this assumption is true, the statistics of Type II
+spectra imply extremely abundant Mg+ in the impact plasma.
+Due to the much lower ionisation potential of magnesium compared to water, this however might be plausible even with minor
+silicate impurities.
+In addition to the very rare occurrence of Mg+ -compatible
+peaks, this coherent picture is somewhat spoiled by the fact
+that there is hardly any indication of a cluster of the form Mg–
+(H2 O)+
+2 (60 amu). Considering the presence of the smaller and
+bigger magnesium water clusters, it is presently unclear why
+this cluster in particular should be suppressed. The same in
+principle applies to the observation of possible Si–(H2 O)+
+2 (F5)
+without an apparent signature of Si–(H2 O)+ (46 amu). Nevertheless, all frequent peaks in Type II spectra can be explained
+satisfactorily.
+Silicate minerals are a plausible source of cations in Type II
+spectra.
+
+Signatures of Enceladus in the composition of E-ring particles
+
+4. Discussion
+4.1. Two spectrum types—two populations—two sources?
+The existence of two different types of spectra has been
+demonstrated: one showing hardly any traces of ions other than
+those from the E-ring bulk material—water, and occasionally
+target material and target contamination (Type I); the other
+with a significant contribution of other particle components
+(Type II). Besides determining the composition of those impurities the further question of whether the spectral types can
+be assigned to different populations from different sources, in
+particular Enceladus’ cryovolcanoes, is of great interest.
+On the one hand, the multiple differences between Type I
+and Type II spectra (see Section 3.4) imply two particle types
+of different chemical composition (see Section 3.6) and perhaps structure populating the E-ring. On the other hand the
+possibility has to be considered that Type I and Type II are the
+spectral appearance of the same particle species for different
+regimes of impact speeds or particle masses.9 Within the limits of the mass and velocity determination of CAT impacts (see
+Section 2 and Kempf et al., 2008) there is no significant indication for different impact speeds or mass regimes. The more
+frequent occurrence of H+ in Type I spectra—the formation
+of which requires high energy density impacts—possibly hint
+towards slightly higher average impact speeds of particles creating Type I spectra. Furthermore characteristics of the water
+cluster pattern in Type I spectra (see Section 3.4) possibly indicate more frequent high energy impacts (Timmerman, 1989).
+However, we observe a quite clear separation of two spectral
+types which can hardly solely be justified by a slight statistical
+difference in impact speeds. Furthermore there are hardly any
+indications for a continuous transition from one type to another
+due to changing impact parameters. This fact alone favours the
+theory that the two spectral types do indeed represent two particle populations (Type I and Type II) which both contribute to
+the observed particle size and speed distributions (see Kempf et
+al., 2008).
+Though the age of the surface of Enceladus varies a lot,
+the reflectance spectra are, in all regions except for the tiger
+stripes, practically identical to those due to pure water ice,
+at both infrared and optical wavelengths (Brown et al., 2006;
+Porco et al., 2006). This is unique among the known celestial bodies. Currently the vents produce >150 kg s−1 of gas
+(Hansen et al., 2006), a part of which condenses on the cold
+surface of the moon. Whereas observations (Porco et al., 2006)
+indicate that the dust flux is pretty collimated and settles down
+mostly in the tiger stripe region, it is likely that the entire
+surface is covered with condensed vent gases. The bulk of
+9 If the 29 amu signature is caused by elemental ions—such as in the case
+of silicate impurities—higher impact speeds would not significantly alter the
+appearance of that feature and this possibility can be discarded. Impact energy
+can only play a role for the categorisation of Type I or Type II spectra in the case
+of molecular impurity signatures, which would probably disintegrate at higher
+energy densities. That in turn could be used as a tool to give further insights
+into the nature of the impurities in future Enceladus flybys (see Section 4.3).
+
+451
+
+the moon’s surface thus is subject to an ongoing resurfacing
+process and is likely to consist of pure water ice and probably
+minor amounts of CO2 frost (Brown et al., 2006). The other
+components detected by the neutral gas spectrometer (Waite
+et al., 2006) will not condense on the surface under the temperatures given. Calculations show that external sources—like
+surface gardening by interplanetary dust particles (IDPs)—are
+totally dominated by the water deposition. Slight deviations
+from a pure water ice surface can only be measured at the tiger
+stripes where the surface is more influenced by sedimenting
+vent particles. Here significant contributions of CO2 and organics have been found by Cassini’s Ultraviolet Imaging Spectrograph (Hansen et al., 2006).
+The pure water ice surfaces of Saturn’s inner moons are a
+self-suggesting candidate for Type I particles. A so-called impactor ejecta process has been proposed as a source of particles
+replenishing the E-ring. Here, micro impacts of interplanetary
+dust or E-ring particles onto the icy surfaces of the moons release smaller particles and feed the E-ring (Hamilton and Burns,
+1994; Spahn et al., 1999, 2006a).10
+Although a minor contribution cannot be excluded, it is very
+improbable that the impurities observed in Type II spectra could
+be the result of an impactor ejecta process. Thus we state the
+hypothesis that Type II particles are almost entirely generated
+by Enceladus’ cryovolcanoes, while Type I particles are also
+in agreement with impactor ejecta. This of course does not exclude the possibility that an unknown fraction of the pure water
+Type I particles are generated by Enceladus eruptions as well. It
+has to be pointed out that even if the two spectral types are due
+to the same compositional particle type and source, the chemical fingerprints found in the spectra would still be difficult to
+explain with an origin other than Enceladus’ plumes.
+The occurrence of Type I and Type II spectra is similar and
+only seems to vary little within the ring (see Section 3.5). This
+finding indicates an efficient dispersal of Enceladus’ plume particles within the E-ring.
+4.2. Chemical footprints of Enceladus
+It is known from numerical modelling that the observed dust
+phenomena can only be explained satisfactorily by a nucleation
+process occurring below the moon’s surface (Schmidt et al.,
+2007). Thus far the particle composition has been discussed
+based solely on spectra analysis. If Type II particles are produced in Enceladus’ cryovolcanoes, we can combine the current
+knowledge of the active moon with our results. This leads to a
+refined picture of particle composition, which in turn has implications for the particle production process inside Enceladus.
+Most possible candidates for the 29 amu signature in Type II
+spectra are suspected to be present under the moon’s surface (silicates, carbon monoxide, nitrogen and simple organics;
+Kargel, 2006; Waite et al., 2006; Brown et al., 2006; see also
+Section 1). As was shown in Section 3.6 the most plausible
+10 The contribution of those processes to the dust flux feeding the E-ring is not
+well known but is supposed to be small compared to the vent emissions (Spahn
+et al., 2006b).
+
+452
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+candidates for explaining the spectral appearance are organic
+material and/or silicates. This is even more justified if Enceladus’ plumes as the probable origin are taken into account.
+4.2.1. Carbon oxide and nitrogen species
+Nitrogen and/or carbon monoxide molecules are known to
+be highly enriched in the vicinity of Enceladus (Waite et al.,
+2006). However, it is almost impossible for both species to exist as solid pure ices in the saturnian system. Thus, it seems to be
+an attractive possibility to consider CO+ forming the characterising peak as a fragment of less volatile CO2 ice in the particle.
+But, for energetic reasons and from experiments (Adamczyk et
+al., 1988; Velotta et al., 1994), it is evident that if CO2 is the parent molecule of CO+ , the mass line of CO+
+2 (44 amu) should
+be more abundant than that of CO+ . Although CO+
+2 may contribute a little to the F4 signature it clearly represents only a
+minor part of the non-water components, if any. Thus CO2 can
+be excluded from playing a major role here.
+N2 or CO clathrate hydrates, with the volatile molecules embedded in a water ice lattice, might be a more realistic assumption. If however, clathrates pass through low pressure—high
+temperature phases as proposed for Enceladus’ vents (Porco
+et al., 2006; Tian et al., 2007), such volatile components are
+likely to outgas completely from liquid water. Thus, the presence of those molecules in a freshly ejected particle is unlikely.
+But there is another process which could lead to the embedding
+of gas molecules into water ice after ejection. If water condenses below 120 K it forms an amorphous structure which can
+trap volatile gases (Bar-Nun et al., 1987). This process could be
+effective directly after the preformed water ice particles have
+been ejected by the vents into a cool environment (radiation
+temperature 80 K), whilst still in contact with a dense gas flow.
+Depending on several parameters, which are currently unclear,
+a thin outer layer of gas-laden amorphous ice could be formed
+around µm sized particles. However, there are indications that
+this might not be an important process:
+• CO2 is only a minor fraction of the non-water particle compounds, if present at all. Since CO2 is quite a significant
+compound of Enceladus’ gas environment (Waite et al.,
+2006) and by far the least volatile (after water), this finding places constraints for the other gas components, too. It
+indicates that the particle production conditions were not
+favourable for the absorption and embedding of any of the
+other detected gas compounds (CO, N2 , CH4 , C2 H2 , C3 H8 )
+into plume particles, whether as clathrate hydrates or as inclusions in amorphous ice.
+• If we consider Type II particles as originating from Enceladus, then they have been subject to plasma sputtering
+for several decades whilst reaching the outer E-ring. That
+would have removed at least 0.1 µm of the outer layer of
+the particle (Jurac et al., 1998; Jurac, 2001; Juhász and
+Horányi, 2002). Even if the newest plasma models are applied (Beckmann, 2006, personal communications), this
+does not change significantly. Thus a thin amorphous ice
+layer around particles as described above is unlikely for
+particles populating the outer E-ring. However, Type II
+
+spectra are detected in abundance even outside Rhea’s orbit
+(Hillier et al., 2007b).
+Consequently, volatile compounds, as detected by Cassini’s
+Ion and Neutral Mass Spectrometer in the plumes’ gas phase
+(Waite et al., 2006) (see Section 1), are not considered to be
+an abundant impurity in Type II particles. Following the analysis of spectra in Section 3.6, this is especially evident for CO
+and N2 . However, a minor contribution from volatiles cannot
+be ruled out until refined vent models are available.
+4.2.2. Organic compounds
+Though some of the mass lines found by the Ion and Neutral Mass Spectrometer and attributed to organics (15, 28 and
+44 amu) are similar to mass lines in CDA spectra, the arguments against volatile compounds (see Section 4.2.1) apply
+to these organic compounds, too. Nevertheless, they can be
+taken as indicators for refractory organic components which
+can be detected in solid state. Ionic fragments of refractory
+organics would be in excellent agreement with many of the signatures found in the impact plasma of Type II particles (see
+Section 3.6).
+This possibility is of particular importance since Matson
+et al. (2007) strongly suggested chemical processes at a hot
+(>500 K) rock–water interface inside Enceladus. They predict
+complex organic compounds to be present in a “rich, warm
+aqueous organic soup below the surface.” If this is the case, it
+would indeed be no surprise to find them condensed in the particles as well. The quantity of putative organic ions present in
+some spectra would indicate that particles occasionally contain
+organic material at concentrations of up to several percent. The
+most likely candidates for those refractory organics are either
+aromatic, long-chained or polar hydrocarbons. Their vapour
+pressure can be similar to water and would not out-gas easily
+at high temperatures or low pressure and could even function
+as condensation cores. Furthermore polar hydrocarbons (such
+as alcohols, acids or nitriles)—in contrast to, e.g., CO, N2 or
+CO2 —are very soluble in water, reducing the boiling and melting temperature. Therefore those organic compounds are more
+likely to “survive” the particle production process in sufficient
+concentration and freeze out as an alloy with the more abundant
+water ice.
+4.2.3. Silicates
+Type II spectra are in good agreement with magnesiumrich, aluminium-poor minerals embedded in water ice particles.
+The incorporation of such silicates into Enceladus’ plume particles would not be unexpected. Enceladus is known to have
+an amazingly large silicate core (Porco et al., 2006). It is plausible that water oceans under the ice crust of the moon could
+contain a small proportion of undifferentiated submicron silicate particles. In particular, with water cycling material into
+and out of regions of a rocky core surface of serpentinized silicates (Matson et al., 2007), clay minerals could be detached.
+Tiny silicate grains with sizes probably far below 0.1 µm, floating in a liquid environment, would be incorporated in the ice
+or even function as condensation cores for the plume particle
+
+Signatures of Enceladus in the composition of E-ring particles
+
+production in active vents. That would help to explain the extraordinarily large particle production rate observed (Schmidt,
+2007, personal communications). The primary compounds of
+silicates (metals and silicon) have very low ionisation energies
+compared to water. Thus, only minor silicate inclusions in water ice (probably in the order of 1%) would be enough to explain
+most Type II spectra. As an alternative or parallel scenario silicates could be debris from interplanetary impactors (dating
+back to a time before the plumes were active), now incorporated in an upper subsurface ice layer of the moon. However,
+a mass fraction of about 1% silicates from IDPs in the whole
+volume of the upper ice crust is not very likely. Nevertheless,
+the incorporation of IDPs during the formation of vent particles
+may, in principle, occur for a certain fraction of vent particles.11
+4.3. Outlook
+We consider the identification of organics and/or silicates as
+significant. However, there still are some inconsistencies in the
+interpretation of Type II spectra (see Section 3.6). Furthermore,
+some rarely occurring peaks indicate that other components
+might be present in particles escaping Enceladus’ plumes. Experiments with several different organic species are currently in
+progress at the Heidelberg dust accelerator facility. Advanced
+experiments with silicate projectiles (late 2007) and specifically doped water ice (2009) are in preparation. This will lead
+to a better understanding of Type II spectra and the nature
+of Enceladus’ particles. Most importantly, we hope to acquire
+high resolution spectra of freshly ejected plume particles during the next close Enceladus flybys. The flyby geometries in
+March 2008 and of Cassini’s extended mission allow us to test
+our theory that Type II spectra can be in general attributed to
+vent particles whereas impactor ejecta appear as Type I spectra.
+Furthermore we will be able to acquire vent particle spectra at
+different relative speeds at different flybys (6.8 to 17.7 km s−1 ).
+These are likely to reveal further details of the non-water component in Type II spectra and allow us to distinguish between
+organic and silicate compounds.
+5. Summary and conclusion
+We investigated time of flight mass spectra from E-ring particles detected both in the vicinity of Enceladus and the outer
+E-ring, with sizes mostly between 0.1 and 1.0 µm. Though all
+spectra presented here are dominated by water signatures, they
+can be classified into two basic types:
+11 It has to be noted that CDA has previously detected silicon in saturnian dust
+as a major constituent of saturnian stream particles (Kempf et al., 2005b). There
+the extremely energetic impact conditions made the survival of a molecular
+species with a mass of 28 amu very unlikely; thus, the corresponding mass
+line could only be attributed as Si+ . Furthermore it was shown that those tiny
+particles could originate from the E-ring (Kempf et al., 2005a). In fact, the fate
+of E-ring particles is either to collide with an embedded moon or to end up in
+a dust stream accelerated out of the saturnian system. Therefore, this Si-rich
+nanodust could be the sputtered remnants of larger icy E-ring particles created
+in the interior of Enceladus.
+
+453
+
+• Type I spectra show hardly any traces of ions other than the
+E-ring bulk material water, and occasionally target material
+and target contamination;
+• Type II spectra imply a significant contribution from other
+particle components, indicating complex chemistry and
+perhaps structure.
+The clear separation of two spectral types is best explained
+by the existence of two particle populations. The impurities observed in Type II spectra favour Enceladus’ cryovolcanic vents
+as their source. The pure water ice Type I spectra could have
+the same origin but also be the result of an impactor ejecta
+process where micro impacts onto the clean water ice surfaces
+of Saturn’s inner moons release smaller particles feeding the Ering. Both particle types can be found in abundance everywhere
+in the E-ring, which indicates a rapid dispersal of Enceladus’
+plume particles within the entire ring.
+Volatile compounds (like CO and N2 ) play only a minor role
+in the particles’ composition, if any. The signatures of impurities in Type II spectra are best matched by organic fragments
+and/or magnesium-rich, aluminium-poor silicates. This implies
+one or both of those species are present in particles escaping Enceladus’ plumes. For organic substances, polar organic
+compounds (e.g. alcohols, nitriles, acids) or long-chain hydrocarbons would be the best candidates. Generation mechanisms
+for these compounds at a hot rock–water interface far below
+the moons surface have been recently suggested by Matson et
+al. (2007). Silicate particle components, which were once submicron particles floating in a liquid environment below the icy
+surface of Enceladus, were then incorporated as the water froze.
+They might be clay minerals detached from the moon’s large
+rocky core due to water cycling through cracks at a core–water
+interface, as suggested by Matson et al. (2007). Functioning as
+condensation cores, submicron sized silicate or refractory organic grains would increase the particle production rate inside
+Enceladus’ vents.
+Both possible impurities—organic and silicate—within water ice particles, place constraints on geophysical modelling
+which hint at an interface of rock with liquid water below Enceladus’ icy surface.
+Neither of the explanations fully accounts for all observed
+spectrum characteristics. It is likely that still unidentified components are present in particles escaping Enceladus’ plumes.
+Acknowledgments
+We thank Wolfgang Woiwode for the data processing, as
+well as Klaus Hornung and Frank Arnold for fruitful discussions. The authors are deeply indebted to the scientists and
+engineers at JPL who made the reported CDA measurements
+possible. This project is supported by the DLR under the
+grant 500OH91019. J.K. Hillier acknowledges funding from
+the UK’s Particle Physics and Astronomy research council (now
+the STFC).
+
+454
+
+F. Postberg et al. / Icarus 193 (2008) 438–454
+
+References
+Adamczyk, B., Bederski, K., Wojcik, L., 1988. Mass spectrometric investigation of dissociative ionisation of toxic gases by electrons at 20–1000 eV.
+Biomed. Environ. Mass Spectrom. 16, 415–417.
+Atterer, M., 1959. Gmelins Handbuch der anorganischen Chemie, Silicium, 8.
+Auflage. Deutsche chemische Gesellschaft, Verlag Chemie, Weinheim.
+Bar-Nun, A., Dror, J., Kochavi, E., Laufer, D., 1987. Amorphous water ice and
+its ability to trap gases. Phys. Rev. B 35, 2427–2435.
+Baum, W.A., Kreidl, T., Westphal, J.A., Danielson, G.E., Seidelmann, P.K.,
+Pascu, D., Currie, D.G., 1981. Saturn’s E ring. Icarus 47, 84–96.
+Brown, R.H., and 24 colleagues, 2006. Composition and physical properties of
+Enceladus’ surface. Science 311, 1425–1428.
+Dougherty, M.K., Khurana, K.K., Neubauer, F.M., Russell, C.T., Saur, J., Leisner, J.S., Burton, M.E., 2006. Identification of a dynamic atmosphere at
+Enceladus with the Cassini magnetometer. Science 311, 1406–1409.
+Goldsworthy, B.J., Burchell, M.J., Cole, M.J., Armes, S.P., Khan, M.A., Lascelles, S.F., Green, S.F., McDonnell, J.A.M., Srama, R., Bigger, S.W., 2003.
+Time of flight mass spectra of ions in plasmas produced by hypervelocity impacts of organic and mineralogical microparticles on a cosmic dust
+analyser. Astron. Astrophys. 409, 1151–1167.
+Hamilton, D.P., Burns, J.A., 1994. Origin of Saturn’s E ring: Self sustained,
+naturally. Science 267, 550–553.
+Hansen, C.J., Esposito, L., Stewart, A.I.F., Colwell, J., Hendrix, A., Pryor,
+W., Shemansky, D., West, R., 2006. Enceladus’ water vapour plume. Science 311, 1422–1425.
+Hillier, J.K., McBride, N., Green, S.F., Kempf, S., Srama , R., 2006. Modelling
+CDA mass spectra. Planet. Space Sci. 54, 1007–11013.
+Hillier, J.K., Green, S.F., McBride, N., Altobelli, N., Postberg, F., Kempf, S.,
+Schwanethal, J.P., Srama, R., McDonnel, J.A.M., Grün, E., 2007a. Interplanetary dust detected by the Cassini CDA Chemical Analyser. Icarus 190,
+643–654.
+Hillier, J.K., Green, S.F., McBride, N., Schwanethal, J.P., Postberg, F., Srama,
+R., Kempf, S., Moragas-Klostermeyer, G., McDonnell, J.A.M., Grün, E.,
+2007b. The composition of Saturn’s E ring. Mon. Not. R. Astron. Soc. 377,
+1588–1596.
+Juhász, A., Horányi, M., 2002. Saturn’s E ring: A dynamical approach. J. Geophys. Res. (Space Phys.) 107 (A6), doi:10.1029/2001JA000182. SMP 1-1.
+Jurac, S., 2001. Saturn’s E ring and the production of the neutral torus.
+Icarus 149, 384–396.
+Jurac, S., Johnson, R.E., Donn, B., 1998. Monte Carlo calculations of the sputtering of grains: Enhanced sputtering of small grains. Astrophys. J. 503,
+247–252.
+Kargel, J.S., 2006. Enceladus: Cosmic gymnast, volatile miniworld. Science 311, 1389–1391.
+Kempf, S., Srama, R., Horányi, M., Burton, M., Helfert, S., MoragasKlostermeyer, G., Roy, M., Grün, E., 2005a. High-velocity streams of dust
+originating from Saturn. Nature 433, 289–291.
+Kempf, S., Srama, R., Postberg, F., Burton, M., Green, S.F., Helfert, S.,
+Hillier, J.K., McBride, N., McDonnell, J.A.M., Moragas-Klostermeyer, G.,
+Roy, M., Grün, E., 2005b. Composition of saturnian stream particles. Science 307, 1274–1276.
+Kempf, S., Beckmann, U., Moragas-Klostermeyer, G., Postberg, F., Srame, R.,
+Economou, T., Schmidt, J., Spahn, F., Grün, E., 2008. The E ring in the
+vicinity of Enceladus. I. Spatial distribution and properties of the ring particles. Icarus 93, 420–437.
+Kissel, J., Krüger, F.R., 1987. The organic component in dust from Comet Halley as measured by the PUMA Mass Spectrometer on board VEGA 1. Appl.
+Phys. A 326, 301–317.
+Krueger, F.R., 1996. Ion formation by high- and medium-velocities dust impacts from laboratory measurements and Halley results. Adv. Space Res. 17,
+71–75.
+Matson, D.L., Castillo, J.C., Lunine, J., Johnson, T.V., 2007. Enceladus’ plume:
+Compositional evidence for a hot interior. Icarus 187, 569–573.
+Nicholson, P.D., Showalter, M.R., Dones, L., 1996. Observations of Saturn’s
+ring-plane crossing in August and November. Science 272, 509–516.
+
+Porco, C.C., and 24 colleagues, 2006. Cassini observes the active south pole of
+Enceladus. Science 311, 1393–1401.
+Postberg, F., 2007. A new view on the composition of dust in the Solar System:
+Results from the Cassini dust detector. Ph.D. thesis, Heidelberg University.
+Postberg, F., Kempf, S., Srama, R., Green, S.F., Hillier, J.K., McBride, N.,
+Grün, E., 2006. Composition of jovian dust stream particles. Icarus 183,
+122–134.
+Reber, O., 1997. Bestimmung der Energie- und Winkelverteilung von Primärionen beim Einschlag von Hochgeschwindigkeits-Mikrometerpartikeln auf
+Oberflächen und deren Anwendung auf Einschlagssensoren an Bord interplanetarer Raummissionen. Ph.D. thesis, Heidelberg University.
+Schmidt, J., Brilliantov, N., Spahn, F., Kempf, D., 2007. The icy breath of the
+giant: Formation of Enceladus’ dust plume. Nature, in press.
+Shi, Z., Ford, J.V., Wei, S., Castleman Jr., A.W., 1993. Water clusters: Contributions of binding energy and entropy to stability. J. Chem. Phys. 99,
+8009–8015.
+Showalter, M.R., Cuzzi, J.N., Larson, S.M., 1991. Structure and particle properties of Saturn’s E ring. Icarus 94, 451–473.
+Spahn, F., Thiessenhusen, K.-U., Colwell, J.E., Srama, R., Grün, E., 1999. Dynamics of dust ejected from Enceladus: Application to the Cassini dust
+detector. J. Geophys. Res. 104, 24111–24120.
+Spahn, F., Albers, N., Hörning, M., Kempf, S., Krivov, A.V., Makuch, M.,
+Schmidt, J., Seiß, M., Sremčevic, M., 2006a. E ring dust sources: Implications from Cassini’s dust measurements. Planet. Space Sci. 54, 1024–1032.
+Spahn, F., and 15 colleagues, 2006b. Cassini dust measurements at Enceladus
+and implications for the origin of the E ring. Science 311, 1416–1418.
+Spencer, J.R., Pearl, J.C., Segura, M., Flasar, F.M., Mamoutkine, A., Romani,
+P., Buratti, B.J., Hendrix, A.R., Spilker, L.J., Lopes, R.M.C., 2006. Cassini
+encounters Enceladus: Background and the discovery of a south polar hot
+spot. Science 311, 1401–1405.
+Srama, R., 2000. Vom Cosmic-Dust-Analyzer zur Modellbeschreibung
+wissenschaftlicher Raumsonden. Ph.D. thesis, Technische Universität
+München.
+Srama, R., and 43 colleagues, 2004. The Cassini cosmic dust analyser. Space
+Sci. Rev. 114, 465–518.
+Stübig, M., 2002. New insights in impact ionisation and in time-of-flight mass
+spectroscopy with micrometeoroid detectors by improved impact simulations in the laboratory. Ph.D. thesis, Heidelberg University.
+Tardy, J., Poitevin, J.M., Lemperiere, G., 1981. Glow discharge mass spectrometry of silicon DC sputtering in argon-hydrogen. J. Phys. D Appl. Phys. 14,
+339–346.
+Tian, F., Stewart, A.I.F., Toon, O.B., Larsen, K.M., Esposito, L.W., 2007. Monte
+Carlo simulations of water vapour plumes on Enceladus. Icarus 188, 154–
+161.
+Timmerman, R., 1989. Ladungsemmission bei Einschlägen schneller
+Mikroteilchen auf Wassereis. Ph.D. thesis, Heidelberg University.
+Timmermann, R., Grün, E., 1991. Plasma emission from high velocity impacts
+of microparticles onto water ice. In: IAU Colloq. 126: Origin and Evolution
+of Interplanetary Dust. ASSL, pp. 375–377.
+Tokar, R.L., Johnson, R.E., Hill, T.W., Pontius, D.H., Kurth, W.S., Crary, F.J.,
+Young, D.T., Thomsen, M.F., Reisenfeld, D.B., Coates, A.J., Lewis, G.R.,
+Sittler, E.C., Gurnett, D.A., 2006. The interaction of the atmosphere of
+Enceladus with Saturn’s plasma. Science 311, 1409–1412.
+Velotta, R., Di Girolamo, P., Berardi, V., Spinelli, N., Armenante, M., 1994.
+Kinetic-energy distributions of charged fragments from CO2 dissociative
+ionisation. J. Phys. B At. Mol. Phys. 27, 2051–2061.
+Waite, J.H., Combi, M.R., Ip, W.-H., Cravens, T.E., McNutt, R.L., Kasprzak,
+W., Yelle, R., Luhmann, J., Niemann, H., Gell, D., Magee, B., Fletcher,
+G., Lunine, J., Tseng, W.-L., 2006. Cassini Ion and Neutral Mass Spectrometer: Enceladus plume composition and structure. Science 311, 1419–
+1422.
+Wang, Y.S., Tsai, C.H., Lee, Y.T., Chang, H.C., Jiang, J.C., Asvany, O., Schlemmer, S., Gerlich, D., 2003. Investigations of protonated and deprotonated
+water clusters using a low-temperature 22-pole ion trap. J. Phys. Chem.
+A 107, 4217–4225.
+
+

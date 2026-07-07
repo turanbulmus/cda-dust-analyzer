@@ -1,0 +1,895 @@
+MNRAS 527, 8131–8139 (2024)
+
+https://doi.org/10.1093/mnras/stad3621
+
+Advance Access publication 2023 November 24
+
+Radial compositional profile of Saturn’s E ring indicates substantial space
+weathering effects
+Lenz Nölle,1 ‹ Frank Postberg,1 Jürgen Schmidt,1,2 Fabian Klenner,3 Nozair Khawaja ,1 Jon Hillier,1
+Sascha Kempf,4 Sean Hsu4 and Ralf Srama 5
+1 Institute of Geological Sciences, Freie Universität Berlin, Malteserstraße 74-100, D-12249 Berlin, Germany
+2 Space Physics and Astronomy Research Unit, University of Oulu, P.O.Box 8000, FI-90014 Oulu, Finland
+4 Laboratory for Atmospheric and Space Physics, University of Colorado, 1234 Innovation Dr, CO 80303 Boulder, USA
+5 Institute of Space Systems, University of Stuttgart, Pfaffenwaldring 29, D-70569 Stuttgart, Germany
+
+Accepted 2023 November 20. Received 2023 July 26; in original form 2023 November 20
+
+ABSTRACT
+
+Saturn’s large and diffuse E ring is populated by microscopic water ice dust particles, which originate from the Enceladus
+plume. Cassini’s Cosmic Dust Analyser sampled these ice grains, revealing three compositional particle types with different
+concentrations of salts and organics. Here, we present the analysis of CDA mass spectra from several orbital periods of Cassini,
+covering the region from interior to Enceladus’ orbit to outside the orbit of Rhea, to map the distribution of the different particle
+types throughout the radial extent of the E ring. This will provide a better understanding of the potential impact of space
+weathering effects on to these particles, as the ice grains experience an increasing exposure age during their radially outward
+migration. In this context, we report the discovery of a new ice particle type (Type 5), which produces spectra indicative of
+very high salt concentrations, and which we suggest to evolve from less-salty Enceladean ice grains by space weathering. The
+radial compositional profile, now encompassing four particle types, reveals distinct radial variations in the E ring. At the orbital
+distance of Enceladus our results are in good agreement with earlier compositional analyses of E ring ice grains in the moon’s
+vicinity. With increasing radial distance to Saturn however, our analysis suggests a growing degree of space weathering and
+considerable changes to the spatial distribution of the particle types. We also find that the proportion of Type 5 grains – peaking
+near Rhea’s orbit – probably reflects particle charging processes in the E ring.
+Key words: astrochemistry – methods: data analysis – planets and satellites: individual: Enceladus – planets and satellites:
+rings.
+
+1 . I N T RO D U C T I O N
+Saturn’s diffuse E ring is one of the largest known planetary rings
+in the Solar system. It spans radially from at least 2.5 RSaturn (Linti
+et al., in preparation; Saturn equatorial radius RSaturn = 60 268 km),
+encompassing the orbits of the icy moons Mimas, Enceladus, Tethys,
+Dione, and Rhea, and extending at least to Titan’s orbit at about 20
+RS (Kempf et al. 2008; Srama et al. 2011). Besides that, it extends
+thousands of kilometers vertically away from the equatorial (ring)
+plane (Nicholson et al. 1996; de Pater, Martin & Showalter 2004;
+Porco et al. 2006; Kempf et al. 2008). Enceladus was an early
+candidate as the main source of the E ring, as the ring’s edgeon brightness profile peaks near the moon’s mean orbital distance
+(Baum et al. 1981; Showalter, Cuzzi & Larson 1991). Now known
+to be primarily composed of μm to sub-μm sized water ice dust
+(Hillier et al. 2007a; Postberg et al. 2008), nearly 40 years ago the
+photometric properties of the ring were found to be a good match to
+spherical ice particles with a narrow size distribution, for which
+
+ E-mail:lenz.noelle@fu-berlin.de
+
+(cryo)volcanic liquid water emission was suggested as a source
+(Pang et al. 1984; Showalter et al. 1991). Later observations with
+the instruments onboard the Cassini orbiter ultimately confirmed
+this, when cryo-volcanoes along the so-called tiger stripes fractures,
+cross cutting the icy crust at the south polar terrain of Enceladus,
+were discovered (Dougherty et al. 2006; Porco et al. 2006; Spahn
+et al. 2006a). A plume of gas and water vapour (Dougherty et al.
+2006; Hansen et al. 2006; Waite et al. 2006) is ejected from the tiger
+stripes into space, carrying the microscopic water ice particles (Porco
+et al. 2006; Spahn et al. 2006a, b; Hillier et al. 2007a; Schmidt et
+al. 2008). Most of the emitted grains fall back on to the surface of
+Enceladus (Kempf, Beckmann & Schmidt 2010) while a substantial
+part (≈10 per cent) escapes the moon’s Hill sphere, forming and
+sustaining the E ring (Spahn et al. 2006a, b; Kempf et al., 2010,
+2018). The discovery of salts in about 10 per cent of these E ring
+ice particles (Postberg et al. 2009a) and in an even larger proportion
+of plume grains (Postberg et al. 2011) indicates the existence of a
+subsurface ocean, the source of the water ice grains and vapour,
+beneath Enceladus’ ice crust.
+The Cassini spacecraft, launched in 1997, was a flagship mission
+by NASA, European Space Agency (ESA), and the Italian Space
+
+© The Author(s) 2023.
+Published by Oxford University Press on behalf of Royal Astronomical Society. This is an Open Access article distributed under the terms of the Creative
+Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse, distribution, and reproduction in any medium,
+provided the original work is properly cited.
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+3 Department of Earth and Space Sciences, University of Washington, 4000 15th Avenue NE, WA 98195 Seattle, USA
+
+8132
+
+L. Nölle et al.
+
+MNRAS 527, 8131–8139 (2024)
+
+Figure 1. Schematic cross section of the CDA dust analyser subunit
+(Postberg et al. 2006). Depicted are its different parts and the attached charge
+amplifier channels.
+
+2 . I N S T RU M E N T S A N D DATA A N A LY S I S
+2.1. Analysis of CDA mass spectra
+The CDA instrument and its various parts have been described in
+detail by Srama et al. (2004). Here, we focus on CDA’s dust analyser
+(DA) unit (Fig. 1) and in particular the CA subsystem, a simple,
+impact-ionization, linear time-of-flight mass spectrometer. Positive
+ions, generated during hypervelocity dust particle impacts on the
+rhodium CA target (CAT; see Fig. 1), are accelerated towards the
+multiplier (MP) by the strong electrostatic field between the CAT
+and the accelerator grid. The majority of the subsequent path to the
+MP is in a low-field drift region, causing the ions’ separation based
+on their mass-to-charge ratios (m/z). Ion arrival times (ti ) are related
+√
+to their masses (mi ) via the relation ti = a mi + t0 , where a, the
+‘stretch’ parameter is related to the instrument field configuration
+and geometry and t0 , the ‘shift’ parameter, is related to instrument
+triggering, as will be discussed below.
+For the spectra considered in this work, recording of a mass
+spectrum was triggered only when the signal of one of two charge
+amplifier channels (Fig. 1; QC at the CAT or QM at the MP)
+exceeded a preassigned threshold. Thus, we distinguish different
+cases: (a) impact trigger – the impact signal, measured by the QC
+channel, exceeded the assigned QC trigger threshold; (b) line trigger
+– here the first ion species, arriving at MP, created a signal strong
+enough to exceed the trigger threshold of the QM channel. This
+happened either when the impact signal was too weak to exceed
+the QC trigger threshold or by design, when the QC channel was
+not enabled as a trigger. In case (b) spectrum recording started after
+a delay corresponding to the time-of-flight (ToF) of the triggering
+ion species. This time delay is represented by t0 (shift parameter)
+and its value, which varies from spectrum to spectrum, reflects the
+respective trigger types. t0 values of 0 to −0.4 μs are characteristic
+for an impact trigger, whereas t0 values of around −0.5 μs and
+smaller are typical for line triggering, in most cases corresponding
+to the ToF of the triggering ion species. Typical triggering ion
+species are 1 H+ (m/z ≈ 1 u; t0 ≈ –0.48 ± 0.05 μs), [1 H3 16 O]+
+(m/z ≈ 19 u; t0 ≈ −2.05 ± 0.1 μs) or 23 Na+ (m/z ≈ 23 u; t0 ≈
+−2.25 ± 0.1 μs). Due to an instrument incident in autumn 2008,
+possibly linked to the fast, deep dive through the Enceladus plume
+during the E5 flyby (see Postberg et al. 2011), the QC channel
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+Agency (ASI), with the goal of investigating the Saturn system. After
+its arrival on 2004 July 1, it operated until 2017 September 15, when
+it plunged into Saturn’s atmosphere. One of its instruments was the
+Cosmic Dust Analyser (CDA), an impact-ionization dust detector,
+designed to examine the properties of planetary, interplanetary, and
+interstellar dust particles in the Saturnian system (Srama et al.
+2004). For this purpose, it had multiple subsystems to determine
+dust particle masses, surface charges, impact velocities, fluxes, and
+compositions. The latter was determined by CDA’s chemical analyser
+(CA) subunit, a linear impact ionization time of flight mass spectrometer, which produced basic chemical analyses of the material
+from impacting dust particles (Srama et al. 2004; Postberg et al.
+2009b).
+During Cassini’s numerous orbits passing through the E ring, the
+CDA recorded hundreds of thousands of mass spectra of the ring’s icy
+dust particles. Previous analyses of these mass spectra revealed three
+main compositional classes of icy dust particles in the E ring, which
+all are proposed to originate – directly or indirectly – oceanic water
+inside the tiger stripe fractures. The first and most abundant particle
+type (i. e. Type 1) is one of almost pure water ice with only minor
+traces of salts (Postberg et al., 2008, 2009a). This type of particle
+is presumably formed by the condensation and freezing of water
+vapour in the ice vents, within the crust of Enceladus beneath the tiger
+stripes (Postberg et al. 2018b; Cable et al. 2021). The second particle
+type (Type 2) describes ice particles with a detectable content of
+organic substances (Postberg et al. 2018a; Khawaja et al. 2019). For
+this population, two different formation mechanisms are currently
+considered to be at work in parallel: adsorption of volatile, lowmass organics on to Type 1 ice particles and refractory organic spray
+droplets, rich in high-mass organics produced by bubble bursting at
+the ocean water surface, that are subsequently enveloped by ice from
+condensing water vapour in the ice vents (Postberg et al. 2018b;
+Cable et al. 2021). The third type (Type 3) are water ice particles
+strongly enriched in salts (Postberg et al. 2009a). These likely form
+by freezing of oceanic water droplets, produced by turbulence of
+the water surface (Postberg et al. 2009a; Cable et al. 2021). These
+properties are summarized in Table S1.
+So far, the proportions of these three compositional types have only
+been investigated for Enceladus’ plume (Postberg et al. 2011) and
+the inner E ring (Postberg et al. 2009a). In this work, we present the
+first, comprehensive, radial compositional map through the E ring,
+based on Cassini CDA data from several low inclination, equatorial
+E ring plane passages. We also aim to find compositional evidence
+of alteration of these icy dust particles with radial position, by e.g.
+space weathering effects. During the dust particles’ lifetimes of up
+to more than one century (Horányi, Juhász & Morfill 2008) they
+slowly migrate outwards, increasing their semimajor axes, due to
+co-rotational drag from the Saturnian plasma (e.g. Dekarev et al.
+1998). This statistically links the particles’ ages to their average
+distance to Saturn upon detection, making a radial, compositional
+map a promising target to look for the impact of space weathering.
+Furthermore, we discuss a newly discovered E ring particle type
+with respect to its mass spectral and dynamic properties, to infer
+its spatial origin and formation mechanism as well as its possible
+link to space weathering processes. In this context, we present the
+results of a dedicated laboratory analogue measurement campaign
+with the laser-induced liquid beam ion desorption (LILBID) time-offlight mass spectrometer at Freie Universität Berlin. By comparing
+these LILBID analogue spectra with the respective CDA spectra, as
+similarly done before for the main particle types (e.g. Postberg et
+al. 2009a), we are able to put first constraints on the exact particle
+composition of this new type.
+
+Space weathering effects in Saturn’s E ring
+
+2.2. Laboratory analogue measurements
+To investigate the composition of the new particle type (see Section
+3.1), analogue measurements with the LILBID time-of-flight mass
+spectrometer at Freie Universität Berlin (Germany) of multiple,
+highly concentrated NaCl–KCl–H2 O mixtures were conducted. For a
+detailed description of the instrumental set-up, the working principle
+as well as the comparability with CDA’s CA subsystem we refer
+to Klenner et al. (2019). All NaCl–KCl solutions were prepared
+with doubly distilled and deionized H2 O (18.2 MW ‘Milli-Q’) and
+the molar ratio of NaCl/KCl was adjusted to mimic 23 Na+ /39 K+
+peak amplitude ratios of around 2–3. Overall salt concentrations
+(= cNaCl + cKCl ) of 1, 2, and 4 mol L−1 were used to study the
+effect of growing salt concentrations. The spectrometer uses delayed
+
+ion extraction to simulate different CDA particle impact speed
+conditions, with a lower delay time corresponding to a higher impact
+speed and higher delay times corresponding to lower impact speeds
+(Klenner et al. 2019). Thus, to take into account the impact speed
+variations of our data (Table S2), ion extraction delay times of 4.9
+and 5.1 μs were chosen. Because a single spectrum record from one
+laser shot on to the water beam exhibits a relatively high level of
+background noise, the instrument software co-adds a preset number
+of such single spectra to produce the final spectrum with a distinctly
+higher spectral S/N. For a good compromise between the degree of
+S/N enhancement and the accompanying increase of the measurement
+time/required sample volume, the number of single spectra to co-add
+was set to 300 spectra per measurement.
+3 . R E S U LT S
+3.1. A new compositional type
+The compositional analysis of CDA mass spectra from the selected
+periods (Table S2), revealed a new compositional type of E ring
+particles. In contrast to the three main types (Table S2; Fig. S1a–c),
+the characteristic spectral features of this type consist of only two
+peaks (S/N  3σ noise , σ noise → uncertainty based on the individual
+spectral background noise), we call main peaks, corresponding to
+the mass lines 23 Na+ and 39 K+ , and which indicate a salt-related
+composition. Other prominent mass lines, indicative e.g. for water
+are missing. Thus, extending the existing classification of three E
+ring ice particle types (Table S1) as well as a fourth type of nonE ring mineral dust (Altobelli et al. 2016; Fischer et al. 2018), we
+name this type ‘Type 5’. In total, 180 spectra of this type have been
+identified (without BS filtering), which can be separated into two
+subpopulations based on the trigger case. Those with both main
+peaks (Fig. 2a) present (31 spectra) are subsequently referred to as
+‘early triggered’ (t0 > −2 μs). The remaining 149 were line triggered
+on 23 Na+ , only show the 39 K+ mass line (Fig. 2b) and are called ‘late
+triggered’ (t0 < −2.15 μs).
+Tiny spectral signatures (S/N < 3σ noise , Fig. S2), subsequently
+referred to as minor peaks, can be observed occasionally. Most minor
+peaks correspond to salt–cluster mass lines typically observed in
+CDA spectra of salt-bearing ice particles (Type 3; see Tables S1
+and S3), further constraining the possible particle composition to a
+combination of salts and water ice. Impact speed dependent changes
+of the spectral appearance have not been observed as well as mass
+lines from the CA target material rhodium (103 Rh+ , m/z = 103 u)
+or CA target contaminants like carbon (12 C+ , m/z = 12 u). These
+mass lines typically occur in CDA mass spectra recorded at impact
+speeds exceeding 9 km s−1 (Postberg et al. 2009b) and thus their
+absence restricts the impact speed to this upper limit. Since this
+speed limit is in good agreement with the predicted Kepler–RAM
+speeds (Tables S2 and S4), Type 5 particles must exhibit comparable
+particle dynamics to the other E ring ice particles and thus their origin
+must be located inside the E ring.
+As a next step, the 23 Na+ /39 K+ peak amplitude ratios were
+determined from early triggered spectra of sufficient spectral quality
+(Fig. 3). From the 31 early triggered spectra 15 – defined here
+as the Type 5 archetypes – are qualitatively good enough to be
+considered for this approach (see Table S4). Except for two outliers,
+the archetype spectra exhibit 23 Na+ /39 K+ peak ratios <3, with the
+overall average 23 Na+ /39 K+ peak ratio being located at 2.4. This
+level is more than one order of magnitude lower than in Type 3,
+that typically exhibit 23 Na+ /39 K+ peak amplitude ratios of >100
+(Postberg et al. 2009a).
+MNRAS 527, 8131–8139 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+experienced a massive sensitivity loss, effectively rendering impacttriggered spectra impossible. Since then, the line triggering is the
+only relevant CDA CA trigger mechanism for E ring ice grains.
+The stretch parameter a is defined by the instrument’s geometry and
+field strengths. Previous works with CDA spectra suggest values
+between approximately 470 and 480 ns, with about 477 ns being
+the theoretical value for the nominal instrument voltages and zero
+initial energy ions. Here, a cross-correlation approach was used to
+determine the exact values of t0 and a, adapted from Postberg et
+al. (2006, 2008, 2018a). We refer to these publications for further
+details about the mass spectrum generation and calibration process.
+Following the individual calibration, the mass spectra are classified
+based on the presence and/or absence of mass lines of characteristic
+ion species, based on the results from previous analyses of CDA
+mass spectra (Table S1).
+For the radial compositional mapping of the E ring, only CDA
+spectra were considered, that were recorded during periods when
+Cassini passed though the E ring close to Saturn’s equatorial ring
+plane (RPL, |dRPL | < 0.1 RSaturn ; Table S2). This geometrical
+constraint was chosen to avoid introducing bias to the inferred radial
+compositional profile by possible vertical, compositional variations
+of the ring. A potential remaining bias is the periodic change
+in CDA’s boresight (CDA–BS). Depending on whether CDA was
+the prioritized instrument or whether other instruments were given
+priority for their observations, CDA pointed into different directions
+during Cassini’s orbits. This resulted in frequent situations in which
+the angular distance between the CDA–BS and the reference influx
+direction for dust particles on circular orbits, called Dust–RAM,
+was larger than the aperture angle of the CAT subsystem of ± 28◦
+(relative to CDA–BS; Srama et al. 2004). In such cases, the CAT
+was insensitive to the E ring particles with low to moderate orbital
+eccentricities, relevant for our analysis. Thus, all sections of the
+selected orbital periods during which the angle between the CDA–BS
+and Dust–RAM was > 25◦ are not considered for the spatial analysis,
+to reduce any bias introduced by dynamically different particles on
+highly eccentric orbits. Thus, from the 7536 actual spectra, found
+in the analysed periods (Table S2), 6370 are considered for the
+radial E ring mapping in this work. To produce the radial profile
+for the mapping, the spectra were sorted with respect to Cassini’s
+distance to Saturn at the moment of their detection. Starting at
+the lower distance limit, they are grouped into overlapping bins
+(50 per cent overlap) with a constant number of spectra per bin for
+comparable statistical error margins. Then, the spectral proportions
+and corresponding statistical errors are calculated for each spectral
+type and bin. A bin size of 720 spectra/bin has been selected for the
+radial mapping to achieve a good compromise between number of
+bins (spatial resolution) and sample size per bin (statistical error).
+
+8133
+
+8134
+
+L. Nölle et al.
+
+(a)
+
+Figure 4. Peak amplitude ratios of 23 Na+ /[23 Na35 Cl]23 Na+ derived from
+LILBID measurements of NaCl–KCl–H2 O mixtures with a molar NaCl/KCl
+ratio of nine for different overall salt concentrations, measured at delay times
+of 4.9 and 5.1 μs. The depicted error bars represent the statistical error,
+since each measurement point has been derived from a spectrum itself being
+composed of 300 averaged spectra.
+
+Figure 2. Type 5 example spectra: (a) Early triggered (t0 > −2 μs); (b) Late
+triggered (t0 < −2.15 μs).
+
+Figure 5. Profile of the relative frequency distribution of Type 5 along the
+radial extent of the E ring.
+ The grey shaded area states the standard error of the
+mean: SEM = 100 ∗ pType ∗ (1 − pType )/ntot , with pType = nType /ntot ,
+where nType here is the number of Type 5 detections in the respective bin
+and ntot is the preassigned bin size of 720 spectra bin−1 . The dashed lines
+mark the mean orbital distances of the icy moons Enceladus (En), Tethys
+(Th), Dione (Di), and Rhea (Rh).
+
+Figure 3. Distribution of the 23 Na+ /39 K+ peak amplitude ratios for the 15
+archetype spectra of Type 5. Bin size = 0.5.
+
+LILBID analogue experiments (Klenner et al. 2019) with highly
+concentrated salt-water solutions were conducted to constrain further
+the actual composition of the grains which produce Type 5 spectra.
+The 23 Na+ /39 K+ peak amplitude ratios observed in Type 5 spectra are
+reproduced best by a molar NaCl/KCl ratio of around 3–10 (see Fig.
+S3). The 23 Na+ /[23 Na35 Cl]23 Na+ peak amplitude ratio shows a clear
+increase with increasing overall salt concentration (Fig. 4). Based
+on this trend, the almost complete absence of the [23 Na35 Cl]23 Na+
+mass line in Type 5 spectra, except the rare occurrence as a minor
+mass line, suggests an overall salt concentration in the ice particles
+of >4 mol L−1 .
+MNRAS 527, 8131–8139 (2024)
+
+Unfortunately, higher salt concentrations cannot be measured with
+this analogue experiment due to the incipient precipitation of ice and
+salts at the instrument nozzle outlet that blocks the water beam.
+However, even this lower limit would be a salt concentration at least
+one order of magnitude higher than the salt concentrations inferred
+for Type 3 particles (≈ 0.2–0.3 mol L−1 of salts; Postberg et al.
+2009a). We also see (Fig. 4), that the LILBID delay time and thus the
+particle impact speed on to CDA–CAT, clearly affects the resulting
+peak amplitude ratio, indicating that the impact speed also plays an
+important role in the formation of Type 5 spectra.
+In order to identify the source of Type 5 particles, we conduct
+a radial mapping of the type’s frequency relative to the other E
+ring ice particles (Fig. 5). From the overall 180 identified spectra of
+Type 5, 142 are considered for this mapping due to the limitation
+of the CDA–BS (see Section 2.1). Unexpectedly, the Type 5 particle
+proportion has a sharp maximum (≈7 per cent) at distances between
+7 and 8.5 RSaturn . They are least frequently detected (<0.5 per cent)
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+(b)
+
+Space weathering effects in Saturn’s E ring
+
+at the orbital distance between 4 and 5 RSaturn , just outside the orbit
+of Enceladus (3.95 RSaturn ), which marks the densest region of the E
+ring. As we will discuss later in detail (see Section 4.1), this argues
+against a direct Enceladus origin of this very salty, compositional
+type. Instead, they could represent old, heavily space weathered Type
+3 particles, accumulating in the E ring near the orbit of Rhea.
+
+Figure 7. Profile of the relative spectral frequency distribution of all particle
+types along the radial extent of the E ring. The absolute particle number
+density of E ring particles decreases by several orders of magnitude for the
+shown radial range (Srama et al. 2011). The colour-shaded areas represent
+the respective standard error of the mean (see Fig. 5) The dashed lines mark
+the mean orbital distances of the ice moons Enceladus, Tethys, Dione, and
+Rhea. The blank symbols at 3.95 RSaturn represent the spectral frequencies of
+Type 1–3 in the E ring close to the Enceladus plume (Postberg et al. 2011,
+2018b).
+
+3.2. Analysis of Type 3 spectra
+To further investigate this hypothesis and take into account our
+NaCl-based laboratory results, we analyse the sum-spectra of NaCldominated∗ Type 3 CDA spectra (Fig. 6), obtained in two separate E ring regions at distances of 4–6 RSaturn (inner) and 7–9
+RSaturn (outer) from Saturn. A distinct trend is apparent for the
+Na+ /[NaCl]Na+ peak amplitude ratio, with the ratio in the inner
+region (3.4 ± 0.7) being only about half of the ratio that is found
+in the outer region (6.7 ± 2.0). From the experimental results
+(Fig. 4), showing 23 Na+ /[23 Na35 Cl]23 Na+ peak ratios increasing
+with overall salt concentrations, we therefore infer that the saltconcentrations in Type 3 particles increase with radial distance from
+Saturn. This supports the hypothesis that Type 5 particles evolve
+from Type 3 particles. Interestingly, the Na+ /K+ peak amplitude
+ratios of 178.1 ± 37.1 (inner) and 73.9 ± 22.3 (outer) for these
+Type 3 spectra indicate a distinct, distance-dependent increase of the
+potassium signal, whereas the Na+ /[NaOH]Na+ amplitude ratios of
+3.0 ± 0.6 for the inner region and 3.0 ± 0.9 for the outer show no
+clear trend.
+3.3. Spatial E ring analysis
+The spectral frequency profile of the other spectral types of ice
+particles (Fig. 7) shows distinct changes from the densest regions
+of the E ring to the thinner, outer part. Just outside the orbit of
+Enceladus the original Types 1, 2, and 3 are in good agreement with
+the proportions found in the E ring close to the Enceladus plume
+(Postberg et al. 2011, 2018b; Fig 7 blank symbols). Type 1 is then
+continuously more frequently detected with increasing distance from
+Saturn from ≈55 per cent at 4 RSaturn to almost 80 per cent in the
+outer E ring. The relative frequency of Type 2 declines with distance
+to Saturn from almost 30 per cent to a minimum (≈8 per cent) at
+around 8–9 RSaturn . The Type 3 proportion first grows to a frequency
+maximum (≈22 per cent) at around 6 RSaturn , near the orbital distance
+
+Figure 8. Profile of the relative spectral frequency of the Type 2–HMOC
+subtype along the radial extent of the E ring (based on data from Postberg et
+al. 2018a).
+
+of Dione and then drops again continuously to about 9 per cent in the
+outer E ring. Outside 12 RSaturn the spectral frequency trends of all
+particle types plateau.
+Similarly, we analyse the radial distribution of the relative frequency of the Type 2–HMOC subtype, in which complex refractory
+organics are present (’High-Mass Organic Cations’; Postberg et al.
+2018a), along the radial extent of the E ring (Fig. 8). Here we observe
+again a declining trend, as with the distribution of the general Type
+2. From the orbital distance of Enceladus out to 12 RSaturn the relative
+frequency of Type 2–HMOC drops by a factor of about 10.
+4. DISCUSSION
+4.1. Origin of Type 5 grains
+Our work revealed a characteristic set of properties for Type 5
+particles: Indications for a salt/water ice composition (Fig. 2 and
+Tables S2 and S3) with very high salt concentrations (>4 mol L−1 ),
+MNRAS 527, 8131–8139 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+Figure 6. Sum-spectra of NaCl-rich Type 3 for the two distance regimes of
+4–6 RSaturn (23 spectra, blue line) and 7–9 RSaturn (11 spectra, orange line)
+from Saturn.
+
+8135
+
+8136
+
+L. Nölle et al.
+
+likely originating from inside the E ring with an increased probability
+of detection far outside the orbit of Enceladus (Fig. 5). Thus, we
+suggest here that Type 5 particles represent extremely salt-rich water
+ice particles, secondarily formed inside the E ring over time. The
+most likely predecessor particles are the salt-bearing Type 3 particles,
+ejected by Enceladus (Postberg et al. 2009a, 2011). Plasma sputtering
+would be the responsible transformation mechanism to erode E ring
+particles (Jurac et al. 2001a; Jurac, Johnson & Richardson 2001b;
+Johnson et al. 2008; Hsu et al. 2011a, b, 2015). During the formation
+of Type 3 particles, ice and salt are likely separated by the freezing
+process and it is possible that salts accumulate preferentially in the
+particle core. The continuous erosion of the salt-poor shell by plasma
+sputtering (Fig. 9), preferentially removing the water ice, would
+consequently lead to an increasing salt concentration over time. Even
+if the salt is not accumulated around the centre but elsewhere in
+the particle (e.g. in the form of salt veins) an increase of the salt
+concentration over time is still possible when considering different
+sputtering rates of water ice and salt. As discussed by Hsu et al.
+(2011b) for Saturnian stream particles, water ice exhibits several
+times higher sputtering rates than silicate (Tielens et al. 1994; Guillet,
+ˆ 2009). Based on this, salts, as another
+Jones & Pineau Des Forets
+mineral component, can be assumed to be also more resistant against
+sputtering than water ice, which again would result in a preferential
+erosion of the water ice, causing an increase of the salt concentration
+over time.
+Such a correlation of particle age and salt concentration is also
+supported by our observations in the NaCl-rich Type 3 spectra
+at different distances to Saturn (Fig. 6) in combination with our
+laboratory results of different salt concentrations (Fig. 4). The NaClrich Type 3 particles from larger distances to Saturn tend to be
+older than those found at lower distances, due to the outwardsdirected particle migration, driven by plasma drag (Dikarev & Krivov
+1998). Our results (Figs 4 and 6) suggest that salt concentration
+in Type 3 particles grows with distance to Saturn and thus age.
+The actual transition to Type 5 would then take place when the
+salt concentration has grown beyond a concentration threshold, that
+ultimately causes the suppression of salt cluster-related mass lines.
+The remaining elemental mass lines of 23 Na+ and 39 K+ then produce
+the characteristic spectral appearance of Type 5.
+It is also important to point out, that the observed delay time
+differences in our laboratory results (Fig. 4) indicate that – in addition
+MNRAS 527, 8131–8139 (2024)
+
+4.2. Implications for E ring dynamics
+A remarkable finding is that the peak in the relative frequency of
+Type 5 particles lies between the orbits of Dione and Rhea (Fig. 5).
+Since we have no indication of other sources for salt rich dust in this
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+Figure 9. Simple idealized schematic on how the Type 5 particles possibly
+form from Type 3 particles via erosion by plasma sputtering (arrows). The
+ongoing bombardment by ions and electrons continuously erodes the saltpoor ice shell (red) while the salt-rich ice core (grey) is mostly unaffected.
+Since the absolute amount of salt remains about constant or is removed more
+slowly than the ice, salt concentrations increase throughout the process and
+eventually suppress other mass lines in the spectra, producing the reported
+spectral appearance of Type 5.
+
+to high salinity – higher impact speeds suppress the formation of salt
+cluster ions (here [23 Na35 Cl]23 Na+ ). This conclusion is based on
+the reverse correlation of LILBID instrumental delay time and CDA
+impact speed (Klenner et al. 2019) and could ultimately result in
+the enhancement of Type 5 spectral characteristics from ice particles
+that would produce Type 3 spectra at lower impact speeds. Hence, in
+future CDA spectra revisions we expect to see a relatively higher
+proportion of Type 5-like spectra in CDA data from high-speed
+Enceladus plume flybys (e.g. E5; Postberg et al. 2011) or during
+high-speed passages of the inner E ring (Linti et al., in preparation)
+compared to those of low speed plume flybys (e.g. E17; Postberg et
+al. 2018b).
+However, if Type 5 really stems from Type 3 and only water
+ice is eroded in the process of transformation, both types should
+show comparable ratios of sodium and potassium salts and thus
+23
+Na+ /39 K+ peak amplitude ratios. But as reported earlier, the Type
+5 archetypes (early triggered and a good spectrum quality) mostly
+exhibit moderate ratios (<3; Fig. 3), while the vast majority of Type
+3 spectra is dominated by sodium salts and on average exhibits
+very high 23 Na+ /39 K+ peak amplitude ratios of about 100 and larger
+(Postberg et al. 2009a). We suggest here two scenarios that may
+explain this discrepancy.
+First, we cannot rule out that besides the water ice also parts of
+the salts are eroded. For example if the assumed salt-rich ice core
+of Type 3 particles is not compositionally homogeneous but exhibits
+a further stratification into a sodium-rich subshell and potassiumrich core, parts of this subshell could also be eroded by the plasma
+sputtering. This would result in a loss of sodium salts relative to the
+potassium salts, causing the observed reduction of the 23 Na+ /39 K+
+peak amplitude ratio. In this context, also the preferred erosion of
+sodium over potassium, as pointed out by Johnson et al. (2002) based
+on sputtering of Na and K on Europa’s icy surface, could be a possible
+explanation.
+The second explanation is an observational bias, in which spectra,
+with a relatively strong 39 K+ mass line, were preferentially identified
+as Type 5. Type 5 spectra, produced by grains with 23 Na+ /39 K+ peak
+amplitude ratios typical for Type 3, would consist of a single peak,
+the mass line 23 Na+ , which in the case of line triggering would even
+be truncated. This reduced the chance that the spectra were identified
+as valid spectra by CDA’s onboard software and transmitted to Earth.
+Moreover, even if transmitted, the calibration of single peak spectra
+is generally difficult without at least one second point of reference.
+For example the numerous line-triggered and thus single peak Type
+5 spectra in this work, just showing the 39 K+ mass line, could only be
+identified as 23 Na+ -triggered, based on the shift parameter exhibiting
+a t0 value of around −2.25 μs (see Section 2.1), when the single peak
+is assigned to the mass 39 u. For spectra with 23 Na+ being the actual
+single peak, this approach would not work however. Hence, it is
+likely that CDA spectra of Na-dominated ‘Type 5-Na’ grains are
+much more abundant in reality than the K-rich Type 5 population of
+this work. They do not show up in the Type 5 data set because the
+rare cases dominate, that exhibit sufficient potassium to allow a mass
+calibration. We conclude that the Type 5 spectra rich in both Na and
+K salts reported here, are likely to be the ‘tip of the iceberg’ of a much
+more numerous, very high salinity E ring population, dominated by
+sodium salts.
+
+Space weathering effects in Saturn’s E ring
+
+Figure 10. Simple idealized schematic on how Type 2 grains continuously
+loose part of their organic content by photochemical degradation until the
+total organic content drops below the spectral detection threshold and the
+respective spectra become Type 1. The shown molecule of acetaldehyde
+(ethanol) and the fragments are given as an example to illustrate the proposed
+loss by fragmentation into small, highly volatile molecular fragments, e.g.
+CHx or CO. Also N-bearing organics can be present (Khawaja et al. 2019),
+which consequently produce fragments like CN or NHy . (s) → solid, (g) →
+gaseous.
+
+4.3. Weathering of Type 1, 2, and 3 grains
+For the Type 5 grains we have suggested plasma sputtering acting in
+combination with the E ring particle dynamics as an explanation for
+the observed radial spectral frequencies profile. Another process capable of altering the grain composition is photochemical degradation.
+These weathering processes, plasma sputtering, and photochemical
+degradation, affect the three main particle Types (1–3) differently,
+so that their action may contribute to or even explain the observed
+radial changes of the spectral frequencies of E ring grains.
+For Type 2 particles we expect photochemical degradation to play
+a more important role. The organic molecules in Type 2 particles,
+typically either embedded in the centre (HMOC case; see Postberg
+et al. 2018a) or adsorbed on to the surface or near surface (Khawaja
+et al. 2019), are susceptible to degradation/fragmentation by solar or
+cosmic radiation (e.g. Allamandola, Sandford & Valero 1988). Thus,
+the ongoing radiation exposure is expected to continuously fragment
+organic molecules into successively smaller and thus more volatile
+species. This fragmentation proceeds until the molecules are so small
+(e.g. CHx , CO, CN, OH or NHy ; Fig. 10), that they can escape the
+particles as volatiles. If sufficient organic fragments are removed
+from the ice particle, the grains’ overall organic content drops below
+the CDA detection threshold and the resulting spectra are identified
+as Type 1. Such a transformation of Type 2 particles into secondary
+Type 1 is in good agreement with the opposing frequency trends of
+Types 1 and 2 along the radial extent of the E ring, as well as the
+decline in the relative frequency of Type 2–HMOC particles (Fig. 8).
+While the Type 2 population decreases with time, due to both plasma
+sputtering erosion and transformation into secondary Type 1, Type
+1 can compensate losses from sputter erosion by replacement with
+transformed Type 2 particles.
+For Type 1 particles, which are almost pure water ice with barely
+detectable traces of salts and no traces of organics, we consider that
+erosion by plasma sputtering is as well the most relevant weathering
+process (Hsu et al. 2011b). Photochemical degradation will mostly
+produce OH, O or H and related ions, which would escape from
+the particles as volatiles, leaving particle compositions effectively
+unaltered. Both processes will thus effectively lead to a shrinking of
+the ice grains without a compositional change that is measurable by
+CDA.
+
+MNRAS 527, 8131–8139 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+E ring region, these grains probably still originate from Enceladus.
+As previously mentioned, we suggest that during the time spent in the
+circumplanetary environment the nearly pure ice mantles of the Type
+3 grains are increasingly eroded by sputtering due to magnetospheric
+plasma (Fig. 9). Simultaneously, the drag exerted by the plasma will
+transport the grains radially outward, away from Enceladus (Dikarev
+& Krivov 1998), such that grains in more distant orbits from their
+source will tend to be older. Thus, with increasing distance from
+Enceladus, an increasing fraction of the Type 3 particle population
+is indeed expected to turn into Type 5 (Fig. 7).
+The time per radial distance that a grain is exposed to plasma
+sputtering will be increased if the outward orbital migration of dust
+particles is slowed down by other dynamical processes. One such
+process has been described by Mitchell, Colwell & Horányi (2005).
+In the E ring, dust particles are subject to charging, by collisions with
+electrons and ions from magnetospheric plasma, including the effect
+of secondary electron emission, and photo emission due to Solar UV.
+As a result, grains acquire a negative charge within approximately
+7–8 RSaturn from Saturn and a positive charge radially outward from
+this distance (Horanyi, Burns & Hamilton 1992; Kempf et al. 2006).
+A minimum of the negative charge, and thus the equilibrium potential
+, has been measured at an approximate orbital distance of 7 RSaturn
+(Kempf et al. 2006). As outlined by Mitchell et al. (2005), owing
+to the finite charging times (the time that it takes a grain to acquire
+the equilibrium potential), a charged grain on an eccentric orbit can
+exchange energy with the magnetospheric, corotational electric field.
+In particular, in regions where ddr < 0 (i.e. roughly inside 7 RSaturn )
+the grain will gain energy leading to an increase of its semimajor axis.
+In regions where ddr > 0 (outside 7 RSaturn ) the grain loses energy
+and the semimajor axis decreases. Thus, when acting on top of other
+dynamical processes induced by perturbations from solar radiation,
+plasma drag as well as the planetary magnetic field and higher-order
+gravity (Horanyi et al. 1992; Dikarev & Krivov 1998), this effect
+may lead to a slowdown of the outward orbital migration of E ring
+dust and with that to longer orbital residence times in the region
+between 7 RSaturn and 8.5 RSaturn . Since Type 5 presumably evolves
+via the process of plasma sputtering from Type 3 particles, longer
+residence times in this region of the E ring should result in relatively
+more Type 5 particles evolving locally than in other ring regions,
+which is in good agreement with our results (Fig. 5). Therefore,
+this mechanism should be the reason for the Type 5 frequency peak
+between 7 and 8.5 RSaturn . The frequency decrease of Type 5 at
+distances larger than 8.5 RSaturn from Saturn (Fig. 5) can also be
+explained by this mechanism. When finally migrating out of the 7–
+8.5 RSaturn region, the Type 5 particles, already being smaller due to
+their sputtering-driven evolution from Type 3, have been eroded to
+even smaller sizes, if not completely. This increases the chance that
+they have declined below the detection threshold of CDA’s CA for
+the encountered impact speeds of around 6–8 km s−1 (Table S2) and
+thus being invisible for CDA. Moreover, smaller particles become
+increasingly susceptible to orbital perturbations by the Lorentz-force,
+eventually pushing the particles out of the Saturn system, as described
+for Saturnian stream particles (Hsu et al. 2011b). In addition to that,
+particles exhibit relatively short orbital residence times (compared
+to the 7–8.5 RSaturn region). Thus, the outer E ring region can be
+expected to produce only few new Type 5 particles, sufficient to
+sustain the particle population at the observed low-frequency level
+(Fig. 5) but not enough to compensate the losses by sputtering.
+
+8137
+
+8138
+
+L. Nölle et al.
+
++hv
+
+N aCl + H2 O → N aOH + H Cl.
+While producing additional NaOH, potential by-products are
+either volatile and escape the particles (e.g. H, O, or OH) or do
+not show up in the cation mass spectra of CDA due to the ions’
+tendency to preferably form anions (e.g. Cl or HCl). Hence, such
+a photochemistry-driven NaOH replenishment might explain the
+behaviour of the [NaOH]Na+ mass line.
+The observed frequency peak of Type 3 near the orbit of Dione is,
+according to our current understanding, most likely to be a statistical
+effect, as no sources of salt-rich dust particles are known in this
+region. The absolute number density of all particle types drops
+radially outward (Srama et al. 2011) but the relative abundance of
+Type 2 drops drastically, while Type 3 grows. The number density
+of Type 3 therefore decreases more slowly than that of Type 2. We
+propose this happens because the organic bearing Type 2 grains are
+more susceptible to chemical alteration than the salty Type 3 grains.
+Alternatively, freshly produced Type 2 grains could be generally
+larger than Type 3. Since plasma drag induces a slower orbital
+migration for larger grains, this implies that a sizeable fraction of
+Type 2 remains confined for a longer time to a narrower annular
+region around Enceladus’ orbit. Thus, the relative frequency of Type
+3 increases between 5 and 6 RSaturn . Further outward, the conversion
+from Type 3 to Type 5 then decreases the Type 3 proportion
+again.
+
+5 . S U M M A RY A N D C O N C L U S I O N
+Here, we have presented the first comprehensive, compositional
+map of the E ring along its radial extent, based on CDA mass
+spectra. Our results show radial changes of the relative particle type
+frequencies, which we interpret as driven by space weathering effects
+like photochemical degradation and plasma sputtering. This finding is
+supported by the discovery of a new, extremely salt-rich, particle type
+(Type 5). This type is preferentially detected in the region between
+the orbits of the moons Dione and Rhea, presumably forming from
+Enceladus’ salt-bearing ice particles (Type 3) via plasma sputtering of
+the salt-poor ice component. This aspect of the spectral abundance of
+Type 5 provides indirect evidence for a particular radial dependence
+of the electromagnetic equilibrium potential of the E ring grains,
+as it was inferred from direct Cassini measurements in this region.
+Further evidence for the chemical (and by inference, spatiotemporal)
+evolution of E ring grains was found for Type 2. There are indications
+for the ongoing transformation of Type 2 particles into Type 1
+particles, due to photochemical degradation of enclosed organics
+into volatile molecular fragments capable of degassing from the icy
+particles.
+MNRAS 527, 8131–8139 (2024)
+
+AC K N OW L E D G E M E N T S
+LN, FP, JKH, and NK were supported by the European Research
+Council under the European Union’s Horizon 2020 research and
+innovation programme (Consolidator grant number 724908-Habitat
+OASIS). JKH also acknowledges support from German Research
+Foundation (DFG) grant number HI 2157/1–1. FK acknowledges
+support from NASA Habitable Worlds Program grant number
+80NSSC19K0311. RS has been supported by the German Aerospace
+Centre through grant number 50OH1501.
+DATA AVA I L A B I L I T Y
+The CDA data underlying this article are summarized in Table S2
+and are archived on PDS–Small Bodies Node at https://sbn.psi.edu/
+pds/resource/cocda.html. The table of analysed CDA events and the
+laboratory data from the LILBID analogue experiments are available
+in the Zenodo public repository at https://doi.org/10.5281/zenodo.1
+0161282.
+REFERENCES
+Allamandola L., Sandford S., Valero G., 1988, Icarus, 76, 225
+Altobelli N. et al., 2016, Science, 352, 312
+Baum W., Kreidl T., Westphal J., Danielson G., Seidelmann P., Pascu D.,
+Currie D., 1981, Icarus, 47, 84
+Cable M. L. et al., 2021, Planet Sci. J., 2, 132
+De Pater I., Martin S. C., Showalter M. R., 2004, Icarus, 172, 446
+Dikarev V. V., Krivov A. V., 1998, Sol. Syst. Res., 32, 128
+Dougherty M. K., Khurana K. K., Neubauer F. M., Russell C. T., Saur J.,
+Leisnerand J. S., Burton M. E., 2006, Science, 311, 1406
+Fischer C., Postberg F., Altobelli N., Nölle L., Albin T., 2018, EPSC, 12,
+1279
+ˆ G., 2009, Astron. Astrophys., 497,
+Guillet V., Jones A. P., Pineau Des Forets
+145
+Hansen C. J., Esposito L., Stewart A. I. F., Colwell J., Hendrix A., Pryor W.,
+Shemansky D., West R., 2006, Science, 311, 1422
+Hillier J. K. et al., 2007a, Mon. Not. R. Astron. Soc., 377, 1588
+Horanyi M., Burns J. A., Hamilton D. P., 1992, Icarus, 97, 248
+Horányi M., Juhász A., Morfill G. E., 2008. Geophys. Res. Lett., 35, 5
+Hsu H. W., Kempf S., Postberg F., Trieloff M., Burton M., Roy M., MoragasKlostermeyer G., Srama R., 2011a, J. Geophys. Res, 116, 10.
+Hsu H. W., Postberg F., Kempf S., Trieloff M., Burton M., Roy M., MoragasKlostermeyer G., Srama R., 2011b, J. Geophys. Res, 116, 23
+Hsu H. W. et al., 2015, Nature, 519, 207
+Johnson R. E., Leblanc F., Yakshinkiy B. V., Madey T. E., 2002, Icarus, 156,
+136
+Johnson R. E., Famá M., Liu M., Baragiola R. A., Sittler E. C., Jr., Smith H.
+T., 2008, Planet. Space Sci., 56, 1238
+Jurac S., Johnson R. E., Richardson J. D., 2001b, Icarus, 149, 384
+Jurac S., Johnson R. E., Richardson J. D., Paranicas C., 2001a, Planet. Space
+Sci., 49, 319
+Kempf S. et al., 2008, Icarus, 193, 420
+Kempf S., Beckmann U., Srama R., Horanyi M., Auer S., Gru¨n E., 2006,
+Planet. Space Sci., 54, 999
+Kempf S., Beckmann U., Schmidt J., 2010, Icarus, 206, 446
+Kempf S., Hor´anyi M., Hsu H.-W., Hill T. W., Juh´asz A., Smith H. T., 2018,
+in Schenk P. M., Clark R. N., Howett C. J. A., Verbiscer A. J., Waite J.
+H., eds, Enceladus and the Icy Moons of Saturn. Univ. Arizona, Tucson,
+USA, p. 195
+Khawaja N. et al., 2019, MNRAS, 489, 5231
+Klenner F. et al., 2019, Rapid Commun. Mass Spectrom., 33, 1751
+Mitchell C. J., Colwell J. E., Horányi M., 2005, J. Geophys. Res., 110, 7
+Nicholson P. D. et al., 1996, Science, 272, 509
+Pang K. D., Voge C. C., Rhoads J. W., Ajello J. M., 1984, J. Geophys. Res.,
+89, 9459
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+As indicated in the previous section, we expect Type 3 to behave
+in a similar way to Type 1, with plasma sputtering being the
+most relevant process, especially when considering the proposed
+transformation into Type 5. Photochemical degradation may still
+occur, but as for Type 1, alterations of the water ice fraction of
+Type 3 are not expected to produce detectable signatures in the
+spectra. However, one salt-related modification could be indicated
+by the observed, apparent constancy of the [NaOH]Na+ mass line
+(Fig. 6). Based on the behaviour of the [NaCl]Na+ mass line,
+one would expect [NaOH]Na+ to behave similarly and decline as
+well with growing distance. However, NaCl and H2 O molecules
+could theoretically be subject to photochemical reactions, for
+example:
+
+Space weathering effects in Saturn’s E ring
+
+Table S1: Classification criteria of the three main compositional
+particle types, previously discovered in CDA E ring spectral data,
+relevant to this work.
+Table S2: List of selected periods from the CDA data record used
+for the analysis (1 RSaturn = 60 268 km).
+Table S3: List of minor peaks observed in at least two of the 180
+Type 5 spectra. ‘X’ in the peak labels stands for unknown spectral
+feature and the number refers to the mean peak mass [u].
+Table S4: Sample from the extended CDA spectra table available in
+full length online (https://doi.org/10.5281/zenodo.10 161 282).
+Figure S1a–e: Selection of example spectra for the three compositional main types of ice particles (Table S1), including the mentioned
+but not considered mineral dust (Type 4) and stream particles.
+Figure S2: Example Type 5 spectrum illustrating the order of
+magnitude of the minor peaks, only rarely observed in Type 5 spectra.
+Figure S3: Example spectrum of the measurement of 4 molar saltwater mixture with a molar NaCl/KCl ratio of 9 and a delay time of
+5.1 μs.
+Please note: Oxford University Press is not responsible for the content
+or functionality of any supporting materials supplied by the authors.
+Any queries (other than missing material) should be directed to the
+corresponding author for the article.
+
+S U P P O RT I N G I N F O R M AT I O N
+Supplementary data are available at MNRAS online.
+
+This paper has been typeset from a Microsoft Word file prepared by the
+author.
+
+© The Author(s) 2023.
+Published by Oxford University Press on behalf of Royal Astronomical Society. This is an Open Access article distributed under the terms of the Creative Commons Attribution License
+(https://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+MNRAS 527, 8131–8139 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/527/3/8131/7450472 by Universität Stuttgart user on 29 June 2026
+
+Porco C. C. et al., 2006, Science, 311, 1393
+Postberg F., Kempf S., Srama R., Green S., Hillier J., McBride N., Gru¨n E.,
+2006, Icarus, 183, 122
+Postberg F., Kempf S., Hillier J., Srama R., Green S., McBride N., Gru¨n E.,
+2008, Icarus, 193, 438
+Postberg F., Kempf S., Schmidt J., Brilliantov N., Beinsen A., Abel B., Buck
+U., Srama R., 2009a, Nature, 459, 1098
+Postberg F., Kempf S., Rost D., Stephan T., Srama R., Trieloff M., Mocker
+A., Goerlich M., 2009b, Planet. Space Sci., 57, 1359
+Postberg F., Schmidt J., Hillier J., Kempf S., Srama R., 2011a, Nature, 474,
+620
+Postberg F. et al., 2018a, Nature, 558, 564
+Postberg F., Clark R. N., Hansen C. J., Coates A. J., Dalle Ore C. M., Scipioni
+F., Hedman M. M., Waite J. H., 2018b, in Schenk P. M., Clark R. N.,
+Howett C. J. A., Verbiscer A. J., Waite J. H., eds, Enceladus and the Icy
+Moons of Saturn. Univ. Arizona, Tucson, USA, p. 129
+Schmidt J., Brilliantov N., Spahn F., Kempf S., 2008, Nature, 451, 685
+Showalter M. R., Cuzzi J. N., Larson S. M., 1991, Icarus, 94, 451
+Spahn F. et al., 2006a, Science, 311, 1416
+Spahn F. et al., 2006b, Planet. Space Sci., 54, 1024
+Srama R. et al., 2004, Space Sci. Rev., 114, 465
+Srama R. et al., 2011, CEAS Space J., 2, 3
+Tielens A. G. G. M., McKee C. F., Seab C. G., Hollenbach D. J., 1994,
+Astrophys. J., 431, 321
+Waite J. H. et al., 2006, Science, 311, 1419
+
+8139
+
+

@@ -1,0 +1,971 @@
+R ES E A RC H | R E S EA R C H A R T I C LE S
+
+RE FE RENCES AND N OT ES
+
+1. S.-M. Toh, L. Xiong, T. Bae, A. S. Mankin, RNA 14, 98–106
+(2008).
+2. J. A. Kowalak, E. Bruenger, J. A. McCloskey, J. Biol. Chem. 270,
+17758–17764 (1995).
+3. F. Yan et al., J. Am. Chem. Soc. 132, 3953–3964 (2010).
+4. N. Ban et al., Cell 93, 1105–1115 (1998).
+5. J. Harms et al., Cell 107, 679–688 (2001).
+6. B. S. Schuwirth et al., Science 310, 827–834 (2005).
+7. M. Selmer et al., Science 313, 1935–1942 (2006).
+8. N. Vázquez-Laslop, H. Ramu, D. Klepacki, K. Kannan,
+A. S. Mankin, EMBO J. 29, 3108–3117 (2010).
+9. H. Ramu et al., Mol. Cell 41, 321–330 (2011).
+10. G. C. Atkinson et al., Antimicrob. Agents Chemother. 57,
+4019–4026 (2013).
+11. A. M. B. Giessing et al., RNA 15, 327–336 (2009).
+12. K. S. Long, J. Poehlsgaard, C. Kehrenberg, S. Schwarz,
+B. Vester, Antimicrob. Agents Chemother. 50, 2500–2505
+(2006).
+13. L. K. Smith, A. S. Mankin, Antimicrob. Agents Chemother. 52,
+1703–1712 (2008).
+14. C. Kehrenberg, S. Schwarz, L. Jacobsen, L. H. Hansen,
+B. Vester, Mol. Microbiol. 57, 1064–1073 (2005).
+15. G. Morales et al., Clin. Infect. Dis. 50, 821–825
+(2010).
+16. A. Benítez-Páez, M. Villarroya, M.-E. Armengod, RNA 18,
+1783–1795 (2012).
+17. C. Hoang et al., Mol. Cell 24, 535–545 (2006).
+18. S. Raychaudhuri, L. Niu, J. Conrad, B. G. Lane, J. Ofengand,
+J. Biol. Chem. 274, 18880–18886 (1999).
+19. M. R. Bauerle, E. L. Schwalm, S. J. Booker, J. Biol. Chem. 290,
+3995–4002 (2015).
+20. T. L. Grove et al., Science 332, 604–607 (2011).
+21. T. L. Grove et al., Nat. Chem. Biol. 9, 422–427 (2013).
+22. T. L. Grove, M. I. Radle, C. Krebs, S. J. Booker, J. Am. Chem.
+Soc. 133, 19586–19589 (2011).
+23. F. Yan, D. G. Fujimori, Proc. Natl. Acad. Sci. U.S.A. 108,
+3930–3934 (2011).
+24. A. Silakov et al., J. Am. Chem. Soc. 136, 8221–8228 (2014).
+25. K. P. McCusker et al., J. Am. Chem. Soc. 134, 18074–18081
+(2012).
+26. A. K. Boal et al., Science 332, 1089–1092 (2011).
+27. Y. Wei et al., J. Am. Chem. Soc. 136, 9001–9013 (2014).
+28. R. Ishitani, S. Yokoyama, O. Nureki, Curr. Opin. Struct. Biol. 18,
+330–339 (2008).
+
+312
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+29. M. Ibba, D. Söll, Annu. Rev. Biochem. 69, 617–650
+(2000).
+30. I. J. MacRae et al., Science 311, 195–198
+(2006).
+31. S. Sekine, O. Nureki, A. Shimada, D. G. Vassylyev, S. Yokoyama,
+Nat. Struct. Biol. 8, 203–206 (2001).
+32. R. J. Roberts, X. Cheng, Annu. Rev. Biochem. 67, 181–198
+(1998).
+33. H. C. Losey, A. J. Ruthenburg, G. L. Verdine, Nat. Struct. Mol.
+Biol. 13, 153–159 (2006).
+34. S. Chimnaronk et al., Biochemistry 48, 5057–5065 (2009).
+35. T. A. Steitz, M. A. Rould, J. J. Perona, Mol. Biol. Rep. 14,
+213–214 (1990).
+36. S. T. de Farias, T. G. do Rêgo, M. V. José, Front. Genet. 5, 303
+(2014).
+ACKN OWLED GMEN TS
+
+This work has been supported by NIH grants GM100011 (A.K.B.)
+and GM101957 (S.J.B.), the Searle Scholars Program (A.K.B.),
+and Tobacco Settlement Funds (TSF13/14 SAP_4100062216) to
+S.J.B. Use of the Advanced Photon Source was supported by the
+
+U.S. Department of Energy, Office of Science, Office of Basic
+Energy Sciences, under contract DE-AC02-06CH11357.
+Use of the LS-CAT Sector 21 was supported by the Michigan
+Economic Development Corporation and the Michigan
+Technology Tri-Corridor (grant 085P1000817). GM/CA-CAT has
+been funded in whole or in part with federal funds from the
+National Cancer Institute (Y1-CO-1020) and the National Institute
+of General Medical Science (Y1-GM-1104). Coordinates and
+structure factors have been deposited in the Protein Data Bank
+(PDB) with accession codes 5HR6 (C118A RlmN/tRNA in vivo
+cross-link) and 5HR7(C118A RlmN/tRNA in vitro cross-link).
+SUPPLEMENTARY MATERIALS
+
+www.sciencemag.org/content/352/6283/309/suppl/DC1
+Materials and Methods
+Figs. S1 to S11
+Table S1
+References (37–45)
+30 October 2015; accepted 23 February 2016
+10.1126/science.aad5367
+
+INTERSTELLAR DUST
+
+Flux and composition of interstellar
+dust at Saturn from Cassini’s Cosmic
+Dust Analyzer
+N. Altobelli,1*† F. Postberg,2,3† K. Fiege,2,4† M. Trieloff,2,5† H. Kimura,6 V. J. Sterken,7
+H.-W. Hsu,8 J. Hillier,9 N. Khawaja,3 G. Moragas-Klostermeyer,3 J. Blum,10
+M. Burton,11 R. Srama,3 S. Kempf,8 E. Gruen2,3,8
+Interstellar dust (ISD) is the condensed phase of the interstellar medium. In situ data from
+the Cosmic Dust Analyzer on board the Cassini spacecraft reveal that the Saturnian
+system is passed by ISD grains from our immediate interstellar neighborhood, the local
+interstellar cloud. We determine the mass distribution of 36 interstellar grains, their
+elemental composition, and a lower limit for the ISD flux at Saturn. Mass spectra and grain
+dynamics suggest the presence of magnesium-rich grains of silicate and oxide
+composition, partly with iron inclusions. Major rock-forming elements (magnesium, silicon,
+iron, and calcium) are present in cosmic abundances, with only small grain-to-grain
+variations, but sulfur and carbon are depleted. The ISD grains in the solar neighborhood
+appear to be homogenized, likely by repeated processing in the interstellar medium.
+
+M
+
+ost of the presolar dust grains, containing the heavy elements from which the
+planets formed, were destroyed or heavily processed during the first stage of solar
+system formation. Although a minor population of presolar grains, recognized by their
+extremely diverse isotopic composition, survived
+this process in meteorite parent bodies (1), it is
+1
+
+European Space Agency, European Space Astronomy
+Centre, Madrid, Spain. 2Institut für Geowissenschaften,
+University of Heidelberg, Heidelberg, Germany. 3Institut für
+Raumfahrtsysteme, University of Stuttgart, Stuttgart,
+Germany. 4Georgia Institute of Technology, School of
+Chemistry and Biochemistry, Atlanta, GA, USA. 5KlausTschira-Labor für Kosmochemie, University of Heidelberg,
+Heidelberg, Germany. 6Kobe University, Kobe, Hyōgo, Japan.
+7
+International Space Sciences Institute, Bern, Switzerland.
+8
+University of Boulder, Boulder, CO, USA. 9University of Kent,
+Kent, UK. 10Technische Universität Braunschweig, Institut für
+Geophysik und Extraterrestrische Physik, Braunschweig,
+Germany. 11Jet Propulsion Laboratory, Pasadena, CA, USA.
+*Corresponding author. E-mail: nicolas.altobelli@sciops.esa.int
+†These authors contributed equally to this work.
+
+completely unknown whether those grains are
+representative of the grain populations in the interstellar medium (ISM) (2–4). Interstellar dust
+(ISD) from the local interstellar cloud (LIC) is injected into the solar system as a highly directional
+stream nearly aligned with the ecliptic (heliocentric ecliptic longitude/latitude of 79°/–8°) (2, 5).
+This LIC-ISD flow was first detected in situ by the
+dust instrument onboard the Ulysses spacecraft
+(6) and has been monitored using a variety of dust
+detectors at solar distances ranging from 0.3 to 5
+astronomical units (AU) (5, 7–11). In situ sampling
+of the ISD flow was attempted by the Stardust
+mission, and recent laboratory analyses of the
+aerogel collectors have revealed three tracks caused
+by ISD impactors, of which two showed an ISD
+end particle and the third residuals on the track
+walls. Elemental residues were also found, probably of ISD origin, in four impact craters in the
+aluminum foil collectors (12). The Cassini spacecraft has been in orbit around Saturn since 2004,
+sciencemag.org SCIENCE
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+overall shape of tRNAGlu via interaction with the
+sugar-phosphate backbone in the D-stem–loop
+and the 3′ end of the tRNA. The observed analogies to tRNA synthetase structures, coupled with
+the known dual specificity of the enzyme toward
+A2503 in the central domain of 23S rRNA, provide
+a link between RlmN and three distinct components of the protein synthesis machinery, suggesting an early origin for A37/A2503 C2 methylation
+among known RNA modifications. In the ACSL
+region, the enzyme pries open the tRNA structure
+to gain access to its A37 nucleobase target. The
+recognition strategy is fully distinct from that used
+by RluA, the only other known dual-specificity
+RNA modification enzyme (17). In that system,
+sequence elements conserved among rRNA and
+tRNA substrates dictate specificity, although the
+protein also relies on local RNA refolding for
+readout of the key motifs. The ability of RlmN
+to substantially remodel tRNA in the anticodon
+region may represent a second mechanism to confer dual specificity. The observations here highlight an intriguing structural connection between
+tRNA and the core of the bacterial ribosome (36),
+a theme that RlmN likely exploits in targeting two
+distinct substrates that exhibit little sequence similarity but share tertiary features common to evolutionarily ancient components of the protein
+synthesis machinery.
+
+R ES E A RC H | R ES E A R C H A R T I C L E S
+
+carrying the Cosmic Dust Analyzer (CDA), whose
+chemical analyzer (CA) subsystem acquires timeof-flight (TOF) mass spectra of dust particles,
+revealing the grains’ elemental composition (13).
+Primarily designed to study the dust populations
+native to the Saturnian system, Cassini CDA has
+also proven to be an in situ observatory for dust
+from beyond Saturn. In this work, we present the
+result of the analysis of 10 years of Cassini CDA
+data (mid-2004 until 2013), revealing the faint but
+distinct signature of LIC-ISD in the largely dominant background of Saturn’s E ring water-ice particles originating from Enceladus (14).
+Flux, mass distribution, direction, and
+dynamics of ISD grains at Saturn
+
+Composition of ISD grains
+Figure 4 (upper panel) shows a typical mass spectrum from an ISD grain. Owing to the high velocity of ISD impacts (typically above 20 km/s), the
+energy densities upon impact are high enough to
+totally vaporize the solid grain and yield cation
+spectra that are clearly dominated by elemental
+ions rather than molecular ones. The main elemental cation peaks in all ISD spectra (going from
+lower to higher atomic masses) are carbon, oxygen, sodium/magnesium, potassium/calcium, iron,
+and rhodium. Rhodium, however, is not indigenous to particles but is excavated from CA target material, as well as a substantial fraction of
+the observed carbon that is contamination from
+the Rh target (19) (see the supplementary materials). Owing to the relatively low mass resolution
+of the CDA, signatures of Na/Mg and K/Ca cannot
+be easily separated in most spectra. However, the
+positions of the maxima of the respective peaks
+indicate that Mg+ and Ca+ dominate the adjacent
+species in almost every ISD spectrum. Although
+not forming individual peaks, Al+ and Si+ are
+visible as an extended flank on the Mg signature.
+In one individual spectrum, cations of Cr are indicated. The Fe signature is very broad in every
+ISD spectrum; therefore, although not detectable,
+minor amounts of Ti, V, Mn, and Ni are possible.
+We use other nonwater spectra of particles from
+the ISD direction, which, however, do not fulfill
+
+the speed criterion for ISD selection (see Fig. 1),
+for comparison. These particles are hereafter
+called the reference group (see the supplementary
+materials). We compare on Fig. 4 (lower panels)
+the Mg+/Fe+ line amplitude ratios and Mg+/Ca+
+line amplitude ratios of ISD grains with the reference group. The compositional difference between the ISD and the reference group is apparent
+at first glance. The ISD grains (i) are clearly compositionally distinct from the reference group and
+(ii) exhibit a very similar composition within their
+own group.
+To quantify the relative contributions of the
+major elements Mg, Si, Ca, and Fe in individual
+ISD particles, we applied the following procedure
+(for details, see the methods section of the supplementary materials): For each individual mass spectrum, a model spectrum was calculated using a
+least-square fit procedure to obtain the relative
+contributions of ions of different elements, particularly to deconvolve the Si peak from the Mg
+peak tail. Because all elements have a different
+probability to form cations (e.g., Mg forms cations
+five times more often than silicon), ion abundances
+were translated into element abundances by
+using appropriate relative sensitivity factors (RSFs)
+(supplementary materials) (20). Resulting element
+composition ratios are shown in Fig. 5 [ratios by
+weight % (wt %)]. It can be verified that Mg/Si,
+Fe/Si, Mg/Fe, and Ca/Fe ratios are on average
+CI chondritic (carbonaceous chondrite of type
+Ivuna whose composition is considered as a
+proxy of solar or cosmic element abundances)
+and similar to a composition inferred for LIC-ISM
+dust (21). For comparison, Fig. 5 (upper panels)
+shows both the range of elemental compositions
+for our ISD data and isotopically anomalous presolar stardust grains found in meteorites (22–28).
+
+Fig. 1. Minimum speeds inferred from TOF mass
+spectra. Plotted are the minimum speeds of nonwater dust grains coming from within 50° of the
+reference ISD direction (see the methods), with respect to Saturn as a function of the radial distance
+to Saturn. The color code indicates the total charge
+of the ions (ion yield) generated upon impact. The
+grains identified as ISD are plotted using an asterisk
+symbol. The plain and dashed lines in black indicate
+reference speeds with respect to Saturn as a function of the radial distance: the speed on Keplerian
+bound circular orbits, the spacecraft speed averaged per distance bins over 2004 to 2013 (SC vel),
+and the theoretical speed of interplanetary particles, depending on their injection speed at Saturn’s
+Hill sphere (vinj). (For comparison, see fig. S3.)
+
+SCIENCE sciencemag.org
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+313
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+We identify a total of 36 ISD grains within a
+distance of 9 to 60 Saturn radii from the planet,
+characterized by their high entry speed into the
+Saturnian system, from a direction compatible
+with the expected LIC-ISD flow at Saturn (Fig. 1).
+Both the cumulative radial and temporal distribution of the ISD grain detections at Saturn can
+be reproduced if the ISD grains in the observed
+mass range account for an average flux of 1.5 ×
+10−4 m−2 s−1, corrected for Saturn’s motion (Fig. 2)
+(see the supplementary materials). The time period covered by our analysis was particularly
+favorable to ISD detection at Saturn. From 2004
+onward, Saturn was moving toward the ISD downstream direction, gradually increasing the relative
+flux, which peaked in 2010 when Saturn’s velocity
+vector direction was aligned to the ISD upstream
+direction (15). Moreover, in 2010 there was a strong
+focusing of the smaller particles by the Lorentz
+force resulting from the relative particle motion
+with the interplanetary magnetic field (IMF) (16).
+The ISD stream is well collimated around the
+reference ISD direction, within the uncertainty
+of the impact direction measurement of 28°
+(Fig. 2 and supplementary materials). From the
+measured impact ion charge amplitude and modeling of the grain dynamics, we derived the mass as
+well as the radiation pressure-to-gravity ratio (b)
+for each grain (see the supplementary materials).
+The method used allows for a mass derivation independent of any assumption on b. The mass distribution and b ratio are plotted on Fig. 3. The mass
+distribution peak is located at ~10−17 kg, with a
+
+decrease in grain abundance above 10−16 kg
+and a sharp cutoff below 5 × 10−18 kg. The deficit
+of large grains (above 10−16 kg) is due to the lack
+of sensitivity of our ISD identification methods
+based on the TOF spectra, preventing us from
+detecting the largest ISD grains present in the
+Ulysses data (17, 18).
+
+R ES E A RC H | R E S EA R C H A R T I C LE S
+
+Discussion
+Our analysis shows that ISD grains from the local
+interstellar neighborhood of the solar system can
+reach the inner Saturnian system. Given the relative insensitivity of the CDA’s CA for large grains,
+it is clear that the mass distribution derived is representative of the smaller grains only up to about
+5 × 10−16 kg. For the same reason, our flux value
+is a lower estimate, and the total flux accounting
+for the undetected large grains could be up to
+twice as large (3 × 10−4 m−2 s−1). Our measurements suggest, therefore, that the ISD flux at Saturn
+(10 AU) is larger than the fluxes measured by
+Ulysses at distances up to 5 AU. It is likely that
+this larger ISD flux at Saturn is related to a focusing effect predicted for the grains as they interact
+with the IMF (16) during our collection period,
+confirming that the ISD grains, in the size range
+covered by our study, have a nonzero charge-tomass (q/m) ratio.
+The deficit of very small grains in our data, despite the sensitivity of our method that enables the
+detection of grains with masses as low as 10−19 kg,
+314
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+Fig. 2. ISD flux and direction. Cumulative temporal and radial distance distribution of the ISD grain
+detections (black dotted-dashed lines on the upper and middle panels, respectively).The plain lines are the
+modeled distributions obtained by computing the number of ISD grains from the reference ISD direction
+with a flux of 1.5 × 10−4 m−2 s−1 (see the methods section of the supplementary materials).The lower panel
+shows the distribution of the angles between the CDA boresight at the time of ISD grain detection and the
+ISD reference direction. The relative time spent in each angle bin over the time period 2004 to 2013 is
+indicated by the dashed line. Although the CDA spends most of the time pointing 30 or 40° away from the
+reference ISD direction, all except one ISD grain were detected within 20° of the reference ISD direction.
+
+can be explained by the filtering of such small
+grains at the heliopause and inner heliosphere
+(15, 31, 32). This phenomenon was also observed
+in the Ulysses ISD data (17). We confirm the existence of grains with b > 1 with a maximum value
+reached between 10−17 and 10−16 kg, in good agreement with the b-mass domains inferred from
+Ulysses data (3).
+The b-mass curve by itself cannot directly provide the grain composition and structure unambiguously but provides an independent consistency
+check of the compositional measurements by the
+CDA mass spectra. The b ratio quantifies the solar
+photon scattering efficiency and, combined with
+the grain mass, is a proxy for the grain composition and structure (3, 16). Synthetic b-mass curves
+were computed using Mie theory for different
+grain models with bulk composition compatible
+with the measured TOF spectra and compared
+with the b-mass curve inferred from the grain dy-
+
+namics (Fig. 3). All models of grains considered
+for the b computation are amorphous but compact particles, by opposition to porous structures.
+For the size regime of less than a few hundred
+nanometers observed by the CDA, the assumption
+of compact particles is the most plausible one and
+is reasonably supported by our observations (see
+supplementary materials’ section on derivation
+of the b-mass curve). In contrast, larger ISD in the
+mm regime are likely porous aggregates (33). Good
+agreement is found for silicate particles enriched
+with metallic Fe. In contrast, the b ratio of pure
+Fe-Mg silicates without metallic Fe enrichment
+cannot exceed unity, which is in disagreement with
+the high b ratio of most grains above 5 × 10−17 kg.
+As we find no indications for abundant organic
+material in CDA mass spectra, we conclude that
+at least some of the iron identified by the CDA has
+to be in metallic form. However, our upper limit
+for carbon does not exclude the presence of thin
+sciencemag.org SCIENCE
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+Those grains condensed in the outflows of asymptotic giant branch (AGB) stars and supernovae
+and became part of the ISM before they were
+incorporated into the parental molecular cloud
+from which our solar system formed.
+No mass line in agreement with sulfur can
+be observed in any of the ISD spectra. Sulfur is
+considerably harder ionized than most metals,
+but it forms abundant cations at impact speeds
+exceeding ~9 km/s (29). Ascribing all ions detected between mass 31 and 34 to sulfur (although these ions do not form a distinct peak
+there; see Fig. 4) and using the minimum RSF
+of S for impact speeds between 20 km/s and
+30 km/s normalized to Fe by (29), we calculate an
+upper limit for the average S/Fe (atomic) ratio
+of 0.0952 + 0.101/– 0.077. This upper limit is consistent with the value computed for LIC-ISM dust
+of 0.097 ± 0.058 (30). However, it is significantly
+lower than the CI chondritic ratio of 0.48.
+Carbon is another element that appears to be
+highly depleted in our ISD mass spectra. A significant carbon peak is present in all spectra, but
+figs. S1 and S2 show that a greater part of it is due
+to a well-known target contamination of the
+CDA (19). Only if we neglect target contamination
+and ascribe the entire carbon signal to impacting particles and if we furthermore assume very
+low detection efficiencies of carbon (see the supplementary materials’ section on carbon abundance),
+a quantification results in an average C/O atomic
+ratio of 0.32 ± 0.25, which would be consistent
+with an LIC-ISM dust value of 0.32 ± 0.29 (3). This
+value assumes a higher fraction of carbon in the
+gas phase, in contrast to an alternative value of
+0.81 ± 0.55, which is calculated based on different
+solar photospheric abundances (3). It could well
+be, however, that only 10% or less of the carbon
+is indigenous to the particles (figs. S1, S2, and S6)
+and that we underestimate the carbon detection
+efficiency by an order of magnitude, which would
+lower the observed C/O ratio to <0.032—i.e., far
+below the ISM dust value.
+
+R ES E A RC H | R ES E A R C H A R T I C L E S
+
+Fig. 4. Typical CDA ISD TOF mass spectrum
+and comparison of ISD spectra with reference
+group spectra. The upper panel shows a typical
+impact ionization mass spectrum from an ISD grain.
+Vertical lines indicate the positions of relevant cation
+species. The x axis indicates the TOF needed by the
+cations to reach the ion detector (after triggering the
+event), from which the ion masses are derived. The y
+axis shows the amplitude of the electrical signal
+derived from the detected cations, a measure of their
+abundance. The ions of the main particle constituents form the main peaks: Mg, Fe, Ca, and O. Si and
+Al are forming a distinct shoulder on the right flank of
+the Mg signature. The Rh peak is from the CDA’s
+impact target made of rhodium. To convert the ion
+abundance into elemental abundance, RSFs have to
+be applied (see the methods). In the lower panel are
+shown the ratios of cations observed in ISD spectra
+(upper panels) and spectra of the reference group
+(lower panels). The narrow distributions observed in
+ISD spectra suggest that ISD grains have a similar
+composition.
+
+organic mantles on the ISD grains causing an
+increase in the b ratio. Collecting ISD grains at
+Saturn allowed us to sample LIC dust at the
+largest heliocentric distance yet achieved in situ,
+reducing the amount of dynamical filtering as
+compared with former detections performed closer to the Sun. In addition, the relative position of
+Saturn and the Sun, with respect to the ISD stream
+SCIENCE sciencemag.org
+
+over the time period considered in this work, permitted the detection of grains with a wide range
+of b values (16). We are therefore convinced that
+our compositional results are not significantly affected by a selection bias related to the grain
+dynamics in the solar system.
+All models of LIC-ISD grain composition thus
+far have been based on the ultraviolet (UV) spec-
+
+tra measurements of absorption lines of C, N, O,
+Mg, Al, Si, S, and Fe in the gas phase of the LIC
+along the lines of sight toward nearby stars (2, 3, 34).
+These models assume that the element total abundance corresponds to cosmic abundances derived
+from the solar photosphere composition and that
+an element depletion in the gas results from its
+incorporation into dust grains. Most of these
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+315
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+Fig. 3. ISD grain mass distribution and b-mass
+values. The dashed black line indicates the grain
+mass distribution. The individual b and mass values
+inferred for each ISD grain are plotted with error
+bars. A one order of magnitude error in the mass
+determination results from the mass-velocity calibration uncertainty (13). A maximum error of 0.2
+in the determination of b is applied for all grains.
+This maximum error takes into account a range of
+possible (b-dependent) velocity values. Theoretical
+b-mass values obtained using Mie theory computations for amorphous grains with different compositions and structures are indicated as plain and
+dashed lines. MgSiO3 only refers to composition
+and does not imply crystallinity. The gray rectangular areas show the range of b-mass values inferred
+from the Ulysses ISD data (3). A structure with
+heterogeneous distribution of Fe and/or C is needed
+to explain the relatively high b values.
+
+R ES E A RC H | R E S EA R C H A R T I C LE S
+
+and individual grain-to-grain variations are limited
+(see Figs. 5 and 6; note that some, if not most, of
+the scatter of our data is due to stochastic uncertainties of the impact ionization of the CDA).
+In the investigated size regime, there are no indications of other, compositionally diverse ISD
+populations such as pure Fe-O grains or pure carbonaceous particles. The absence of the latter
+was already suggested by (34, 37). Although we
+cannot entirely rule out their existence in the
+LIC, such populations do not appear
+pﬃﬃﬃ to represent more than an upper limit of 21  3636 ≈ 10% of
+the ISD grains observed by the CDA penetrating
+into the solar system (assuming Poisson statistics
+for the error on the number of ISD grains detected). The depletion of carbon and sulfur inferred
+from the gas-absorption spectra of the LIC indicates loss of these compounds from ISD grains.
+The most plausible explanation is that volatile
+sulfur and carbon are incompletely condensed
+under conditions applicable for the LIC. In this
+respect, it should be noted that Mg/Si and Fe/Si
+ratios are slightly higher than cosmic abundances
+and could indicate a small deficit of Si, which is
+more volatile than the other major rock-forming
+elements Mg or Fe. The process responsible for
+
+Fig. 5. Comparison of element wt % ratios in CDA ISD grains with chondritic and presolar material. Mg/Si, Fe/Si (lower panel, left side) and Mg/Fe,
+Ca/Fe ratios (lower panel, right side) are shown for ISD grains (blue squares).
+The elemental ratios given by the x axis of each lower panel also apply to the
+upper panels. The average composition (large blue square) is compatible
+with CI chondrites (yellow triangle), indicating average cosmic element abundance ratios, and is also compatible with LIC-ISD composition from astronomical observations (green triangle). Limited compositional variation is
+possible, but at least part of this scatter is due to the detection method. For
+comparison, we analyzed compositional data of 388 presolar circumstellar
+dust grains, which were obtained by Auger spectroscopy (22–28). Grains of
+silicate composition [i.e., with atomic ratios of (Fe+Mg+Ca)/Si < 2.2] are
+shown. Histograms for Mg/Si and Mg/Fe (upper panels) demonstrate
+their larger scatter and more heterogeneous composition compared with the
+
+316
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+the loss of these volatile substances needs further
+clarification.
+Only the Stardust mission has previously provided insights into the composition of contemporary interstellar dust crossing our solar system,
+with material collected in aerogel and extracted
+from four impact craters resulting from ISD impacts in the aluminum foil collectors (12, 38, 39).
+The sizes of these impact craters between 0.28
+and 0.46 mm imply particles of similar sizes as
+those observed with the CDA (12). The inferred
+bulk particle composition is in agreement with
+our results, except for the presence of sulfide in
+three of the four craters (39), whereas there is no
+indication of sulfur in CDA ISD mass spectra.
+Three particles were collected in aerogel; two of
+them—Orion and Hylabrook—yielded compositional data (39) that allow a comparison in Fig.
+5. Although Mg/Fe ratios are within the range
+of the CDA’s ISD particles, the Mg/Si and Fe/Si
+ratios are significantly higher—i.e., the Stardust
+ISD particles are depleted in Si with respect to
+cosmic abundances. It should be kept in mind,
+however, that Orion and Hylabrook are much
+larger and perhaps porous particles, so that the
+formation mechanisms and the particles’ chemical
+
+ISD grains of this study. For low Ca presolar silicate grains (gray diamonds),
+the Ca/Fe values are upper limits, assuming the detection limit as Ca
+abundance; hence, the true scatter of the presolar silicate grains in Ca/Fe
+is actually larger. The smaller scatter of the LIC-ISD grain population in this
+study indicates that they represent a secondary population that was derived by processing and homogenization in the ISM from a primary, more
+heterogeneous circumstellar grain population. Also shown are typical compositions of silicates like forsterite (Fo90Fa10), fayalite (Fa90Fo10), and
+Mg-rich clino- and orthopyroxene (CPx and OPx) from a primitive mantle
+lherzolite (20), again emphasizing that the LIC-ISD grains represent average compositions rather than mineral end-member compositions. Two data
+points are shown for the Orion and Hylabrook particles returned by the
+Stardust mission: Although Mg/Fe is largely compatible with our ISD data,
+Mg/Si is significantly higher.
+
+sciencemag.org SCIENCE
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+studies suggest dust populations with different
+compositions: a Mg-rich silicate population, a
+carbon-rich population, Fe-rich dust (possibly
+oxides), and an Al-rich group (possibly corundum).
+A model of ISD grains in the general ISM (35, 36)
+proposes a core of silicate composition and an
+organic mantle remaining after UV radiation of
+ices. A more detailed mineralogical model was
+proposed (3), with grains made of a core of Mgrich olivine and pyroxene composition and ironbearing metallic inclusions (like kamacite), coated
+by an organic refractory mantle containing CHONbearing material.
+Our in situ detection of ISD provides constraints on these models. First of all, the average
+composition of our Mg, Si, Ca, and Fe data is in
+general consistent with the observation that these
+elements are fully condensed from the gas that
+forms the LIC, resulting in cosmic (CI chondritic)
+element abundances (Fig. 5), and that particles of
+silicate composition dominate the LIC-ISD population. More important, our data demonstrate
+that compositional homogeneity extends down
+to small spatial scales of 200 nm—i.e., the grain
+size of the ISD particles observed by the CDA.
+All grains contain these silicate-forming elements,
+
+R ES E A RC H | R ES E A R C H A R T I C L E S
+
+Hylabrook ISD particles, which also have high
+(Mg+Fe+Ca)/Si ratios. For the Stardust ISD residues on Al foils, only one particle yielded a
+quantifiable bulk value of 3.3, whereas for the
+remaining residues, the bulk values could not
+be constrained because of the uncertain proportions of silicates and Fe metal and sulfide.
+These observations indicate that the major
+population of dust grains in the ISM is different
+from pristine circumstellar stardust. A more homogeneous composition concerning Mg/Si or Mg/Fe
+can be explained by destruction, recondensation,
+and equilibration processes in the ISM that homogenize an initially diverse population that started
+as circumstellar dust. This could also explain the
+observation that the high Mg end of the presolar
+silicate population in Fig. 5 (which are crystalline
+circumstellar olivine grains) is missing in the Cassini ISD data: Grain destruction and recondensation will wipe out the high Mg tail and result
+in a very low fraction of crystalline ISM grains.
+The same conclusion arises from the nondetection of SiC in our ISD population, because SiC
+is not expected to condense in the ISM. Among
+presolar grains, SiC—condensed in circumstellar
+atmospheres—should have a 20 to 50% abundance. The 20% estimate is a lower limit, because
+many meteorites have a SiC/silicate ratio that is
+higher than 1:5, although this is ascribed to preferential metamorphic destruction of silicates on
+meteorite parent bodies. On the other hand, model calculations of circumstellar dust (4) also
+yield relatively high values for the SiC/silicate ratio. The probability of detecting 36 silicates (and
+no SiC) among a mixture of 80% silicates and
+
+LICgrains (astr. obs.)
+50
+
+Px
+
+Olv
+Hylabrook
+
+Orion
+
+Abundance [%]
+
+40
+
+20% SiC is as low as 0.03%, and 5% (i.e., below
+the 2-sigma confidence level) for an 8% SiC abundance. Destruction and recondensation of grains
+in the ISM are supported by observations showing that, in the diffuse ISM, the most condensable (atomic mass >23) elements are depleted in
+the gas phase and hence bound in solids, whereas
+the average lifetime of interstellar grains against
+destruction by supernova shocks (about 0.5 billion
+years) is much shorter than the average residence
+time of matter in the ISM (2.5 billion years) (4).
+During this residence time, ISD grains frequently
+cycle between the hot ISM (low-density regions
+carved by supernovae), the warm diffuse medium
+(accessible by spectroscopic observations), and
+cold molecular clouds, which are star-formation
+regions. Under the assumption that typically 5%
+of molecular cloud material is consumed by new
+stars and planetary systems, interstellar grains
+cycle on time scales of ~125 million years between
+the hot medium and the cold medium. Although
+destruction and devolatilization processes prevail
+in the hot medium due to high grain velocities
+and supernova shock waves, recondensation can
+occur in the cold medium.
+Our results indicate that a homogeneous
+population of grains with roughly average cosmic
+abundances (concerning Mg:Si:Ca:Fe ratios), possibly including metallic nanophase iron, is the
+primary constituent of the LIC-ISD, emphasizing
+the importance of recondensation processes (4, 37).
+A further implication is that searches for presolar interstellar grains in meteorites led by isotopic anomalies are likely to miss a population
+that recondensed in the ISM, because destruction and recondensation of solids would erase isotopic anomalies. Hence, a considerable fraction of
+yet unrecognized—isotopically inconspicuous—
+ISD could reside in meteorites and cometary material awaiting its discovery [see, for example, the
+discussion in (41, 42)].
+REFERENCES AND NOTES
+
+30
+Presolar grains
+
+20
+
+ISD (this study)
+10
+0
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+( Mg+Fe+Ca )/Si
+Fig. 6. Comparison of (Mg+Fe+Ca)/Si ratio histograms (in atom %) of CDA ISD grains, presolar circumstellar material, LIC-ISD determined by astronomical observations, and ISD returned
+by the Stardust mission. Presolar grains have a maximum at a silicate composition intermediate
+between pyroxene and olivine and a tail to high values caused by a bias (overabundance) of refractory
+oxides. LIC-ISD values center between 2 and 3. Such high values are caused either by oxides or by
+metallic Fe, phases that have also been observed in the Stardust particles Orion and Hylabrook. The
+presolar circumstellar grain population is biased; for example, there is possibly selective loss of amorphous
+grains or a higher fraction of resistant oxides due to metamorphic destruction on asteroids or comets.
+Nevertheless, it is highly unlikely that the presolar grain population initially had a distribution similar to our
+ISD data: In this case, the presolar population should have lost primarily the oxide or metal component,
+which is, however, unlikely, as oxides are rather more resistant against metamorphic destruction.
+
+SCIENCE sciencemag.org
+
+1. E. Zinner et al., Geochim. Cosmochim. Acta 71, 4786–4813 (2007).
+2. P. C. Frisch et al., Astrophys. J. 525, 492–516 (1999).
+3. H. Kimura, I. Mann, E. K. Jessberger, Astrophys. J. 583,
+314–321 (2003).
+4. S. Zhukovska, H.-P. Gail, M. Trieloff, Astron. Astrophys. 479,
+453–480 (2008).
+5. M. Landgraf, J. Geophys. Res. 105 (A5), 10303–10316 (2000).
+6. E. Grün et al., Nature 362, 428–430 (1993).
+7. M. Landgraf, J.-C. Liou, H. A. Zook, E. Grün, Astrophys. J. 123,
+2857 (2002).
+8. N. Altobelli et al., J. Geophys. Res. 108 (A10), 8032 (2003).
+9. N. Altobelli et al., J. Geophys. Res. 110 (A7), A07102 (2005).
+10. N. Altobelli, E. Grün, M. Landgraf, Astron. Astrophys. 448,
+243–252 (2006).
+11. I. Mann, Annu. Rev. Astron. Astrophys. 48, 173–203 (2010).
+12. R. M. Stroud et al., Meteorit. Planet. Sci. 49, 1698–1719 (2014).
+13. R. Srama et al., Space Sci. Rev. 114, 465–518 (2004).
+14. F. Spahn et al., Planet. Space Sci. 54, 1024–1032 (2006).
+15. V. J. Sterken et al., Astron. Astrophys. 552, A130 (2013).
+16. V. J. Sterken et al., Astron. Astrophys. 538, A102 (2012).
+17. M. Landgraf, W. J. Baggaley, E. Grün, H. Krüger, G. Linkert,
+J. Geophys. Res. 105 (A5), 10343–10352 (2000).
+18. H. Krüger, M. Landgraf, N. Altobelli, E. Grün, Space Sci. Rev.
+130, 401–408 (2007).
+19. F. Postberg et al., Planet. Space Sci. 57, 1359–1374 (2009).
+20. K. Fiege et al., Icarus 241, 336–345 (2014).
+21. N. Przybilla, M.-F. Nieva, K. Butler, Astrophys. J. 688,
+L103–L106 (2008).
+22. M. Bose, C. Floss, F. J. Stadermann, Astrophys. J. 714,
+1624–1636 (2010).
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+317
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+history might not be directly comparable to
+our data.
+Our results can also be compared with elemental compositions of interstellar grains preserved
+in 4.6-billion-year-old meteorites (Fig. 5). These
+interstellar grains survived processing in the protoplanetary disc when our solar system formed
+and consist of compositionally diverse populations. Their specific isotopic compositions reflect
+the nucleosynthetic processes of their host stars
+at the time, when these grains condensed in the
+outflows of the parental AGB stars or supernovae.
+Analysis of the inventory of presolar grains in meteorites indicates that the main population is
+silicates (e.g., olivine and pyroxene), with minor
+contributions (i.e., a few percent) of oxides (e.g.,
+corundum and hibonite) and carbonaceous grains,
+mainly silicon carbide (40), with an abundance
+of >20%, possibly up to 50%.
+The upper panels of Fig. 5 show histograms of
+Mg/Si and Mg/Fe ratios of presolar silicate populations and our ISD data. It can be verified that
+the scatter of elemental compositions of presolar
+silicates is about a factor of 2 larger (on logarithmic scales) compared with the CDA ISD data.
+Figure 6 additionally displays (Mg+Fe+Ca)/Si
+ratios (atom %): Although the presolar grain
+population has a maximum between pyroxeneand olivine-type silicate composition with values
+between 1 and 2, our ISD grain population centers between 2 and 3, similar to LIC-ISM dust
+composition inferred from astronomical observations (37). Such values can be explained by the
+presence of either Mg, Fe, or Ca oxides or metallic Fe. These phases occur also in the Orion and
+
+R ES E A RC H
+
+23. M. Bose, C. Floss, F. J. Stadermann, R. M. Stroud, A. K. Speck,
+Geochim. Cosmochim. Acta 93, 77–101 (2012).
+24. A. N. Nguyen, L. R. Nittler, F. J. Stadermann, R. M. Stroud,
+C. M. O. Alexander, Astrophys. J. 719, 166–189 (2010).
+25. C. Vollmer, P. Hoppe, F. J. Stadermann, C. Floss, F. E. Brenker,
+Geochim. Cosmochim. Acta 73, 7127–7149 (2009).
+26. C. Floss, F. J. Stadermann, Meteorit. Planet. Sci. 47, 992–1009
+(2012).
+27. C. Floss, F. Stadermann, Geochim. Cosmochim. Acta 73,
+2415–2440 (2009).
+28. X. Zhao, C. Floss, Y. Lin, M. Bose, Astrophys. J. 769, 49 (2013).
+29. J. K. Hillier et al., Planet. Space Sci. 97, 9–22 (2014).
+30. H. Kimura, Mon. Not. R. Astron. Soc. 449, 2250–2258 (2015).
+31. J. Slavin, P. Frisch, J. Heerikhuisen, N. Pogorelov, H. R. Mueller,
+W. T. Reach, G. Zank, A. Li, 38th COSPAR Scientific Assembly,
+Plenary Meeting (Bremen, Germany, 18 to 25 July 2010),
+p. 1618.
+32. J. D. Slavin et al., Astrophys. J. 760, 46 (2012).
+33. V. J. Sterken, P. Strub, H. Krüger, R. von Steiger, P. Frisch,
+Astrophys. J. 812, 141 (2015).
+34. J. D. Slavin, P. C. Frisch, Astron. Astrophys. 491, 53–68 (2008).
+35. J. M. Greenberg, J. I. Hage, Astrophys. J. 361, 260 (1990).
+
+ACKN OWLED GMEN TS
+
+N.A. and F.P. acknowledge European Space Agency faculty funding for
+travels and meetings that were necessary for the completion of this
+work. Funding through Deutsche Forschungsgemeinschaft (DFG)
+within the priority program 1385 “The First 10 Million Years of the
+Solar System - A Planetary Materials Approach” is acknowledged by
+K.F., J.B. (grant BL 298/20-2), and R.S., M.T., E.G., J.H., and F.P.
+(grants TR333/14 and SR77/1). J.H. has received funding from the
+People Programme (Marie Curie Actions) of the European Union’s
+
+◥
+
+MOLECULAR MAGNETISM
+
+Magnetic remanence in single atoms
+F. Donati,1 S. Rusponi,1 S. Stepanow,2 C. Wäckerlin,1 A. Singha,1 L. Persichetti,2
+R. Baltic,1 K. Diller,1 F. Patthey,1 E. Fernandes,1 J. Dreiser,1,3 Ž. Šljivančanin,4,5
+K. Kummer,6 C. Nistor,2 P. Gambardella,2* H. Brune1*
+A permanent magnet retains a substantial fraction of its saturation magnetization in the
+absence of an external magnetic field. Realizing magnetic remanence in a single atom
+allows for storing and processing information in the smallest unit of matter. We show that
+individual holmium (Ho) atoms adsorbed on ultrathin MgO(100) layers on Ag(100) exhibit
+magnetic remanence up to a temperature of 30 kelvin and a relaxation time of 1500
+seconds at 10 kelvin. This extraordinary stability is achieved by the realization of a
+symmetry-protected magnetic ground state and by decoupling the Ho spin from the
+underlying metal by a tunnel barrier.
+
+T
+
+he search for the ultimate size limit of magnetic information storage, and the aim of
+exploring magnetic quantum properties for
+information processing, have driven fundamental research toward atomic-scale structures
+that contain fewer and fewer atoms. Benchmarks
+for such systems are long magnetic relaxation
+times, i.e., magnetic quantum states that are stable on the time scales required for storage or
+quantum computation. Single-molecule magnets
+(1–6) are promising candidates as they are chemically robust in ambient conditions and exhibit
+
+1
+
+Institute of Physics, Ecole Polytechnique Fédérale de
+Lausanne (EPFL), Station 3, CH-1015 Lausanne, Switzerland.
+Department of Materials, ETH Zürich, Hönggerbergring 64,
+CH-8093 Zürich, Switzerland. 3Swiss Light Source, Paul
+Scherrer Institute, CH-5232 Villigen PSI, Switzerland. 4Vinča
+Institute of Nuclear Sciences (020), Post Office Box 522, 11001
+Belgrade, Serbia. 5Texas A&M University at Qatar, Doha, Qatar.
+6
+European Synchrotron Radiation Facility (ESRF), F-38043
+Grenoble, France.
+2
+
+*Corresponding author. E-mail: pietro.gambardella@mat.ethz.ch
+(P.G.); harald.brune@epfl.ch (H.B.)
+
+318
+
+15 APRIL 2016 • VOL 352 ISSUE 6283
+
+magnetic bistability at cryogenic temperatures,
+with a record relaxation time of 100 s at 13.9 K
+for N23– radical-bridged dilanthanide complexes
+in the bulk phase (6). Further reducing the number of constituent atoms in such systems, however,
+implies removing the organic ligands, thereby
+bringing the magnetic core in direct contact with
+a surface. Presently, the smallest magnets are antiferromagnetic Fe12 double chains (7) and ferromagnetic Fe5 clusters (8) supported on nonmagnetic
+surfaces. Both exhibit lifetimes of hours below
+0.5 K, while supported nanostructures of smaller
+size retain their magnetic orientation only on a
+time scale of seconds (9, 10).
+Ultimately, the smallest size of a magnet can
+be reached with a single surface-adsorbed atom.
+The magnetism of single atoms has become the
+subject of intense research (11–17) since the
+discovery of a giant magnetic anisotropy for
+Co atoms adsorbed onto a Pt(111) surface (18).
+However, despite the high magnetic anisotropy
+originating from the extremely low coordination, all adatom-surface combinations inves-
+
+Seventh Framework Programme FP7 2013 under Reemployment
+and Eligibility Assessment (REA) grant agreement number 622856.
+R.S. and F.P. acknowledge funding through Deutsches Zentrum für
+Luft- und Raumfahrt (DLR), Germany. V.J.S. acknowledges funding
+through the International Space Science Institute. N.K. acknowledges
+funding through the DFG. M.T. acknowledges funding by the Klaus
+Tschira Foundation. We thank J. Leitner, A. Westphal, R. Stroud,
+L. Nittler, P. Hoppe, H. Ishii, and H.-P. Gail for helpful discussions.
+We thank three anonymous reviewers for their thorough review
+of this paper. All CDA data used for this analysis are archived on
+the Small Bodies Node of the Planetary Data System (PDS-SBN),
+at http://sbn.psi.edu/archive/cocda.
+SUPPLEMENTARY MATERIALS
+
+www.sciencemag.org/content/352/6283/312/suppl/DC1
+Materials and Methods
+Figs. S1 to S6
+Table S1
+References (43–61)
+3 June 2015; accepted 3 March 2016
+10.1126/science.aac6397
+
+tigated so far are paramagnetic down to 0.3 K,
+with the longest achieved magnetic lifetime
+being 230 ms at 0.6 K (16, 17). Thus, in addition
+to anisotropy, the magnetic states of a quantum magnet need to be protected from quantum tunneling of the magnetization as well as
+from scattering with electrons and phonons of the
+substrate. The first condition requires a degenerate ground state doublet with a projected total
+angular momentum Jz that is protected from mixing
+with other states by the symmetry of the adsorption sites’ ligand field (19, 20). The second requires decoupling the magnetic atom from the
+phonon and conduction electron baths.
+Here, we investigated ensembles of rare-earth
+atoms, whose spin and orbital moments originate from the strongly localized 4f orbitals and
+interact weakly with the surrounding environment. Additional decoupling is ensured by choosing
+an insulating substrate with low phonon density
+of states, such as MgO. We found that Ho atoms
+deposited on MgO(100) thin films grown on a
+Ag(100) surface formed single-atom magnets with
+a relaxation time that depended on the MgO thickness. Not only did the Ho atoms show magnetic
+bistability, they also had exceptionally large coercive field and showed magnetic hysteresis up
+to 30 K, a temperature substantially higher than
+the blocking temperature of single-molecule
+magnets on comparable time scales. These exceptional properties originate from a combination of
+factors—namely, the specific mixing of odd Jz
+states of Ho in the C4v symmetric ligand field of
+MgO(100), which protects the magnetization from
+reversal by tunneling and first-order electron scattering at zero and finite fields, and the weak
+coupling to the electronic and vibrational degrees
+of freedom of the substrate, provided by the stiff
+and insulating MgO buffer layer.
+We created a quasi-monodisperse ensemble of
+individual Ho atoms adsorbed on ultrathin
+MgO(100) films grown on Ag(100) by depositing
+minute amounts of Ho at a sample temperature
+below 10 K, which ensured that the thermal mobility of the adatoms was blocked. Low-temperature
+scanning tunneling microscopy (STM) images
+sciencemag.org SCIENCE
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+REPORTS
+
+36. H. Kimura, I. Mann, E. K. Jessberger, Meteoroids 2001
+Conference, B. Warmbein, ed. (2001), vol. 495 of ESA Special
+Publication, pp. 633–642.
+37. P. C. Frisch, J. D. Slavin, Earth Planets Space 65, 175–182
+(2013).
+38. A. J. Westphal et al., Meteorit. Planet. Sci. 49, 1720–1733 (2014).
+39. A. J. Westphal et al., Science 345, 786–791 (2014).
+40. J. Leitner, C. Vollmer, P. Hoppe, J. Zipfel, Astrophys. J. 745, 38
+(2012).
+41. J. P. Bradley et al., Science 285, 1716–1718 (1999).
+42. L. P. Keller, S. Messenger, Geochim. Cosmochim. Acta 75,
+5336–5365 (2011).
+
+Flux and composition of interstellar dust at Saturn from Cassini’s Cosmic Dust
+Analyzer
+N. Altobelli, F. Postberg, K. Fiege, M. Trieloff, H. Kimura, V. J. Sterken, H.-W. Hsu, J. Hillier, N. Khawaja, G. MoragasKlostermeyer, J. Blum, M. Burton, R. Srama, S. Kempf, and E. Gruen
+
+Science 352 (6283), . DOI: 10.1126/science.aac6397
+
+Science, this issue p. 312
+
+View the article online
+https://www.science.org/doi/10.1126/science.aac6397
+Permissions
+https://www.science.org/help/reprints-and-permissions
+
+Use of this article is subject to the Terms of service
+Science (ISSN 1095-9203) is published by the American Association for the Advancement of Science. 1200 New York Avenue NW,
+Washington, DC 20005. The title Science is a registered trademark of AAAS.
+Copyright © 2016, American Association for the Advancement of Science
+
+Downloaded from https://www.science.org at Universitaet Stuttgart on June 29, 2026
+
+Cassini detects interstellar dust grains
+The interstellar medium contains an array of small solid particles known as dust grains. Altobelli et al. used the dust
+analyzer on the Cassini probe to detect 36 interstellar dust grains as they passed by Saturn, and they measured the
+grains' elemental abundances. The results show that, remarkably, these grains lack carbon-bearing compounds and
+have been homogenized in the interstellar medium into silicates with iron inclusions.
+
+

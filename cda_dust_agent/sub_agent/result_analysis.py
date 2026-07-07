@@ -72,12 +72,16 @@ class ResultAnalysisAgent(BaseAgent):
                     if not content.endswith(b'\n'):
                         outfile.write(b'\n')
             
-            # Merge bypassed predictions from Stage 1 Pre-filter if present
-            bypassed_file = "cda_dust_agent/data/output/bypassed_predictions.jsonl"
-            if os.path.exists(bypassed_file):
-                yield log_and_yield(self.name, f"Merging bypassed noise predictions from {bypassed_file} into {output_filepath}...")
-                with open(bypassed_file, 'rb') as bf, open(output_filepath, 'ab') as outfile:
-                    outfile.write(bf.read())
+            # Merge bypassed predictions from Stage 1 Pre-filter in GCS if present
+            bypassed_blobs = [b for b in bucket.list_blobs(prefix="output/bypassed/") if b.name.endswith(".jsonl")]
+            if bypassed_blobs:
+                yield log_and_yield(self.name, f"Merging {len(bypassed_blobs)} bypassed predictions shards from GCS into {output_filepath}...")
+                with open(output_filepath, 'ab') as outfile:
+                    for blob in bypassed_blobs:
+                        content = blob.download_as_bytes()
+                        outfile.write(content)
+                        if not content.endswith(b'\n'):
+                            outfile.write(b'\n')
         else:
             yield log_and_yield(self.name, "Using local cda_dust_agent/data/output/predictions.jsonl...")
             # Also support local mode merge if present

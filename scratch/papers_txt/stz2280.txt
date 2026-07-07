@@ -1,0 +1,1367 @@
+MNRAS 489, 5231–5243 (2019)
+
+doi:10.1093/mnras/stz2280
+
+Low-mass nitrogen-, oxygen-bearing, and aromatic compounds in
+Enceladean ice grains
+N. Khawaja,1,2‹ F. Postberg,1,2 J. Hillier,1 F. Klenner,1,2 S. Kempf,3 L. Nölle,1,2
+R. Reviol,2 Z. Zou1 and R. Srama4
+1 Institut für Geologische Wissenschaften, Freie Universität Berlin, Malteserstraße 74-100, D-12249 Berlin, Germany
+3 Laboratory for Atmospheric and Space Physics, University of Colorado, 1234 Innovation Dr, Boulder, CO 80303, USA
+4 Institut für Raumfahrtsysteme, Universität Stuttgart, Pfaffenwaldring 29, D-70569 Stuttgart, Germany
+
+Accepted 2019 August 8. Received 2019 July 15; in original form 2018 December 21
+
+ABSTRACT
+
+Saturn’s moon Enceladus is erupting a plume of gas and ice grains from its south pole.
+Linked directly to the moon’s subsurface global ocean, plume material travels through cracks
+in the icy crust and is ejected into space. The subsurface ocean is believed to be in contact
+with the rocky core, with ongoing hydrothermal activity present. The Cassini spacecraft’s
+Ion and Neutral Mass Spectrometer (INMS) detected volatile, gas phase, organic species in
+the plume and the Cosmic Dust Analyser (CDA) discovered high-mass, complex organic
+material in a small fraction of ice grains. Here, we present a broader compositional analysis
+of CDA mass spectra from organic-bearing ice grains. Through analogue experiments, we
+find spectral characteristics attributable to low-mass organic compounds in the Enceladean
+ice grains: nitrogen-bearing, oxygen-bearing, and aromatic. By comparison with INMS
+results, we identify low-mass amines [particularly (di)methylamine and/or ethylamine] and
+carbonyls (with acetic acid and/or acetaldehyde most suitable) as the best candidates for
+the N- and O-bearing compounds, respectively. Inferred organic concentrations in individual
+ice particles vary but may reach tens of mmol levels. The low-mass nitrogen- and oxygenbearing compounds are dissolved in the ocean, evaporating efficiently at its surface and
+entering the ice grains via vapour adsorption. The potentially partially water soluble, lowmass aromatic compounds may alternatively enter ice grains via aerosolization. These amines,
+carbonyls, and aromatic compounds could be ideal precursors for mineral-catalysed Friedel–
+Crafts hydrothermal synthesis of biologically relevant organic compounds in the warm depths
+of Enceladus’ ocean.
+Key words: astrobiology – astrochemistry – planets and satellites: individual: Enceladus –
+planets and satellites: oceans.
+
+1 I N T RO D U C T I O N
+One of the many spectacular discoveries made by the Cassini–
+Huygens mission was a plume of icy particles and vapour emitted
+from the Saturn’s moon Enceladus (Dougherty et al. 2006; Hansen
+et al. 2006; Porco et al. 2006; Spahn et al. 2006a), connected to a
+global subsurface ocean (Thomas et al. 2016). Ocean material is
+ejected in the form of gas (Hansen et al. 2006, 2011; Waite et al.
+2006, 2009, 2017) and water–ice-dominated grains (Hillier et al.
+2007; Postberg et al. 2008, 2009a, 2011, 2018a; Hsu et al. 2015)
+from Enceladus, through warm cracks in the Enceladean south polar
+
+ E-mail: nozair.khawaja@fu-berlin.de
+
+ice crust (Spencer et al. 2006). Most of the emitted ice grains are
+too slow to leave the moon’s Hill sphere, and fall back on to the
+surface (Kempf, Beckmann & Schmidt 2010; Southworth, Kempf &
+Spitale 2019). However, approximately 5–10 per cent of the emitted
+ice grains escape and enter the Saturn’s diffuse E ring (Spahn et al.
+2006b; Kempf et al. 2010, 2018).
+Cassini’s mass spectrometers – Ion and Neutral Mass Spectrometer (INMS) and Cosmic Dust Analyser (CDA) – have analysed
+ejected materials both inside the plume and the E ring. The discovery
+by CDA of sodium salts in E ring ice grains provided evidence
+that the Enceladean subsurface ocean is/was in contact with the
+rocky core (Postberg et al. 2009a, 2011) and constrained the ocean’s
+moderate salinity and alkaline pH. The detection of nanometre-sized
+silica (SiO2 ) particles in the E ring strongly suggested ongoing
+
+
+C 2019 The Author(s)
+Published by Oxford University Press on behalf of the Royal Astronomical Society
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+2 Institut für Geowissenschaften, Universität Heidelberg, Im Neuenheimer Feld 234-236, D-69120 Heidelberg, Germany
+
+5232
+
+N. Khawaja et al.
+
+2 M OT I VAT I O N
+Postberg et al. (2018a) discussed possible exogenic and/or endogenic origins for the HMOC material on Enceladus. In the
+former case, the accretion of primordial organic material during the
+formation of Enceladus from planetesimals delivered organic matter
+into the core, from whence it subsequently leached. The HMOC
+material would then be similar to the insoluble organic matter (IOM)
+observed in meteorites (e.g. Alexander et al. 2017). Alternatively,
+endogenous HMOC material could be hydrothermally synthesized
+(Vinogradoff et al. 2018) from lower mass compounds on Enceladus. This poorly soluble high-mass organic material identified by
+Postberg et al. (2018a) is, however, unlikely to be a reactant, but
+may be a product of such syntheses involving lower mass, soluble
+O- and N-bearing polar molecules. With the new data presented in
+this work, we investigate the contribution of hydrothermal processes
+to Enceladus’ organic inventory.
+Laboratory synthesis of amino acids from simple carbonyl
+(oxygen-bearing) compounds in a simulated hydrothermal vent environment has been shown to occur (Barge et al. 2019). Furthermore,
+a protein-forming N-bearing aromatic amino acid, Tryptophan,
+whose formation is believed to be catalysed by clay minerals, has
+been found in the alkaline environment of Lost City hydrothermal
+field (Ménez et al. 2018). The identification of low-mass, polar
+organics within the Enceladean ocean would be an indicator that
+MNRAS 489, 5231–5243 (2019)
+
+such reactions may occur and place constraints on the hydrothermal
+environment at and below the core-ocean boundary. Magee &
+Waite (2017) tentatively identify possibly soluble O- and N-bearing
+organic species in the gas phase emerging from Enceladus ocean.
+However, no unquestionable evidence of such compounds, other
+than those that could be fragments from higher mass species
+(Postberg et al. 2018a), has thus far been found on Enceladus.
+In this work, we present a compositional analysis of CDA
+spectra of Type 2 grains to find and identify the compositional
+families, including functional groups, of low-mass soluble organics,
+henceforth ‘volatile organic compounds’ (VOCs), in the ice grains
+emitted from Enceladus’ subsurface ocean. The spectral analysis
+(Section 4) is supported by a laser-driven analogue experiment
+[Supplementary Material (SM) section A] simulating the impact
+ionization process and the resulting mass spectra of ice particles
+(Postberg et al. 2009a, 2018a; Klenner et al. 2019). To identify the
+observed patterns of cationic organic fragments in Type 2 spectra
+containing VOCs, we have measured spectra of a large number of
+water-dissolved organic compounds (Section 4 and Tables SM 1, 2,
+and 3). After a brief summary (Section 5), we discuss our results
+and their implications for Enceladus (Sections 6 and 7).
+3 T H E DATA S E T
+We have investigated 731 Type 2 spectra (SM section B) of
+Enceladean ice grains, recorded in the E ring between 2004
+November and 2008 May. The spectra were calibrated on to a mass
+scale, via identification of the hydronium (H3 O+ ), sodium (Na+ ),
+and water-cluster peaks [(H2 O)n H3 O+ ], using bespoke software
+developed for CDA data analysis (spectrumgui, pers. comm. S.
+Kempf). This process typically resulted in mass uncertainties of
+<0.5 u at masses below 80 u, rising to 1–2 u between 80 and 180 u
+(Postberg et al. 2018a).
+These spectra were produced at Saturnian distances of between
+∼3.5 and 17 Rs (Saturnian radii, Rs = 60 268 km) and at impact
+speeds of between ∼4.5 and 15 km s−1 . The speed determination
+is based on the idealized assumption that particles are on prograde
+circular orbits in the E ring. In reality, the eccentricities of E ring
+grains introduce uncertainties in impact speeds that scatter around
+the assumed values for circular orbits.
+In addition to water-cluster cations of the form H3 O+ (H2 O)1-8
+(Fig. 1), typical for all salt-poor water ice impacts (Hillier et al.
+2007; Postberg et al. 2008), many Type 2 spectra are characterized
+by a broad peak (corresponding to a set of mass lines between
+26 and 31 u), in agreement with multiple indistinguishable cationic
+organic fragments (e.g. C2 H3,5 + , CH1,2,3 O+ , CH0,1,2 N+ ), which
+we will henceforth call the Type 2 Low-Mass Organic Signature
+(LMOS). Postberg et al. (2008) used this spectral feature as the
+defining criterion for Type 2 classification. Furthermore, most Type
+2 spectra also exhibit a broad feature between 39 and 45 u, which
+often appears on the right flank of the second water-cluster peak
+(Fig. 1). Like LMOS, this signature can potentially be attributed to
+a number of different organic cations, which cannot be distinguished
+with the CDA’s mass resolution: hydrocarbons (C3 H3,5,7 + ), Nbearing (C2 H2,4 NH2 + ), or O- and OH-bearing (C2 H3,5 O+ ) cations.
+We therefore widen the definition of Type 2 spectra from Postberg
+et al. (2008), by requiring the LMOS and/or the extended broad
+feature between 39 and 45 u to be present with a signal-to-noise
+ratio of at least 2.5σ .
+For this work, we have specifically searched for additional
+spectral features in the data set that, in contrast to the general features
+described above, enable the identification of specific functional and
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+hydrothermal activity at Enceladus’ subsurface ocean (Hsu et al.
+2015) and provided further evidence that the ocean has a relatively
+high pH. The detection of molecular hydrogen and methane by
+INMS not only confirmed subsurface water–rock interaction but
+also provided further evidence for serpentinization reactions, an
+exothermic, hydrogen-producing geochemical process (Waite et
+al. 2017). The hydrothermal activity is thought to occur inside
+the water-percolated, porous, rocky core of the moon (Sekine et
+al. 2015; Waite et al. 2017) and is probably maintained by heat
+generated by tidal dissipation (Choblet et al. 2017).
+The CDA records time-of-flight (TOF) mass spectra of cations
+generated by high-velocity (v ≥ 3 km s−1 ) impacts of individual
+grains on to a rhodium target (Srama et al. 2004). Previous analyses
+inferred three different spectral types of Enceladean ice grains
+(Postberg et al. 2008, 2009a): Type 1 represents grains of almost
+pure water ice, Type 2 shows features consistent with grains
+containing significant amounts of organic material, and Type 3 is
+indicative of salt-rich water ice grains. This work focusses on a
+detailed analysis of Type 2 grains.
+In contrast to Type 1 and Type 3, Type 2 spectra exhibit a more
+diverse compositional range, indicating the existence of different
+compositional subclasses and a wide variety of concentrations of
+organic compounds. A small subpopulation of Type 2 grains with
+specific spectral features (repetitive peaks, separated by 12–13 u in
+mass, extending from 80 u until at least CDA’s high-mass limit of
+approx. 200 u, known as High-Mass Organic Cations, HMOC) has
+already been investigated by Postberg et al. (2018a). The spectra
+were interpreted as due to ice grains carrying complex organic
+material, which had parent molecular masses in excess of 200 u at
+concentrations on the per cent level. The study provided evidence
+for the existence of aromatic and aliphatic substructures, identified
+as unsaturated and saturated cation fragments of the high-mass
+complex organic material, as well as oxygen-bearing functional
+groups in these grains. It was suggested that the detected high-mass
+organics originate from poorly soluble material concentrated in an
+organic-rich layer at the top of Enceladus’ oceanic water table.
+
+Enceladean ice grains
+
+structural characteristics of organic compounds. Despite CDA’s
+rather low mass resolution (Srama et al. 2004; Postberg et al. 2008),
+these specific features are visible as separate peaks, because they are
+formed by abundant organic cations with masses that do not interfere
+with the omnipresent water-cluster peaks. We have identified three
+such specific features occurring in a relatively large number of Type
+2 spectra and selected those spectra that show at least one of these
+features with high significance (SM section B) to use as templates
+for reproduction with our analogue experiments.
+In total, about 8 per cent (60) of the investigated Type 2 spectra
+in the data set (Table SM 4) fulfilled our strict selection criteria (SM
+section B) for one of the three distinct organic features, which we
+used to infer a specific composition. In the following, we will refer
+to this exemplary subset as ‘archetypal’ Type 2 spectra. The organic
+compounds we identify in the archetypes are probably present in
+a much larger fraction of the E ring ice grains, but may not be
+unambiguously detected at lower concentrations or if subject to
+interference with mass lines arising from other grain constituents.
+4 S P E C T R A L A N A LY S I S A N D
+I N T E R P R E TAT I O N
+The following spectral analysis is separated according to the three
+aforementioned archetypal subsets, each with different spectral
+characteristics. Generally, the specific signatures are in agreement
+with organic fractions in these grains up to the tens of mmol L−1
+level, as inferred from our analogue experiments with pure organic
+compounds in water (Tables SM 1, 2, and 3).
+4.1 N-bearing Type 2 spectra (Type 2N)
+Approximately 33 per cent of the subset of archetypal Type 2 spectra
+(Table SM 4) shows a significant peak at 18 u that, based on
+our selection criteria (SM section B1), is attributed to ammonium
+cations, NH4 + . Henceforth, we name this nitrogen-bearing subtype
+
+Figure 2. A single CDA TOF mass spectrum from a N-bearing E ring ice
+grain. The spectrum exhibits signatures of N-bearing ions generated by the
+approx. 8.5 km s−1 impact of an E ring ice grain at a Saturnian distance of
+7.2 Rs. The red markers indicate ammonium cations (NH4 + , 18 u), the Type
+2 characteristic organic signature (LMOS) and possible ammonium-water
+clusters at 36 and 54 u, respectively. On the right and left flanks of some
+water clusters, unresolved features possibly represent cations arising from
+other organic species.
+
+Figure 3. Laser ionization analogue laboratory spectrum of an aqueous
+solution of butyl amine at a concentration of 0.05 mol L−1 . NH4 + ,
+CH2 NH2 + , C2 H4 NH2 + , and water clusters with NH4 + are marked in red at
+18, 30, 44, 36, and 54 u, respectively. A minor contribution from NH3 + is
+also visible at 17 u. The protonated molecular peak of butyl amine appears
+at 74 u and it forms water clusters at 92 and 110 u. The pure water-cluster
+species present at 19, 37, 55, 73, and 91 u are marked in blue.
+
+of Type 2 spectra as ‘N-bearing’, or Type 2N (Fig. 2). In some
+cases, 18 u appears in spectra together with peaks at 36 u and/or
+54 u, which can be attributed to ammonium-water-cluster species
+NH4 + (H2 O)1,2 . Fig. 2 shows a typical example of such a spectrum.
+In our analogue laboratory set-up (SM section B1), we obtain a
+NH4 + peak at 18 u as the strongest fragment signature arising from
+a wide variety of amine, amide, and nitrile compounds (Table SM
+1). As an example, butyl amine (Fig. 3) is shown. Heterocyclic Nbearing species do not yield a substantial NH4 + peak (Table SM 1)
+and can be ruled out as a source here.
+Another fragment peak at 30 u due to methaniminium cations
+(CH2 NH2 + ) is also observed in the laboratory. However, the 30 u
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Figure 1. A typical Type 2 spectrum with the two defining features
+(indicated by the broad red bars). The first one occurs between 2.2 and
+2.5 μs, typically covering a mass range of 26 and 31 u, and is labelled as
+the low-mass organic signature (LMOS). The second feature is an extended
+right flank (between 2.7 and 3.1 μs) of the second water cluster (H3 O+ H2 O).
+It ranges from 39 to 45 u but is not detached from the neighbouring water
+peak in most cases (Postberg et al. 2008). Marked in blue are hydronium
+(19 u) and water-cluster cations at 37, 55, 73, 91, 109, 127, 145, and 163 u.
+Na+ is visible on the right of hydronium. Peak labels here and in subsequent
+spectra are in unified atomic mass units (u).
+
+5233
+
+5234
+
+N. Khawaja et al.
+
+(a)
+
+4.2 O-bearing Type 2 spectra (Type 2O)
+This subgroup of Type 2 spectra [∼40 per cent of archetypal Type
+2 spectra (O-bearing or Type 2O, Table SM 4)] is characterized
+by a distinct, isolated, peak either at 43 u or at 45 u, which we
+attribute to C2 H3 O+ (acylium) and C2 H5 O+ , respectively (Fig. 4).
+These are well-known characteristic cationic fragments of organic
+parent molecules in which oxygen is double bonded, or hydroxyl
+or oxygen are single bonded, to carbon. Ice grain impacts that fulfil
+these selection criteria for O-bearing spectra (SM section B2) have
+been detected only at impact speeds below ∼8.5 km s−1 .
+As already discussed in Postberg et al. (2018a) for the highmass organic material, a peak at 45 u cannot originate from pure
+hydrocarbons and requires a heteroatom from hydroxyl, ethoxy,
+or carbonyl functional groups. This is also true for the low-mass
+organics investigated here and a prominent example is shown in
+Fig. 4(a).
+In this work, we additionally assign the peak at 43 u in certain
+spectra as arising from oxygen-bearing cations Fig. 4(b). In contrast
+to the extended flank-feature between 38 and 45 u, characteristic
+for many Type 2 spectra (Fig. 1) and which probably derives from
+a multitude of species, the oxygen-bearing spectra discussed here
+are characterized by discrete, isolated peaks at 43 u.
+To investigate this spectral feature, a wide variety of oxygenbearing organic compounds were analysed (Table SM 2) with
+the analogue experiment. Most investigated species with carbonyl
+and/or hydroxyl functional groups produced an intense peak at 43 u
+together with a relatively minor peak at 45 u. As an example, the
+laboratory spectrum of butanal is shown in Fig. 5, in which a 43 u
+peak arising mainly from acylium cations (C2 H3 O+ ) is clearly
+visible together with a conjoint minor peak at 45 u (C2 H5 O+ ).
+The 43 u peak was also reproduced with aromatic species in which
+a short O-bearing aliphatic chain is attached to an aromatic ring
+structure (Table SM 2).
+A potential interference with the acylium ion can arise from larger
+aliphatic chains efficiently forming C3 hydrocarbon fragments
+(C3 H3-7 + ). However, several observations, most notably the absence
+of the conjoint minor peaks at 45 and 30–31 u (see below) argues for
+O-bearing cations being predominant. But a contribution of C3 H7 +
+at m/z 43 as an addition to C2 H3 O+ is possible. For a detailed
+discussion of this interference, we refer to SM section B2.
+In some O-bearing CDA spectra, the LMOS feature shows a
+tendency to peak towards the higher end of its typical mass range
+(26–31 u), in agreement with the presence of formyl cations
+(CH2,3 O+ , 30 u, 31 u). At the low (≤8.5 km s−1 ) velocities
+MNRAS 489, 5231–5243 (2019)
+
+(b)
+Figure 4. CDA TOF mass spectra of E ring ice grains with characteristic
+cationic fragments from O-bearing organics. Spectrum (a) was recorded at
+a Saturnian distance of 5.6 Rs by a particle impacting at ∼6.5 km s−1 . In
+this case, the characteristic O-bearing fragments are C2 H5 O+ cations at
+45 u. Spectrum (b) was recorded at a Saturnian distance of 5 Rs, generated
+by a particle impacting at ∼5 km s−1 . In this spectrum, the characteristic
+O-bearing fragments are acylium cations (C2 H3 O+ , 43 u) indicative of
+carbonyl or hydroxyl functional groups. In both (a and b) examples, formyl
+cations (CH3 O+ , 31 u) as a supporting evidence of O-bearing species are
+also visible. Water clusters are indicated by the blue bars, with the large red
+bars highlighting the Type 2 low-mass organic signature (LMOS). Marked
+in yellow are the characteristic O-bearing cations and their water clusters.
+All other signatures that are not marked or colour shaded are mostly due to
+organic species or organic-bearing water clusters.
+
+considered here, we discount the formation of these peaks via
+carbon-water clustering (Hillier et al. 2007; Postberg et al. 2009b
+and SM section B2) or as a cation fragment of alcohols as suggested
+by Postberg et al. (2008), as this is not supported by our laboratory
+analogue spectra. The conjoint production of the cationic fragments
+C2 H3,5 O+ and CH2,3 O+ from O-bearing compounds is however
+described in, e.g. McLafferty & Turecek (1993) and Lee (1998)
+and has also been observed in carbonyl-bearing spectra from an
+icy matrix (Henderson & Gudipati 2015). We confirm this with our
+analogue experiment (Fig. 5) where the acylium ion at 43 u appears
+conjointly with the formyl cationic peak at 31 u.
+The amplitudes of the hydronium peak at 19 u and the watercluster feature at 37 u are significantly lower with respect to the
+water cluster at 55 u in most 2O spectra. This is unusual for Type 2
+spectra where the low-mass water peaks (19 u, 37 u) occur at similar
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+peak cannot be isolated from the broad (approx. 26–31 u) LMOS
+feature in CDA spectra. A minor peak at 44 u is attributed to
+C2 H4 NH2 + (Fig. 3), but in most CDA spectra this feature is also not
+resolved (Figs 1 and 2). The ammonium-water clusters are clearly
+recognizable at 36 and 54 u. On rare occasions, a minor peak at 17 u,
+as shown in the laboratory spectrum (Fig. 3), was also observed in
+CDA spectra and can be attributed to NH3 + . In principle, H2 O+ may
+appear as an isobaric species to NH4 + at 18 u as H2 O+ is known
+to appear as a minor species conjointly with hydronium cations
+(H3 O+ ) (Donsig & Vickerman 1997; Buratti et al. 2019). However,
+this minor water ion occurs only at high impact speeds (SM section
+B1). In order to distinguish NH4 + from H2 O+ , we only considered
+spectra that exhibited a high abundance of the 18 u species at low
+impact speeds (SM section B1). This ensures that, in the subsample
+of Type 2 spectra considered here, the 18 u peak is dominated by
+NH4 + .
+
+Enceladean ice grains
+
+5235
+
+with high concentrations of organics (Knochenmuss et al. 1996), or
+salts (Piwowar, Lockyer & Vickerman 2009) and referred to as a
+matrix effect.
+4.3 Aromatic-bearing Type 2 spectra (Type 2A)
+
+Figure 6. A TOF impact mass spectrum representing an archetypal
+aromatic-type spectrum (2A) recorded at an impact speed of ∼10 km s−1
+at 3.6 Rs. Different signatures are colour shaded. Pure-water clusters at
+19 and 37 u, typical Type 2 features between mass ranges ∼26 and 31 u,
+aromatic cationic fragments C3 H3 + (39 u), C4 H3,4,5 + (51–53 u), C5 H3,4,5 +
+(63–65 u), C6 H5,7 + (77 u, 79 u), C7 H7 + (91 u), and rhodium target cations
+Rh+ (103 u) are indicated by blue, red, yellow, and orange bars, respectively.
+All other signatures that are not colour shaded are mostly due to organic
+cations. We note that the Na-water cluster (H2 O-Na+ , 41 u) might coincide
+with the C3 H5 cation, and a further organic cation might also coincide with
+Rh+ .
+
+or higher amplitudes than the one at 55 u (see Figs 1, 2, and 6 for
+comparison).
+In a few cases, McLafferty rearrangement (see section SM B2), in
+which (M-OH) cations at mass 55 u are formed via the cleavage of
+the OH functional group formed by the transfer of hydrogen on to the
+oxygen, may be responsible for the increased intensity of 55 u peak.
+However, it is also possible that the 19 and 37 u peak amplitudes
+are instead being suppressed. This is a known phenomenon in, e.g.
+matrix-assisted laser desorption/ionization (MALDI), often seen
+
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Figure 5. Laboratory TOF spectrum of an aqueous solution of butanal
+at a concentration of 0.15 mol L−1 . Hydronium/water-cluster cations and
+acylium (C2 H3 O+ , 43 u) cations are shown in blue and yellow, respectively.
+The pair of peaks marked in red can originate from formyl cations
+(CH1,3 O+ ). Although the 29 u peak can also be formed from hydrocarbon
+cations, that at 31 u is only produced by an oxygen-bearing fragment and
+can be used as further supporting evidence for the inference of O-bearing
+organics.
+
+Postberg et al. (2018a) found high mass organic cations (HMOC)
+appearing at masses above 80 u in spectra of E ring ice grains, with
+these spectral features always coinciding with aromatic cationic
+fragments. However, the reverse is not always true: aromatic
+features do not necessarily coincide with HMOC. In this section,
+we consider CDA Type 2 spectra, defined as aromatic-bearing 2A,
+in which aromatic features do not appear with HMOC.
+Aromatic-type (or Type 2A) spectra (approx. 45 per cent archetypal Type 2 spectra; Table SM 4) show a broad but distinct peak
+at ∼77–79 u, indicative of benzene-derived fragments (Fig. 6)
+such as the phenyl (C6 H5 + , 77 u) and benzenium (C6 H7 + , 79 u)
+cations (SM section B3). A coincident peak often appears at masses
+89–91 u, which we attribute to tropylium (C7 H7 + , 91 u) and
+dehydrotropylium cations (C7 H5 + , 89 u). As with the observations
+by Postberg et al. (2018a), the peak amplitude of tropylium is always
+lower than those due to phenyl cations. These aromatic features
+may coincide with cation peaks at m/z 63–65 u, 51–53 u, and 39 u
+(Fig. SM 6). These species (C5 H3,4,5 + , C4 H3,4,5 + , and C3 H3 + ) are
+known as the aromatic cationic fragment series (e.g. McLafferty
+& Turecek 1993). The aromatic fragments of Type 2A appear in
+spectra obtained over a broad range of impact speeds – from 6
+to 15 km s−1 , thus often appearing at notably higher speeds than
+Type 2N and 2O. Amongst several aromatic compounds (Table SM
+3) tested in the analogue experiment, only monocyclic aromatic
+compounds (MACs) resulted in the formation of the observed
+aromatic cationic fragment series.
+The phenyl and benzoyl group compounds of MAC efficiently
+produce phenyl and/or benzenium cations (C6 H5,7 + ), and benzyl
+group compounds produce significant abundances of tropylium
+cations (C7 H7 + ), whereas this is not observed for compounds
+with fused benzene rings, e.g. pyrene (Postberg et al. 2018a). In
+Type 2A spectra, phenyl cations are more abundant than tropylium
+cations. The laboratory experiments (SM section B3) indicate the
+preferred formation of phenyl cations when an aromatic ring is
+directly attached to a non-alkyl (or dehydrogenated) functional
+group, e.g. aniline (C6 H5 -NH2 ) and benzoic acid (C6 H5 -COOH). In
+addition, untested, non-polar, styrene-like (C8 H8 + ) MAC(s) might
+also produce significant abundances of phenyl cations as seen in
+CDA Type 2A spectra. These substances would be expected to yield
+clear molecular peaks (94 and 123 u for the polar examples, 105 u for
+the non-polar) with amplitudes comparable to that of the generated
+phenyl cations. That this is not observed in CDA Type 2A spectra
+thus limits the contributions of these particular compounds, leaving
+benzene as the most likely abundant suitably soluble compound that
+could give rise to the defining peak(s) at 77–79 u.
+The nominal period of CDA spectral recording is 6.4 μs after
+the instrument is triggered. However, CDA also has an extended
+mass range, from 6.4 μs up to 40 μs, with an extremely low mass
+resolution. It is noteworthy that in a few cases, Type 2A spectra
+have a significant signal within this extended mass range, as has been
+more frequently observed in HMOC spectra (Postberg et at. 2018a).
+In these cases, the presence of molecules with masses >200 u in
+parallel with MAC in the grains is indicated. However, in contrast to
+the HMOC spectra discussed in Postberg et al. (2018a), in Type 2A
+it is highly unlikely that the MACs are impact fragments of the highmass species because (unlike HMOC spectra) the 2A spectra do not
+
+5236
+
+N. Khawaja et al.
+
+show any indication of periodic patterns of fragment cations above
+91 u. It is, though, still possible that the compounds contributing
+to Type 2A spectra are low-mass poorly soluble aromatics (e.g.
+styrene), perhaps associated with the HMOC material.
+4.4 Mixed-type spectra (Type 2 M)
+
+Aromatic + O-bearing: Occasionally, aromatic cation peaks
+(C6,7 H5,7 + ) are observed with an additional oxygen-bearing peak
+(C2 H3 O+ and/or C2 H5 O+ ) at 43 and/or 45 u.
+Aromatic + N-bearing: Similarly, the aromatic cations
+(C6,7 H5,7 + ) sometimes coincide with the defining feature (NH4 + )
+of N-bearing species.
+O-bearing + N-bearing: These mixed spectra exhibit characteristic fragments of O- (C2 H3 O+ and/or C2 H5 O+ ) and N-bearing
+(NH4 + ) species.
+Aromatic + O-bearing + N-bearing: Some mixed-type
+spectra also combine the characteristic features (C6,7 H5,7 + ,
+C2 H3 O+ /C2 H5 O+ & NH4 + ) of all three subtypes.
+Accurate analyses of mixed-type spectra (Type 2 M) are complicated by the presence of significant numbers of further, often interfering, spectral peaks arising from the multiple organic
+species. However, the features attributable to N- and O-bearing,
+as well as aromatic-type, compounds are clearly visible in these
+spectra.
+4.5 Re-analysis of the HMOC data set
+In addition to the data set with low-mass organic compounds
+outlined in Section 3, we also reinvestigated the HMOC data set
+of Postberg et al. (2018a) to look for evidence of N- and O-bearing
+features. Postberg et al. (2018a) already tentatively attributed 45 and
+44 u peaks to C2 H5 O+ and C2 H6 N+ , respectively. Additionally, we
+now find further evidence of N-bearing and O-bearing species in
+HMOC-type spectra by identifying NH4 + (18 u) and C2 H3 O+ (43 u)
+(Figs SM 7 and 8). This finding verifies the previously tentative
+identifications of Postberg et al. (2018a).
+5 R E S U LT S
+In the following, we summarize the results from the preceding
+spectral analyses and consider their implications for the composition
+of E ring grains.
+To infer the functional and structural characteristics of organic
+compounds despite the low mass resolution of CDA, we only
+considered spectra in which specific, identifiable, high-significance,
+features occurred, i.e. archetype spectra. This subset amounts to
+∼8 per cent of the Type 2 spectra considered for this work. However,
+there are many additional spectra where these characteristics are
+indicated but which did not fulfil our conservative selection criteria
+(SM section B). It is therefore very likely that all three organic
+compositional properties discussed in this work occur in a much
+larger fraction of the ice grains, but at concentrations not allowing
+unmistakable identification, or obstructed by spectral interferences
+with other organic features. Organic species isobaric (at CDA’s
+
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+17 per cent of archetypal CDA Type 2 spectra (Table SM 4) exhibit
+features indicative of a combination of more than one of the three
+subtypes (Table 1 and Table SM 4), based on our conservative
+selection criteria (SM section B). The following combinations are
+observed:
+
+mass resolution) with water clusters or those that do not efficiently
+form cations will remain undetected in spectra, even if present in
+relatively high concentrations.
+Furthermore, in this work, we only considered organic signatures
+that are relatively frequent (>2 per cent of all Type 2 spectra
+analysed so far). Other classes of organic compounds that may
+produce features less frequently observed in CDA mass spectra will
+be the subject of future work.
+The mixed-type spectra may indicate that multiple simple organic
+compounds coexist in the ice grains. However, it is also feasible
+that a single, more complex, compound produces such features.
+For example, the presence of aromatic compounds with an attached
+short aliphatic chain containing a carbonyl/ethoxy/OH functional
+group, or two different organic compounds (i.e. carbonyl and
+aromatic) in a single ice grain. Our stringent selection criteria (SM
+section B) result in a very low number of this spectral type. It is
+therefore likely that a larger number of ice grains contain more than
+one of these functional groups, perhaps in combination with other
+currently unknown organic compounds.
+Table 1 summarizes the spectral properties of the observed
+organic compounds in the ice grains. A concentration of organic
+species of at least a few mmol L−1 is required to produce spectral
+features in the laboratory that match those seen in the archetypal
+CDA spectra. In particular, for some O-bearing spectra, concentrations above 0.05 mol L−1 are required to produce the detected
+enhancement in the amplitude of the 55 u peak (Fig. SM 3).
+The spectra of N- and O-bearing organics (Figs 2 and 4) are indeed
+indicative of VOCs – low-mass (<60 u), polar and hydrophilic,
+compounds. In contrast to the high-mass, insoluble, organic material
+(Postberg et al. 2018a), these are likely to be soluble in the ocean
+water. McLafferty rearrangement indicative of carbonyl compounds
+with at least four carbon atoms (SM section B2) is rarely observed,
+arguing against the presence of abundant species with four or
+more carbon atoms. We discount inorganic N-bearing sources of
+ammonium cations, such as N-bearing inorganic minerals (e.g.
+ammonium salts) or gaseous ammonia, as significant contributors
+to the N-bearing spectral signatures. NH4 + is only observed in high
+abundance together with other organic fragments, minimizing the
+possibility of an inorganic origin. Energetic arguments (desorption
+temperature and binding energy) make it unlikely that ammonia
+gas will enter grains at temperatures above 145 K (He, Acharyya &
+Vidali 2016; SM section B1). Furthermore, the archetypal N-bearing
+spectra show no indication of other abundant inorganic species (e.g.
+Na) as observed in the case of salt-rich Type 3 grains (Postberg et
+al. 2009a).
+In ice grains belonging to the aromatic subtype (2A), phenyl(excluding toluene) and/or benzoyl-rich aromatic compounds are
+in higher abundance than benzyl-rich compounds, leading to the
+observed increased abundance of phenyl cations in comparison
+to tropylium (Fig. SM 5). Cassini’s INMS provided evidence of
+benzene-like aromatic fragments C6 H5-7 in the Enceladean plume,
+probably from fragmentation of larger organic compounds residing
+in ice grains (Postberg et al. 2018a).
+Our reinvestigation of the HMOC data set originally analysed
+by Postberg et al. (2018a) affirms that macro-molecular material
+identified there appears together with N- and O-bearing functional
+groups (Figs SM 7 and 8). It is possible that HMOC-material
+coexists with separate N- and O-bearing organic species mixed
+within the same grains. However, a further plausible explanation is
+that the HMOC material itself carries abundant O- and N-bearing
+functional groups.
+
+Enceladean ice grains
+
+5237
+
+Table 1. Summary of spectral properties of subtypes of organic-enriched ice grains. Percentage of each subtype is given with respect to the total archetypal
+CDA Type 2 spectra (column X) and all Type 2 spectra (column Y) considered here. Note that percentages may total greater than 100 due to overlap between
+M and individual, N, O, A subtypes.
+X
+(per cent)
+
+Y
+(per cent)
+
+Identifying cations
+
+Interpretation
+
+N (N-bearing)
+
+33
+
+2.7
+
+Main: NH4 +
+Supporting: NH4 + (H2 O)1,2
+
+N-bearing organic molecules probably aliphatic.
+Candidate molecules: amines, nitriles, or amides.
+
+O (O-bearing)
+
+40
+
+3.3
+
+Main: C2 H3,5 O+
+Supporting: CH1,2,3 O+
+
+A (Aromatic)
+
+45
+
+3.7
+
+Main: C6 H5,7 + , C7 H5,7 +
+Supporting: C3 H3 + , C4 H3,5 + ,
+C5 H3,5 +
+
+M (Mixed)
+
+17
+
+1.4
+
+N+O, O+A, A+N &
+N+O+A
+
+O-bearing organic molecules: carbonyl,
+ethoxy/hydroxyl. LMOS feature often shifted to
+29–31 u possibly due to formyl cations.
+The series of unsaturated cationic species
+indicates aromatic compounds. High abundance
+of benzene-like cations (C6 H5,7 + ) compared to
+tropylium cations (C7 H5,7 + ) suggests the
+existence of benzene, phenyl and/or benzoyl-like
+aromatic compounds.
+Characteristic cations of more than one subtype
+appear together in this category. This implies the
+presence of either a single compound with
+multiple characteristics, or the coexistence of
+multiple compounds carrying different functional
+groups.
+
+6 DISCUSSION
+This new understanding of oxygen- and nitrogen-bearing low-mass
+organic compounds found in Enceladean ice grains has important
+implications for the composition of Enceladus’ subsurface ocean,
+and the mechanisms of grain formation from it. Postberg et al.
+(2018a, 2018b) argue that the detected complex organic molecules
+discussed in their work originate from Enceladus’ hydrothermal
+core. Indeed, hydrothermal processes on the Earth are known to
+be capable of producing complex organics, and similar processes
+may occur within Enceladus (Baross 2018). The serpentinizing
+environment of Enceladus’ water–rock system as suggested by,
+e.g. Hsu et al. (2015), Sekine et al. (2015), and Waite et al. (2017)
+implies conditions (pH and temperature) similar to the Lost City
+hydrothermal system under the mid-Atlantic Ocean (Tobie 2015),
+in which Ménez et al. (2018) found evidence for the presence of a
+nitrogen-bearing, aromatic amino acid – tryptophan.
+Multiple iron-containing minerals have been found to catalyse
+organic reactions in hydrothermal-like environments. The clay
+mineral, saponite, is thought to be a catalyst for the synthesis of
+heterocyclic amino acids, and other organic molecules including
+pyrimidine and pyrine (Baross 2018), which are the nitrogenous basis of DNA and RNA. As well as the generation of small molecules
+like tryptophan, saponite can also catalyse the production of organic
+polymers (e.g. Ferris et al. 1996; Hazen & Sverjensky 2010;
+Baross 2018), which are also thought to emerge from Enceladus’
+hydrothermal sites (Postberg et al. 2018a). An iron sulphide mineral
+(greigite) can reduce CO2 to synthesize carbonyl species such as
+acetic acid in alkaline hydrothermal environments (Roldan et al.
+2015). In experiments aimed at recreating conditions on a primordial
+Earth, Barge et al. (2019) hydrothermally synthesized alanine and
+lactate from ammonia and a low-mass carbonyl compound in the
+presence of iron oxyhydroxide. The experimental conditions (e.g.
+temperature and pH) under which these reactions occurred are again
+very similar to those postulated to be ongoing within Enceladus
+(Postberg et al. 2009a; Hsu et al. 2015; Sekine et al. 2015; Waite et
+al. 2017; Glein, Postberg & Vance 2018).
+Based on the work of Ménez et al. (2018) and Barge et al. (2019),
+the presence (depending on, e.g. availability/solubility) of the low-
+
+Figure 7. Different reaction pathways for the synthesis of potential biosignatures (amino acids and carboxylic acids) under Enceladean hydrothermal
+conditions. Here, 2O, 2A, and 2N refer to the classes of low-mass organic
+compounds found in Enceladus Type 2 grains. These may be precursors
+(low-mass carbonyls and aromatics) as well as products (low-mass carboxylic and aliphatic amino acids) of the reactions. Two main routes can
+involve low-mass O-bearing compounds (2O). Shown by the dashed arrows,
+the alkylation of available low-mass aromatics (2A) with low-mass Obearing compounds (2O) is followed by amination. This route produces
+aromatic amino acids, which are intermediate-sized (described in the main
+text) compounds remaining dissolved in Enceladus ocean. The other route
+follows two pathways (in solid arrows): either reduction of precursor Obearing compounds into low-mass carboxylic acids or reductive amination
+to synthesize low-mass amino acids.
+
+mass aromatic, O- and/or N-bearing compounds we have identified
+here therefore suggests at least two reaction pathways (Fig. 7) for
+hydrothermal abiotic synthesis of biochemical precursors may be
+possible within Enceladus’ ocean. The products of these reactions
+may then undergo polymerization (e.g. McCollom & Seewald
+2007; Milesi, McCollom & Guyot 2016; Vinogradoff et al. 2018)
+and synthesize the macromolecular organic material identified in
+previous work (Postberg et al. 2018a).
+The first pathway (Fig. 7) would involve Friedel–Crafts-like reactions in hydrothermal sites within Enceladus. Here, the alkylation of
+low-mass MAC with low-mass O-bearing (e.g. pyruvate, for which
+an example spectrum of Pyruvic acid is shown in the supplementary
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Type 2 subtypes
+
+5238
+
+N. Khawaja et al.
+
+MNRAS 489, 5231–5243 (2019)
+
+discussed in Postberg et al. (2018a) is that at the water surface
+they can be efficiently volatilized in the low-pressure environment
+within Enceladus’ crustal fractures (Fig. 8). The volatile organic
+compounds (VOCs) will then follow the pressure gradient towards
+open space, flowing upwards with the water vapour through the
+fractures. During the ascent in these ice vents, ambient temperatures
+drop from about 272 K near the water table to ∼200 K at even the
+hottest outlets (Goguen et al. 2013). Exposed to such temperature
+drops (Schmidt et al 2008; Yeoh et al. 2015), VOCs recondense
+on to the pre-existing (Fig. 8), but still growing, ice grains that
+act as efficient nucleation cores. Bouquet, Glein & Waite (2019)
+investigated the effect of adsorption of VOCs on to the ice vent
+walls and grains ejected in the Enceladus’ plume. The study showed
+a predominance of VOCs in the ice phase if their molecular
+binding energies (energy of desorption) are greater or equal to
+0.7 eV, indicating VOCs in the gas phase detected by INMS and
+those detectable by CDA in ice grains can differ in composition
+and concentration. Bouquet et al. also revealed that polar Obearing VOCs, with the exception of formaldehyde, accumulate
+more efficiently than pure hydrocarbons on to ice grains. Number
+concentrations with respect to water molecules in the grains were
+estimated to be approximately 0.2 per cent. The grains enriched
+with N- and O-bearing polar VOCs ejected from Enceladus are thus
+detected by CDA, whereas other less polar VOCs, for which grain
+condensation is less energetically favourable, remain unaltered in
+the gas phase until emission from Enceladus, and are detected by
+Cassini’s INMS.
+Magee & Waite (2017) have identified candidate organic compounds emerging from Enceladus’ ocean and detected in the gas
+plume with varying levels of ambiguity in the composition of
+these species (Postberg et al. 2018b). The compounds with a
+moderate level of ambiguity cover the mass range ∼24–34 u. This
+is approximately equivalent to CDA’s mass range (∼26–31 u) in the
+LMOS region (Section 1), where the species are indistinguishable
+in Type 2 spectra (Fig. 1). In this mass range and ambiguity level,
+Bouquet et al. (2019) only discussed the adsorption of acetylene
+(C2 H2 ), Ethylene (C2 H4 ), and Formaldehyde (CH2 O) on to the ice
+grains. These compounds have much lower binding energies with
+ice (Edes ∼ ≤ 0.4 eV) than the 0.5 eV lower limit discussed by
+Bouquet et al. (2019), and therefore cannot be adsorbed on to ice
+grains despite their high vapour pressures (e.g. ≥100 kPa at 273 K).
+However, methanol, detected with high ambiguity by Magee &
+Waite (2017), is also discussed by Bouquet et al. (2019), has a
+binding energy of ∼0.52 ± 0.06 eV, and might be adsorbed on to
+ice grains in trace amounts. In the laboratory, methanol produces
+an M+H peak at 33 u, and although it does not produce a peak in
+the LMOS region, it may contribute to a broadening of this feature
+at higher masses. However, no dominant peak at 33 u has so far
+been identified and therefore we suggest that most of the organic
+molecular compounds in the mass range ∼24–34 u as identified by
+Magee & Waite (2017) remain in the gas phase and hence are absent
+in CDA spectra. By extension, the ions contributing to the LMOS
+peak in CDA Type 2 spectra are thus more likely to be fragments
+of larger molecules.
+Magee and Waite (2017) have also suggested chemical formulae
+for organic compounds seen in INMS spectra, albeit with high
+ambiguity in their identification, with molecular masses ∼ ≥ 33 u,
+classified into different groups: O-bearing, N-bearing, NO-bearing,
+halogenated organics as well as hydrocarbons. Mass lines stemming
+from many of these organic compounds are used to explain INMS
+spectral features at masses of between 36 and 46 u. From the spectra
+investigated in this work, in combination with Magee and Waite’s
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+material, Fig. SM 9) compounds, in the presence of ammonia, may
+produce aromatic amino acids (e.g. tryptophan). A second route
+(Fig. 7) requires the reductive amination of low-mass O-bearing
+compounds (e.g. pyruvate) to aliphatic amino acids (e.g. alanine).
+A further possible pathway would involve the reduction of pyruvatelike O-bearing compounds to carboxylic acids (e.g. lactic acid).
+Although not a unique interpretation, many relevant precursor
+molecules (MACs, pyruvate-like O-bearing molecules, and small
+amino acids) are in agreement with the spectral features of the
+compositional groups (Types 2A, 2O, 2N, respectively) found in
+this work. This is also true for low-mass carboxylic acids (2O).
+NH3 is also a major plume constituent (Waite et al. 2017) and thus
+probably available at Enceladean hydrothermal sites.
+Our results also shed further light on the question of how
+organic material with differing physical properties finds its way
+into the plume and specifically into ice grains. Postberg et al.
+(2018a) postulate that the transport of Enceladus’ hydrothermal
+material from the core is supported by both convection and bubbles
+from upwelling and thereby exsolving volatile gases. This collects
+organic material from the deep ocean and delivers it to shallower
+depths. The water surface to which such organics may be delivered
+is situated inside cracks in the less than 5 km thick south polar
+ice crust (Beuthe, Revoldini & Trinh 2016; Cadek et al. 2016; Le
+Gall et al. 2017) and from isostatic considerations (e.g. Matson et
+al. 2012) lies less than 1 km below Enceladus’ surface (Postberg,
+Tobie & Dambeck 2016; Spencer et al. 2018). These reservoirs are
+believed to be efficiently evaporating at near triple-point conditions
+(Schmidt et al. 2008; Postberg et al. 2009a; Yeoh et al. 2015).
+Current understanding of the formation of ice grains inside Enceladus that are then ejected into the plume invokes two simultaneous
+mechanisms (Fig. 8). Nearly pure water ice grains (producing Type
+1 spectra) can form from condensation of supersaturated vapour
+inside and above the ice vents (Schmidt et al. 2008; Postberg et al.
+2009a; Yeoh et al. 2015). However, salty ice grains (Type 3) are
+thought to be frozen ocean spray generated by turbulence within
+the fractures (Kite & Rubin 2016) and/or when bubbles reach the
+water surface located inside vertical cracks in the crustal ice, and
+burst (Postberg et al. 2009a; Matson et al. 2012). The bubbles are
+formed either from water vapour produced by boiling water close
+to its triple point, or upwelling volatile gases [e.g. CO2 (Matson et
+al. 2012), CH4 , or H2 (Waite et al. 2017)]. If the droplets produced
+in the spray are smaller than a few micrometres, thermal support
+against gravity in the water vapour is possible, at gas densities
+slightly below the triple point. The droplets are then carried through
+the ice vents with the vapour from the evaporating water, following
+the pressure gradient into space.
+Grains with particularly high concentrations of poorly soluble
+and probably hydrophobic organic material with molecular masses
+above 200 u discussed in Postberg et al. (2018a) are thought to be
+formed from a thin layer, enriched with insoluble organic material,
+on the water surface. Bursting bubbles disperse the organic layer
+and, in a process analogous to that which forms the salty ocean
+spray (Lhuissier & Villermaux 2012), form an organic spray, which
+then acts as nucleation cores for subsequent coating by condensing
+water vapour when ascending though a fracture into space (Postberg
+et al. 2018a) (Fig. 8).
+Our analysis of low-mass organic material in this work contributes new key aspects (Fig. 8). In contrast to the aforementioned
+high-mass organics, these polar and hydrophilic N- and O-bearing
+compounds are unlikely to be phase separated from water and
+were therefore previously dissolved in the Enceladean ocean. Another crucial difference to the macromolecular organic compounds
+
+Enceladean ice grains
+
+5239
+
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Figure 8. Overview (not to scale) of different mechanisms for the formation of ice grains inside Enceladus’ south polar ice vents. The left-hand panel shows
+the upper part of an ice crack and an approximate location for the water table. The general temperature trend, cooling towards the surface, is shown by the
+arrow to the left. At the salt water surface, the temperature is about 272 K, gradually decreasing to approximately 200 K just before the ice grains enter space.
+In the right-hand three panels, grain formation and evolutionary processes, occurring at different regions in the vents, are shown. With the exception of the
+bubble bursting process (a), grain formation and evolution may occur at various depths within the fractures but here are shown in discrete locations (b, c)
+for clarity. The coloured dashed arrows represent different volatile species (water vapour, unadsorbent, and adsorbent VOCs shown by blue, green, and red,
+respectively). Different processes of grain formation and growth are shown: (i) bursting of upwelling gas bubbles at the water surface, aerosolizing salty water
+and an insoluble organic layer, (ii) condensation of salt-poor water ice from vapour, and (iii) adsorption of volatile organic species on to ice grains. Grains
+and surface layers are not shown to scale. (a) Bubble bursting: Water vapour and gas bubbles exsolve or upwell, and burst at the water surface. This creates
+a spray of not only salt-water aerosols (Postberg et al. 2009a) from the ocean (both dark blue) but also loft droplets of organic material (yellow) present as a
+layer at the water surface, including low-mass insoluble Type 2A compounds if present and/or Type 2 HMOC compounds (Postberg et al. 2018a). The dashed
+arrows represent volatile species that form the gaseous component of Enceladus’ plume. (b) Water condensation: Here water vapour becomes supersaturated
+at a narrow neck of the ice vent (Schmidt et al. 2008). Water vapour (light blue dashed arrow) condenses to form almost pure water ice grains (light blue,
+Type 1) and also condenses on to salt-water aerosols (dark blue) and aerosolized organic droplets (yellow), both of which act as nucleation cores, forming
+Type 2 A/HMOC ice grains and salt-rich Type 3 grains. We considered here the insoluble case of aromatic subtype 2A. Minor quantities of volatile organic
+species (in red) may also adsorb here but are not shown at this stage for clarity. These VOCs are more efficiently adsorbed at lower temperatures and are
+thus shown in panel (c). (c) Adsorption of volatile organics: Volatile organic species (N- and O-bearing) with high binding energies (Bouquet et al. 2019)
+and/or condensation temperatures below 200 K can adsorb on to all pre-existing ice grains (Type 1, Type 2A, Type 2 HMOC, and Type 3) in the vent. Type 1
+grains may therefore convert to Type 2 N/O grains if a detectable amount of volatile organics is adsorbed (bold/wide circles in red) or with only undetectable
+amounts of volatiles (thin red circles) remain as Type 1. Low-mass insoluble aromatic grain (yellow with thin light blue circle) without any VOCs is marked
+as Type 2A. Low-polarity volatile gases with low binding energy and high condensation temperature (green dashed arrows) are not adsorbed on to ice grains
+and remain unaltered in the gas phase leaving the vents together with uncondensed water vapour (blue dashed arrows). Despite the INMS non-detection of
+aromatic compounds, we cannot completely rule out the creation of Type 2A via adsorption from the vapour phase, here indicated by A∗ .
+
+5240
+
+N. Khawaja et al.
+Table 2. O- and N-bearing organic compounds selected (full list SM Table 6) from Magee & Waite (2017) that might
+condense on to ice grains sorted by different levels of grain vapour deposition likelihood, based on the criteria given
+in the main text. ∗The binding energies for amorphous ice are applied for these species. ∗∗We estimate that these
+NO-bearing species are more likely to produce O-bearing fragments.
+O-bearing
+
+Level 1 (a,b,e)
+Level 2 (a,c,e)
+Level 3 (a,d,e)
+
+acetic acid: C2 H4 O2
+∗acetaldehyde: C2 H4 O
+vinyl acetate: C4 H6 O2
+ethylene oxide: C2 H4 O
+propanal/propylene oxide: C3 H6 O
+ethyl methyl ether: C3 H8 O
+2-butanol/isopropyl methyl ether:
+C4 H10 O
+2,3-butanedione: C4 H6 O2
+∗∗ethyl nitrite: C2 H5 NO2
+∗∗isopropyl nitrite: C3 H7 NO2
+
+tentative identifications, and the binding energies presented by
+Bouquet et al. (2019) as well as inferred from Wakelam et al. (2017)
+and Szentermai et al. (2016), we can estimate the likelihood that
+the species identified in the gas phase are responsible for producing
+the Type 2O, 2N, and 2A spectra after adsorption on to ice grains
+in the vents. Species can therefore be discounted (Table SM 6) due
+to one or more of the following:
+1. If they produce spectral features not in agreement with Type
+2O, 2N, or 2A – e.g. aliphatic hydrocarbons and O- and N-bearing
+species with C > 4.
+2. If they have a binding energy with crystalline water ice known
+to be less than 0.5 eV or with amorphous water ice <0.42 eV.
+3. If they have an unsuitable vapour pressure at ∼273 K.
+However, binding energies are not well constrained for most of
+the species given in Magee and Waite (2017), and the exact vapour
+pressure threshold for entry into the plume is also poorly known. We
+therefore classify the ability of the compounds to enter grains from
+the vapour phase into three levels of likelihood (Table 2), based on
+combinations of the following criteria:
+(a) Spectral appearance: Characteristic cations are observed in
+their spectra, or if spectra are not available, the structure of the
+compound is expected to produce suitable characteristic cations
+following molecular cleavage.
+(b) Binding energies: ≥0.7 eV.
+(c) Binding energies: between 0.5–0.7 eV for crystalline ice and
+0.42–0.7 eV for amorphous ice (see SM section D).
+(d) Binding energies: unavailable.
+(e) Vapour pressure: ≥0.31 kPa (half of the water vapour pressure) at 273 K.
+We suggest suitable candidates for the Type 2N and 2O species
+(Table 2). Acetic acid is the only candidate that definitely meets
+the criteria for O-bearing VOCs entering the particles via the gas
+phase. Aldehydes are also good candidates for this mechanism.
+Other possible species for which we could not find binding energies
+include ketones, ethers, and nitrites. Interestingly, for the Type
+2N grains, we find that amines are the only possible compounds
+that could enter grains this way whilst agreeing with the combined
+observations of INMS and CDA.
+Depositing from the vapour/gas phase, the O- and N-bearing
+species would also be expected to be present in all ice grains,
+including those particles which give rise to pure water Type 1 spectra
+and which do not show organic signatures (Postberg et al. 2009a,
+MNRAS 489, 5231–5243 (2019)
+
+N-bearing
+–
+methylamine: CH5 N
+ethylamine/dimethylamine: C2 H7 N
+
+2011). Indeed, the transition between Type 1 and Type 2 spectra
+of ice grains is continuous. For example, many Type 1 spectra
+show indications of an LMOS feature with a signal-to-noise ratio
+below the 2.5σ level, disqualifying these spectra from inclusion in
+the Type 2 data set. The fraction of Type 2 detections generally
+significantly increases in proportion to the overall strength of the
+spectral signal (i.e. the total ion yield) with the best signal-to-noise
+ratio, whereas the fraction of Type 1 detections decreases (Postberg
+et al. 2008, 2011, 2018b). This may indicate that most, if not all, ice
+grains emitted by Enceladus contain organic condensates at varying
+concentrations, the detection of which, above the noise level, is
+only possible for CDA when a particular organic cation signal is
+strong enough. Thus, the detection, and with it the classification
+into Types 1 and 2, depends on the absolute number of organic ions
+contributing to a signal at a given molecular mass. This quantity is
+more related to the absolute abundance of an organic species in an
+ice grain than to its concentration.
+The vapour condensation process is also expected to occur on
+to the surfaces of salty ice grains (Type 3), previously formed
+from oceanic aerosols, as they are entrained in the outgassing
+vapour. Although there are indications in the CDA data for such
+grains, our focus in this work, on spectra with simple, diagnostic
+features, means organic signatures from salt-rich grains are beyond
+our scope. The biochemical precursors produced by the processes
+described earlier, and summarized in Fig. 7, although polar and
+soluble, would be more massive than the VOCs identified in this
+work, and intermediate in mass between the VOCs and the HMOC
+compounds. They are therefore not expected to be detected in Type
+2 grains, as their solubility and low vapour pressures mean they will
+remain dissolved within the ocean, but are instead likely to be found
+in the Type 3 grains. We note, however, that alkali metal salts are
+known to modify and/or suppress organic signatures and instigate
+strong matrix effects (Piwowar et al. 2009; Klenner et al. 2018),
+complicating the (ongoing) identification of these intermediatemass organics.
+The single-ringed aromatic compounds that do not result in an
+HMOC pattern in spectra and are identified in this work as Type
+2A may, in principle, form via a similar mechanism to the other
+Type 2 grains, by incorporation of organics into the ice grains
+by evaporation and recondensation. Volatilization of the observed
+aromatic compounds may occur directly from the ocean surface if
+the compounds are at least sparingly soluble or if they evaporate
+from an insoluble layer on the water surface that is thought to be
+rich in more complex aromatic constituents (Postberg et al. 2018a).
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Level of certainty
+
+Enceladean ice grains
+
+7 CONCLUSIONS
+In this study, we have characterized CDA spectra of organic-bearing
+ice grains (Type 2) and inferred structural information concerning
+low-mass organic species. We used a subset of spectra with
+particularly pronounced organic signatures to identify three specific
+spectral subtypes attributable to the presence of different organic
+cations. To identify these signatures and the parent molecules that
+give rise to them, we have investigated mass spectra from suitable
+analogue materials in a water matrix in the laboratory. There the
+impact ionization process of ice grains is simulated by a pulsed
+
+IR laser firing on an ultrathin water beam (Postberg et al. 2009a,
+Klenner et al. 2019).
+Four key diagnostic cations – NH4 + (ammonium), C2 H3,5 O+
+(acylium and/or ethoxy), and C6 H5 + (phenyl) – were used to
+classify N-bearing and O-bearing aliphatic, as well as single-ringed
+aromatic, compounds in the ice grains, all with molecular masses
+below 100 u. Based on the laboratory experiments, the N-bearing
+signatures in Type 2N stem from amines, nitriles, and/or amides
+whereas the O-bearing signatures in Type 2O can be reconciled with
+aldehydes, ketones, carboxylic acids, alcohols, or ethers. Finally, we
+find phenyl- and benzoyl-like compounds to be the most suitable
+candidates for the low-mass aromatic signatures in subtype 2A.
+Our data suggest that aliphatic N-bearing and O-bearing compounds in the grains originate from low-mass hydrophilic VOCs
+that probably were previously dissolved in the ocean. We suggest
+that most of these compounds efficiently evaporate from Enceladus’
+oceanic water and subsequently recondense and adsorb (Postberg
+et al. 2018b; Bouquet et al. 2019) on to water ice nucleation cores
+upon cooling during ascent through the icy crustal cracks. This is not
+necessarily the case for the aromatic subtype, where the candidate
+compounds are undetected in the vapour phase. Thus, we propose
+that they form by bubble bursting, potentially originating from an
+organic layer on top of the water surface as proposed by Postberg
+et al. (2018a).
+Types 2N and 2O are formed by vapour condensation in
+Enceladus ice vents and so further constraints can be placed on the
+exact identities of compounds by comparing CDA spectra with the
+candidate organic molecules identified in the plume gas (Magee
+& Waite 2017, Postberg et al. 2018b). Thus, by considering the
+physical and chemical environments within the Enceladean vents as
+well as suitable binding energies (Bouquet et al. 2019) and vapour
+pressures, only a few species remain that could plausibly condense
+into Type 2O and 2N grains. Of these, acetic acid and acetaldehyde
+are excellent candidates for the production of Type 2O and amines
+are left as the only plausible candidates for the production of 2N
+grains.
+The non-detection of aromatics in the gas phase by INMS implies
+that any progenitor species for Type 2A grains has a very low
+vapour pressure. Of the species so far considered, phenol, aniline,
+benzoic acid, and styrene-like compounds are therefore considered
+more likely than benzene and, if poorly soluble, or insoluble, could
+be present as a separate phase and are likely to enter grains via
+bubble bursting. In comparison to Types 2O and 2N, the exact
+identification of such species, and therefore the precise formation
+mechanism of Type 2A grains, is highly ambiguous, not least as no
+obvious molecular peak candidates have so far been found. We also
+cannot completely rule out the – undetected by INMS, and perhaps
+temporally or spatially variable – presence of benzene in the gas
+phase, with VOC-like adsorption pathways into E ring ice grains
+then possible.
+The organic concentrations within the selection of ice grain
+spectra discussed in this work are estimated to be at least at the
+mmol level, in broad agreement with the value (0.2 per cent by
+number with respect to water) calculated by Bouquet et al. (2019).
+However, we used CDA spectra exhibiting only the most clearly and
+unambiguously identifiable signatures as archetypes. The identified
+compounds probably reside in many more, if not most, of the
+ice grains, although in highly variable and often much lower
+concentrations. Owing to the limitations of the CDA spectral quality
+and possible isobaric interferences with other particle constituents,
+especially water clusters, the presence of further, so far unidentified,
+organic species is highly probable.
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+For example, benzene (vapour pressure at 0◦ C ∼ 3500 Pa) can
+efficiently be volatilized at the triple point of water occurring at
+612 Pa, a pressure thought to be representative of the region directly
+next to Enceladus’ water surface (Schmidt et al. 2008). However,
+to date, INMS has not detected benzene in the plume gases (e.g.
+Magee & Waite 2017; Postberg et al. 2018b). This non-detection
+may be due to instrument sensitivity, with INMS ‘averaging’ out the
+composition of the Enceladean plume, or because of a real lack of
+benzene at the time of measurement – whether permanent or arising
+from temporary changes in plume composition. Other more soluble
+candidates, such as phenol, which is more polar than benzene and
+likely to have a higher binding energy with water ice, may have
+vapour pressures (e.g. ∼3 Pa for phenol) too low for entry into
+the plume in appreciable quantities, and thus also be undetectable
+by INMS. Alternatively, low-vapour pressure compounds, whether
+poorly soluble or insoluble, could also form Type 2A grains via the
+same heterogeneous nucleation process as HMOC-type grains, in
+which bursting bubbles loft organic compounds as droplets, which
+then act as efficient condensation cores. Although the absence
+of identified molecular peaks argues against this scenario, the
+infrequent presence of a low-resolution feature in the extended
+mass region (above 200 u) of the CDA spectra, may support the
+occasional occurrence.
+In hydrothermal reactions (e.g. Friedel–Crafts reactions) polar,
+low-mass and initially dissolved aromatic compounds may change
+their polarity and become less soluble and reactive. These low-mass
+aromatics could then be transported from the depths of Enceladus
+ocean towards the surface and then incorporated into Type 2A
+grains via aerosolization. In this way, the aromatic organics could
+also be mixed with the more volatile organics (e.g. O- and Nbearing) and result in grains that give rise to the mixed-type spectra
+(Table 1). Mixing of HMOC material with O- and N-bearing volatile
+compounds could occur in a similar way.
+Organic-enriched ice grains show strong grain-to-grain variation
+in their compositions and the apparent abundance of organics within
+the grains. These differences may be indicative of variations in
+the environmental conditions within the south polar fractures on
+Enceladus. Emission of icy dust, gas, and vapour from the south
+polar is a dynamic process, with both temporal and spatial variation
+in grain production and size distribution. Enceladus’ plume activity
+is linked to tidal flexure of the fractures (e.g. Hedman et al.
+2013; Kite & Rubin 2016; Ingersoll & Ewald 2017), and possibly
+subsurface water motion and fracture tortuosity (Teolis et al. 2017).
+The infrared spectra of emitted ice grains are also known to vary
+between different ‘Tiger Stripe’ fractures (Dhingra et al. 2017),
+perhaps due to variations in formation environments and fracture
+geometries. We consider it therefore probable that the variations
+observed in the composition and abundance of organic-enriched ice
+grains at least partially arise from similar processes.
+
+5241
+
+5242
+
+N. Khawaja et al.
+
+MNRAS 489, 5231–5243 (2019)
+
+grains, which are thought to form from oceanic spray (Postberg et al.
+2009a, 2011). Finding and identifying such biosignatures will be the
+main goal of future work. The putative low vapour pressure, higher
+mass, dissolved organics might also be enriched in the organic nearsurface layer postulated by Postberg et al. (2018a) and thus might
+also enter HMOC-type ice grains.
+Similarities between the hydrothermal environments in Enceladus and on the Earth, where life might have developed without
+sunlight, reinforce the importance of further exploring Enceladus’
+habitability. Cassini’s CDA, despite its substantial achievements,
+was not designed for this task. A future space mission with a
+dedicated payload of modern, high-resolution mass spectrometers
+(Lunine 2016; Reh et al. 2016; Mitri et al. 2017) would be
+able to deliver a dramatic improvement in the characterization of
+Enceladus’ rich organic chemistry and, with that, our understanding
+of the habitability of Enceladus’ subsurface ocean.
+
+AC K N OW L E D G E M E N T S
+The work was supported by the German Research Foundation
+(DFG) under projects PO 1015/2-1, /3-1, /4-1, an European Research Council (ERC) Consolidator Grant 724908-Habitat OASIS,
+and the German Space Agency under DLR grant 50OH1501.
+
+REFERENCES
+Alexander C.O’.D., Cody G. D., De Gregorio B. T., Nittler L. R., Stroud R.
+M., 2017, Geochemistry, 77, 227
+Barge L. M., Flores E., Baum M. M., VanderVelde D. G., Russel M. J.,
+2019, Proc. Natl. Acad. Sci., 116, 4828
+Baross J. A., 2018, Nature, 564, 42
+Beuthe M., Rivoldini A., Trinh A., 2016, Geophys. Res. Lett., 43, 10088
+Bouquet A., Glein C. R., Waite J. H., 2019, ApJ, 873, 13
+BurattiB. J. et al., 2019, Science, 364, 1126
+Čadek O. et al., 2016, Geophys. Res. Lett., 43, 5653
+Choblet G., Tobie G., Sotin C., Behounkova´ M., Cadek O., Postberg F.,
+Soucek O., 2017, Nat. Astron., 1, 841
+Dhingra D., Hedman M. M., Clark R. N., Nicholson P. D., 2017, Icarus,
+292, 1
+Donsig H. A., Vickerman J. C., 1997, Chem. Soc. Faraday Trans., 93, 2755
+Dougherty M. K., Khurana K. K., Neubauer F. M., Russell C. T., Saur J.,
+Leisner J. S., Burton M. E., 2006, Science, 311, 1406
+Ferris J. P., Hill A. R., Jr Liu R., Orgel L. E., 1996, Nature, 381, 59
+Förstel M., Bergantini A., Maksyutenko P., Gobi S., Kaiser R. I., 2017, ApJ,
+845, 83
+Glein C. R., Postberg F., Vance S. D., 2018, in Schenk P. M., Clark R. N.,
+Howett C. J. A., Verbiscer A. J., Waite J. H., eds, Enceladus and the Icy
+Moons of Saturn. Univ. Arizona, Tucson, USA, p. 39
+Goguen J. D. et al., 2013, Icarus, 226, 1128
+Hansen C. J., Esposito L., Stewart A. I. F., Colwell J., Hendrix A. R., Pryor
+W. R., Shemansky D., West R., 2006, Science, 311, 1422
+Hansen C. J. et al., 2011, Geophys. Res. Lett., 38, 1
+Hazen R. M., Sverjensky D. A., 2010, Cold Spring Harb. Perspect. Biol. 2,
+a002162
+He J., Acharyya K., Vidali G., 2016, ApJ, 825, 89
+Hedman M. M. et al., 2013, Nature, 500, 182
+Henderson B. L., Gudipati M. S., 2015, ApJ, 800, 66
+Hillier J. K. et al., 2007, MNRAS, 377, 1588
+Hsu H. W. et al., 2015, Nature, 519, 207
+Ingersoll A. P., Ewald S. P., 2017, Icarus, 282, 260
+Kahana A., Schmitt-Kopplin P., Lancet D., 2019, Astrobiology, 19, 1
+Kempf S., Beckmann U., Schmidt J., 2010, Icarus, 206, 446
+Kempf S., Horányi M., Hsu H.-W., Hill T. W., Juhász A., Smith H. T., 2018,
+in Schenk P. M., Clark R. N., Howett C. J. A., Verbiscer A. J., Waite J.
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+Furthermore, we reinvestigated the CDA data set of Postberg
+et al. (2018a) exhibiting features generated by high-mass complex
+organics. Through the attribution of additional spectral characteristics, we confirm the tentative identification of N-bearing species
+in HMOC spectra (Fig. SM 7) and further affirm their finding that
+O-bearing species are present (Fig. SM 8). In these cases (Table SM
+5), it is possible that O- and N-bearing functional groups originate
+directly from the HMOC parent molecules.
+The observed variations in the concentration and composition
+of organic compounds in particles may be the result of variations
+in subsurface oceanic as well as fracture conditions, leading to
+differing formation and evolutionary conditions as grains are generated and grow. The condensation of pure water grains is difficult
+to reconcile with an organic-rich plume, unless there is significant
+fracture to fracture variation in the composition of the plume gas,
+with some fractures entirely free of adsorbable organic vapour/gas.
+It is therefore possible, perhaps even very likely, that the vast
+majority of grains emitted from Enceladus contain VOCs, with the
+distinction between Type 1 and Type 2 purely the result of VOC
+abundance, instrument effects (e.g. noise limitations, increased
+sensitivity to minor compounds at higher impact velocities), and
+the selection effect introduced by signal-to-noise requirements for
+LMOS peak identification. The LMOS peak is the sole distinguishing criterion between the otherwise very similar Type 1 and Type 2
+spectra. Larger grains naturally will carry a higher organic volatile
+content (not necessarily concentration), which will then be more
+likely to overcome the detection and classification threshold in
+CDA mass spectra. Therefore, Type 1 and those Type 2 grains
+forming from volatile condensation might just be the small and large
+populations, respectively, of nearly identically composed grains.
+Hints of just such a size distribution difference between Type 1 and
+Type 2 grains have indeed been found (Hillier et al. 2007; Postberg
+et al. 2008, 2009a).
+We have demonstrated that one can probe the organic inventory
+of Enceladus’ – probably hydrothermal – core by in situ analysis of
+material ejected into the plume or the E ring. The abiotic synthesis
+of N-containing aliphatic (Barge et al. 2019) and aromatic (Ménez
+et al. 2018) amino acids, as found in the Lost City hydrothermal
+site (Ménez et al. 2018), may be relevant to the geo-chemical and
+physical environment of Enceladus. We propose that the reactive
+low-mass organic material identified in this work can take part in
+similar synthesis pathways, generating such biologically relevant
+organic compounds with intermediate masses between those of the
+VOCs and the HMOC material. Indeed, retrosynthesis of glycine
+and alanine has revealed that the low-mass N-bearing species
+(methylamine and ethylamine) we identify as the most suitable
+candidates for the Type 2N compound(s) are potential precursors
+of these proteinogenic amino acids (Vallentyne 1964; Förstel et
+al. 2017). Further processing, including polymerization reactions,
+may then result in the production of, or contribution to, the detected
+HMOC complex macromolecular organic compounds.
+It is highly likely that there are many more dissolved organic
+compounds in the Enceladean ocean than reported here (Kahana,
+Schmitt-Kopplin & Lancet 2019). In this investigation of Type 2
+grains, the initial constraints, in particular the choice of salt-poor
+spectra, favoured the identification of compounds with high vapour
+pressures. Despite the expected solubility of potential synthesized
+intermediate- or high-mass compounds, their low vapour pressures
+mean that they will not efficiently evaporate at the water surface
+and thus remain undetectable not only in the vapour, but also those
+Type 2 grains forming from it. Potential soluble biosignatures with
+higher masses might therefore be found in spectra from Type 3
+
+Enceladean ice grains
+
+Schmidt J., Brilliantov N., Spahn F., Kempf S., 2008, Nature, 451, 685
+Sekine Y., Shibuya T., Postberg F., Hsu H.-W., Suzuki K., Masaki Y., 2015,
+Nat. Commun., 6, 8604
+Southworth B. S., Kempf S., Spitale J., 2019, Icarus, 319, 33
+Spahn F. et al., 2006a, Science, 311, 1416
+Spahn F. et al., 2006b, Planet. Space Sci., 54, 1024
+Spencer J. R. et al., 2006, Science, 311, 1401
+Spencer J. R. Nimmo F., Ingersoll A. P., Hurford T. A., Kite E. S., Rhoden
+A. R., Schmidt J., Howett C. J. A., 2018, in Scheck P. M., Clark R. N.,
+Howett C. J. A., Verbiscer A. J., Waite J. H., eds, Enceladus and the Icy
+Moons of Saturn. Univ. Arizona, Tucson, USA, p. 163
+Srama F. et al., 2004, Space Sci. Rev., 114, 465
+Szentermai V., Szori M., Picaud S., Jedlovszky P., 2016, JPCC, 120, 23480
+Teolis B. D., Perry M. E., Hansen C. J., Waite J. H., Porco C. C., Spencer J.
+R., Howett C. J. A., 2017, Astrobiology, 17, 926
+Thomas P. C., Tajeddine R., Tiscareno M. S., Burns J. A., Joseph J., Loredo
+T. J., Helfenstein P., Porco C., 2016, Icarus, 264, 37
+Tobie G., 2015, Nature, 519, 162
+Vallentyne J. R., 1964, Geochim. Cosmochim. Acta, 28, 157
+Vinogradoff V., Bernard S., Le Guillou C., Remusat L., 2018, Icarus, 305,
+358
+Waite J. H. et al., 2006, Science, 311, 1419
+Waite J. H. et al., 2009, Nature, 460, 1164
+Waite J. H. et al., 2017, Science, 356, 155
+Wakelam V., Loison J.-C., Mereau R., Ruaud M. 2017, Mol. Astrophys., 6,
+22
+Yeoh S. K., Chapman T. A., Goldstein D. B., Varghese P., Trafton L. M.,
+2015, Icarus, 253, 205
+
+S U P P O RT I N G I N F O R M AT I O N
+Supplementary data are available at MNRAS online.
+Supplementary material9.pdf
+Please note: Oxford University Press is not responsible for the
+content or functionality of any supporting materials supplied by
+the authors. Any queries (other than missing material) should be
+directed to the corresponding author for the article.
+
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+
+MNRAS 489, 5231–5243 (2019)
+
+Downloaded from https://academic.oup.com/mnras/article/489/4/5231/5573821 by Universität Stuttgart user on 29 June 2026
+
+H., eds, Enceladus and the Icy Moons of Saturn. Univ. Arizona, Tucson,
+USA, p. 195
+Kite E. S., Rubin A. M., 2016, Proc. Natl. Acad. Sci., 113, 3972
+Klenner F., Postberg F., Stolz F., Khawaja N., Reviol R., 2018, EPSC, 12,
+1262
+Klenner F. et al., 2019, Rapid Commun. Mass Spectrom.
+Knochenmuss R., Dubois F., Dale M. J., Zenobi R., 1996, Rapid Commun.
+Mass Spectrom., 10, 871
+Lee T. A., 1998, A Beginner’s Guide to Mass Spectral Interpretation (Vol.
+01). John Wiley & Sons Ltd., West Sussex, England
+Le Gall A. et al., 2017, Nat. Astron., 1, 0063
+Lhuissier H., Villermaux E., 2012, J. Fluid Mech., 696, 5
+Lunine J. I., 2016, Acta Astronaut., 131, 123
+Magee B. A., Waite J. H., 2017, LPSC, XLVIII (2974)
+Matson D. L., Castillo-Rogez J. C., Davies A. G., Johnson T. V., 2012,
+Icarus, 221, 53
+McCollom T. M., Seewald J. S., 2007, Chem. Rev., 107, 382
+McLafferty F. W., Turecek F., 1993, Interpretation of Mass Spectra (Vol.04).
+Univ. Sci. Books, California, USA
+Ménez B. et al., 2018, Nature, 564, 59
+Milesi V., McCollom T. M., Guyot F., 2016, Geochim. Cosmochim. Acta
+189, 391
+Mitri G. et al., 2017, Planet. Space Sci., 155, 73
+Piwowar A. M., Lockyer N. P., Vickerman J. C., 2009, Anal. Chem., 81,
+1040
+Porco C. C. et al., 2006, Science, 311, 1393
+Postberg F., Kempf S., Hillier J. K., Srama R., Green S. F., McBride N.,
+Grün E., 2008, Icarus, 193, 438
+Postberg F., Kempf S., Schmidt J., Brilliantov N., Beinsen A., Abel B., Buck
+U., Srama R., 2009a, Nature, 459, 1098
+Postberg F., Kempf S., Rost D., Stephan T., Srama R., Trieloff M., Mocker
+A., Goerlich M., 2009b, Planet. Space Sci. 57, 1359
+Postberg F., Schmidt J., Hillier J., Kempf S., Srama R., 2011, Nature, 474,
+620
+Postberg F., Tobie G., Dambeck T., 2016, Sci. Am., 315, 38
+Postberg F. et al., 2018a, Nature, 558, 564
+Postberg F., Clark R. N., Hansen C. J., Coates A. J., Dalle Ore C. M.,
+Scipioni F., Hedman M. M., Waite J. H., 2018b, in Schenk P. M., Clark
+R. N., Howett C. J. A., Verbiscer A. J., Waite J. H., eds, Enceladus and
+the Icy Moons of Saturn. Univ. Arizona, Tucson, USA, p. 129
+Reh K., Spilker L., Lunine J. I., Waite J. H., Cable M. L., Postberg F., Clark
+K., 2016, Aerospace Conference, p. 1
+Roldan A. et al., 2015, Chem. Commun., 51, 7501
+
+5243
+
+

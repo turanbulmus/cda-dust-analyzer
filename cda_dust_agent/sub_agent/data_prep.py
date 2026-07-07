@@ -181,6 +181,7 @@ class FilterAndPlotDoFn(beam.DoFn):
             "request": {
                 "contents": [
                     {
+                        "role": "user",
                         "parts": contents_parts
                     }
                 ],

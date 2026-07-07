@@ -57,12 +57,49 @@ class ResultAnalysisAgent(BaseAgent):
                 return
                 
             prediction_blobs.sort(key=lambda x: x.time_created, reverse=True)
-            blob_to_download = prediction_blobs[0]
+            newest_blob = prediction_blobs[0]
+            folder_prefix = os.path.dirname(newest_blob.name)
             
-            yield log_and_yield(self.name, f"Downloading {blob_to_download.name} to cda_dust_agent/data/output/predictions.jsonl...")
-            blob_to_download.download_to_filename("cda_dust_agent/data/output/predictions.jsonl")
+            latest_run_blobs = [b for b in prediction_blobs if os.path.dirname(b.name) == folder_prefix]
+            yield log_and_yield(self.name, f"Downloading {len(latest_run_blobs)} prediction shard file(s) from {folder_prefix} into predictions.jsonl...")
+            
+            os.makedirs("cda_dust_agent/data/output", exist_ok=True)
+            output_filepath = "cda_dust_agent/data/output/predictions.jsonl"
+            with open(output_filepath, 'wb') as outfile:
+                for blob in sorted(latest_run_blobs, key=lambda x: x.name):
+                    content = blob.download_as_bytes()
+                    outfile.write(content)
+                    if not content.endswith(b'\n'):
+                        outfile.write(b'\n')
+            
+            # Merge bypassed predictions from Stage 1 Pre-filter if present
+            bypassed_file = "cda_dust_agent/data/output/bypassed_predictions.jsonl"
+            if os.path.exists(bypassed_file):
+                yield log_and_yield(self.name, f"Merging bypassed noise predictions from {bypassed_file} into {output_filepath}...")
+                with open(bypassed_file, 'rb') as bf, open(output_filepath, 'ab') as outfile:
+                    outfile.write(bf.read())
         else:
             yield log_and_yield(self.name, "Using local cda_dust_agent/data/output/predictions.jsonl...")
+            # Also support local mode merge if present
+            bypassed_file = "cda_dust_agent/data/output/bypassed_predictions.jsonl"
+            output_filepath = "cda_dust_agent/data/output/predictions.jsonl"
+            if os.path.exists(bypassed_file):
+                yield log_and_yield(self.name, f"Merging bypassed noise predictions from {bypassed_file} into {output_filepath}...")
+                # We need to read predictions.jsonl, check if they are already merged, if not merge
+                with open(output_filepath, 'r') as f:
+                    content = f.read()
+                # Check if bypassed SCLKs are already in content to avoid double merging
+                with open(bypassed_file, 'r') as bf:
+                    first_line = bf.readline()
+                if first_line:
+                    try:
+                        p_first = json.loads(first_line)
+                        p_id = parse_response(p_first.get('response', {}).get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', '')).get('id')
+                        if p_id and p_id not in content:
+                            with open(output_filepath, 'ab') as outfile, open(bypassed_file, 'rb') as bf:
+                                outfile.write(bf.read())
+                    except Exception:
+                        pass
         
         yield log_and_yield(self.name, "Running inline analysis of cda_dust_agent/data/output/predictions.jsonl...")
         try:

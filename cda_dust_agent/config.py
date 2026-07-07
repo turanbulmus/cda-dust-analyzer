@@ -12,7 +12,7 @@ class AgentSettings(BaseSettings):
     inference_path: str = "batch" # 'local' or 'batch'
     fetch_data: bool = True
     force_new_annotations: bool = False
-    test_mode: bool = True
+    test_mode: bool = False
     few_shot_n: int = 16
     test_n: int = 2000
     target_dataset: str = "L"

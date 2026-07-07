@@ -38,23 +38,18 @@ class BatchSubmissionAgent(BaseAgent):
         if ctx.session.state.get("fsa_state") != "done":
             return
 
-        jsonl_file = ctx.session.state.get("jsonl_file")
+        gcs_sources = ctx.session.state.get("gcs_sources")
         bucket_name = ctx.session.state.get("bucket_name")
         
-        if not jsonl_file or not bucket_name:
-            yield log_and_yield(self.name, "Missing state: jsonl_file or bucket_name")
+        if not gcs_sources or not bucket_name:
+            yield log_and_yield(self.name, "Missing state: gcs_sources or bucket_name")
             return
             
-        yield log_and_yield(self.name, f"Uploading {jsonl_file} to GCS bucket: {bucket_name}")
-        storage_client = storage.Client(project=self.project_id)
-        bucket = storage_client.bucket(bucket_name.replace("gs://", ""))
+        clean_bucket = bucket_name.replace("gs://", "").strip("/")
+        yield log_and_yield(self.name, f"Submitting Batch Job for sources: {gcs_sources}...")
         
-        blob = bucket.blob(f"input/{jsonl_file}")
-        blob.upload_from_filename(jsonl_file)
-        gcs_source = f"gs://{bucket.name}/input/{jsonl_file}"
-        
-        yield log_and_yield(self.name, f"Uploaded to {gcs_source}. Submitting Batch Job via curl...")
-        
+        os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
+        os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
         from google.cloud import aiplatform
         
         aiplatform.init(project=self.project_id, location="global")
@@ -67,9 +62,9 @@ class BatchSubmissionAgent(BaseAgent):
                 job_display_name=job_display_name,
                 model_name=model_to_use,
                 instances_format="jsonl",
-                gcs_source=gcs_source,
+                gcs_source=gcs_sources,
                 predictions_format="jsonl",
-                gcs_destination_prefix=f"gs://{bucket.name}/output",
+                gcs_destination_prefix=f"gs://{clean_bucket}/output",
             )
             yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job.name}")
             ctx.session.state["job_name"] = job.name
@@ -81,9 +76,9 @@ class BatchSubmissionAgent(BaseAgent):
                     job_display_name=job_display_name,
                     model_name=fallback_model,
                     instances_format="jsonl",
-                    gcs_source=gcs_source,
+                    gcs_source=gcs_sources,
                     predictions_format="jsonl",
-                    gcs_destination_prefix=f"gs://{bucket.name}/output",
+                    gcs_destination_prefix=f"gs://{clean_bucket}/output",
                 )
                 yield log_and_yield(self.name, f"Job Submitted Successfully! Job Name: {job.name}")
                 ctx.session.state["job_name"] = job.name

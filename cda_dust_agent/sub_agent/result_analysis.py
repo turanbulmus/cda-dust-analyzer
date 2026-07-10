@@ -1,8 +1,12 @@
 import os
 import json
+import logging
+from datetime import datetime
 from typing import AsyncGenerator
 from typing_extensions import override
 
+import apache_beam as beam
+from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
 import pandas as pd
 from google.cloud import storage
 from google.adk.agents import BaseAgent
@@ -11,10 +15,7 @@ from google.adk.events import Event
 from google.genai.types import Content, Part
 
 from ..config import Config
-
 from ..tools.utils import parse_response
-
-import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - [%(name)s] - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -25,8 +26,63 @@ def log_and_yield(author: str, text: str):
 
 configs = Config()
 
+
+class ExtractCleanPredictionDoFn(beam.DoFn):
+    """Parses raw VLM prediction files from GCS (100+ GB) and extracts only SCLK ID, Class, and Explanation to a small format."""
+    
+    def process(self, line):
+        import json
+        from cda_dust_agent.tools.utils import parse_response
+        
+        try:
+            record = json.loads(line)
+            resp_text = ""
+            
+            # Extract text from either candidates format or predictions format
+            if 'response' in record:
+                resp_text = record['response']['candidates'][0]['content']['parts'][0]['text']
+            elif 'predictions' in record:
+                resp_text = record['predictions'][0]['candidates'][0]['content']['parts'][0]['text']
+                
+            parsed = parse_response(resp_text)
+            if isinstance(parsed, list):
+                parsed = parsed[0] if len(parsed) > 0 else {}
+            elif not isinstance(parsed, dict):
+                parsed = {}
+                
+            pred_id = parsed.get("id")
+            pred_label = parsed.get("class") or parsed.get("class_label") or "Noise"
+            explanation = parsed.get("explanation", "")
+            
+            if pred_id is not None:
+                clean_record = {
+                    "response": {
+                        "candidates": [
+                            {
+                                "content": {
+                                    "parts": [
+                                        {
+                                            "text": json.dumps({
+                                                "id": str(pred_id),
+                                                "class": str(pred_label),
+                                                "explanation": str(explanation)
+                                            })
+                                        }
+                                    ],
+                                    "role": "model"
+                                }
+                            }
+                        ]
+                    }
+                }
+                yield json.dumps(clean_record)
+        except Exception:
+            # Skip corrupted/malformed prediction rows silently
+            pass
+
+
 class ResultAnalysisAgent(BaseAgent):
-    """Downloads prediction results and runs analysis."""
+    """Downloads prediction results and runs analysis using Apache Beam (Cloud Dataflow) to process massive output payloads in-cloud."""
     project_id: str
     
     @override
@@ -42,37 +98,136 @@ class ResultAnalysisAgent(BaseAgent):
             yield log_and_yield(self.name, "Job was not successful; skipping analysis.")
             return
             
+        output_filepath = "cda_dust_agent/data/output/predictions.jsonl"
+        os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
+            
         if inference_path != "local":
             os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
             os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
-            bucket_name = ctx.session.state.get("bucket_name")
-            storage_client = storage.Client(project=self.project_id)
-            bucket = storage_client.bucket(bucket_name.replace("gs://", ""))
             
+            bucket_name = ctx.session.state.get("bucket_name")
+            clean_bucket = bucket_name.replace("gs://", "").strip("/")
+            
+            storage_client = storage.Client(project=self.project_id)
+            bucket = storage_client.bucket(clean_bucket)
+            
+            # 1. Clean old local prediction file
+            if os.path.exists(output_filepath):
+                os.remove(output_filepath)
+                
+            # Clean old clean predictions in GCS
+            existing_cleans = [b for b in bucket.list_blobs(prefix="output/clean_predictions") if b.name.endswith(".jsonl")]
+            if existing_cleans:
+                for b in existing_cleans:
+                    b.delete()
+            
+            # 2. Locate latest raw prediction folder from GCS
             blobs = list(bucket.list_blobs(prefix="output"))
-            prediction_blobs = [b for b in blobs if b.name.endswith(".jsonl") and "prediction" in b.name]
+            prediction_blobs = [b for b in blobs if b.name.endswith(".jsonl") and "prediction" in b.name and "clean_predictions" not in b.name]
             
             if not prediction_blobs:
-                yield log_and_yield(self.name, "Warning: No prediction JSONL files found in output directory.")
+                yield log_and_yield(self.name, "Warning: No raw prediction JSONL files found in GCS output directory.")
                 return
                 
             prediction_blobs.sort(key=lambda x: x.time_created, reverse=True)
-            blob_to_download = prediction_blobs[0]
+            newest_blob = prediction_blobs[0]
+            folder_prefix = os.path.dirname(newest_blob.name)
             
-            yield log_and_yield(self.name, f"Downloading {blob_to_download.name} to cda_dust_agent/data/output/predictions.jsonl...")
-            blob_to_download.download_to_filename("cda_dust_agent/data/output/predictions.jsonl")
+            # 3. Setup and run parallel cleanup pipeline (Beam)
+            test_mode = configs.agent_settings.test_mode
+            runner = "DirectRunner" if test_mode else "DataflowRunner"
+            job_name = f"cda-result-cleanup-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+            
+            yield log_and_yield(self.name, f"Launching Apache Beam cleanup pipeline using {runner} (Job Name: {job_name}) to extract predictions from {folder_prefix}...")
+            
+            options_args = [
+                f"--runner={runner}",
+                f"--project={self.project_id}",
+                f"--temp_location=gs://{clean_bucket}/temp",
+                f"--staging_location=gs://{clean_bucket}/staging",
+            ]
+            
+            if runner == "DataflowRunner":
+                options_args.extend([
+                    f"--region={configs.agent_settings.location}",
+                    "--setup_file=./setup.py",
+                    f"--job_name={job_name}"
+                ])
+                
+            pipeline_options = PipelineOptions(options_args)
+            pipeline_options.view_as(SetupOptions).save_main_session = True
+            
+            input_wildcard = f"gs://{clean_bucket}/{folder_prefix}/*.jsonl"
+            output_clean_prefix = f"gs://{clean_bucket}/output/clean_predictions/predictions"
+            
+            try:
+                with beam.Pipeline(options=pipeline_options) as p:
+                    (
+                        p
+                        | "Read Raw Predictions" >> beam.io.ReadFromText(input_wildcard)
+                        | "Extract Clean Metadata" >> beam.ParDo(ExtractCleanPredictionDoFn())
+                        | "Write Clean Predictions" >> beam.io.WriteToText(
+                            output_clean_prefix,
+                            file_name_suffix=".jsonl",
+                            shard_name_template="-SSSSS-of-NNNNN"
+                        )
+                    )
+                yield log_and_yield(self.name, "Beam prediction extraction pipeline completed successfully!")
+            except Exception as e:
+                logger.error(f"Error executing prediction extraction pipeline: {e}")
+                yield log_and_yield(self.name, f"Pipeline Error: {e}")
+                raise e
+                
+            # 4. Download ONLY the tiny cleaned prediction shards from GCS
+            clean_blobs = [b for b in bucket.list_blobs(prefix="output/clean_predictions/") if b.name.endswith(".jsonl")]
+            yield log_and_yield(self.name, f"Downloading {len(clean_blobs)} clean prediction shard(s) into local predictions.jsonl...")
+            
+            with open(output_filepath, 'wb') as outfile:
+                for blob in sorted(clean_blobs, key=lambda x: x.name):
+                    content = blob.download_as_bytes()
+                    outfile.write(content)
+                    if not content.endswith(b'\n'):
+                        outfile.write(b'\n')
+            
+            # 5. Merge bypassed predictions from Stage 1 Pre-filter in GCS if present
+            bypassed_blobs = [b for b in bucket.list_blobs(prefix="output/bypassed/") if b.name.endswith(".jsonl")]
+            if bypassed_blobs:
+                yield log_and_yield(self.name, f"Merging {len(bypassed_blobs)} bypassed predictions shards from GCS into {output_filepath}...")
+                with open(output_filepath, 'ab') as outfile:
+                    for blob in bypassed_blobs:
+                        content = blob.download_as_bytes()
+                        outfile.write(content)
+                        if not content.endswith(b'\n'):
+                            outfile.write(b'\n')
         else:
             yield log_and_yield(self.name, "Using local cda_dust_agent/data/output/predictions.jsonl...")
+            bypassed_file = "cda_dust_agent/data/output/bypassed_predictions.jsonl"
+            if os.path.exists(bypassed_file):
+                yield log_and_yield(self.name, f"Merging bypassed noise predictions from {bypassed_file} into {output_filepath}...")
+                with open(output_filepath, 'r') as f:
+                    content = f.read()
+                with open(bypassed_file, 'r') as bf:
+                    first_line = bf.readline()
+                if first_line:
+                    try:
+                        p_first = json.loads(first_line)
+                        p_id = parse_response(p_first.get('response', {}).get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', '')).get('id')
+                        if p_id and p_id not in content:
+                            with open(output_filepath, 'ab') as outfile, open(bypassed_file, 'rb') as bf:
+                                outfile.write(bf.read())
+                    except Exception:
+                        pass
         
-        yield log_and_yield(self.name, "Running inline analysis of cda_dust_agent/data/output/predictions.jsonl...")
+        yield log_and_yield(self.name, f"Running inline analysis of {output_filepath}...")
         try:
             from sklearn.metrics import classification_report, confusion_matrix
 
             # Load predictions
             preds = []
-            with open("cda_dust_agent/data/output/predictions.jsonl", 'r') as f:
+            with open(output_filepath, 'r') as f:
                 for line in f:
-                    preds.append(json.loads(line))
+                    if line.strip():
+                        preds.append(json.loads(line))
             
             # Load ground truth
             df = pd.read_parquet("cda_dust_agent/data/testing/cda_test.parquet")

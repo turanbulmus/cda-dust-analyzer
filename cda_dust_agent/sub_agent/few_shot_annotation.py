@@ -36,7 +36,8 @@ class FewShotAnnotationAgent(BaseAgent):
         if configs.agent_settings.inference_path not in ["local", "batch"]:
             return
             
-        if ctx.session.state.get("fsa_state") == "done":
+        # If session state already has the loaded examples, we can return early
+        if ctx.session.state.get("fsa_state") == "done" and "few_shot_examples" in ctx.session.state:
             return
             
         fsa_state = "auto_annotate"

@@ -1,0 +1,1504 @@
+MNRAS 529, 1207–1221 (2024)
+
+https://doi.org/10.1093/mnras/stae603
+
+Advance Access publication 2024 February 27
+
+Iron depletion in mineral dust grains from Saturn’s main rings
+Simon Linti ,1 ‹ Frank Postberg,1 ‹ Hsiang-Wen Hsu,2 Jon K. Hillier,1 Christian Fischer,3
+Mario Trieloff,3 Jürgen Schmidt,1 Sascha Kempf2,4 and Ralf Srama 5
+1 Institut für Geologische Wissenschaften, Freie Universität Berlin, D-12249 Berlin, Germany
+2 Laboratory for Atmospheric and Space Physics, University of Colorado, Boulder, CO 80303, USA
+3 Institut für Geowissenschaften, Universität Heidelberg, D-69120 Heidelberg, Germany
+5 Institut für Raumfahrtsysteme, Universität Stuttgart, D-70569 Stuttgart, Germany
+
+Accepted 2024 February 26. Received 2024 February 26; in original form 2023 November 14
+
+ABSTRACT
+
+During the Grand Finale orbits, Cassini’s Cosmic Dust Analyzer (CDA) recorded in situ mass spectra of ice and mineral nanodust
+grains ejected from Saturn’s main rings falling into the planet’s atmosphere. We present a compositional analysis of the mineral
+dust fraction employing a spectral deconvolution method to determine the elemental composition of these grains. The results
+indicate a relatively homogenous composition of exclusively Mg-rich silicates, with Mg, Si, and Ca close to CI chondritic
+abundances but a significant depletion in Fe and only traces of organic material at best. The Fe depletion becomes even more
+pronounced when compared to Fe-rich interplanetary dust particles encountered by CDA in the Saturnian system, which are
+assumed to contaminate and darken the main rings over time. We discuss potential explanations for the depletion, from which
+we favour compositional alteration of the infalling dust grains by impact-triggered chemistry in combination with dynamical
+selection effects and instrumental bias as the most plausible ones. This might cause an accumulation of Fe in the main rings over
+time, most likely in the form of oxides.
+Key words: methods: data analysis – planets and satellites: individual: Saturn – planets and satellites: rings.
+
+1 I N T RO D U C T I O N
+The investigation of Saturn’s rings has fascinated scientists since their
+discovery. Observations with various techniques over the last decades
+revealed structural details and the composition of the rings (Pollack
+1975; de Pater & Dickel 1991; Spilker et al. 2003; Dougherty,
+Esposito & Krimigis 2009). The best insight into the ring dynamics
+and composition was delivered by the Cassini-Huygens mission,
+which explored Saturn’s ring system over 13 yr. Most compositional
+analyses were made with remote sensing techniques, showing that
+Saturn’s main rings consist mostly of water ice, with the non-icy
+components, making up only a few per cent of the rings’ mass, in
+agreement with silicates (Morris et al. 1985; Cruikshank, Imanaka &
+Dalle Ore 2005; Clark et al. 2008), but also organic compounds
+(e.g. Cuzzi & Estrada 1998; Nicholson et al. 2008; Bradley et al. in
+review), as well as amorphous carbon (Cuzzi & Estrada 1998; Cuzzi
+et al. 2018) and maybe fine-grained iron and/or hematite (Clark et
+al. 2012). Regarding silicates, the most recent remote sensing results
+infer volume silicate fractions varying between 0.1 and 0.5 per cent
+for the A and B rings (Zhang et al. 2017a), whereas the C ring was
+found to contain the highest silicate abundance – 1–2 per cent in
+most areas and a maximum of 6–11 per cent in the centre of the ring
+
+ E-mail: s.linti@fu-berlin.de (SL); frank.postberg@fu-berlin.de (FP)
+
+(Zhang et al. 2017b). Regarding the non-icy ring material, Cuzzi et
+al. (2018) consider these values as upper limits for silicates.
+In this study, we focus on the ring particles detected during the
+Cassini Grand Finale orbits from 2017 April to September. During
+this period, the Cassini spacecraft traversed 22 times through the
+gap between the inner edge of the D ring and Saturn’s cloud tops,
+providing unprecedented opportunities to study Saturn’s main rings
+with in situ instruments. The measurements were carried out by the
+Cosmic Dust Analyzer (CDA), an impact ionization time-of-flight
+mass spectrometer capable of providing elemental compositional
+information of individual grains impacting the instrument target
+at speeds of at least several kilometres per second (Srama et al.
+2004). CDA observations during the Grand Finale mission were
+motivated by an earlier study showing that charged dust particles
+could be dynamically unstable and propagate along magnetic field
+lines connecting Saturn and its rings (Northrop & Hill 1982). Because
+of the northward offset of Saturn’s dipolar magnetic field, charged
+dust particles with sizes of 10 s of nm are expected to fall preferably
+into Saturn’s Southern hemisphere (Northrop & Hill 1982; Ip 1983;
+Connerney 1986). Initial results published by Hsu et al. (2018) show
+that (i) nanodust 10 s of nm in size forms the dominant population
+in between Saturn and its rings, while grains larger than ∼0.1 μm
+have a spatial density orders of magnitude lower; (ii) the measured
+particle flux exhibits a significant north–south asymmetry, consistent
+with the pre-Cassini dynamical analysis, suggesting the detected
+particles, likely released as impact ejecta, indeed originated from the
+
+© 2024 The Author(s).
+Published by Oxford University Press on behalf of Royal Astronomical Society. This is an Open Access article distributed under the terms of the Creative
+Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse, distribution, and reproduction in any medium,
+provided the original work is properly cited.
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+4 Department of Physics, University of Colorado, Boulder, CO 80309, USA
+
+1208
+
+S. Linti et al.
+
+main rings; and (iii) water ice and silicate grains are identified as
+the main compositional classes of the detected nanodust particles,
+with silicates accounting for about 30 per cent of those spectra to
+which a composition type could be assigned. The only other nonwater constituents detected are small amounts of unspecified organic
+material in a few ice grains.
+Fig. 1 shows the dynamical model established using CDA measurements (Hsu et al. 2018), indicating most grains detected by CDA
+originated from the B and C rings. This suggests that silicate particles
+detected by CDA should be highly representative of the non-icy
+constituent in Saturn’s main rings.
+The work presented here represents a detailed investigation of this
+ring debris, focusing on the silicate fraction. The main ring particles
+are all high-speed detections, with an average impact speed of around
+30 km s–1 . This high impact speed produces mass spectral features
+almost exclusively from elemental cations (see Section 2). The high
+impact speed on to the instrument target allowed the detection of
+particles only 10 s of nm in size.
+
+2 M AT E R I A L S A N D M E T H O D S
+2.1 The data set
+For the analysis, data of 13 Grand Finale orbits were used (Table 1).
+Although the pointing was not optimized for CDA during each of
+the 13 ring plane crossings (RPXs), the largest number of spectra
+were recorded within ±20 min from the RPXs, which represents the
+time frame where modelling predicts that most particles stem from
+the main rings (Fig. 1; Hsu et al. 2018). The data set was restricted to
+those spectra recorded by CDA with signals strong enough to attempt
+spectral classification. From a total of 1353 spectra, 362 spectra
+of possible silicate particles were identified (∼27 per cent, Table
+S1), divided into four qualitative groups (Table 2). The remaining
+MNRAS 529, 1207–1221 (2024)
+
+Table 1. List of the Grand Finale orbits used for the analysis. Given are the
+UTC of the respective ring plane crossings (RPX), the number of identified
+silicate particles, and the articulation of CDA during the respective RPX.
+
+Rev
+
+UTC of RPX
+
+Number of silicate
+spectra
+
+CDA articulation (◦ )
+
+273
+275
+278
+279
+280
+281
+283
+284
+287
+288
+290
+291
+292
+
+2017–129T06:13:21
+2017–142T03:11:05
+2017–161T12:41:20
+2017–167T23:52:04
+2017–174T10:53:45
+2017–180T22:10:33
+2017–193T20:43:37
+2017–200T07:50:09
+2017–219T17:18:35
+2017–226T04:18:28
+2017–239T02:15:21
+2017–245T13:12:00
+2017–252T00:10:04
+
+13
+33
+9
+39
+13
+31
+35
+9
+52
+18
+14
+34
+21
+
+105
+74
+47
+96
+45
+155
+127
+270
+123
+105
+115
+125
+106
+
+fraction is dominated by water ice spectra (∼57 per cent) and
+currently unclassified spectra (∼16 per cent) with ambiguous spectral
+signatures. The 41 spectra of the lowest confidence level (‘silicate
+uncertain’) were not used for the compositional analysis in this
+work.
+The silicate spectra were first calibrated onto a mass scale, using
+the CDA data analysing software. If present, the mass lines of Fe+
+(main isotope 56 u) and Rh+ (103 u) were used to calibrate the
+spectrum. For spectra without a significant Fe+ mass line, Mg+
+(main isotope 24 u) could be used instead, although with a higher
+uncertainty. This is because Na+ (23 u) is often not resolved from
+the neighbouring Mg+ peak and thus might also contribute to the
+peak maximum. Spectral calibration
+from a time to a mass domain
+√
+follows the relation t = a m + b, for ions of mass m arriving at
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Figure 1. Nanodust flux profile registered by the Chemical Analyzer Target (CAT) of Cassini’s CDA during orbit 275. The upper panel shows the measured
+and modelled flux profiles as the spacecraft moved southwards crossing the ring plane. In the model, the grain radius is set to be 20 nm and the bulk density is
+1 g cm–3 . Material-specific densities, i.e. for non-icy particles, were not considered here (dynamical models assuming densities of 3 g cm–3 for mineral grain
+are presented in Section 3). The lower panel shows the modelled source region distribution for particles detected at locations with respect to the ring plane. The
+results suggest most originated from the B and C rings (adapted from Hsu et al. 2018).
+
+Mineral dust from Saturn’s main rings
+
+1209
+
+Table 2. Spectral criteria of the four identified silicate groups. The percentages reflect the fractions of the full data set. σ is the
+standard deviation of the local spectrum noise.
+Spectral type
+Silicate surea
+(117 spectra, 8.6 per cent)
+
+Spectral criteria
+ High S/N
+ Merged Na+ and Mg+ lines ≥ 4 σ
+ Merged Al+ and Si+ lines ≥ 2σ
+
+Silicate likelyb
+(33 spectra, 2.4 per cent)
+
+ Generally high S/N
+ Merged Na+ and Mg+ lines mostly ≥ 4σ
+ Merged Al+ and Si+ lines mostly ≥ 2σ
+ Slightly ambiguous due to absence of some mineral-forming ions, mostly Ca+ or Fe+
+
+Silicate weakc
+(171 spectra, 12.6 per cent)
+
+ Slightly ambiguous due to low S/N
+ Merged Na+ and Mg+ lines < 4σ
+ Merged Al+ and Si+ lines < 2σ
+
+Silicate uncertain
+(41 spectra, 3.0 per cent)
+
+ Highly ambiguous due to low S/N
+ Absence of important mineral-forming ions, such as Si+ and Fe+
+ Overall spectral shape still agrees better with silicates than ice
+
+a Used for individual compositional analysis in Figs 4–7.
+b,c Used for statistical purposes only in Figs 3, 4, 5, 7, and 8.
+
+time t. Here, the stretch parameter a is related to the geometry of
+CDA and the applied field strengths (e.g. Hillier et al. 2006), and
+the shift parameter b is related to instrument triggering. During the
+last two Grand Finale orbits, the potential at the instrument target
+was increased from about 1000 to 1400 V, shortening the TOF of the
+ions, resulting in smaller values of a and more compressed spectra
+with slightly decreased mass resolution. These spectra are excluded
+from the co-added spectra (see below).
+Table 2 also summarizes the spectral features used as criteria to
+classify the four silicate groups. The qualitative criteria of ‘silicate
+sure’ spectra were considered as sufficient for quantitative analysis
+and their compositions are analysed individually. Assignment as
+silicates for the spectra of the second and third group (‘likely’ and
+‘weak’) is slightly ambiguous, and therefore they are not used for
+individual compositional analysis. Since the ‘weak’ spectra, however,
+account for more than 50 per cent of the silicate data set, they are
+investigated co-added in a single sum spectrum that provides sufficient signal-to-noise ratios (S/Ns) for quantitative analysis. In later
+discussion, they are referred to as ‘weak signal’. The fourth group
+(‘silicate uncertain’) comprises highly ambiguous spectra; however,
+their spectral appearance might still agree best with silicates. They
+are not considered in the compositional analysis.
+2.2 Spectral classification
+The spectra identified as silicate show mass lines of Si+ and other
+mineral-forming ions, such as Mg+ , Ca+ , and Fe+ (Fig. 2a), although,
+except for Si+ , not necessarily all of them are identifiable in any
+single spectrum. In most cases, together with Si+ , the lines of Mg+ ,
+
+Fe+ , and Al+ were sufficient to determine the siliceous nature of the
+grain. Three silicate spectra show an additional peak attributed to
+S+ (Fig. 2b), which points at an additional sulphur-bearing phase in
+these grains that could possibly be entrained into these particles by
+a secondary effect (see Section 4, Scenario 3b).
+In addition to the particle ions, potential contaminants such as ions
+of Na+ , K+ , and C+ are observable in the spectra. Rh+ is the target
+material, which is excavated and ionized by particles impacting at
+speeds higher than approximately 8 km s–1 (Postberg et al. 2009a),
+and therefore is frequently seen in the analysed spectra. The mass
+lines of Na+ and K+ are, at least to a greater part, related to an
+instrument target contamination, although they could theoretically
+be particle constituents. After multiple plume encounters during
+the close Enceladus flybys between 2008 and 2015, the CDA
+Chemical Analyzer Target (CAT) was increasingly contaminated
+with residues deposited, or recondensing, on to the target from saltrich ice grains (Postberg et al. 2009b, 2011). Varying amounts of the
+contamination layer were ionized by every impacting particle studied
+in this work, leading to potentially significant contamination peaks,
+predominantly Na+ , with varying amplitudes in CDA’s cation mass
+spectra.
+Oxygen is visible in most of the spectra in the data set (Table 2). It
+generally appears in spectra recorded from grains impacting at about
+20 km s–1 or more and can be used as a speed indicator (Postberg
+et al. 2009a; Fiege et al. 2014). Oxygen cannot be ruled out as a
+potential minor contaminant, stemming from the instrument target
+(Postberg et al. 2009a), but to a greater part is likely to stem from
+the silicate particles (Hillier et al. 2012; Fiege et al. 2014; Hsu et al.
+2018).
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+ C+ line ≥ 3σ
+
+1210
+
+S. Linti et al.
+
+(a)
+
+Figure 2. (a) An example of a typical high S/N silicate spectrum detected during the Grand Finale orbits. Particle constituents are highlighted in yellow,
+contaminants and target material are highlighted in grey. The O+ mass line is most likely to be from a particle constituent, but contributions from target
+contamination cannot be ruled out. (b) Silicate spectrum with a rare but significant sulphur peak, highlighted in green. The upper dashed line represents the
+significance level (3σ ) above the average spectrum noise (lower dashed line).
+
+2.3 Particle size calculation
+The radii of the silicate particles are estimated to range from about
+20 to 100 nm, with 81 per cent being between 20 and 40 nm and
+19 per cent being larger (Fig. 3). The particle radii are determined
+from the calculated masses, assuming a spherical particle shape
+and an average density of 3 g cm–3 . The formula that was used
+to calculate the particle masses was constructed empirically from
+CDA dust accelerator experiments with iron particles (Srama et al.
+MNRAS 529, 1207–1221 (2024)
+
+2004) and is
+
+m = 48.2 ×
+
+QI
+v5
+
+0.91
+(1)
+
+with the impact speed v in km s–1 , assumed to be similar to the
+spacecraft speed during the ring plane crossings, typically around
+30 km s–1 ; ion yield QI in C; and mass m in kg.
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+(b)
+
+Mineral dust from Saturn’s main rings
+
+1211
+
+The mass and size estimates, based on the QI signal, are affected by
+significant uncertainties for individual grains. This is mostly caused
+by the remaining uncertainty of the exact impact speed and the fact
+that the calibration of CDA used iron dust particles and the ion yield
+of the silicates investigated here might be different. This amounts to
+an uncertainty of a factor of 2 for the absolute sizes given here (Hsu
+et al. 2018). However, the given sizes are more reliable for a larger
+ensemble, specifically when only relative sizes are considered (i.e.
+particles in bin A are twice as large as in bin B).
+2.4 Deconvolution
+The resolving power of CDA, from its mass resolution of
+m/m = 20–50 (Srama et al. 2004), is too low to resolve some
+neighbouring mass peaks. This results in spectra containing broad,
+joined features comprising peaks from ions with similar masses, such
+as Na+ , Mg+ , Al+ and Si+ or K+ and Ca+ . To interpret such spectra
+a manual deconvolution method was applied, similar to the technique
+that was used to infer compositional information about interstellar
+dust (ISD) particles (Altobelli et al. 2016). The ISD particles were
+detected with the same instrument and at similar speeds, affirming
+the validity of the technique, which was developed further for this
+study. This method enables spectral ion abundances to be obtained
+from individual grains by disentangling the neighbouring mass lines.
+As a first step, a reference peak was selected, which represents
+the flight time distribution of a single ion species arriving at the
+instrument detector. The carbon peak was found to be a suitable
+candidate, as it is definitely present as a contaminant with an
+unquantifiable potential contribution from the dust particle in all
+spectra. For the mass range considered in this work, a Gaussian
+function was found to be the best approximation to the peak shape.
+The Gaussian profile was solely fitted using the left (low-mass)
+flank of the peak, up to the maximum, to avoid the influence of
+
+CH+ ions, which might be present in the right flank and artificially
+broaden the reference peak. The Gaussian function/reference peak
+is characterized by three parameters: amplitude, centre (position on
+the x-axis) and σ  (= FWHM/2.355, where FWHM is the full width
+at half-maximum of the peak).
+The amplitude and position are adjusted individually in each
+spectrum, to fit the respective ion species into the peak clusters.
+As higher mass peaks from Na+ until Ca+ are slightly broader than
+the reference C+ peak in the mass spectra, on average by a factor of
+1.1 on the time-of-flight axis, σ  was corrected by a factor of 1.1.
+In the Na+ –Si+ unresolved feature, species’ Gaussian shaped
+peaks were fitted in order of decreasing mass (Fig. S1). Isotopes,
+such as from Mg, were fitted as individual peaks. First, the reference
+peak was adjusted in amplitude and position until it matched the right
+flank of the feature (= Si+ ). After a successful fit, this Si+ fraction
+was subtracted from the spectrum, leaving a feature with Na+ , Mg+
+and Al+ ions. Al+ was skipped, due to the uncertain position between
+Mg+ and Si+ . Continuing to move to lower masses, the isotopes of
+Mg+ , with abundances of about 13 per cent (25 Mg) and 14 per cent
+(26 Mg) of the main 24 Mg isotope, were fitted next. After all Mg
+isotopes were subtracted from the spectrum, Na+ was then fitted on
+the left flank of the feature. Any residuals between Mg+ and Si+ were
+considered to be Al+ ions at 27 u. The uncertainty of the 27 u mass
+line is addressed in Section 3.1. The K+ –Ca+ feature was treated in
+the same way as described above, starting with Ca+ .
+After all elements were fitted, their spectral abundances could
+be initially estimated from the Gaussian peak amplitudes. However,
+iron cation peaks, especially in spectra with high ion yields due to
+high impact velocity, are often asymmetric and are characterized
+by an extended left flank. The same effect is visible for the Rh+
+mass lines (Hillier et al. 2006), with left flank shapes dictated by ion
+energetics and the instrument field geometry. As the left flank of the
+Fe+ peak has no signs of obvious contributions from other cations, no
+
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Figure 3. Size distribution of silicate particles, showing a maximum of 48 per cent between 30 and 40 nm. The decrease below 30 nm does not reflect the
+actual abundances, but CDA’s detection limit, below which we do not receive reliable spectral signals of all particles of this size. Note, that there are no silicate
+particles with calculated equivalent radii above 120 nm detected in any of Cassini’s ring plane crossings in the Grand Finale orbits, although the detector was
+sensitive to maximum radii of about 350 nm. Please note that the absolute size determination using the CDA’s QI signal is affected by significant uncertainties
+(see the main text).
+
+1212
+
+S. Linti et al.
+
+Table 3. List of RSFs (Fiege et al. 2014) used to determine elemental
+abundances in the silicate particles. Note that the errors are valid for the
+determination of absolute element abundances in mineral grains but can be
+neglected if element abundances of two CDA data sets are compared, which
+is done to compare Fe concentrations in the main text (e.g. Fig. 5). The error
+of Si is included in the error of the other elements.
+
+Table 4. Mean relative differences of the determined ion abundances inferred
+with the two deconvolution methods and their standard deviations. Although
+the mean values of Fe agree very well, the standard deviation is fairly large
+because of relatively strong scattering of the individual values.
+Ion species
+
+Mg
+
+27 u (Al)
+
+Si
+
+Ca
+
+Fe
+
+Element
+
+Mean relative
+difference
+Standard
+deviation
+
+0.08
+
+0.10
+
+0.16
+
+0.25
+
+–0.01
+
+0.23
+
+0.22
+
+0.30
+
+0.31
+
+0.38
+
+RSF
+(LAMA)
+
+Mg
+
+Al
+
+Si
+
+Ca
+
+Fe
+
+4
+5.5 +
+−2
+
+3
+3.99 +
+−2
+
+1
+
+11
+14.12 +
+−6
+
+1
+1.32 +
+−0.5
+
+where a = peak amplitude and erf √32 = 0.9973.
+Na+ and K+ abundances are determined in the spectra, but as
+described above, most likely include or are contamination sources
+and thus will not be quantified as actual constituents of the particles.
+
+To assess any associated uncertainties with the applied deconvolution technique, the determined ion abundances are compared with
+the results of an independently developed automated deconvolution
+algorithm, applied to the same silicate data set, also using the factor
+of 1.1 to account for changes in peak width with mass. From the peak
+integrals of the respective ions inferred from individual spectra with
+the two methods, the relative differences were calculated using
+Relative difference =
+
+Intmanual − Intalgorithm
+,
+Intmanual
+
+(3)
+
+where Intmanual is the peak integral inferred with the deconvolution
+technique described in Section 2.4 (equation 2) and Intalgorithm
+represents the result of the automated algorithm.
+The values of the mean relative differences are given in Table 4.
+We find that the determined values seem to be element-specific,
+implying systematic differences in the peak fitting process. The
+mean relative differences are minor to moderate, with Ca the least
+in agreement between the two techniques. The manual method
+delivers, on average, slightly higher abundances for all quantifiable
+ion species, except for Fe. The standard deviation of the relative
+differences, however, shows that this trend is likely to not be
+significant.
+3 R E S U LT S
+3.1 Composition
+
+2.5 Relative sensitivity factors
+Ionization efficiencies are element-specific, so after extracting the
+spectral cation abundances, these values were converted to elemental
+abundances in the particles. This was achieved by applying relative
+sensitivity factors (RSFs; Table 3, Fiege et al. 2014). These RSFs
+were determined for orthopyroxene dust grains impacting at velocities between 19 and 25 km s–1 , using an electrostatic dust accelerator
+(Mocker et al. 2011) and an impact ionization mass spectrometer
+LAMA (Large Area Mass Analyzer; Fiege et al. 2014). They are
+valid for particle impact speeds from 19 until at least 38 km s–1
+(Fiege et al. 2014), which covers the range of impact speeds during
+the Grand Finale orbits. The same RSFs were used in Altobelli et al.
+(2016) to determine the elemental abundances in ISD particles and,
+despite the large errors, plausible results were achieved. Hillier et
+al. (2018) determined RSFs for olivine and although the errors are
+also large, the derived values lie within the error bars of Fiege et al.
+(2014).
+
+2.6 Statistical analysis
+All details of the statistical evaluation of the data presented in the
+following Results section are provided in the legends of the respective
+figures.
+MNRAS 529, 1207–1221 (2024)
+
+Here, we present the compositional evaluation of the main ring
+mineral dust particles as seen by Cassini’s CDA during the Grand
+Finale orbits. We find that all spectra with S/Ns sufficient for an
+individual compositional analysis are dominated by Mg+ ions, with
+a smaller Si+ feature, revealing their siliceous nature. We do not find
+any spectra indicative of other mineral types like oxides or sulfides
+in the data set. In general, no Fe-dominated spectra were identified,
+which are known from CDA analyses elsewhere in the Saturnian
+system (Fischer et al. 2018; Trieloff et al. 2023).
+The elemental ratios of individually analysed silicate spectra
+(‘silicate sure’) inferred using a deconvolution technique (see Section
+2.4) are shown in Fig. 4. Ion ratios as determined in the spectra before
+application of relative sensitivity factors (RSFs; Table 3, Fiege et al.
+2014) can be found in Fig. 5. The weaker spectra (‘silicate weak’) of
+the data set were investigated as one combined co-added spectrum,
+which increased the S/N to a sufficient level and allowed the average
+composition of this spectrum class to be quantified.
+In addition to the derived silicate particle values, Fig. 4 also shows
+the expected ratios for CDA ISD particles (Altobelli et al. 2016)
+and CDA interplanetary dust particles (IDPs; Fischer et al. 2018),
+both detected by CDA in the Saturnian system with comparable
+impact speeds on to the instrument. Additionally, the figure shows
+as reference material bulk values of CI, CH, and LL chondritic
+material (Lodders & Fegley 1998) and selected cosmochemically
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+deconvolution was performed, and directly measured peak integrals
+were used. For the few silicate spectra without an Fe+ peak, an upper
+limit for the Fe content was estimated from background level and
+spectral noise in the typical range of the Fe+ mass line between 53 and
+59 u. The integrals of strongly asymmetric Fe+ peaks were corrected
+by a factor of 0.9 to accommodate the influence of elements such as
+Cr, Mn, and Ni in the covered mass range, assuming CI chondritic
+abundances of these elements relative to Fe.
+By applying the deconvolution technique to the data set, the
+elemental composition of 85 per cent of the individually investigated
+silicate spectra (‘silicate sure’, Table 2) could be determined. The
+remaining 15 per cent either had excessive residuals and/or proved
+impossible to obtain a suitable reference peak fit.
+To compare the peak amplitudes inferred from the fit/manual
+deconvolution procedure of the Na+ –Si+ and K+ –Ca+ features with
+the integrated Fe+ abundances, the Gaussian peak amplitudes were
+converted into peak integrals:
+ +3σ
+√
+3
+f (x ) dx = 2π × a × σ ♦ × 1.1 × erf √ ,
+(2)
+2
+−3σ
+
+Mineral dust from Saturn’s main rings
+(a)
+
+1213
+
+(b)
+
+relevant minerals olivine, enstatite and saponite. Note that at the
+analysed particle sizes, grain compositions are expected to tend to
+monomineralicity, and not bulk chondritic compositions.
+The majority of the individual data points in Fig. 4 scatter over
+one order of magnitude, but considering the error bars of the mean
+ring silicate values (red circles), which represent the standard error
+of the mean (SEM) combined with the errors of the RSFs (see
+Table 3), the similarity of Mg/Si and Ca/Si to cosmic (CI chondritic)
+abundances is significant. The error bars were determined with an
+error propagation, using the doubled standard error of the mean
+(2σ significance) of the derived ion ratios and the errors of the RSFs
+(Table 3). Note that the errors of the RSFs are irrelevant, when directly
+comparing ion abundances of different spectra, especially when they
+were recorded with almost identical impact velocities (see Figs 5
+and 6).
+The main finding is that Fe is significantly depleted with respect to
+all other references, only LL chondrites still lie within the error bars
+(Fig. 4a). The Fe/Si ratios of nearly all individual silicate particles
+are below cosmic (CI chondritic) abundances, on average by a factor
+of 2.1. Compared with the total averaged IDP population observed in
+the Saturnian system by CDA, the Fe depletions in the ring silicates
+are larger, here by a factor of 5. Even the Fe-poor IDP subtype seen by
+CDA is still less depleted in Fe than the most Fe-rich main ring dust
+grain of this study. The ‘weak signal’ spectra show an even smaller
+Fe/Si ratio compared to ‘Mean Rings’, indicating a systematic Fe
+depletion in smaller particles. These observations raise questions
+related to the mineralogy or potential alteration of the particles, and
+the subsequent consequences for the pollution of the main rings with
+interplanetary material (see Section 4).
+Another striking observation is that, compared to cosmic abundances, 27 u in the data set is strongly enriched if assumed to be
+entirely due to Al+ (Fig. 4b), on average by more than a factor
+of 3, which could argue for the presence of Al-bearing minerals
+such as feldspar in the grains. However, we consider the values
+presented in the figure as an upper limit for Al+ , as a contribution
+by hydrocarbons seems likely. At these high impact speeds, single
+
+C-species are the expected main organic fragments from any kind
+of hydrocarbon-rich material, including complex compounds, that
+show up in spectra, followed by C2 species in proportional amounts
+(e.g. Hillier et al. 2014). The higher the impact speed or energy
+density, the stronger the degree of dehydrogenation (Srama 2009;
+Sephton, Waite & Brockwell 2018). Therefore, C2 H3 + is expected
+to be the most abundant C2 cation and interferes with Al+ at 27 u
+making it impossible to distinguish these two ion species. Because of
+this uncertainty, the peak is called ‘27 u’. The increased abundance
+of 27 u implies either a small organic fraction within the particles
+or a contamination of the CDA CAT, exactly which is yet to be
+determined. Other species such as C2 H4 + and C2 H5 + interfering
+with Si+ may be expected as well, though in smaller amounts.
+Since the determined Si abundances, however, agree roughly with
+cosmic abundances (Lodders & Fegley 1998), a significant organic
+interference with Si is considered unlikely. Additionally, we do not
+identify any spectra with mass lines of N+ , which argues against the
+presence of HCN+ ions at 27 u.
+Assuming that the ring silicates originate from interplanetary
+space, they should have compositions similar to those of exogenous
+particles, if no compositional differentiation or alteration processes
+are at work. During Cassini’s 13 yr in the Saturnian system, CDA
+produced a comprehensive data set of mineral dust, both in Saturnbound orbits and of exogenous material. The co-added spectra of
+the non-icy main ring debris, compared with the exogenous events
+(Fe-rich and Fe-poor) detected by CDA at similar impact speeds to
+the sample of this study, excluding the ISD particles identified by
+Altobelli et al. (2016), are shown in Fig. 5.
+3.2 Variation in data
+The individual data points (Fig. 4) show a scatter, which reflects the
+true compositional variations among the particles plus a potential
+stochastic variation introduced by the impact ionization process. To
+set the magnitude of the scatter into context, it is compared with the
+compositional variation of 36 ISD particles detected by CDA in the
+
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Figure 4. (a,b) Elemental ratios (weight per cent) inferred from spectra of the main ring silicate particles detected during Cassini’s Grand Finale orbits. ‘Rings’
+indicates the ratios for individual main ring silicate particles after deconvolution and RSF correction (see Sections 2.4 and 2.5). ‘Fe upp. lim.’ points represent
+spectra which do not show a significant Fe+ mass line, and for which an upper limit was estimated (see Section 2.4). Spectra with S/Ns too low for individual
+analysis were evaluated combined in a co-added spectrum and the average is displayed as a single data point (‘Weak signal’). In addition to IDP and ISD values,
+where RSFs have also been applied, the element ratios of different chondrites (CI, CH, and LL) are shown. (A) also displays the expected element ratios for
+Fe-rich (‘Fo30’) and Fe-poor (‘Fo90’) olivine, covering significant variation in Mg/Si and Fe/Si, enstatite (‘En75’) and saponite (‘Sap’). The error bars on the
+mean values are a combination of the doubled standard error of the mean (SEM) and the errors of the RSFs (see Section 2.5).
+
+1214
+
+S. Linti et al.
+(b)
+
+(c)
+
+(d)
+
+(e)
+
+(f)
+
+Figure 5. (a–d) Co-added spectra of main ring silicates and the non-icy exogenous IDP populations for comparison. (a) Silicate spectra of the main ring debris
+with high S/N, (b) ‘Weak signal’ subset of the main ring silicates, (c) Fe-rich (mostly Fe-sulfides) subset of the exogenous non-icy population recorded in the
+Saturnian system with similar impact speeds as the main ring debris, and (d) Fe-poor silicate subset of the exogenous population. Note that the y-axes in panel
+(b) covers only three orders of magnitude, while those of the other panels cover four. (e–f) Ion abundance ratios inferred from the spectra of the main ring silicate
+particles. ‘Rings’ indicates the ratios for individual particles after deconvolution. We compare these with ion abundances of other compositional families of
+mineral grains detected by CDA at similar impact velocities. Therefore, the large error introduced by the RSFs (Table 3) – needed to convert ion abundances to
+element abundances – does not apply here. The error of the depicted mean values is in the order of the symbol sizes. We do not show the error bars for individual
+detections (Table 4) to avoid an overcrowded plot.
+
+Saturnian system (Altobelli et al. 2016). The result is shown in Fig. 6.
+Except for a small fraction of the main ring silicates, the degree of
+compositional variation within each group is similar, and therefore
+the main ring silicates are considered to be nearly as homogenous as
+the ISD grains. The Mg/Si ratios are comparable in both data sets.
+However, the range of variation in the Fe/Ca ratio for the ISD particles
+is lower, implying that the main ring silicates are less homogeneous
+in their Fe and/or Ca content. The mean Fe/Ca ratio for the main
+MNRAS 529, 1207–1221 (2024)
+
+ring silicates is shifted lower by a factor of 2.2 on average due to the
+previously mentioned Fe depletion.
+
+3.3 Compositional variation depending on particle size
+Figs 4 and 5 indicate a systematic depletion in Fe in the smallest
+particles (‘Weak signal’) compared to the average of the remaining
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+(a)
+
+Mineral dust from Saturn’s main rings
+
+1215
+
+(b)
+
+(a)
+
+Figure 7. Variation in relative Fe abundances, depending on ion yield QI. For the given similar impact speeds, the QI signals (in fC) are a reasonable
+approximation for size albeit with large uncertainties (uncertainty of the absolute value is a factor of 2, see Section 2.3). Three size regimes are averaged (2–9
+fC, >9 fC and the weak silicate signals with an average value of 2.3 fC) and the values inferred from the respective individual spectra are displayed as blue and
+green dots. The error bars of the mean values represent the doubled SEM, ±0.05 and ± 0.09, respectively. The weak signal data point does not show an error
+since the value was inferred from a single co-added spectrum. Additionally, the approximate equivalent particle radii for the different size regimes are given,
+calculated from the average QI values and assuming a density of 3 g cm–3 (see Section 2.3).
+
+data set (‘Mean Rings’). In the following, we investigate this case in
+more detail.
+For any given speed, the ion yield (inferred from the QI signal,
+which represents the charge arriving at the central ion grid of the
+CDA) is proportional to the particle mass and depends on the grain
+composition (see Section 2.3). In Fig. 7, the normalized iron contents
+of three size regimes are considered to show that the compositional
+variation depends on particle size. The bigger particles (QI > 9 fC)
+seem to contain slightly more iron than smaller ones on average.
+The relatively iron-poor population found in the smaller grains (2–9
+fC) with Fe/(Mg + 27u + Si) < 0.3 is absent in the bigger size
+regime. The Fe abundances of the ‘weak signals’, representing the
+smallest observed size regime in this scenario with 2.3 fC on average,
+are below the other mean values and therefore support this finding.
+The scatter of data points between 2 and 9 fC is strong, therefore
+the significance of the difference to the larger size regime is poor.
+However, the difference between the largest (> 9 fC) and the smallest
+grains, which show a depletion by a factor of 2.3, is significant: Not
+
+one of the seven grains with QI > 9 fC shows iron abundances as
+low as the weak signal. The average of the data with 2–9 fC confirms
+this trend and therefore we consider the observed trend noteworthy
+here.
+3.4 Modelling of grain dynamics
+In addition to the compositional analysis of the silicate particles,
+we also investigate their origins. Fig. 1 shows the modelled flux
+profile and source regions for 20 nm icy grains originating from
+the main rings and detected by CDA during the Grand Finale orbits
+(Hsu et al. 2018). This model was refined for this work, focusing
+on the silicate fraction (Fig. 8), i.e. by assuming a particle density
+of 3 g cm–3 . According to the most frequent particle sizes in the
+data set (see Fig. 3), we consider spherical particles with three
+different radii that should correspond (according to the modelling)
+to different dynamical regimes: 15, 30, and 40 nm. The dynamics
+of 15 nm particles and smaller are dominated by interaction with
+
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Figure 6. Histograms showing the compositional variation in the main ring silicate data set (‘Rings’) for the (a) Fe/Ca and (b) Mg/Si ratios. For comparison the
+variation of ISD particles (‘CDA ISD’) from a previous CDA analysis (Altobelli et al. 2016) is given. The error bars are defined as ± sqrt(N × p×(1–p))/N × 100,
+with N being the total number of detections per bin, and p the relative abundance defined as probability between 0 and 1.
+
+1216
+
+S. Linti et al.
+
+Saturn’s magnetic field. This grain size roughly represents CDA’s
+lower detection limit. In contrast, the dynamics of particles with
+radii of 40 nm and above – the larger population of this study – are
+dominated by their ejection velocities and gravitational forces, with
+trajectories that become more and more ballistic with increasing size.
+A radius of 30 nm represents an intermediate case coinciding with
+a size regime where probably most of the silicate particles detected
+here lie.
+For the simulation, test particles are launched from the main rings,
+with a distribution weighted according to their surface areas and local
+optical depths (Hsu et al. 2018). From all the trajectory simulations,
+the distribution of potential source regions at a given detection
+location by CDA along the spacecraft trajectory is calculated. For
+that, the rings are divided into 26 segments, each having a radial
+extent of 0.05RS . For each particle and ring segment, the model
+provides origin probabilities (normalized to values between 0 and
+1) that can be summed up accordingly to derive probabilities for
+individual particles to originate from a specific ring or, as shown
+MNRAS 529, 1207–1221 (2024)
+
+Table 5. Silicate particle ratios for origins in the inner (C and D rings) versus
+outer (B and A rings) main rings. The number of detected dust grains that
+fulfil the respective probability thresholds (50, 70, and 90 per cent) are given
+in brackets.
+Ratio inner/outer main ring origin
+Particle radius
+Probability > 50 per cent
+Probability > 70 per cent
+Probability > 90 per cent
+
+15 nm
+12
+(273)
+51
+(208)
+50.5
+(103)
+
+30 nm
+8
+(233)
+8.2
+(203)
+3.1
+(70)
+
+40 nm
+11.5
+(239)
+13.5
+(203)
+8.6
+(125)
+
+in Table 5, from the inner (C and D rings) or outer ring region (B
+and A rings). Note, that we restrict the source of the particles to
+the main rings only. Thus, a potential exogenous origin cannot be
+further constrained. The particle production mechanism is assumed
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Figure 8. Modelled source regions of silicate particles for three different particle sizes. The x-axes show the vertical distance to the ring plane during detection
+by CDA and the y-axes show the radial distance in the equatorial plane of the source region within the main rings. The boundaries of the main ring components
+are shown in red and labelled on the right. The origin probabilities, normalized to be between 0 and 1, are shown in the key.
+
+Mineral dust from Saturn’s main rings
+
+4 DISCUSSION
+The infall of exogenous material is generally seen as the most
+important process driving the compositional evolution of Saturn’s
+main rings. Moreover, through so-called ballistic transport, the rings
+redistribute their angular momentum via the transport of ejecta produced by micrometeoroid bombardment. For instance, this process
+has been shown to explain the optical depth structure across the B and
+C ring boundary (Ip 1983; Cuzzi & Estrada 1998; Estrada et al. 2015).
+A widely accepted assumption is that Saturn’s rings consisted of pure
+water ice when they formed. The non-icy components gradually
+‘colour’ the rings, in accordance with the aforementioned dynamical
+effects, and are assumed to originate from exogeneous material (IDPs
+and ISD), which polluted the rings over time (Cuzzi & Estrada
+1998; Cuzzi et al. 2009; Zhang et al. 2017a, b; Estrada & Durisen
+2023). A potential exception is the C ring, the composition of which
+might have been significantly affected by the more recent break-up
+of a large object (Zhang et al. 2017b). The actual colouration of
+the rings depends on the ratio between the infalling and outgoing
+silicate flux. This is the basis by which the age of Saturn’s rings was
+calculated recently, using the amount of polluting material found
+by Cassini instruments in the rings, the ring mass determined by
+Cassini, and the IDP flux inferred from measurements by CDA’s
+Entrance Grid (EG) subsystem (Kempf et al. 2023). Note that the
+EG subsystem is only sensitive to large grains (radii larger than
+∼1.5 μm; Kempf et al. 2023), which tend to be massive enough
+to produce impact charge yields which saturate CDA’s Chemical
+Analyzer (CA) subsystem. Thus, they do not produce interpretable
+spectra, and direct compositional measurements of the large polluting
+IDPs have not been obtained.
+No significant organic-rich dust population has currently been
+identified in the low-mass end of the exogenous material accessible
+for compositional analysis (Fischer et al. 2018), although the larger
+IDPs analysed in Kempf et al. (2023) are assumed to have a
+
+significant fraction of organics. We also see no purely organic dust
+population leaving the rings into Saturn in the spectra investigated
+here. However, the overabundance of ions with mass 27 u in the
+silicate spectra (see Section 3) can potentially be explained by small
+contributions of organic material (C2 H3 + ) that could be fragments
+from larger hydrocarbons, but it is currently unclear if this material
+can be attributed to the particles or a contamination of the CDA’s
+impact target. However, even if we consider the 27 u excess being
+entirely due to organics, CDA still finds clearly less organic material
+falling into Saturn than Cassini’s Ion and Neutral Mass Spectrometer
+(INMS) in extremely small grains (∼1 nm, e.g. Waite et al. 2018;
+Miller et al. 2020) and as Kempf et al. (2023) assume (30 per cent
+organics) for more massive IDPs hitting the rings.
+We find that the compositions of the material potentially contaminating the mostly icy rings of Saturn and of the non-icy material
+emitted by the rings that eventually falls into Saturn are very different.
+The factor of 5–6 depletion of Fe (shown by the Fe/Si ratio) compared
+to the exogenous IDP particles (Fig. 4a) is striking. The drastic
+differences in the average Fe abundance are predominately caused
+by a very Fe-rich IDP subpopulation, mostly made of Fe-sulfides
+(Fig. 5c), which is entirely missing in the ring debris data set of
+this work. Since the measurements of both non-icy populations were
+made with the same instrument, they are directly comparable and
+an instrument artefact leading to the observed differences can be
+ruled out. There is also a noticeable difference in the compositional
+diversity: while the minerals measured in the identified main ring
+particles only show a moderate scatter in their Mg, Ca, and Fe
+abundances, exclusively consisting of Mg-rich/Fe-poor silicates, the
+exogenous IDPs observed by CDA in the Saturnian system clearly
+possess a variety of different mineral types, such as silicates, sulfides
+and oxides (Fischer et al. 2018). However, even the relatively Fe-poor
+silicate subset of the exogenous material (Fig. 5d) shows a higher
+Fe/Si ratio of 2.8 – comparable to CH chondritic abundances (Fig. 4a)
+– than the main ring silicates.
+Within the compositionally homogenous silicate component of
+main ring debris we find no indication for large compositional
+variations reaching Saturn from different regions of the rings. The
+only compositional trend that we found is a weakly significant
+systematic decrease in Fe in smaller particles (Fig. 7).
+Thus, CDA measurements show the composition of dust lost by
+the rings into Saturn is distinctly different from that of the IDPs
+bombarding the rings, assuming that the smaller IDPs accessible for
+compositional analysis are part of the same population as the larger
+grains discussed in Kempf et al. (2023). One main result of this
+work therefore is that we find no indication of Saturn being a major
+sink for pristine contemporary IDPs falling on to Saturn’s rings.
+This becomes even more remarkable if we consider that the flux of
+silicates falling into Saturn could potentially amount to a significant
+fraction of the flux of silicates falling on to the rings (Hsu et al. 2018;
+Kempf et al. 2023).
+In the following, we will discuss several possible explanations
+for these observations, noting that more than one of these scenarios
+might be applicable simultaneously.
+
+(1) Observational bias, infalling IDPs: The composition of contemporary IDPs measured by CDA is not representative of the bulk
+IDP composition responsible for ring contamination.
+(2) Observational bias, outgoing nanodust: The material currently
+falling in from the rings towards Saturn is not representative of the
+bulk composition of the rings.
+
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+to be micrometeoroid impact ejection, hence the production rate is
+expected to be proportional to the rings’ local optical depth, the
+segment surface areas and the gravitational focusing effect (e.g.
+Cuzzi & Estrada 1998). As the C ring is known to be more silicaterich than all other ring segments by about a factor of 5 (Zhang et al.
+2017b) we assume a silicate particle production for the C ring five
+times higher than for the remaining rings. Note that since the silicates
+are (mostly) embedded in the cores of ring particles, this might make
+our approach an overestimate, unless much of the material is being
+ground down in the innermost C ring and being exposed.
+The model results imply, independent from the size, that the
+particles preferably originate from the C ring. For 15 nm grains,
+the C ring appears to be the clearly dominating source, whereas with
+larger radii of 40 nm and even more pronounced at intermediate radii
+of 30 nm, the influence of the outer B and A rings becomes more
+noticeable (Table 5). Note that even without the applied factor of 5,
+the contribution from the C ring would be the largest.
+We also note that model uncertainties, based on those in the
+input parameters such as the initial speed distribution (Hsu et al.
+2018) and the plasma environment, are present, especially when
+considering individual grain detections. However, collectively, our
+results should represent the overall behaviour of ring silicate grains,
+including identifying their source region(s) as shown in Fig. 8. As
+stated above, the dynamics of particles with radii of 40 nm and larger
+are dominated by their ejection velocities. Thus, the ejection velocity
+is a crucial factor for determining the latitudes bigger particles can
+reach.
+
+1217
+
+1218
+
+S. Linti et al.
+
+(3) Ring silicates falling into Saturn originate mostly from IDPs
+but have been compositionally modified (i.e. depleted in Fe) by
+physical and/or chemical processes within the rings.
+(4) IDPs are not responsible for the greater part of the silicates
+found in the rings and there is a more dominant source for siliceous
+material (e.g. from a disrupted large object which formed the rings
+in the first place).
+
+(i) 1a: We consider the first reason to be unlikely, since what is
+currently known about the evolution of the Solar system regarding
+the most relevant IDP source bodies in the Kuiper belt (Kempf et al.
+2023), suggests a fairly stable bulk dust composition falling onto the
+rings over a time span of 100–200 My [the current estimated age of
+the main rings (Estrada & Durisen 2023; Kempf et al. 2023)].
+(ii) 1b: An observational bias in the IDP sample accessible for
+compositional analysis by CDA is possible. As mentioned above,
+the CA subsystem is insensitive to grains that are too large, and
+generate an overabundance of ions upon impact. Although this is not
+relevant for the Grand Finale ring debris sample of this study (see
+Fig. 3), it limits the CDA IDP compositional survey in the Saturnian
+system to dust radii of about 0.5 μm or smaller. The mass flux,
+however, is generally assumed to be dominated by larger grains with
+radii above 50 μm and although these particles have indeed been
+measured by CDA’s EG subsystem of CDA (Kempf et al. 2023),
+they are inaccessible for compositional analysis. Therefore, if the
+composition of the larger IDPs dominating the mass flux is different
+to that of the submicron-sized grains as seen by CDA (Fig. 5, Fischer
+et al. 2018), this could explain the observations.
+Scenario (2) assumes that the ring debris falling into Saturn stems
+from an atypical ring region (Scenario 2a), is caused by a transient
+event (Scenario 2b), or is prone to a dynamical selection effect
+(Scenario 2c) and thus is not representative of the ring bulk silicates:
+(i) 2a: Remote sensing by Cassini has shown that the C ring,
+although much less massive than the B and A rings, bears the largest
+fraction of non-icy material in Saturn’s ring system. This anomaly has
+been attributed to disruption of a large body—probably a Centaur—
+introducing additional siliceous material into the C ring and roughly
+doubling the ring’s mass (Zhang et al. 2017a, b). Although the high
+silicate-to-ice particle detection ratio of 33 per cent (Hsu et al. 2018)
+measured during the Grand Finale orbits does not agree with the
+silicate volume abundances measured in any of the main rings via
+remote sensing, namely < 1 per cent for the A and B rings, rising to
+4–9 per cent for the C ring (Zhang et al. 2017a, b), it is still in better
+agreement with a C ring origin and comes close to the silicate mass
+fraction of 14–32 per cent there (using the volume fraction above, a
+density of 3 g cm–3 for silicates, and 0.92 g cm–3 for water ice). Hence,
+the silicate population measured by CDA should be dominated by
+C ring silicates, mostly made of silicates from a hypothetically Fedepleted disrupted body, unlike the presumably exogenous, Fe-rich
+grain dominated material in the B ring. As shown in Fig. 8, the
+material detected during the Grand Finale orbits – although mainly
+originating from the C ring – occasionally also probes the A and
+B rings. However, the spectra produced by grains that with high
+probability stem from these outer rings do not show any noticeable
+compositional difference to those from the C ring (Fig. S2) and thus
+MNRAS 529, 1207–1221 (2024)
+
+Scenario (3): The CDA observation that even the IDP population
+with the lowest Fe abundance is not as depleted in iron as the main
+ring silicates (Figs 4 and 5) implies that – even if we find a subsequent
+selective transport process (Scenario 2) – the infalling IDPs need
+to undergo a chemical alteration within the rings first. To explain
+the physical (Scenario 3a) or chemical (Scenario 3b) alteration of
+initially Fe-rich mineral IDP phases, we consider modification when
+IDPs collide with the main rings and during subsequent ballistic
+transport by which ring material is repeatedly redistributed within
+the ring system by impact ejecta processes (Cuzzi & Durisen 1990;
+Durisen et al. 1992; Cuzzi & Estrada 1998).
+(i) 3a: A possible physical process that would work at IDPs
+impacting on to the main rings with speeds of 10 s of km s–1 is
+the impact ionization of Fe by the kinetic energy of the impact
+and subsequent removal of these Fe+ ions into the magnetosphere.
+Suprathermal Fe+ ions were measured in Saturn’s magnetosphere
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Scenario (1) is the case in which the exogeneous dust detected
+by CDA is compositionally different from the IDPs that have
+contaminated the main rings in the past. This could either be due
+to a change in IDP composition over time (Scenario 1a), or due to
+a selection effect in the IDPs that were sampled by CDA between
+2004 and 2016 (Scenario 1b).
+
+we have no indication for a compositionally distinct population of
+silicates originating from the C ring. In fact, Fig. 4 shows that there is
+not a single measured rocky dust grain falling into Saturn that comes
+even close to the average Fe abundance CDA finds in IDPs.
+(ii) 2b: A recent violent event has been suggested to explain other
+Cassini measurements during the Grand Finale (e.g. Perry et al.
+2018; Waite et al. 2018; Serigano et al. 2022; Moses et al. 2023).
+Similarly, such an event could potentially serve as a transient source
+of the observed Fe-depleted silicates. However, the corresponding
+effects of such an event are expected to be limited to the inner D
+ring region near the ring plane (e.g. Perry et al. 2018), contrasting
+with the fact that ring silicates have been measured up to 0.5RS away
+from the ring plane (Fig. 1), which are not reachable for D ring
+debris. This suggests a dynamical connection of the ring silicates
+to the entire main rings instead of a transient event at the inner D
+ring or a localized source in the rings. In addition, there is no clear
+compositional connection between Fe-depleted silicates observed by
+CDA and the organic-rich compounds seen by Cassini’s INMS that
+were reported to originate from such an event (Waite et al. 2018),
+but are largely missing in the CDA data set investigated here. In
+summary, our results do not support this scenario.
+(iii) 2c: A mechanism that preferentially delivers Fe-poor silicates
+into Saturn, while Fe-rich phases preferentially remain in the rings,
+would explain our observation. The significantly enhanced silicateto-ice ratio of these ring debris (Hsu et al. 2018) compared to the
+bulk composition of the rings could already hint at such a selective
+process (Zhang et al. 2017a, b; Crida et al. 2019). Such a selective
+dynamical process could be due to chemical or physical (mass,
+charge, density) parameters. Indeed, from our data set it is striking
+that, from over 1000 dust detections (see Section 2.1), none created
+an impact charge larger than 230 fC (equivalent to a particle radius
+of about 120 nm), despite the CA subsystem of CDA being sensitive
+to particles up to about 10 times more massive. If we assume that
+electromagnetic interaction is the dominant effect delivering charged
+dust particles into Saturn (Hsu et al. 2018), this automatically limits
+the mass and size. Larger particles, the dynamics of which are
+not dominated by electromagnetic forces, would need very high
+ejection velocities after micrometeoroid impact to ballistically fall
+into Saturn, which eventually becomes a limiting factor. However,
+it is currently unclear how such a mass-selective effect could be
+linked to chemical fractionation (i.e. why Fe-rich phases common
+in the ring material should be depleted in the dust grains with radii
+below ∼100 nm falling into Saturn). Maybe the higher densities of
+Fe-rich phases (see Scenario 3) could be a physical discriminator for
+chemical fractionation of Saturnian dust infall.
+
+Mineral dust from Saturn’s main rings
+
+by IDP impacts and ballistic transport of ring material we propose
+here.
+Scenario (4) would question a fundamental assumption in the
+generation of Saturn’s rings, i.e. that the rings started their existence
+as an almost pure water ice entity and that the current non-icy material
+was deposited later via IDPs (e.g. Cuzzi & Estrada 1998). The most
+credible scenario for the generation of the rings – the disruption of
+a moon or another large body by tidal forces or collision (Roche
+1849; Charnoz et al. 2018; Wisdom et al. 2022; Teodoro et al. 2023)
+– indeed easily allows the ab initio availability of non-icy material
+as ring constituents.
+(i) 4a: In a scenario like the disruption of a large, differentiated
+moon, it would be more likely to create a ring with substantial
+amounts of mantle silicate (e.g. Harris 1984; Dones 1991) than one
+of almost pure water ice (Charnoz et al. 2018; Wisdom et al. 2022).
+The Fe-rich IDPs that have impacted the ring since its creation would
+then only be a minor constituent of a ring silicate composition which
+is otherwise dominated by mantle material from an early moon. The
+Fe deficiency (when compared to chondritic or solar abundances)
+of the ring particles measured by CDA would require the precursor
+body to be differentiated, with Fe-poor mantle material preferentially
+surviving in the rings, while the denser, Fe-rich core material fell into
+Saturn after disruption of the former moon.
+(ii) 4b: Another possibility is that the bulk of a smaller – not necessarily differentiated – precursor body was Fe-poor. For example,
+there are chondritic parent bodies with primordial low abundances of
+Fe, e.g. the parent bodies of LL chondrites (see Fig. 4 and Abe et al.
+2006; Okada et al. 2006). However, such a scenario would imply an
+old ring age, which would be in disagreement with the age estimates
+from Kempf et al. (2023), and the body needed to be sufficiently
+large to create the entire ring. Thus, we consider the differentiated
+large body from Scenario 4a as more plausible.
+Scenario 4 is hard to reconcile with Cassini remote sensing
+data of the main rings that support a maximum average silicate
+abundance of less than 1 per cent by volume averaged over the
+entire ring (Zhang et al. 2017a, b), although improved constraints
+resolving the ongoing debate about the composition of the non-icy
+material by a future mission could well change the picture. Using
+the Cassini upper limit on silicate material, an origin of this silicate
+fraction in mantle material of a disrupted moon instead of IDPs
+would imply a substantially lower ring age than the 100–200 My
+inferred by Kempf et al. (2023) from IDP contamination. Since
+the overwhelming amount of silicates needs to stem from the Fedepleted mantle material of the moon, the age of the ring would be
+less than a few million years, which is younger than any currently
+discussed scenario (Crida et al. 2019; Wisdom et al. 2022; Estrada &
+Durisen 2023; Kempf et al. 2023). Additionally, the break-up of such
+a disrupted large object entraining significant amounts of material
+into the C ring would not explain the observed anticorrelation of
+a high non-icy fraction in the C ring and its low optical depth (e.g.
+Zhang et al. 2017a, b), an effect also observed in the Cassini division.
+5 CONCLUSIONS
+The composition of Saturn’s main rings is of high scientific interest,
+providing constraints on their vividly debated origin and age (Crida
+et al. 2019; Ida 2019). One scenario suggests that the mid-sized
+Saturnian satellites and the ring moons have accreted (Charnoz et
+al. 2011; Crida & Charnoz 2012; Salmon & Canup 2017) from a
+formerly more massive and expanding ring (Salmon et al. 2010).
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+and their radial distribution indicates a source located inwards of
+Enceladus’ orbit (Christon et al. 2015). Christon et al. (2015) indeed
+suggest IDPs partially ionizing when impacting Saturn and the main
+rings at hypervelocities, as a likely source for the suprathermal Fe+
+population. If Fe escapes more efficiently than other constituents,
+the remaining recondensed material would be Fe-depleted and could
+account for the homogeneous Fe-depleted silicates observed in this
+work. However, since the Fe concentration in infalling IDPs differs
+by more than a factor of 5 from dust falling into Saturn, it seems
+questionable whether more than 80 per cent of the infalling Fe (more
+than 50 kg s–1 , using the total flux numbers by Kempf et al. 2023)
+can be removed in the form of Fe+ without removing the other
+IDP constituents by a similar process. The low ionization yield
+(RSF) for Fe compared to other rock forming elements like Mg
+or Ca (Fiege et al. 2014) argues against that. Indeed, observations
+by Christon et al. (2014) report the presence of a large number of
+ions potentially stemming from other rock forming elements. Ions
+with masses of ∼28 u – that could at least partially be attributed to
+Si+ – exhibit similarly increased abundances in the inner Saturnian
+system as Fe+ . The data also show a small peak in agreement
+with Ca+ (40 u) observed in Saturn’s equatorial magnetosphere
+and a high noise floor at Mg+ (24 u) in principle allowing the
+presence of magnesium ions (Christon et al. 2014). Therefore, the
+data show no hint for a specifically efficient removal of Fe+ from
+the main ring or infalling IDP material compared to other rockforming ions, although we note that Mg+ is not quantifiable with
+the same level of significance as the other rock-forming ion species
+due to signal interference with water-related ions (Christon et al.
+2014).
+(ii) 3b: We consider that chemical alteration of the original IDP
+minerals by evaporation and recondensation processes during the
+initial collisions of IDPs with the rings, as well as during subsequent
+ballistic transport, is highly likely (e.g. Chernonozhkin et al. 2021;
+Kempf et al. 2023). Upon impact on to larger, mostly icy, ring
+material, infalling IDPs will inevitably evaporate at impact speeds of
+15 km s–1 and above (e.g. Postberg et al. 2014) thereby mixing with
+water vapor released from the struck icy ring material it has hit. Most
+of the infalling Fe in such IDPs (that are small enough for CDA to
+measure the composition of) comes in the form of sulfides (Fig. 5c;
+Fischer et al. 2018). Due to the oxidizing conditions in a water
+vapor environment, recondensation as metal or sulfide is effectively
+prevented in favour of Fe-oxides and SO2 (e.g. Wozniakiewicz et
+al. 2011). Similarly, though much less efficiently, IDPs composed of
+Fe-bearing silicates, that evaporate upon impact and mix with water
+vapor, could become depleted in Fe in favour of FeO formation as it
+has been observed by aqueous alteration of GEMS (glass with embedded metal and sulfide) grains (Keller & Snead 2022). Such a process
+could over time – maybe supported by repeated heating, melting
+and/or evaporation and condensation during the ballistic transport
+(Durisen & Estrada 2023) – effectively lead to a conversion of the
+IDP minerals into two main phases: Fe-rich oxides and Fe-depleted
+silicates. SO2 would volatilize over geological time-scales and only
+traces of sulphur can still be found in a few silicate particles leaving
+the rings into Saturn (see Fig. 2b). There is a recent finding by JWST
+observations that supports the idea of processing of ring material
+at elevated temperatures: Hedman et al. (2024) report that ices in
+Saturn’s main rings are strongly dominated by crystalline water ice.
+At temperatures that – from solar illumination – always stay below
+120 K (e.g. Altobelli et al. 2008), substantial amounts of amorphous
+ice are expected to form from radiation damage over geological timescales. The entirely crystalline ring ice could therefore be an indicator
+of the same efficient heating and recondensation processes triggered
+
+1219
+
+1220
+
+S. Linti et al.
+
+MNRAS 529, 1207–1221 (2024)
+
+preceding the Grand Finale is reported by Linti et al. (2024b).
+Spectral analysis of the Fe-rich grains identifies them as oxides,
+consistent with hematite. Although these grains could stem from the
+A or B rings, we note this interpretation is not unique because several
+other dust sources mix in the region just outside the main rings (Linti
+et al. 2024b). However, no Fe-oxides (nor Fe-sulfides) are detected
+in the data set discussed in this work, sampled radially inwards of the
+main rings. Together with the Fe depletion in the observed silicate
+dust, this finding implies an accumulation of Fe-rich minerals –
+mostly Fe-oxides – in the main rings over time. Indeed, the presence
+of nanophase hematite or metallic iron in the Saturnian system, and
+particularly in the main rings, is suggested by earlier studies (Clark et
+al. 2008; Stillman & Olhoeft 2008; Cuzzi et al. 2009) and discussed
+as an important UV-absorber. Other space weathering mechanisms
+that produce nanophase iron are also known and could be relevant
+in further modifying the composition of Saturn’s rings (Pieters &
+Noble 2016). The dynamical reason and the preferred removal of
+Fe-poor silicates leaving Fe-rich phases behind, currently remains
+elusive and we are left with mere speculations (see Scenario 2c).
+AC K N OW L E D G E M E N T S
+The research in context of this work was supported by the European Space Agency under the contract 4000118000/16/ES/JD, and
+the European Research Council Consolidator grant 724908-Habitat
+OASIS. Jon K. Hillier thanks the Deutsche Forschungsgemeinschaft
+(DFG) for funding under grant HI-2157/1–1. The authors thank Larry
+Esposito, Kelly Miller, and the International Space Science Institute
+(ISSI) for the opportunity of valuable discussions.
+DATA AVA I L A B I L I T Y
+All data needed for the analysis are available in the main text or the
+supplementary materials. The CDA data underlying this article are
+available on the Small Bodies Node of the Planetary Data System
+(PDS-SBN), at https://sbn.psi.edu/pds/resource/cocda.html.
+REFERENCES
+Abe M. et al., 2006, Science, 312, 1334
+Altobelli N. et al., 2016, Science, 352, 312
+Altobelli N., Spilker L. J., Leyrat C., Pilorz S., 2008, Planet. Space Sci., 56,
+134
+Bradley E. T., Colwell J. E., Esposito L. W., in review
+Charnoz S. et al., 2011, Icarus, 216, 535
+Charnoz S., Canup R. M., Crida A., Dones L., 2018, Planetary Ring Systems:
+Properties, Structure, and Evolution. Cambridge Univ. Press, Cambridge,
+p. 517
+Chernonozhkin S. M. et al., 2021, Nat. Commun., 12, 5646
+Christon S. P., Hamilton D. C., Mitchell D. G., DiFabio R. D., Krimigis S.
+M., 2014, J. Geophys. Res., 119, 5662
+Christon S. P., Hamilton D. C., Plane J. M. C., Mitchell D. G., DiFabio R. D.,
+Krimigis S. M., 2015, J. Geophys. Res., 120, 2720
+Clark R. N. et al., 2008, Icarus, 193, 372
+Clark R. N. et al., 2012, Icarus, 218, 831
+Connerney J. E. P., 1986, Geophys. Res. Lett., 13, 773
+Crida A., Charnoz S., 2012, Science, 338, 1196
+Crida A., Charnoz S., Hsu H.-W., Dones L., 2019, Nat. Astron., 3, 967
+Cruikshank D. P., Imanaka H., Dalle Ore C. M., 2005, Adv. Space Res, 36,
+178
+Cuzzi J. N., Clark R. N., Filacchione G., French R. G., Johnson R., Marouf
+E., Spilker L., 2009, Saturn from Cassini-Huygens, Springer, Dordrecht,
+p. 459
+Cuzzi J. N., Durisen R. H., 1990, Icarus, 84, 467
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+We have analysed the non-icy fraction of dust particles falling
+into Saturn that have been mobilized by impacts on to Saturn’s
+main rings. This dust population was sampled by Cassini’s CDA
+during the Grand Finale orbits, between the planet and the inner
+edge of the rings. The high impact speeds (∼30 km s–1 ) of the dust
+particles on to the instrument allowed the elemental compositions of
+particles only 10 s of nm in size to be measured. The compositions
+were determined from CDA’s TOF relatively low-resolution mass
+spectra by applying a deconvolution technique, revealing a relatively
+homogenous composition of Mg-rich silicates with Mg, Si, and
+Ca similar to CI chondritic values; Fe, however, was found to
+be significantly depleted. The Al abundance could not be reliably
+quantified because of a potential interference with small amounts
+of hydrocarbons that are either a minor particle constituent or stem
+from contamination of CDA’s impact target.
+We observe no compositional variation between particles depending on their origin from the A, B, or C rings. In comparison with
+exogenous IDPs encountered by CDA in the Saturnian system, the
+ring material shows an even starker contrast in Fe abundances. The
+observed IDPs exhibit a more than 5 times higher Fe abundance,
+mostly due to an iron-sulfide IDP sub-population, which is entirely
+missing in the homogenous main ring dust. Even though an overestimation of the IDP Fe abundance by CDA is possible (see below
+and Scenario 1b), such a stark discrepancy is unexpected since IDPs
+are thought to be the main supplier of non-icy material on to the
+otherwise icy rings (e.g. Kempf et al. 2023). Thus, we conclude
+that Saturn cannot be a major sink for unaltered contemporary IDPs
+falling onto Saturn’s rings.
+In Section 4, we have discussed several scenarios for the observed
+compositional discrepancies between the mineral compositions of
+IDPs falling on to the rings and those of dust leaving the rings
+towards Saturn. In the following, we discuss the most likely of the
+above scenarios and their implications. We conclude that, although
+there are alternative possibilities, all currently available observations
+are in agreement with a combination of Scenarios (3b) and (1b) to
+explain the drastic depletion in Fe that we have found in the nanosized silicate particles from the rings: chemical alteration of IDPs in
+the rings (3b) possibly combined with an observational bias in the
+IDP data set accessible for CDA’s compositional analysis (1b). The
+greater part of the IDP flux entering the Saturnian system originates
+from the Kuiper belt (Kempf et al. 2023). An observational bias,
+introduced by CDA’s ability to assess only the composition of small,
+submicron-sized IDPs entering the Saturnian system and falling on
+to the rings (1b) would become relevant if Fe-rich phases would be
+preferentially concentrated in submicron-sized grains of the IDP flux,
+while Fe-poor minerals are systematically ‘hidden’ from CDA in
+larger grains (that CDA’s Chemical Analyzer cannot observe). Such
+a scenario is indeed supported by recent findings that the infalling
+Kuiper belt dust might contain an unusually high fraction of Fe-rich
+phases concentrated in the small sub-μm aggregates (Keller & Snead
+2021; Keller & Flynn 2022). However, it is highly uncertain if these
+findings, from investigations of a small number of potential Kuiper
+belt dust grains found on Earth (Keller & Snead 2021; Keller & Flynn
+2022) are representative of the bulk composition of IDPs from the
+Kuiper belt entering the Saturnian system. The composition – and
+even more the compositional fractionation – of such dust is currently
+poorly constrained.
+We think that chemical high temperature alteration of impacting
+IDPs from Fe-sulfides (and potentially silicates) leading to the
+formation of Fe-oxides is inevitable (3b). Interestingly, the detection
+of three Fe-rich grains – in addition to nine Fe-poor silicates – just
+outside the F ring by CDA during Cassini’s Ring-Grazing orbits
+
+Mineral dust from Saturn’s main rings
+
+Okada T., Shirai K., Yamamoto Y., Arai T., Ogawa K., Hosono K., Kato M.,
+2006, Science, 312, 1338
+Perry M. E. et al., 2018, Geophys. Res. Lett., 45, 10,093
+Pieters C. M., Noble S. K., 2016, J. Geophys. Res., 121, 1865
+Pollack J. B., 1975, Space Sci. Rev., 18, 3
+Postberg F. et al., 2014, Meteorit. Planet. Sci., 49, 1666
+Postberg F., Kempf S., Rost D., Stephan T., Srama R., Trieloff M., Mocker
+A., Goerlich M., 2009a, Planet. Space Sci., 57, 1359
+Postberg F., Kempf S., Schmidt J., Brilliantov N., Beinsen A., Abel B., Buck
+U., Srama R., 2009b, Nature, 459, 1098
+Postberg F., Schmidt J., Hillier J., Kempf S., Srama R., 2011, Nature, 474,
+620
+Roche E., 1849, Académie des Sciences et des Lettres de Montpellier, 1, 243
+Salmon J., Canup R. M., 2017, ApJ, 836, 109
+Salmon J., Charnoz S., Crida A., Brahic A., 2010, Icarus, 209, 771
+Sephton M. A., Waite J. H., Jr., Brockwell T. G., 2018, Astrobiology, 18, 843
+Serigano J., Hörst S. M., He C., Gautier T., Yelle R. V., Koskinen T. T., Trainer
+M. G., Radke M. J., 2022, J. Geophys. Res., 127, e2022JE007238
+Spilker L., Ferrari C., Cuzzi J. N., Showalter M. R., Pearl J. C., Wallis B.,
+2003, Planet. Space Sci., 51, 929
+Srama R. et al., 2004, Space Sci. Rev., 114, 465
+Srama R., 2009, Habilitation thesis, Univ. Stuttgart
+Stillman D., Olhoeft G., 2008, J. Geophys. Res., 113, E09005
+Teodoro L. F. A., Kegerreis J. A., Estrada P. R., Ćuk M., Eke V. R., Cuzzi J.
+N., Massey R. J., Sandnes T. D., 2023, ApJ, 955, 137
+Trieloff M., Fischer C., Postberg F., Schmidt J., 2023, EGU General
+Assembly, EGU23-16469, Vienna, Austria
+Waite J. H., Jr. et al., 2018, Science, 362, aat2382
+Wisdom J., Dbouk R., Militzer B., Hubbard W. B., Nimmo F., Downey B.
+G., French R. G., 2022, Science, 377, 1285
+Wozniakiewicz P. J. et al., 2011, Meteorit. Planet. Sci., 46, 1007
+Zhang Z. et al., 2017b, Icarus, 281, 297
+Zhang Z., Hayes A. G., Janssen M. A., Nicholson P. D., Cuzzi J. N., de Pater
+I., Dunn D. E., 2017a, Icarus, 294, 14
+
+S U P P O RT I N G I N F O R M AT I O N
+Supplementary data are available at MNRAS online.
+Please note: Oxford University Press is not responsible for the content
+or functionality of any supporting materials supplied by the authors.
+Any queries (other than missing material) should be directed to the
+corresponding author for the article.
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+
+© 2024 The Author(s).
+Published by Oxford University Press on behalf of Royal Astronomical Society. This is an Open Access article distributed under the terms of the Creative Commons Attribution License
+(https://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+MNRAS 529, 1207–1221 (2024)
+
+Downloaded from https://academic.oup.com/mnras/article/529/2/1207/7615453 by Universität Stuttgart user on 29 June 2026
+
+Cuzzi J. N., Estrada P. R., 1998, Icarus, 132, 1
+Cuzzi J. N., French R. G., Hendrix A. R., Olson D. M., Roush T., Vahidinia
+S., 2018, Icarus, 309, 363
+de Pater I., Dickel J. R., 1991, Icarus, 94, 474
+Dones L., 1991, Icarus, 92, 194
+Dougherty M. K., Esposito L. W., Krimigis S. M., 2009, Saturn from CassiniHuygens. Springer, Dordrecht
+Durisen R. H., Bode P. W., Cuzzi J. N., Cederbloom S. E., Murphy B. W.,
+1992, Icarus, 100, 364
+Durisen R. H., Estrada P. R., 2023, Icarus, 400, 115221
+Estrada P. R., Durisen R. H., 2023, Icarus, 400, 115296
+Estrada P. R., Durisen R. H., Cuzzi J. N., Morgan D. A., 2015, Icarus, 252,
+415
+Fiege K., Trieloff M., Hillier J. K., Guglielmino M., Postberg F., Srama R.,
+Kempf S., Blum J., 2014, Icarus, 241, 336
+Fischer C., Postberg F., Altobelli N., Nölle L., Albin T., 2018, EPSC, 12,
+1279
+Harris A. W., 1984, in Greenberg R., Brahic A., eds., IAU Coll. 75, Planetary
+Rings. Univ. Arizona Press, Tucson, AZ
+Hedman M. M. et al., 2024, JGR Planets, in press
+Hillier J. K. et al., 2014, Planet. Space Sci., 97, 9
+Hillier J. K., McBride N., Green S. F., Kempf S., Srama R., 2006, Planet.
+Space Sci., 54, 1007
+Hillier J. K., Postberg F., Sestak S., Srama R., Kempf S., Trieloff M.,
+Sternovsky Z., Green S. F., 2012, J. Geophys. Res., 117, E09002
+Hillier J. K., Sternovsky Z., Kempf S., Trieloff M., Guglielmino M., Postberg
+F., Price M. C., 2018, Planet. Space Sci., 156, 96
+Hsu H.-W. et al., 2018, Science, 362, eaat3185
+Ida S., 2019, Science, 364, 1028
+Ip W.-H., 1983, Nature, 302, 599
+Keller L. P., Flynn G. J., 2022, Nat. Astron., 6, 731
+Keller L. P., Snead C. J., 2021, Goldschmidt 2021.
+Keller L. P., Snead C. J., 2022, 85th Annual Meeting of the Meteoritical
+Society, LPI Contributions, 2695, 6506, Glasgow, Scotland
+Kempf S., Altobelli N., Schmidt J., Cuzzi J. N., Estrada P. R., Srama R., 2023,
+Sci. Adv., 9, eadf8537
+Linti S., Khawaja N., Hillier J. K., Nölle L., Fischer C., Hsu H.-W., Srama
+R., Postberg F., 2024b, MNRAS, stae238
+Lodders K., Fegley B., 1998, The planetary scientist’s companion, Oxford
+Univ. Press, New York
+Miller K. E. et al., 2020, Icarus, 339, 113595
+Mocker A. et al., 2011, Rev. Sci. Instrum., 82, 095111
+Morris R. V., Lauer H. V., Jr., Lawson C. A., Gibson E. K., Jr, Nace G. A.,
+Stewart C., 1985, J. Geophys. Res., 90, 3126
+Moses J. I. et al., 2023, Icarus, 391, 115328
+Nicholson P. D. et al., 2008, Icarus, 193, 182
+Northrop T. G., Hill J. R., 1982, J. Geophys. Res., 87, 6045
+
+1221
+
+

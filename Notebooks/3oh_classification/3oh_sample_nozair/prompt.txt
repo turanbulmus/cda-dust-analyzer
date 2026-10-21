@@ -1,0 +1,10 @@
+These are generic type 3 spectra where we have Na peak at m/
+23 as the highest amplitude and the next generic feature is at Del(T)
+about 1.5 or 1.6 microseconds at m/z 63. In addition, some instances,
+there is another peak at m/z 81 where the Del(T) between 63 and 81 is
+about 0.5 microseconds. This 81 peak is corresponding to either
+Na(NaOH)(H20) or Na(NaCl).
+
+In addition, there could be another feature/peak at m/z around 102 (103),
+where the Del (T) between 63 and 103 is about 1 to 1.2 microseconds. This
+feature could be Na(NaOH)(NaOH) or may be Rhodium (Rh) feature.

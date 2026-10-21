@@ -36,7 +36,6 @@ google-cloud-cli-linux-x86_64.tar.gz
 
 *.bsp
 *.tf
-*.png
 *.tpc
 *.tls
 *.tsc

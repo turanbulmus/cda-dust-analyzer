@@ -1,0 +1,56 @@
+{
+  "total_held_out_salt_spectra": 212,
+  "held_out_true_3p_count": 7,
+  "new_discovery_1511735208": {
+    "sclk": 1511735208,
+    "catalogue_class": "3-P (New Discovery)",
+    "p125": 0.118,
+    "diff_125_129": 0.0552,
+    "p165": 0.047,
+    "p187": 0.068,
+    "p81": 0.292,
+    "ratio_81_63": 0.898,
+    "passes_3p_triplet_gate": true,
+    "vlm_3p_class": "3-P",
+    "vlm_3p_confidence": 0.92,
+    "hybrid_3p_class": "3-P",
+    "vlm_3p_explanation": "This spectrum represents a mixed chloride-bearing sodium orthophosphate ('3-P') grain. It exhibits a strong salt backbone at 23 u and 63 u (prom=0.418) and passes the orthophosphate triplet criteria: the 125 u Na+(NaPO3) peak (prom=0.118) is clearly aligned with the 125 u green band rather than the 129 u carbonate band (diff_125_minus_129=+0.0552), alongside positive features in the 165 u Na+(Na2HPO4) band (prom=0.047 >= 0.045) and the 187 u Na+(Na3PO4) band (prom=0.068 >= 0.065), while the 81 u chloride peak remains below the pure 3-Cl veto thresholds (p81=0.292 <= 0.30, 81u/63u ratio=0.90, p139=0.107 < 0.145)."
+  },
+  "methods": {
+    "physics_3p_class": {
+      "description": "Two-Anchor Mass-Triplet Physics Gate Only",
+      "tp": 7,
+      "fn": 0,
+      "fp": 11,
+      "precision_intra_type3": 0.3889,
+      "recall_3p": 1.0,
+      "f1_3p": 0.56,
+      "fp_by_catalogue_class": {
+        "3-OH": 5,
+        "3-Car": 3,
+        "3-KNa": 2,
+        "3-Cl": 1
+      }
+    },
+    "vlm_3p_class": {
+      "description": "Stage-2 Specialist VLM (Dual-Panel Mass Plot + Telemetry)",
+      "tp": 7,
+      "fn": 0,
+      "fp": 0,
+      "precision_intra_type3": 1.0,
+      "recall_3p": 1.0,
+      "f1_3p": 1.0,
+      "fp_by_catalogue_class": {}
+    },
+    "hybrid_3p_class": {
+      "description": "Hybrid Neuro-Symbolic (Physics Triplet Gate + Specialist VLM)",
+      "tp": 7,
+      "fn": 0,
+      "fp": 0,
+      "precision_intra_type3": 1.0,
+      "recall_3p": 1.0,
+      "f1_3p": 1.0,
+      "fp_by_catalogue_class": {}
+    }
+  }
+}

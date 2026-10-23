@@ -9,6 +9,7 @@ from .sub_agent.workflow import (
     batch_submit_agent,
     batch_poll_agent,
     result_analysis_agent,
+    stage2_adjudicator_agent,
     vertex_ai_logging_agent,
 )
 
@@ -24,6 +25,7 @@ root_agent = Cda3ohWorkflowAgent(
     batch_submit_agent=batch_submit_agent,
     batch_poll_agent=batch_poll_agent,
     result_analysis_agent=result_analysis_agent,
+    stage2_adjudicator_agent=stage2_adjudicator_agent,
     vertex_ai_logging_agent=vertex_ai_logging_agent,
     sub_agents=[
         data_fetch_agent,
@@ -33,6 +35,7 @@ root_agent = Cda3ohWorkflowAgent(
         batch_submit_agent,
         batch_poll_agent,
         result_analysis_agent,
+        stage2_adjudicator_agent,
         vertex_ai_logging_agent,
     ],
 )

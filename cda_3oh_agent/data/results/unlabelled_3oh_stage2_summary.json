@@ -1,0 +1,77 @@
+{
+  "total_union_candidates_evaluated": 282,
+  "overall": {
+    "total_stage1_candidates": 282,
+    "physics_veto_passed_129u": 131,
+    "physics_veto_rate": 0.4645,
+    "strict_veto_passed": 125,
+    "stage2_vlm_passed": 127,
+    "stage2_vlm_rate": 0.4504,
+    "hybrid_passed": 93,
+    "hybrid_rate": 0.3298,
+    "hybrid_strict_passed": 90
+  },
+  "by_original_model_pool": {
+    "gemini-4-argon (HITL, N=248)": {
+      "total_stage1_candidates": 248,
+      "physics_veto_passed_129u": 120,
+      "physics_veto_rate": 0.4839,
+      "strict_veto_passed": 114,
+      "stage2_vlm_passed": 122,
+      "stage2_vlm_rate": 0.4919,
+      "hybrid_passed": 88,
+      "hybrid_rate": 0.3548,
+      "hybrid_strict_passed": 85
+    },
+    "gemini-3.5-flash (HITL, N=235)": {
+      "total_stage1_candidates": 235,
+      "physics_veto_passed_129u": 103,
+      "physics_veto_rate": 0.4383,
+      "strict_veto_passed": 100,
+      "stage2_vlm_passed": 104,
+      "stage2_vlm_rate": 0.4426,
+      "hybrid_passed": 76,
+      "hybrid_rate": 0.3234,
+      "hybrid_strict_passed": 74
+    },
+    "gemini-3.5-flash (AI-Only, N=101)": {
+      "total_stage1_candidates": 101,
+      "physics_veto_passed_129u": 38,
+      "physics_veto_rate": 0.3762,
+      "strict_veto_passed": 38,
+      "stage2_vlm_passed": 52,
+      "stage2_vlm_rate": 0.5149,
+      "hybrid_passed": 34,
+      "hybrid_rate": 0.3366,
+      "hybrid_strict_passed": 34
+    },
+    "2-of-3 Model Consensus (N=215)": {
+      "total_stage1_candidates": 215,
+      "physics_veto_passed_129u": 100,
+      "physics_veto_rate": 0.4651,
+      "strict_veto_passed": 97,
+      "stage2_vlm_passed": 104,
+      "stage2_vlm_rate": 0.4837,
+      "hybrid_passed": 75,
+      "hybrid_rate": 0.3488,
+      "hybrid_strict_passed": 73
+    },
+    "3-Way Model Consensus (N=87)": {
+      "total_stage1_candidates": 87,
+      "physics_veto_passed_129u": 30,
+      "physics_veto_rate": 0.3448,
+      "strict_veto_passed": 30,
+      "stage2_vlm_passed": 47,
+      "stage2_vlm_rate": 0.5402,
+      "hybrid_passed": 30,
+      "hybrid_rate": 0.3448,
+      "hybrid_strict_passed": 30
+    }
+  },
+  "tier_breakdown": {
+    "Tier 4 (Rejected by Both 129u Physics Veto & Stage-2 VLM)": 117,
+    "Tier 1 (Multi-Model Consensus >=2 + Physics & Stage-2 VLM Confirmed)": 75,
+    "Tier 3 (Borderline: Passed Either Physics Gate or Stage-2 VLM Only)": 72,
+    "Tier 2 (Single-Model + Physics & Stage-2 VLM Confirmed)": 18
+  }
+}

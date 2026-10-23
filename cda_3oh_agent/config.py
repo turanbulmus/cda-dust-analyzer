@@ -24,6 +24,7 @@ class AgentModel(BaseModel):
     force_new_annotations: bool = Field(default=True)
     prompt_optimization: bool = Field(default=True)
     prompt_opt_iterations: int = Field(default=3)
+    enable_stage2_adjudicator: bool = Field(default=True)
     test_mode: bool = Field(default=False)
 
 

@@ -15,6 +15,7 @@ from .data_prep import DataPrepAgent
 from .batch_submission import BatchSubmissionAgent
 from .batch_polling import BatchPollingAgent
 from .result_analysis import ResultAnalysisAgent
+from .specialist_adjudicator import Stage2SpecialistAdjudicatorAgent
 from .vertex_ai_logging import VertexAIExperimentsLoggingAgent
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - [%(name)s] - %(levelname)s - %(message)s")
@@ -52,6 +53,11 @@ result_analysis_agent = ResultAnalysisAgent(
     name="ResultAnalysisAgent",
     project_id=configs.agent_settings.project_id,
 )
+stage2_adjudicator_agent = Stage2SpecialistAdjudicatorAgent(
+    name="Stage2SpecialistAdjudicatorAgent",
+    project_id=configs.agent_settings.project_id,
+    model_id=configs.agent_settings.model,
+)
 vertex_ai_logging_agent = VertexAIExperimentsLoggingAgent(
     name="VertexAIExperimentsLoggingAgent",
     project_id=configs.agent_settings.project_id,
@@ -68,6 +74,7 @@ class Cda3ohWorkflowAgent(BaseAgent):
     batch_submit_agent: BaseAgent
     batch_poll_agent: BaseAgent
     result_analysis_agent: BaseAgent
+    stage2_adjudicator_agent: BaseAgent
     vertex_ai_logging_agent: BaseAgent
 
     @override
@@ -116,6 +123,10 @@ class Cda3ohWorkflowAgent(BaseAgent):
 
         # 5. Result Analysis (Cloud Dataflow extraction + Stage-1 merge + Binary & 12-Subclass metrics)
         async for event in self.result_analysis_agent.run_async(ctx):
+            yield event
+
+        # 5.5 Stage-2 Intra-Type-3 Specialist Adjudicator (Mass-Calibrated Dual-Panel Plots + 1D Telemetry + Physics Veto)
+        async for event in self.stage2_adjudicator_agent.run_async(ctx):
             yield event
 
         # 6. Vertex AI Experiments Logging

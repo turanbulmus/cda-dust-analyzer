@@ -1,0 +1,80 @@
+{
+  "pred_stage1": {
+    "description": "Stage-1 VLM Only (Gemini 4 Argon + Referee Prompt)",
+    "accuracy": 0.9983,
+    "precision_3oh": 0.5781,
+    "recall_3oh": 0.9024,
+    "f1_3oh": 0.7048,
+    "tp": 37,
+    "fn": 4,
+    "fp": 27,
+    "tn": 18237,
+    "fp_by_catalogue_class": {
+      "3-Car": 21,
+      "1": 3,
+      "3-KNa": 2,
+      "4": 1
+    }
+  },
+  "pred_stage2_vlm": {
+    "description": "Stage-1 VLM + Stage-2 Specialist VLM Adjudicator",
+    "accuracy": 0.9986,
+    "precision_3oh": 0.6271,
+    "recall_3oh": 0.9024,
+    "f1_3oh": 0.74,
+    "tp": 37,
+    "fn": 4,
+    "fp": 22,
+    "tn": 18242,
+    "fp_by_catalogue_class": {
+      "3-Car": 16,
+      "1": 3,
+      "3-KNa": 2,
+      "4": 1
+    }
+  },
+  "pred_physics_veto": {
+    "description": "Stage-1 VLM + Two-Anchor 129u Carbonate Physics Veto (Rule A+B)",
+    "accuracy": 0.9993,
+    "precision_3oh": 0.8537,
+    "recall_3oh": 0.8537,
+    "f1_3oh": 0.8537,
+    "tp": 35,
+    "fn": 6,
+    "fp": 6,
+    "tn": 18258,
+    "fp_by_catalogue_class": {
+      "3-Car": 5,
+      "1": 1
+    }
+  },
+  "pred_hybrid": {
+    "description": "Stage-1 VLM + Hybrid Neuro-Symbolic Stage-2 (VLM + Carbonate Veto)",
+    "accuracy": 0.9993,
+    "precision_3oh": 0.8537,
+    "recall_3oh": 0.8537,
+    "f1_3oh": 0.8537,
+    "tp": 35,
+    "fn": 6,
+    "fp": 6,
+    "tn": 18258,
+    "fp_by_catalogue_class": {
+      "3-Car": 5,
+      "1": 1
+    }
+  },
+  "pred_hybrid_strict": {
+    "description": "Stage-1 VLM + Strict Neuro-Symbolic Stage-2 (VLM + Carbonate & Water-Comb Veto)",
+    "accuracy": 0.9994,
+    "precision_3oh": 0.9167,
+    "recall_3oh": 0.8049,
+    "f1_3oh": 0.8571,
+    "tp": 33,
+    "fn": 8,
+    "fp": 3,
+    "tn": 18261,
+    "fp_by_catalogue_class": {
+      "3-Car": 3
+    }
+  }
+}

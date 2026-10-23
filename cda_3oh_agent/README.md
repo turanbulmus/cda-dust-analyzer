@@ -33,8 +33,11 @@ This directory contains the Google ADK multi-agent pipeline (`cda_3oh_agent`) fo
           - **Strict Neuro-Symbolic Stage-2 (`passes_strict_veto`, Carbonate + Water-Comb Veto)**: Cuts false positives by **88.9% (`27` $\rightarrow$ `3`)**, reaching **`91.67%` Precision (`+33.86 pp`)** and **`0.8571` F1** at **`80.49%` (`33/41`) recall**.
         - **Validation 2 — `282` Unlabelled `3-OH` Candidates (`24,829` Archive)** ([`unlabelled_3oh_stage2_summary.json`](data/results/unlabelled_3oh_stage2_summary.json)):
           - Stratifies the 282 union candidates into **75 Tier-1 (Multi-Model Consensus $\ge 2$ + Physics & Stage-2 VLM Confirmed)**, **18 Tier-2 (Single-Model + Physics & Stage-2 VLM Confirmed)** (`93` Hybrid-Confirmed ultra-pure `3-OH`), **72 Tier-3 (Borderline: Passed Either Physics Gate or Stage-2 VLM Only, `165` total across Tiers 1–3)**, and **117 Tier-4 (Rejected by Both $129\text{ u}$ Physics Veto & Stage-2 VLM)**.
-        - **Validation 3 — Held-Out `3-P` Salt-Rich `Type 3` Archive ($N=212$) + Confirmed Discovery `SCLK 1511735208`** ([`metrics_3p_stage2_comparison.json`](data/results/metrics_3p_stage2_comparison.json)):
-          - Achieves **`100.0%` Precision (`0` False Positives across all `205` non-`3-P` salt-rich `Type 3` spectra)** and **`100.0%` Recall (`7/7` held-out catalogued `3-P` grains + confirmed discovery `SCLK 1511735208` at `0.92` confidence + catalogued Rhea grain `SCLK 1511748839` at `0.99` confidence, `F1 = 1.000`)**!
+        - **Validation 3 — Leak-Free Blind Audit on `3-P` across the `377` Stage-1 Batch False Positives ($N=17,146$ Archive) & Held-Out `Type 3` Benchmark ($N=212$)** ([`metrics_3p_stage2_comparison.json`](data/results/metrics_3p_stage2_comparison.json), [`blind_3p_stage2_audit.csv`](data/results/blind_3p_stage2_audit.csv)):
+          - **Two-Tier `3-P` Discovery Architecture (Eliminating In-Sample Threshold Leakage)**:
+            - **1D Bounding-Box LOOCV Audit**: Strict Leave-One-Out Cross-Validation (LOOCV) on the 7-parameter 1D box achieves **`80.0%` (`8/10`) recall on catalogued `3-P` grains** (`72.7%` [`8/11`] when out-of-distribution mixed chloride-phosphate grain `SCLK 1511735208` is included, since `p81 = 0.292` vs. catalogued max `0.086`).
+            - **Tier-2 Loose Physical Sign Screen (`diff_125_129 >= 0.0` & Triplet Presence $\ge 0.04$)**: Parameter-free physical sign test ($125\text{ u}$ phosphate prominence $\ge 129\text{ u}$ carbonate prominence) retains **`100.0%` (`8/8` held-out catalogued `3-P` AND `9/9` including `SCLK 1511735208`)** while rejecting **`83.8%` (`316 / 377`)** of the Stage-1 batch false positives (`93.1%` [`351 / 377`] rejected with `p81 <= 0.30`).
+            - **Tier-1 Blind Stage-2 Specialist VLM (`gemini-4-argon` with Zero Threshold Leakage)**: Rejects **`100.0%` (`377 / 377`) of Stage-1 batch false positives (`0` FPs across `17,146` spectra!)** and achieves **`100.0%` (`8 / 8`) recall on held-out canonical catalogued `3-P` grains** (jumping full-batch precision from `1.3%` [`5/382`] $\rightarrow$ **`100.0%` [`5/5`]**), while classifying the mixed chloride-phosphate discovery **`SCLK 1511735208`** (`p81 = 0.292`, `p165 = 0.047`) as `3-Cl` (`8 / 9 = 88.9%` total recall across canonical + mixed-phase `3-P`).
 
 ---
 
@@ -61,13 +64,14 @@ This directory contains the Google ADK multi-agent pipeline (`cda_3oh_agent`) fo
 
 ---
 
-## 4. Held-Out `3-P` Salt-Rich `Type 3` Evaluation (`N = 212` + `SCLK 1511735208` — [`metrics_3p_stage2_comparison.json`](data/results/metrics_3p_stage2_comparison.json))
+## 4. Leak-Free Blind `3-P` Stage-2 Audit (`377` Stage-1 Batch FPs from $N=17,146$ Archive + Held-Out `3-P` — [`metrics_3p_stage2_comparison.json`](data/results/metrics_3p_stage2_comparison.json))
 
-| Pipeline Method (`N = 212` Held-Out Salt-Rich `Type 3` Spectra) | Held-Out `3-P` Recall (`TP / 7`) | Intra-`Type 3` Precision | `3-P` F1 | Total FPs (`/ 205`) | Confirmed Discovery `SCLK 1511735208` |
+| `3-P` Pipeline Stage (`N = 17,146` Batch Run: `377` Stage-1 FPs + `8` Held-Out Catalogued `3-P` + `SCLK 1511735208`) | Canonical `3-P` Recall (`TP / 8`) | Total Recall incl. Mixed `SCLK 1511735208` (`TP / 9`) | Stage-1 Batch FPs Remaining (`/ 377`) | Full-Batch Precision (`5` Benchmark `3-P`) | `SCLK 1511735208` Disposition |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Two-Anchor Mass-Triplet Physics Gate Only (`passes_3p_triplet_gate`)** | **`100.0%` (`7/7`)** | `38.89%` | `0.5600` | `11` (`3-OH: 5, 3-Car: 3, 3-KNa: 2, 3-Cl: 1`) | **Confirmed `3-P` (`diff_125_129 = +0.0552`)** |
-| **Stage-2 Specialist VLM (`gemini-4-argon` + Dual-Panel Mass Plot + Telemetry)** | **`100.0%` (`7/7`)** | **`100.0%`** | **`1.0000`** | **`0` (`0/83 3-Car, 0/44 3-Cl, 0/40 3-OH, 0/38 3-KNa`)** | **Confirmed `3-P` (`confidence = 0.92`)** |
-| **Hybrid Neuro-Symbolic (`Physics Triplet Gate AND Specialist VLM`)** | **`100.0%` (`7/7`)** | **`100.0%`** | **`1.0000`** | **`0`** | **Confirmed `3-P` (`confidence = 0.92`)** |
+| **Stage-1 Raw-Image VLM (`cda-batch-20260707`, $N=17,146$)** | **`100.0%` (`8/8`)** | **`100.0%` (`9/9`)** | `377` (`100%`) | `1.31%` (`5/382`) | Flagged (`1` of `36` in wild) |
+| **1D 7-Parameter Bounding Box (Strict Leave-One-Out CV)** | `80.0%` (`8/10` all) | `72.7%` (`8/11` all) | `7` (`-98.1%`) | `41.67%` (`5/12`) | **Fails LOOCV (`p81=0.292 > 0.086`)** |
+| **Tier-2 Loose Physical Sign Screen (`diff_125_129 >= 0` & Triplet $\ge 0.04$)** | **`100.0%` (`8/8`)** | **`100.0%` (`9/9`)** | `61` (`-83.8%`) / `26` (`-93.1%` w/ `p81<=0.30`) | `7.58%`–`16.13%` | **Retained (`diff_125_129 = +0.0552`)** |
+| **Tier-1 Blind Stage-2 Specialist VLM (`gemini-4-argon`, Zero Threshold Leakage)** | **`100.0%` (`8/8`)** | **`88.9%` (`8/9`)** | **`0 / 377` (`-100.0%`)** | **`100.0%` (`5/5`, `F1=1.00`)** | **Filtered as `3-Cl` (`p81=0.292` mixed grain)** |
 
 ---
 

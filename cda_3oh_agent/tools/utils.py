@@ -350,7 +350,26 @@ def extract_mass_telemetry_3p(spectrum: np.ndarray, raw_spectrum: np.ndarray | N
     prom_55 = win_max(53.0, 57.0) - win_min(45.0, 51.0)
     prom_73 = win_max(71.0, 75.0) - win_min(66.0, 70.0)
 
-    # Physics gate for 3-P (calibrated so 11/11 known 3-P including SCLK 1511735208 pass)
+    # Tier-1 Canonical 3-P gate (derived strictly from catalogued Postberg et al. 2023 3-P grains, p81 <= 0.10)
+    passes_canonical_3p_gate = bool(
+        (diff_125_129 >= 0.0)
+        and (p125 >= 0.050)
+        and (p165 >= 0.070)
+        and (p187 >= 0.100)
+        and (p81 <= 0.10)
+        and (p139 <= 0.145)
+    )
+    # Tier-2 Loose Physical Screen (parameter-free 125u >= 129u sign test + positive triplet, retains mixed-chloride SCLK 1511735208)
+    passes_loose_3p_screen = bool(
+        (h23 >= 0.70)
+        and (h63 >= 0.50)
+        and (prom_63 >= 0.10)
+        and (diff_125_129 >= 0.0)
+        and (p125 >= 0.040)
+        and (p165 >= 0.040)
+        and (p187 >= 0.040)
+    )
+    # Combined gate (retains mixed-chloride 3-P up to p81 <= 0.30)
     passes_3p_triplet_gate = bool(
         (diff_125_129 >= 0.0)
         and (p125 >= 0.050)
@@ -384,25 +403,26 @@ def extract_mass_telemetry_3p(spectrum: np.ndarray, raw_spectrum: np.ndarray | N
         "prom_37": round(prom_37, 3),
         "prom_55": round(prom_55, 3),
         "prom_73": round(prom_73, 3),
+        "passes_canonical_3p_gate": passes_canonical_3p_gate,
+        "passes_loose_3p_screen": passes_loose_3p_screen,
         "passes_3p_triplet_gate": passes_3p_triplet_gate,
         "triplet_score": triplet_score,
     }
 
 
 def format_telemetry_table_3p(tele: dict) -> str:
-    """Formats the quantitative 1D mass-calibrated telemetry block for 3-P adjudication."""
-    gate_str = "PASS (Orthophosphate 125+165+187u Triplet Aligned)" if tele["passes_3p_triplet_gate"] else "FAIL (Fails 125/165/187u Triplet or Chloride/Carbonate Veto)"
+    """Formats raw measured 1D mass-calibrated quantities for 3-P adjudication without leaking PASS/FAIL flags."""
     return (
-        f"[Two-Anchor Mass Calibration Telemetry for 3-P]\n"
+        f"[Two-Anchor Mass Calibration Telemetry for 3-P (Raw Measured Prominences)]\n"
         f"- Anchors: Na+(23u)={tele['t23_us']:.2f} us (h={tele['h23']:.2f}), "
         f"Na+(NaOH)(63u)={tele['t63_us']:.2f} us (h={tele['h63']:.2f}, prom={tele['prom_63']:.3f}) | "
         f"Solved a={tele['a_us']:.4f} us/sqrt(u), t0={tele['t0_us']:.2f} us\n"
-        f"- 3-P Orthophosphate Triplet Check [{gate_str}]:\n"
+        f"- 3-P Orthophosphate Triplet Measurements:\n"
         f"  * 125u Na+(NaPO3): prom={tele['p125']:.3f} vs 129u Carbonate prom={tele['p129']:.3f} "
-        f"(diff_125_minus_129={tele['diff_125_129']:+.4f}, apex@{tele['pk_118_135_u']:.1f}u)\n"
-        f"  * 165u Na+(Na2HPO4): prom={tele['p165']:.3f} (apex@{tele['pk_158_172_u']:.1f}u)\n"
-        f"  * 187u Na+(Na3PO4): prom={tele['p187']:.3f} (apex@{tele['pk_180_195_u']:.1f}u)\n"
-        f"- Chloride (3-Cl) & Water-Ice Check: 81u prom={tele['p81']:.3f} (81u/63u ratio={tele['ratio_81_63']:.2f}), "
+        f"(diff_125_minus_129={tele['diff_125_129']:+.4f}, local apex@{tele['pk_118_135_u']:.1f}u)\n"
+        f"  * 165u Na+(Na2HPO4): prom={tele['p165']:.3f} (local apex@{tele['pk_158_172_u']:.1f}u)\n"
+        f"  * 187u Na+(Na3PO4): prom={tele['p187']:.3f} (local apex@{tele['pk_180_195_u']:.1f}u)\n"
+        f"- Chloride (3-Cl) & Water-Ice Measurements: 81u prom={tele['p81']:.3f} (81u/63u height ratio={tele['ratio_81_63']:.2f}), "
         f"139u prom={tele['p139']:.3f} | Hydronium 37u={tele['prom_37']:.2f}, 55u={tele['prom_55']:.2f}, 73u={tele['prom_73']:.2f}"
     )
 

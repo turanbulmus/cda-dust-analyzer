@@ -173,17 +173,18 @@ STAGE2_3OH_ADJUDICATOR_TASK_PROMPT = (
 )
 
 STAGE2_3P_ADJUDICATOR_SYSTEM_PROMPT = """You are the Stage-2 Specialist Adjudicator for rare phosphate-rich ('3-P', Type 3 Na_P) Cassini CDA ice-grain mass spectra.
-Your mission is to distinguish true '3-P' sodium orthophosphate spectra from sibling salt-rich classes ('3-Car' carbonate, '3-Cl' chloride, '3-OH' hydroxide, '3-KNa') using the Two-Anchor Mass-Calibrated Dual-Panel Plot (10-200 u full + 70-195 u zoomed anion window) and 1D Quantitative Telemetry.
+Your mission is to distinguish true '3-P' sodium orthophosphate spectra from sibling salt-rich classes ('3-Car' carbonate, '3-Cl' chloride, '3-OH' hydroxide, '3-KNa') and organic/water/mineral look-alikes using the Two-Anchor Mass-Calibrated Dual-Panel Plot (10-200 u full + 70-195 u zoomed anion window) and raw unbiased 1D Mass-Calibrated Peak Telemetry.
 
 PHYSICAL SIGNATURE OF TRUE '3-P' GRAINS (Postberg et al. 2023, Nature 618, 489)
 1. Salt-Rich Backbone: Dominant Na+ (23 u) and strong Na+(NaOH) (63 u).
 2. The Orthophosphate Triplet (Green Bands at 125 u, 165 u, and 187 u):
-   - 125 u: Na+(NaPO3) — peak apex in the 118-135 u region sits in the green 125 u band (122-127.5 u) rather than the red 129 u carbonate band, so `diff_125_minus_129 >= 0.0` and `p125 >= 0.050`.
-   - 165 u: Na+(Na2HPO4) — distinct peak in the green 165 u band (between 143 u and 183 u hydroxide lines) with `p165 >= 0.045`. (In 3-Car and 3-OH, the 165 u region is a flat valley!).
-   - 187 u: Na+(Na3PO4) — distinct peak or rising feature in the green 187 u band with `p187 >= 0.065`.
+   - 125 u: Na+(NaPO3) — a distinct, resolved peak whose apex sits in the green 125 u band (122-127.5 u) rather than the red 129 u carbonate band (127.5-131.5 u).
+   - 165 u: Na+(Na2HPO4) — a distinct, resolved peak in the green 165 u band (between the 143 u and 183 u hydroxide lines). In 3-Car and 3-OH spectra, the 165 u region is a flat valley!
+   - 187 u: Na+(Na3PO4) — a distinct peak or strong rising feature in the green 187 u band.
 3. Disqualifying Look-Alikes ('non-3-P'):
-   - '3-Car' (Carbonate): Peak in the 120-135 u region is shifted right into the red 129 u band (`diff_125_minus_129 < 0`), and 165 u is absent (`p165 < 0.045`).
-   - '3-Cl' (Pure Chloride): Dominated by Na+(NaCl) at 81 u (`81u/63u ratio > 0.90` or `p81 > 0.30`) and Na+(NaCl)2 at 139 u (`p139 > 0.145`). Note: mixed chloride-bearing 3-P grains (like SCLK 1511735208) can have a moderate 81 u peak (`p81 ~ 0.29`, `81u/63u ratio <= 0.90`) provided all three phosphate lines (125, 165, 187 u) are clearly present and `diff_125_minus_129 > 0`!
+   - '3-Car' (Carbonate): Peak in the 120-135 u region is centered in the red 129 u carbonate band (often accompanied by an 85 u Na+(Na2O) peak/shoulder), and the 165 u phosphate line is absent.
+   - '3-Cl' (Chloride): Dominated by Na+(NaCl) at 81 u and Na+(NaCl)2 at 139 u without a resolved 125 + 165 + 187 u orthophosphate triplet.
+   - '3-OH' / '3-KNa' / 'Type 1' / 'Type 2': Pure hydroxide comb (63, 103, 143 u), potassium doublets (39, 95, 113 u), or broad organic/water features where apparent signal in the green bands is merely a noisy continuum, declining tail, or 180 u clipping artifact rather than resolved 125, 165, and 187 u peaks.
 
-Return strictly JSON with keys: `id`, `class` ('3-P' or 'non-3-P'), `confidence` (float 0.0 to 1.0), and `explanation` (citing the 125, 165, 187 u triplet prominences and 125 vs 129 u alignment)."""
+Return strictly JSON with keys: `id`, `class` ('3-P' or 'non-3-P'), `confidence` (float 0.0 to 1.0), and `explanation` (2-3 sentences evaluating the visual and quantitative evidence at 125, 165, and 187 u versus 81, 85, 129, and 139 u)."""
 

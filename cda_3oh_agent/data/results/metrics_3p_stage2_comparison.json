@@ -1,56 +1,48 @@
 {
-  "total_held_out_salt_spectra": 212,
-  "held_out_true_3p_count": 7,
-  "new_discovery_1511735208": {
-    "sclk": 1511735208,
-    "catalogue_class": "3-P (New Discovery)",
-    "p125": 0.118,
-    "diff_125_129": 0.0552,
-    "p165": 0.047,
-    "p187": 0.068,
-    "p81": 0.292,
-    "ratio_81_63": 0.898,
-    "passes_3p_triplet_gate": true,
-    "vlm_3p_class": "3-P",
-    "vlm_3p_confidence": 0.92,
-    "hybrid_3p_class": "3-P",
-    "vlm_3p_explanation": "This spectrum represents a mixed chloride-bearing sodium orthophosphate ('3-P') grain. It exhibits a strong salt backbone at 23 u and 63 u (prom=0.418) and passes the orthophosphate triplet criteria: the 125 u Na+(NaPO3) peak (prom=0.118) is clearly aligned with the 125 u green band rather than the 129 u carbonate band (diff_125_minus_129=+0.0552), alongside positive features in the 165 u Na+(Na2HPO4) band (prom=0.047 >= 0.045) and the 187 u Na+(Na3PO4) band (prom=0.068 >= 0.065), while the 81 u chloride peak remains below the pure 3-Cl veto thresholds (p81=0.292 <= 0.30, 81u/63u ratio=0.90, p139=0.107 < 0.145)."
+  "audit_summary": {
+    "held_out_catalogued_3p_count": 8,
+    "out_of_distribution_discovery_count": 1,
+    "stage1_batch_20260707_total_spectra": 17146,
+    "stage1_batch_20260707_matched_fps": 377,
+    "salt_rich_type3_held_out_negatives": 205
   },
-  "methods": {
-    "physics_3p_class": {
-      "description": "Two-Anchor Mass-Triplet Physics Gate Only",
-      "tp": 7,
-      "fn": 0,
-      "fp": 11,
-      "precision_intra_type3": 0.3889,
-      "recall_3p": 1.0,
-      "f1_3p": 0.56,
-      "fp_by_catalogue_class": {
-        "3-OH": 5,
-        "3-Car": 3,
-        "3-KNa": 2,
-        "3-Cl": 1
-      }
+  "loocv_1d_bounding_box_audit": {
+    "description": "Strict Leave-One-Out Cross-Validation (LOOCV) of the 7-parameter 1D bounding box across all 11 unique 3-P grains (10 catalogued + SCLK 1511735208)",
+    "catalogued_loocv_recall": "8 / 10 (80.0%)",
+    "all_3p_including_1511735208_loocv_recall": "8 / 11 (72.7%)",
+    "failed_loocv_grains": {
+      "1511735208 (Rhea New Discovery)": "Out-of-distribution mixed chloride-phosphate grain: p165=0.047 (< catalogued min 0.074), p187=0.068 (< catalogued min 0.101), p81=0.292 (> catalogued max 0.086), ratio_81_63=0.898 (> catalogued max 0.773)",
+      "1543799233 (Catalogued Test)": "Weakest 125u peak among catalogued grains: p125=0.052 (< min of other 9 = 0.087), though rescued visually by Blind Stage-2 VLM (conf=0.92)",
+      "1557519144 (Catalogued Test)": "Highest 139u/143u shoulder among catalogued grains: p139=0.141 (> max of other 9 = 0.107)"
+    }
+  },
+  "stage2_methods_on_actual_stage1_batch_fps": {
+    "stage1_vlm_baseline_batch_20260707": {
+      "description": "Stage-1 VLM Baseline on 17,146-spectrum batch run (cda-batch-20260707)",
+      "catalogued_3p_recall": "5 / 5 (100.0%)",
+      "stage1_fps": 377,
+      "precision_on_batch_17146": 0.0131
     },
-    "vlm_3p_class": {
-      "description": "Stage-2 Specialist VLM (Dual-Panel Mass Plot + Telemetry)",
-      "tp": 7,
-      "fn": 0,
-      "fp": 0,
-      "precision_intra_type3": 1.0,
-      "recall_3p": 1.0,
-      "f1_3p": 1.0,
-      "fp_by_catalogue_class": {}
+    "tier2_loose_physical_screen": {
+      "description": "Tier-2 Loose Non-Fitted Physical Screen (diff_125_129 >= 0.0 + p125/p165/p187 >= 0.04 + prom_63 >= 0.10, no chloride veto)",
+      "catalogued_3p_recall": "8 / 8 (100.0%)",
+      "includes_discovery_1511735208": true,
+      "total_3p_recall": "9 / 9 (100.0%)",
+      "surviving_stage1_fps": "61 / 377 (83.8% of Stage-1 FPs rejected)"
     },
-    "hybrid_3p_class": {
-      "description": "Hybrid Neuro-Symbolic (Physics Triplet Gate + Specialist VLM)",
-      "tp": 7,
-      "fn": 0,
-      "fp": 0,
-      "precision_intra_type3": 1.0,
-      "recall_3p": 1.0,
-      "f1_3p": 1.0,
-      "fp_by_catalogue_class": {}
+    "tight_1d_triplet_gate": {
+      "description": "1D Triplet Gate (allowing mixed chloride up to p81 <= 0.30)",
+      "catalogued_3p_recall": "8 / 8 (100.0%, in-sample on p125/p139; 80.0% LOOCV)",
+      "includes_discovery_1511735208": true,
+      "surviving_stage1_fps": "26 / 377 (93.1% of Stage-1 FPs rejected; 11 / 205 in salt-rich Type 3)"
+    },
+    "tier1_blind_stage2_specialist_vlm": {
+      "description": "Blind Leak-Free Stage-2 Specialist VLM (gemini-4-argon on Dual-Panel Mass Plot + Raw Telemetry, NO PASS/FAIL or threshold leakage)",
+      "catalogued_3p_recall": "8 / 8 (100.0%, including SCLK 1543799233 and SCLK 1511748839)",
+      "includes_discovery_1511735208": false,
+      "total_3p_recall_with_1511735208": "8 / 9 (88.9% — rejects out-of-distribution chloride-rich SCLK 1511735208 as 3-Cl with conf=0.99)",
+      "surviving_stage1_fps": "0 / 377 (100.0% of Stage-1 FPs rejected!)",
+      "precision_on_canonical_3p": 1.0
     }
   }
 }

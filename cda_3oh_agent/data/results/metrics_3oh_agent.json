@@ -1,0 +1,15 @@
+{
+  "model": "gemini-4-argon",
+  "total_evaluated": 18305,
+  "stage1_bypassed": 4201,
+  "vlm_evaluated": 14104,
+  "accuracy": 0.9983,
+  "precision_3oh": 0.5781,
+  "recall_3oh": 0.9024,
+  "f1_3oh": 0.7048,
+  "macro_f1": 0.852,
+  "tp_3oh": 37,
+  "fn_3oh": 4,
+  "fp_3oh": 27,
+  "tn_3oh": 18237
+}

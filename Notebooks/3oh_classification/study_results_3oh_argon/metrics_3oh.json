@@ -1,0 +1,18 @@
+{
+  "model": "gemini-4-argon (Human-in-the-Loop)",
+  "temperature": null,
+  "scored_samples": 715,
+  "unanswered_samples": 1,
+  "positive_test_samples": 47,
+  "negative_test_samples": 668,
+  "predicted_3oh": 105,
+  "true_positives": 31,
+  "false_positives": 74,
+  "false_negatives": 16,
+  "true_negatives": 594,
+  "accuracy": 0.8741258741258742,
+  "precision_3oh": 0.29523809523809524,
+  "recall_3oh": 0.6595744680851063,
+  "f1_3oh": 0.40789473684210525,
+  "macro_f1": 0.6687361008154188
+}

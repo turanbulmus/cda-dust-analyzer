@@ -1,0 +1,13 @@
+catalogue_class,true_label,n,predicted_3oh,predicted_non_3oh,rate_predicted_3oh
+1,non-3-OH,100,0,100,0.0
+2,non-3-OH,100,0,100,0.0
+3-Car,non-3-OH,87,31,56,0.356
+3-Cl,non-3-OH,44,27,17,0.614
+3-K,non-3-OH,21,0,21,0.0
+3-KNa,non-3-OH,36,13,23,0.361
+3-OH,3-OH,47,31,16,0.66
+3-P,non-3-OH,9,3,6,0.333
+4,non-3-OH,100,0,100,0.0
+5,non-3-OH,40,0,40,0.0
+5-Na,non-3-OH,32,0,32,0.0
+Noise,non-3-OH,99,0,99,0.0

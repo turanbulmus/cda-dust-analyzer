@@ -1,0 +1,18 @@
+{
+  "model": "gemini-3.5-flash (Human-in-the-Loop)",
+  "temperature": null,
+  "scored_samples": 658,
+  "unanswered_samples": 58,
+  "positive_test_samples": 44,
+  "negative_test_samples": 614,
+  "predicted_3oh": 90,
+  "true_positives": 27,
+  "false_positives": 63,
+  "false_negatives": 17,
+  "true_negatives": 551,
+  "accuracy": 0.878419452887538,
+  "precision_3oh": 0.3,
+  "recall_3oh": 0.6136363636363636,
+  "f1_3oh": 0.40298507462686567,
+  "macro_f1": 0.6676515897669015
+}

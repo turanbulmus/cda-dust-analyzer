@@ -204,7 +204,13 @@ def preprocess(df):
 
 def load_catalogue(csv_path):
     """Expert catalogue (Notebooks/cda_class_list.csv) as sclk -> class."""
+    if not os.path.exists(csv_path):
+        import shutil
+        os.makedirs(os.path.dirname(os.path.abspath(csv_path)), exist_ok=True)
+        shutil.copyfile(hf_path("data/meta/cda_class_list.csv"), csv_path)
     cat = pd.read_csv(csv_path, dtype=str)
+    if "event_id" not in cat.columns:
+        cat["event_id"] = cat["Unnamed: 0"] if "Unnamed: 0" in cat.columns else None
     cat["sclk"] = pd.to_numeric(cat["sclk"], errors="coerce")
     cat = cat.dropna(subset=["sclk"]).drop_duplicates("sclk")
     cat["sclk"] = cat["sclk"].astype("int64")
@@ -314,10 +320,17 @@ class ProgressFileReader:
 
 
 def _access_token():
-    return subprocess.run(
-        ["gcloud", "auth", "application-default", "print-access-token"],
-        capture_output=True, text=True, check=True,
-    ).stdout.strip()
+    try:
+        return subprocess.run(
+            ["gcloud", "auth", "application-default", "print-access-token"],
+            capture_output=True, text=True, check=True,
+        ).stdout.strip()
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        import google.auth
+        import google.auth.transport.requests
+        creds, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        creds.refresh(google.auth.transport.requests.Request())
+        return creds.token
 
 
 def upload_jsonl(project_id, bucket_name, local_path, gcs_name):
@@ -414,6 +427,33 @@ def normalise_label(raw):
 
 def parse_prediction_line(line):
     """One output line of a batch job -> {sclk, predicted_label, explanation, error}."""
+    if isinstance(line, bytes):
+        tail = (line[-40000:] if len(line) > 40000 else line).decode("utf-8", errors="replace")
+    else:
+        tail = line[-40000:] if len(line) > 40000 else line
+    idx = tail.find(',"status":')
+    if idx != -1:
+        m_sclk = _SCLK_PATTERN.search(tail[:idx])
+        sclk = int(m_sclk.group(1)) if m_sclk else None
+        try:
+            obj = json.loads("{" + tail[idx + 1:])
+        except json.JSONDecodeError:
+            obj = None
+        if obj is not None:
+            try:
+                response_parts = obj["response"]["candidates"][0]["content"]["parts"]
+                text = next(p["text"] for p in reversed(response_parts) if "text" in p and not p.get("thought"))
+                answer = json.loads(text)
+            except (KeyError, IndexError, TypeError, StopIteration, json.JSONDecodeError):
+                return {"sclk": sclk, "predicted_label": None, "explanation": "",
+                        "error": obj.get("status") or "no parseable response"}
+            if sclk is None and str(answer.get("id", "")).isdigit():
+                sclk = int(answer["id"])
+            return {"sclk": sclk, "predicted_label": normalise_label(answer.get("class")),
+                    "explanation": answer.get("explanation", ""), "error": None}
+
+    if isinstance(line, bytes):
+        line = line.decode("utf-8")
     obj = json.loads(line)
     sclk = None
     request_parts = obj.get("request", {}).get("contents", [{}])[-1].get("parts", [])

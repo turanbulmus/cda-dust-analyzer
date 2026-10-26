@@ -25,10 +25,11 @@ from .local_inference import LocalInferenceAgent
 from .batch_submission import BatchSubmissionAgent
 from .batch_polling import BatchPollingAgent
 from .result_analysis import ResultAnalysisAgent
+from .specialist_adjudicator import Stage2SpecialistAdjudicatorAgent
 from .vertex_ai_logging import VertexAIExperimentsLoggingAgent
 
 class CdaWorkflowAgent(BaseAgent):
-    """Orchestrates the CDA Dust Analyzer workflow with custom logic."""
+    """Orchestrates the CDA Dust Analyzer workflow with Stage-1 and Stage-2 adjudication."""
     
     data_fetch: DataFetchAndParseAgent
     prompt_opt: PromptOptimizerAgent
@@ -38,6 +39,7 @@ class CdaWorkflowAgent(BaseAgent):
     batch_sub: BatchSubmissionAgent
     batch_poll: BatchPollingAgent
     result_analysis: ResultAnalysisAgent
+    stage2_adjudicator: Stage2SpecialistAdjudicatorAgent
     vertex_logging: VertexAIExperimentsLoggingAgent
     
     def __init__(self, name: str):
@@ -51,12 +53,17 @@ class CdaWorkflowAgent(BaseAgent):
         batch_sub = BatchSubmissionAgent(name="BatchSubmission", project_id=configs.agent_settings.project_id, model_id=configs.agent_settings.model)
         batch_poll = BatchPollingAgent(name="BatchPolling")
         result_analysis = ResultAnalysisAgent(name="ResultAnalysis", project_id=configs.agent_settings.project_id)
+        stage2_adjudicator = Stage2SpecialistAdjudicatorAgent(
+            name="Stage2SpecialistAdjudicator",
+            project_id=configs.agent_settings.project_id,
+            model_id=configs.agent_settings.stage2_model,
+        )
         vertex_logging = VertexAIExperimentsLoggingAgent(name="VertexAIExperimentsLogging", project_id=configs.agent_settings.project_id)
         
         sub_agents = [
             data_fetch, prompt_opt, few_shot, data_prep,
             local_inf, batch_sub, batch_poll, result_analysis,
-            vertex_logging
+            stage2_adjudicator, vertex_logging
         ]
         
         super().__init__(
@@ -69,6 +76,7 @@ class CdaWorkflowAgent(BaseAgent):
             batch_sub=batch_sub,
             batch_poll=batch_poll,
             result_analysis=result_analysis,
+            stage2_adjudicator=stage2_adjudicator,
             vertex_logging=vertex_logging,
             sub_agents=sub_agents
         )
@@ -100,6 +108,9 @@ class CdaWorkflowAgent(BaseAgent):
             
         # 5. Result Analysis
         async for event in self.result_analysis.run_async(ctx): yield event
+
+        # 5.5 Stage-2 Specialist Adjudicator (Mass-Calibrated Dual-Panel Plots + 1D Telemetry + Physics Veto)
+        async for event in self.stage2_adjudicator.run_async(ctx): yield event
         
         # 6. Vertex AI Logging
         async for event in self.vertex_logging.run_async(ctx): yield event

@@ -4,6 +4,7 @@ from pydantic_settings import BaseSettings
 class AgentSettings(BaseSettings):
     name: str = "CDA_Dust_Analyzer_Agent"
     model: str = "gemini-3.5-flash"
+    stage2_model: str = "gemini-4-argon"
     project_id: str = os.environ.get("GOOGLE_CLOUD_PROJECT", "turan-genai-bb")
     location: str = "us-central1"
     bucket_name: str = os.environ.get("GCS_BUCKET_NAME", "turansgenaibb")
@@ -19,6 +20,7 @@ class AgentSettings(BaseSettings):
     few_shot_split_rules: int | dict = 3
     prompt_optimization: bool = False
     prompt_opt_iterations: int = 2
+    enable_stage2_adjudicator: bool = True
 
 _shared_settings = AgentSettings()
 

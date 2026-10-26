@@ -1,6 +1,6 @@
 # Cassini CDA Dust Analyzer - Best Notebook & Agent Results Summary
 
-This document summarizes the key performance metrics, ablation study results, and Stage-1 / Stage-2 benchmark findings across `Notebooks/`, `cda_dust_agent/`, and `cda_3oh_agent/`.
+This document summarizes the key performance metrics, ablation study results, and Stage-1 / Stage-2 benchmark findings across `Notebooks/` and `cda_dust_agent/`.
 
 ---
 
@@ -38,9 +38,9 @@ Multiple Stage-1 prompt strategies were tested in notebooks `07` through `10` to
 
 ---
 
-## 4. Binary `3-OH` Classification & Stage-2 Neuro-Symbolic Adjudication (`3oh_classification/15`–`17` & `cda_3oh_agent`)
+## 4. Binary `3-OH` Classification & Stage-2 Neuro-Symbolic Adjudication (`3oh_classification/15`–`17` & `cda_dust_agent`)
 
-In [15_3oh_few_shot_study.ipynb](3oh_classification/15_3oh_few_shot_study.ipynb), [16_3oh_inference.ipynb](3oh_classification/16_3oh_inference.ipynb), [17_3oh_progress_monitor.ipynb](3oh_classification/17_3oh_progress_monitor.ipynb), and [`cda_3oh_agent/`](../cda_3oh_agent/README.md), we evaluated `gemini-3.5-flash` vs. `gemini-4-argon`, optimized the binary `3-OH` prompt via the 3-agent `Research` $\rightarrow$ `Critic` $\rightarrow$ `Referee` loop, and introduced **Stage-2 Two-Anchor Mass-Calibrated Adjudication** (`23.0 u` $\text{Na}^+$ and `63.0 u` $\text{Na}^+(\text{NaOH})$ anchors):
+In [15_3oh_few_shot_study.ipynb](3oh_classification/15_3oh_few_shot_study.ipynb), [16_3oh_inference.ipynb](3oh_classification/16_3oh_inference.ipynb), [17_3oh_progress_monitor.ipynb](3oh_classification/17_3oh_progress_monitor.ipynb), and [`cda_dust_agent/stage_2_adjudicator_methodology.md`](../cda_dust_agent/stage_2_adjudicator_methodology.md), we evaluated `gemini-3.5-flash` vs. `gemini-4-argon`, optimized the binary `3-OH` prompt via the 3-agent `Research` $\rightarrow$ `Critic` $\rightarrow$ `Referee` loop, and introduced **Stage-2 Two-Anchor Mass-Calibrated Adjudication** (`23.0 u` $\text{Na}^+$ and `63.0 u` $\text{Na}^+(\text{NaOH})$ anchors):
 
 ### 4.1 Held-Out Study Benchmark (`698`–`707` Labelled Spectra)
 
@@ -50,7 +50,7 @@ In [15_3oh_few_shot_study.ipynb](3oh_classification/15_3oh_few_shot_study.ipynb)
 | HITL Prompt (9 pos + 9 neg) | `gemini-4-argon` | 707 | `87.41%` | `92.68%` (38/41) | `31.15%` | `0.4663` | `0.6976` | 84 |
 | AI-Only Literature Prompt (18-shot) | `gemini-3.5-flash` | 698 | `93.84%` | **`95.12%` (39/41)** | `48.75%` | `0.6446` | `0.8065` | 41 |
 | AI-Only Literature Prompt (18-shot) | `gemini-4-argon` | 698 | `95.99%` | `92.68%` (38/41) | `60.32%` | `0.7308` | `0.8545` | 25 |
-| **`cda_3oh_agent` Stage-1 (Referee Prompt)** | **`gemini-4-argon`** | **698** | **`96.42%`** | **`90.24%` (37/41)** | **`63.79%`** | **`0.7475`** | **`0.8641`** | **21** |
+| **Stage-1 Referee-Optimized (`cda_dust_agent`)** | **`gemini-4-argon`** | **698** | **`96.42%`** | **`90.24%` (37/41)** | **`63.79%`** | **`0.7475`** | **`0.8641`** | **21** |
 
 ### 4.2 Full `18,305`-Spectrum Labelled Archive Progression (Stage-1 vs. Stage-2)
 
@@ -67,7 +67,7 @@ In [15_3oh_few_shot_study.ipynb](3oh_classification/15_3oh_few_shot_study.ipynb)
 
 ## 5. Stage-2 Leak-Free Blind `3-P` Adjudication (`377` Stage-1 Batch FPs from $N=17,146$ Archive)
 
-To resolve the Stage-1 `3-P` precision bottleneck (`16.13%` on the 544-sample study set and `1.31%` [`5/382`, `377` FPs] on the full `17,146`-spectrum batch run `cda-batch-20260707`), we evaluated the two-anchor mass-calibrated Stage-2 pipeline across all `377` Stage-1 batch false positives, all `8` held-out catalogued `3-P` grains, and the out-of-distribution mixed chloride-phosphate grain `SCLK 1511735208` ([metrics_3p_stage2_comparison.json](../cda_3oh_agent/data/results/metrics_3p_stage2_comparison.json)):
+To resolve the Stage-1 `3-P` precision bottleneck (`16.13%` on the 544-sample study set and `1.31%` [`5/382`, `377` FPs] on the full `17,146`-spectrum batch run `cda-batch-20260707`), we evaluated the two-anchor mass-calibrated Stage-2 pipeline across all `377` Stage-1 batch false positives, all `8` held-out catalogued `3-P` grains, and the out-of-distribution mixed chloride-phosphate grain `SCLK 1511735208` ([metrics_3p_stage2_comparison.json](../cda_dust_agent/data/results/metrics_3p_stage2_comparison.json)):
 
 | `3-P` Pipeline Stage ($N = 17,146$ Batch Run) | Canonical `3-P` Recall (`TP / 8`) | Total Recall incl. Mixed `SCLK 1511735208` (`TP / 9`) | Stage-1 Batch FPs Remaining (`/ 377`) | Full-Batch Precision (`5` Benchmark `3-P`) | `SCLK 1511735208` Disposition |
 | :--- | :---: | :---: | :---: | :---: | :--- |

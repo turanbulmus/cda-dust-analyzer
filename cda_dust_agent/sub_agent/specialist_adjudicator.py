@@ -11,7 +11,7 @@ from google.adk.agents import BaseAgent
 from google.adk.agents.invocation_context import InvocationContext
 from google.adk.events import Event
 from google.genai import Client
-from google.genai.types import Content, Part, GenerateContentConfig, ThinkingConfig
+from google.genai.types import Content, Part, GenerateContentConfig
 
 from ..config import Config
 from ..prompts import (
@@ -62,13 +62,13 @@ STAGE2_RESPONSE_SCHEMA = {
 def build_stage2_hard_negative_exemplars(train_df: pd.DataFrame) -> list:
     """Builds the multimodal few-shot parts for Stage-2 intra-Type-3 specialist adjudication
     using Dual-Panel Mass-Calibrated Plots and 1D Quantitative Telemetry from the training set."""
-    # Reduce to 8 highest-contrast exemplars (3 3-OH, 2 3-Car, 1 3-KNa, 1 3-Cl, 1 Type 1) for fast, focused inference
     selected_rows = []
+    cls_col = "catalogue_class" if "catalogue_class" in train_df.columns else "class"
     for cls_name, cap in [("3-OH", 3), ("3-Car", 2), ("3-KNa", 1), ("3-Cl", 1), ("1", 1)]:
-        sub_c = train_df[train_df["catalogue_class"] == cls_name]
+        sub_c = train_df[train_df[cls_col] == cls_name]
         if len(sub_c) > 0:
             selected_rows.append(sub_c.iloc[:cap])
-    sub_df = pd.concat(selected_rows, ignore_index=True)
+    sub_df = pd.concat(selected_rows, ignore_index=True) if selected_rows else train_df.head(8)
 
     parts = [
         Part.from_text(text=STAGE2_3OH_ADJUDICATOR_TASK_PROMPT),
@@ -80,7 +80,7 @@ def build_stage2_hard_negative_exemplars(train_df: pd.DataFrame) -> list:
     for idx, (_, row) in enumerate(sub_df.iterrows()):
         sclk_id = str(int(row["sclk"]))
         bin_lbl = str(row["class"])
-        cat_cls = str(row["catalogue_class"])
+        cat_cls = str(row.get("catalogue_class", row["class"]))
         cat_desc = CATALOGUE_SUBCLASS_DESCRIPTIONS.get(cat_cls, cat_cls)
         spec = np.asarray(row["spectrum"], dtype=float)
 
@@ -208,7 +208,6 @@ async def adjudicate_candidates_3oh(
 
             physics_cls = "3-OH" if tele["passes_129_veto"] else "non-3-OH"
             strict_cls = "3-OH" if tele["passes_strict_veto"] else "non-3-OH"
-            # Hybrid Neuro-Symbolic Consensus: must pass both the 129u Carbonate Physics Gate and Stage-2 Specialist VLM
             hybrid_cls = "3-OH" if (vlm_cls == "3-OH" and tele["passes_129_veto"]) else "non-3-OH"
             hybrid_strict_cls = "3-OH" if (vlm_cls == "3-OH" and tele["passes_strict_veto"]) else "non-3-OH"
 
@@ -232,7 +231,7 @@ async def adjudicate_candidates_3oh(
 
 class Stage2SpecialistAdjudicatorAgent(BaseAgent):
     """Runs Stage-2 Intra-Type-3 Specialist Adjudication (Dual-Panel Mass-Calibrated Plots +
-    1D Quantitative Telemetry + Physics Veto Gate) on all candidates flagged by Stage 1."""
+    1D Quantitative Telemetry + Physics Veto Gate) on candidates flagged by Stage 1."""
 
     project_id: str
     model_id: str = "gemini-4-argon"
@@ -243,16 +242,20 @@ class Stage2SpecialistAdjudicatorAgent(BaseAgent):
             yield log_and_yield(self.name, "Stage-2 Specialist Adjudicator is disabled; skipping.")
             return
 
-        results_csv = "cda_3oh_agent/data/results/results.csv"
+        results_csv = "cda_dust_agent/data/results/results.csv"
         if not os.path.exists(results_csv):
             yield log_and_yield(self.name, f"No Stage-1 results found at {results_csv}; skipping Stage-2.")
             return
 
+        res_df = pd.read_csv(results_csv)
+        if "predicted_class" not in res_df.columns or "3-OH" not in set(res_df["predicted_class"].astype(str)):
+            yield log_and_yield(self.name, "No binary 3-OH candidates present in current run; skipping live Stage-2 re-inference.")
+            return
+
         from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 
-        res_df = pd.read_csv(results_csv)
-        test_df = pd.read_parquet("cda_3oh_agent/data/testing/cda_test.parquet")
-        train_df = pd.read_parquet("cda_3oh_agent/data/raw/cda_train.parquet")
+        test_df = pd.read_parquet("cda_dust_agent/data/testing/cda_test.parquet")
+        train_df = pd.read_parquet("cda_dust_agent/data/raw/cda_train.parquet")
 
         flagged_sclks = set(res_df[res_df["predicted_class"] == "3-OH"]["sclk"].astype(int).tolist())
         yield log_and_yield(
@@ -273,10 +276,9 @@ class Stage2SpecialistAdjudicatorAgent(BaseAgent):
         )
 
         merged_cand = cand_df.drop(columns=["spectrum"]).merge(adj_df, on="sclk", how="left")
-        os.makedirs("cda_3oh_agent/data/results", exist_ok=True)
-        merged_cand.to_csv("cda_3oh_agent/data/results/stage2_adjudication_results.csv", index=False)
+        os.makedirs("cda_dust_agent/data/results", exist_ok=True)
+        merged_cand.to_csv("cda_dust_agent/data/results/stage2_adjudication_results.csv", index=False)
 
-        # Merge back into the full 18,305 archive evaluation
         sclk_to_vlm = dict(zip(adj_df["sclk"], adj_df["stage2_vlm_class"]))
         sclk_to_phys = dict(zip(adj_df["sclk"], adj_df["physics_veto_class"]))
         sclk_to_hyb = dict(zip(adj_df["sclk"], adj_df["hybrid_class"]))
@@ -291,7 +293,7 @@ class Stage2SpecialistAdjudicatorAgent(BaseAgent):
         res_df["pred_hybrid"] = res_df.apply(
             lambda r: sclk_to_hyb.get(int(r["sclk"]), r["predicted_class"]), axis=1
         )
-        res_df.to_csv("cda_3oh_agent/data/results/results_hybrid_stage2.csv", index=False)
+        res_df.to_csv("cda_dust_agent/data/results/results_hybrid_stage2.csv", index=False)
 
         y_true = res_df["true_class"].tolist()
         comparison = {}
@@ -324,7 +326,7 @@ class Stage2SpecialistAdjudicatorAgent(BaseAgent):
                 "fp_by_catalogue_class": {str(k): int(v) for k, v in fp_by_cls.items()},
             }
 
-        with open("cda_3oh_agent/data/results/metrics_3oh_stage2_comparison.json", "w") as f:
+        with open("cda_dust_agent/data/results/metrics_3oh_stage2_comparison.json", "w") as f:
             json.dump(comparison, f, indent=2)
 
         yield log_and_yield(

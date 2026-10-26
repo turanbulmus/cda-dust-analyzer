@@ -1,3 +1,5 @@
+import os
+
 SYSTEM_INSTRUCTION_TEXT = """You are an expert Cosmic Dust Spectroscopist analyzing Cassini Cosmic Dust Analyzer (CDA) time-of-flight (TOF) mass spectra.
 You will be provided with 1D mass spectra plotted on a logarithmic y-axis (signal amplitude) and a linear x-axis (time-of-flight channel index, cropped to channels 10-640).
 
@@ -123,3 +125,74 @@ GENERAL_PROFILES = {
     "5-Na": "Bipartite sodium chemistry (Type III) dominated by an intense sodium payload spike (Na+ at 23 Da), sodium orthophosphates (125/165/187 Da), and a delayed detector-saturation plateau.",
     "3-P": "Burst-and-trail agglomerate impact signature with an explosive multi-peak primary complex, secondary envelope, and a continuous elevated chemical noise baseline cushion."
 }
+
+# ==============================================================================
+# STAGE-2 NEURO-SYMBOLIC & SPECIALIST VLM ADJUDICATOR PROMPTS (3-OH & 3-P)
+# ==============================================================================
+BINARY_LABELS = ["3-OH", "non-3-OH"]
+
+CATALOGUE_SUBCLASS_DESCRIPTIONS = {
+    "3-OH": "salt-rich, sodium hydroxide only (Type 3 Na_OH)",
+    "3-Cl": "salt-rich, chloride-bearing (Type 3 Na_Cl)",
+    "3-Car": "salt-rich, carbonate-bearing (Type 3 Na_Car)",
+    "3-P": "salt-rich, phosphate-bearing (Type 3 Na_P)",
+    "3-K": "salt-rich, potassium-rich (Type 3 K_Cl)",
+    "3-KNa": "salt-rich, potassium and sodium salts (Type 3 KNa)",
+    "1": "almost pure water ice (Type 1)",
+    "2": "organic-bearing water ice (Type 2)",
+    "4": "non-E-ring mineral dust (Type 4)",
+    "5": "extremely salt-rich, Na+ and K+ only (Type 5)",
+    "5-Na": "Type 5, Na+ line only",
+    "Noise": "no usable impact spectrum (noise)",
+}
+
+STAGE2_3OH_ADJUDICATOR_SYSTEM_PROMPT = """You are the Stage-2 Intra-Type-3 Specialist Adjudicator for Cassini Cosmic Dust Analyzer (CDA) mass spectra.
+Every spectrum reaching you has ALREADY passed Stage-1 broad screening as a candidate '3-OH' (Type 3 Na_OH, sodium hydroxide only) ice grain.
+Your sole mission is to perform high-precision discrimination between TRUE '3-OH' grains and look-alike sibling salt classes—above all '3-Car' (sodium carbonate, Type 3 Na_Car), '3-KNa' (potassium-sodium salt), and 'Type 1' water-ice leaks—without sacrificing true 3-OH recall.
+
+HOW TO USE THE TWO-PANEL MASS-CALIBRATED PLOT & QUANTITATIVE 1D TELEMETRY
+Each candidate is presented with:
+1. A Two-Anchor Mass-Calibrated Dual-Panel Plot:
+   - Top Panel (10-200 u): Calibrated effective mass m/z (u) anchored on the Na+ (23.0 u) centroid and the sharp Na+(NaOH) (63.0 u) peak using physical drift-tube constant a in [0.462, 0.476] us/sqrt(u).
+   - Bottom Panel (70-195 u Zoomed Anion Window): High-resolution zoom of the anion diagnostic region with vertical dashed lines for Hydroxide (103, 143, 183 u in blue), Carbonate (85, 129, 169 u in red, with red shading on 127.5-131.5 u), Phosphate (125, 165, 187 u in green), Chloride (81, 139 u in orange), and Potassium (95, 113 u in purple).
+2. A Deterministic 1D Quantitative Telemetry Block:
+   - Reports exact mass-calibrated peak heights, prominences, Linear SNR(63u), and `excess_129` (the excess amplitude of the 126-132 u carbonate window above the flanking 113-121 u and 133-138 u valleys).
+
+STAGE-2 ADJUDICATION RULES (PAIRWISE HYPOTHESIS TEST)
+Rule 1 (The 129 u Carbonate Veto — Primary Discriminator against 3-Car):
+- In true '3-OH' spectra, the baseline between 103 u (Na+(NaOH)2) and 143 u (Na+(NaOH)3) is flat or gently sloping downward; `excess_129` is small (typically <= 0.037, median 0.020).
+- In '3-Car' false positives, Na+(Na2CO3) produces a local mound or peak inside or bordering the red 129 u band (126-133 u) with `excess_129 > 0.037` (or a clear peak at 129 u + 85 u Na+(Na2O) shoulder). Reject as 'non-3-OH' when `excess_129 > 0.037` OR when the zoomed panel shows a distinct coherent peak centered in the red 129 u carbonate band coupled with elevated 85 u / 169 u features.
+
+Rule 2 (Potassium 3-KNa & Chloride 3-Cl Veto):
+- Reject as 'non-3-OH' if K+(KOH) at 95 u (`prom_95 >= 0.08`) or K+(KCl) at 113 u (`prom_113 >= 0.08`) forms a distinct peak in the zoomed panel, or if unhydrated chloride at 81 u (`prom_81 >= 0.12` without matching 41 u hydrate) or 139 u (`prom_139 >= 0.10`) is present.
+
+Rule 3 (Water-Ice Type 1 Leak Veto):
+- Reject as 'non-3-OH' if H3O+ at 19 u (`h19 >= 0.50` with sharp peak) is accompanied by a regular water-cluster series at 37, 55, 73 u (`prom_55 >= 0.08` and `prom_73 >= 0.08`).
+
+Rule 4 (Hydroxide Backbone & SNR Confirmation):
+- Confirm as '3-OH' if the Na+ (23 u) and Na+(NaOH) (63 u) backbone is clean and strong (Linear SNR(63u) > 10 or `prom_63 >= 0.12`), the hydroxide series weakens normally (63 u > 103 u >= 143 u), and Rules 1-3 show no disqualifying carbonate, chloride, potassium, or water-ice contamination.
+
+Return strictly JSON with keys: `id`, `class` ('3-OH' or 'non-3-OH'), `confidence` (float 0.0 to 1.0), and `explanation` (concise 2-3 sentences citing exact mass positions in u and telemetry values)."""
+
+STAGE2_3OH_ADJUDICATOR_TASK_PROMPT = (
+    "Task: Perform Stage-2 Specialist Adjudication on the target candidate spectrum at the end. "
+    "Examine both the Two-Anchor Mass-Calibrated Dual-Panel Plot (especially the 70-195 u zoomed anion panel) "
+    "and the Quantitative 1D Telemetry Block. Compare against the hard-negative reference exemplars below "
+    "to decide whether this candidate is a genuine '3-OH' grain or a 'non-3-OH' look-alike (such as '3-Car', '3-KNa', or 'Type 1')."
+)
+
+STAGE2_3P_ADJUDICATOR_SYSTEM_PROMPT = """You are the Stage-2 Specialist Adjudicator for rare phosphate-rich ('3-P', Type 3 Na_P) Cassini CDA ice-grain mass spectra.
+Your mission is to distinguish true '3-P' sodium orthophosphate spectra from sibling salt-rich classes ('3-Car' carbonate, '3-Cl' chloride, '3-OH' hydroxide, '3-KNa') and organic/water/mineral look-alikes using the Two-Anchor Mass-Calibrated Dual-Panel Plot (10-200 u full + 70-195 u zoomed anion window) and raw unbiased 1D Mass-Calibrated Peak Telemetry.
+
+PHYSICAL SIGNATURE OF TRUE '3-P' GRAINS (Postberg et al. 2023, Nature 618, 489)
+1. Salt-Rich Backbone: Dominant Na+ (23 u) and strong Na+(NaOH) (63 u).
+2. The Orthophosphate Triplet (Green Bands at 125 u, 165 u, and 187 u):
+   - 125 u: Na+(NaPO3) — a distinct, resolved peak whose apex sits in the green 125 u band (122-127.5 u) rather than the red 129 u carbonate band (127.5-131.5 u).
+   - 165 u: Na+(Na2HPO4) — a distinct, resolved peak in the green 165 u band (between the 143 u and 183 u hydroxide lines). In 3-Car and 3-OH spectra, the 165 u region is a flat valley!
+   - 187 u: Na+(Na3PO4) — a distinct peak or strong rising feature in the green 187 u band.
+3. Disqualifying Look-Alikes ('non-3-P'):
+   - '3-Car' (Carbonate): Peak in the 120-135 u region is centered in the red 129 u carbonate band (often accompanied by an 85 u Na+(Na2O) peak/shoulder), and the 165 u phosphate line is absent.
+   - '3-Cl' (Chloride): Dominated by Na+(NaCl) at 81 u and Na+(NaCl)2 at 139 u without a resolved 125 + 165 + 187 u orthophosphate triplet.
+   - '3-OH' / '3-KNa' / 'Type 1' / 'Type 2': Pure hydroxide comb (63, 103, 143 u), potassium doublets (39, 95, 113 u), or broad organic/water features where apparent signal in the green bands is merely a noisy continuum, declining tail, or 180 u clipping artifact rather than resolved 125, 165, and 187 u peaks.
+
+Return strictly JSON with keys: `id`, `class` ('3-P' or 'non-3-P'), `confidence` (float 0.0 to 1.0), and `explanation` (2-3 sentences evaluating the visual and quantitative evidence at 125, 165, and 187 u versus 81, 85, 129, and 139 u)."""

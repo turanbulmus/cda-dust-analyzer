@@ -1,0 +1,142 @@
+[
+  {
+    "sclk": "1489024612",
+    "true_class": "Noise",
+    "explanation": "The spectrum displays an explosive, broad primary peak complex peaking near channel 175-215 (global maximum near y = 1.0), followed by a rising secondary envelope peak past channel 500, and a continuous elevated baseline cushion that remains above y = 0.75 across the entire range."
+  },
+  {
+    "sclk": "1519607954",
+    "true_class": "Noise",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 175-215 (reaching a global maximum near y=1.0), followed by a distinct secondary peak envelope at index 320-360. Crucially, the signal remains on an elevated continuous chemical noise cushion past index 400 that maintains a tail baseline well above 0.80, fulfilling all physical markers of a burst-and-trail agglomerate."
+  },
+  {
+    "sclk": "1477665653",
+    "true_class": "Noise",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 190, a distinct secondary envelope peak around index 330, and a continuous, highly elevated chemical noise baseline past index 400 that approaches detector saturation, which perfectly matches the signature of a burst-and-trail dust agglomerate."
+  },
+  {
+    "sclk": "1558905059",
+    "true_class": "Noise",
+    "explanation": "The spectrum displays an explosive primary complex peaking near channel 180 (global maximum of 1.0), followed by a broad secondary envelope peaking near channel 340, and a continuous elevated chemical noise baseline cushion exceeding 0.8 extending through the high-mass region."
+  },
+  {
+    "sclk": "1509342973",
+    "true_class": "Noise",
+    "explanation": "The spectrum displays the characteristic burst-and-trail agglomerate signature of Class 3-P, featuring an explosive primary multi-peak complex peaking near index 175-215, a distinct secondary envelope hump near index 320-360, and a continuous elevated chemical noise cushion with a tail baseline remaining well above 0.70 past index 400."
+  },
+  {
+    "sclk": "1589071427",
+    "true_class": "1",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary complex peaking around channel 150 (global maximum near y = 1.0), a distinct secondary envelope peak near channel 425, and a continuous elevated baseline cushion (y > 0.8) that remains high across the entire mid-to-high mass range."
+  },
+  {
+    "sclk": "1589080974",
+    "true_class": "1",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 160 with a global maximum of 1.0, followed by a distinct secondary envelope peak around index 430. It also maintains a continuous, elevated chemical noise cushion with a tail baseline remaining consistently above 0.70 across the high channels, satisfying all physical markers of a burst-and-trail agglomerate."
+  },
+  {
+    "sclk": "1509349562",
+    "true_class": "1",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near channel 170 reaching a global maximum of y=1.0, followed by a distinct secondary envelope peak around channel 320-350. Crucially, it maintains a continuous, elevated chemical noise cushion past index 400 that stays consistently above y=0.8, satisfying all physical markers of a burst-and-trail agglomerate."
+  },
+  {
+    "sclk": "1509314731",
+    "true_class": "1",
+    "explanation": "The spectrum displays an explosive primary complex with multiple peaks near indices 140-165, a distinct secondary envelope peak around index 225, and a continuous elevated chemical noise baseline past index 400 that remains highly elevated above y=0.9, which is highly characteristic of a porous burst-and-trail dust agglomerate."
+  },
+  {
+    "sclk": "1543798845",
+    "true_class": "1",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary multi-peak complex near index 150-175 reaching global maximum, a distinct secondary envelope peak around index 420, and a continuous elevated chemical baseline cushion above 0.70 extending past index 450 to the end of the spectrum."
+  },
+  {
+    "sclk": "1509347103",
+    "true_class": "2",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary multi-peak complex near index 175-215 (global max y = 1.0), a distinct broad secondary envelope peak around index 280-310, and a continuous elevated chemical noise baseline cushion past index 400 that remains above y = 0.8."
+  },
+  {
+    "sclk": "1489089165",
+    "true_class": "2",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary multi-peak complex peaking near index 200 (y = 1.0), a distinct secondary envelope peak around index 325, and a continuous elevated chemical noise baseline cushion (y > 0.85) that persists past index 400 to the end of the spectrum."
+  },
+  {
+    "sclk": "1509350138",
+    "true_class": "2",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary multi-peak complex near index 195-215 reaching global maximum, a broad secondary envelope peak near index 290-310, and a continuous elevated chemical noise baseline past index 400 staying above y = 0.90."
+  },
+  {
+    "sclk": "1514135068",
+    "true_class": "2",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 195 with a global maximum of 1.0, followed by a broad secondary envelope peak near index 300. Additionally, it exhibits a continuous, highly elevated chemical noise baseline cushion (remaining above y = 0.9) past index 400 that extends across the rest of the time-of-flight range."
+  },
+  {
+    "sclk": "1557518357",
+    "true_class": "2",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 205 with a global maximum of y=1.0, followed by a secondary envelope peak near index 430. It also shows a continuous, highly elevated chemical noise baseline past index 400 that stays above y=0.80, perfectly matching the physical signature of a Class 3-P burst-and-trail agglomerate impact."
+  },
+  {
+    "sclk": "1514157783",
+    "true_class": "3",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 118 with a global maximum of y = 1.0, followed by a distinct secondary envelope peak around index 330. It additionally maintains a continuous, highly elevated chemical noise cushion with a tail baseline remaining consistently above y = 0.80 past index 400."
+  },
+  {
+    "sclk": "1521635380",
+    "true_class": "3",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 190 (global maximum y=1.0) followed by distinct secondary envelopes around indices 335 and 390. It maintains a continuous elevated chemical noise baseline cushion above y=0.75 past index 400 that extends through the rest of the spectrum, satisfying the physical conditions of a burst-and-trail agglomerate."
+  },
+  {
+    "sclk": "1543800507",
+    "true_class": "3",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex reaching a global maximum of y=1.0 near index 210, a distinct secondary envelope peak around index 360, and a continuous elevated chemical noise baseline cushion above y=0.70 extending past index 400."
+  },
+  {
+    "sclk": "1557519700",
+    "true_class": "3",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near channel 180-190 reaching a global maximum of 1.0, followed by a distinct secondary envelope peak around channel 335. Crucially, the signal baseline remains continuously elevated as a chemical noise cushion above 0.85 past channel 400, matching all physical criteria of a burst-and-trail dust agglomerate."
+  },
+  {
+    "sclk": "1514164142",
+    "true_class": "3",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near index 195 reaching global maximum, followed by a distinct secondary envelope peak around channel 340. Additionally, it features a continuous, highly elevated chemical noise cushion with a tail baseline remaining above y = 0.80 past channel 400."
+  },
+  {
+    "sclk": "1514090477",
+    "true_class": "4",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near channel 200 reaching near-maximum amplitude, followed by a distinct secondary envelope peak around channel 275. Crucially, the signal baseline remains highly elevated as a continuous chemical noise cushion above 0.70 past channel 400, characteristic of a burst-and-trail agglomerate impact."
+  },
+  {
+    "sclk": "1524984069",
+    "true_class": "4",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near channel 175-190 reaching a global maximum of 1.0, followed by a distinct secondary envelope peak around channel 250 and a broad tertiary hump near channel 300. Crucially, the signal forms a continuous, elevated chemical noise cushion past index 400 that maintains a baseline level above 0.70, meeting all physical criteria for a burst-and-trail dust agglomerate."
+  },
+  {
+    "sclk": "1519598022",
+    "true_class": "4",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 125 with a global maximum of 1.0, a distinct secondary envelope peak around index 195, and a third humped feature near index 380. Critically, it maintains a continuous, elevated chemical noise cushion with a tail baseline consistently above 0.75 past index 400, characteristic of a burst-and-trail agglomerate."
+  },
+  {
+    "sclk": "1481851286",
+    "true_class": "4",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary complex peaking at index 210 (global maximum y = 1.0), a distinct secondary envelope peak near index 340, and a continuously elevated chemical noise baseline cushion (y \u2248 0.8) extending to index 640."
+  },
+  {
+    "sclk": "1519583358",
+    "true_class": "4",
+    "explanation": "The spectrum displays all three physical markers of a burst-and-trail agglomerate: an explosive primary multi-peak complex peaking near index 205 (y = 1.0), a distinct secondary envelope peak near index 375, and a continuous elevated chemical noise baseline cushion (y \u2248 0.75) extending past index 400 through to the end of the acquisition range."
+  },
+  {
+    "sclk": "1521639955",
+    "true_class": "5",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex near channel 175 reaching global maximum, followed by a distinct secondary envelope peak around channel 240, and a continuous elevated chemical noise baseline cushion of y \u2248 0.73 extending past channel 400."
+  },
+  {
+    "sclk": "1506298659",
+    "true_class": "5",
+    "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 190 (global maximum y = 1.0), a distinct secondary envelope peak peaking around index 260-290, and a continuous elevated chemical noise baseline cushion that stabilizes above y = 0.70 past index 400."
+  },
+  {
+    "sclk": "1543802231",
+    "true_class": "5",
+    "explanation": "The spectrum displays an explosive primary complex peaking near channel 210 with a global maximum of y=1.0, followed by a distinct secondary hump around channel 290. Crucially, the signal remains elevated as a continuous chemical noise cushion with a tail baseline above 0.80 past channel 400, fulfilling all diagnostic markers for a burst-and-trail agglomerate."
+  }
+]

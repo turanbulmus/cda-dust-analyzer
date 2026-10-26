@@ -1,0 +1,422 @@
+{
+  "1489024612": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near index 200 (global max y=1.0), followed by a distinct broad secondary envelope around index 320-360, and a continuous elevated chemical noise cushion past index 400 with a tail baseline consistently above 0.7, fulfilling all conditions for Class 3-P."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum exhibits the key characteristics of a Class 3-P agglomerate, featuring an explosive primary multi-peak complex peaking near index 200 at y=1.0, a distinct secondary envelope, and a sustained elevated chemical noise cushion with a post-baseline of 0.84 past index 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the critical negative-going spike ('Dip @ 82') which disqualifies it from Class 3-P and indicates instrumental artifact. Additionally, the pre-impact baseline (0.80) and post-impact baseline (0.84) are exceptionally high, suggesting an overwhelming instrumental background inconsistent with other chemical classes."
+    }
+  },
+  "1519607954": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum exhibits a sustained, very high signal amplitude across its entire range, with a tail baseline consistently above 0.70, which is characteristic of the continuous chemical noise cushion found in Class 3-P. Although distinct primary and secondary peaks are less pronounced due to overall saturation, the chaotic high amplitude profile is consistent with a burst-and-trail agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the hallmarks of a Class 3-P agglomerate: a primary multi-peak complex reaching maximum amplitude (y=1.0) and a sustained, elevated chemical noise cushion with a post-baseline value of 0.9, extending beyond index 400 and never returning to zero."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the clear presence of sharp negative-going spikes ('Dip @ 13', 'Dip @ 75'), which immediately disqualify it from Class 3-P and require classification as Class 2, Noise, or Class 5. The consistently high and erratic signal (pre-baseline 0.84, post-baseline 0.91) across the entire range, lacking any identifiable chemical patterns for Class 2 or 5, points to overwhelming instrumental noise or saturation."
+    }
+  },
+  "1477665653": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the hallmark features of a Class 3-P burst-and-trail agglomerate: an explosive primary multi-peak complex peaking near index 175-215, a distinct secondary envelope around index 320-360, and a continuous, elevated chemical noise cushion with a baseline well above 0.70 past index 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays a clear explosive primary multi-peak complex peaking near index 200 with global maximum y=1.0, followed by a secondary rise after a dip around index 300. Crucially, it exhibits a continuous and highly elevated chemical noise cushion with a post-baseline of 0.96 past index 400, never returning to zero."
+    },
+    "case_c": {
+      "class": "Class 5",
+      "explanation": "This spectrum is disqualified from Class 3-P due to the high pre-impact baseline (0.78 > 0.20) and the presence of sharp negative spikes ('Dips'). The overwhelming early signal amplitude, peaking at 1.0 and sustaining a high plateau of 0.96, suggests a saturated Class 5 alkali core spectrum."
+    }
+  },
+  "1558905059": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking around channel 190 at y=1.0, followed by a distinct secondary hump after channel 320. Crucially, it exhibits a continuous, elevated chemical noise cushion with a tail baseline consistently above 0.70 past channel 400, extending to the end of the spectrum, fulfilling all conditions for Class 3-P."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near channel 200 (global maximum y=1.0), followed by a distinct broad secondary hump around channels 320-360, and a continuous elevated chemical noise cushion with a post-baseline of 0.85 past channel 400, fulfilling all conditions for Class 3-P."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum displays an extremely high pre-impact baseline (0.78) and post-impact baseline (0.85), coupled with multiple prominent sharp negative-going spikes (dips). These features, particularly the negative spikes, are definitive indicators of instrumental noise or artifact, leading to disqualification from all chemical classes and classification as Noise."
+    }
+  },
+  "1509342973": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an extremely high, sustained signal from early channels, rising to full saturation (y=1.0) by mid-channels (~350-400) and maintaining it to the end. This is consistent with a highly energetic Class 3-P agglomerate producing an 'explosive multi-peak complex' and a 'distinct broad secondary hump' that are merged into saturation, followed by a 'continuous elevated chemical noise cushion' (tail baseline > 0.70)."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an initial high-amplitude, multi-peak complex in the early channels and a continuous, highly elevated signal with a tail baseline of 0.92 past index 400, consistent with the burst-and-trail characteristics of an agglomerate."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum displays prominent sharp negative-going spikes (marked as 'Dip' in the early region), which are explicitly stated to disqualify it from Class 3-P and indicate instrumental noise or artifacts. It also lacks any characteristic chemical peaks or envelopes described for Class 1, 2, 3, 4, 5, or 5-Na, making Noise the most appropriate classification."
+    }
+  },
+  "1589071427": {
+    "true_class": "1",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive multi-peak complex near index 160-170, a distinct secondary hump around index 420-450, and a continuous elevated baseline (y > 0.8) that never returns to zero, fulfilling the criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near 1.0 around index 150-200, followed by a continuous and very high elevated chemical noise cushion with a post-baseline of 0.83, extending to the end of the spectrum. The valleys do not drop deep, supporting the agglomerate 'burst-and-trail' nature."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum is characterized by an exceptionally high pre-impact baseline (0.83) and post-impact baseline (0.83), which are uncharacteristic for any chemical class. Crucially, the presence of a sharp negative-going spike ('Dip @ 22') is a strong indicator of instrumental noise or an anomaly, disqualifying it from chemical interpretation and classifying it as Noise."
+    }
+  },
+  "1589080974": {
+    "true_class": "1",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 175 and a continuous, elevated chemical noise cushion with a tail baseline consistently above 0.7 past index 400, characteristic of a Class 3-P agglomerate. The sharp dip around index 80 appears to be an instrumental artifact and not a chemical feature."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex (index 170-190, y=1.0), a broad secondary envelope (index 320-360), and a continuous elevated chemical noise cushion with a tail baseline of 0.76 extending past index 400. These features are characteristic of Class 3-P agglomerates."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum exhibits a significantly elevated pre-impact baseline (0.76) and post-impact baseline (0.76), indicating an instrumental anomaly rather than a chemical signal. Critically, the presence of a sharp negative spike ('Dip @ 82') disqualifies it from Class 3-P and points to an instrumental issue, classifying it as Noise as it does not fit other chemical classes."
+    }
+  },
+  "1509349562": {
+    "true_class": "1",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary complex peaking at y=1.0 around index 180, a distinct secondary elevation between index 300-400, and a continuous elevated chemical noise cushion with a tail baseline > 0.70 past index 400, which are all hallmarks of a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays all key markers for Class 3-P: an explosive primary multi-peak complex peaking near index 175-200 with global max y=1.0, a distinct secondary envelope peak around index 320-360, and a continuous elevated chemical noise cushion with a post-baseline of 0.83 extending past index 400. The inter-envelope valleys do not drop below y=0.15, confirming it is not Class 3."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the presence of a sharp negative-going spike ('Dip @ 160') which is an unphysical artifact for ion currents, and an extremely high and noisy pre- and post-impact baseline (0.76 and 0.83 respectively). These characteristics are inconsistent with any valid chemical mass spectrum classification and indicate a measurement dominated by instrumental issues."
+    }
+  },
+  "1509314731": {
+    "true_class": "1",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum exhibits an explosive multi-peak complex peaking at y=1.0 around channel 170-180, followed by a continuously elevated chemical signal above 0.9 from channel 200 to the end, satisfying the continuous chemical noise cushion requirement for Class 3-P. The sharp, narrow dips are likely instrumental artifacts, and other inter-envelope valleys do not drop deep."
+    },
+    "case_b": {
+      "class": "Noise",
+      "explanation": "The spectrum displays an extremely high and sustained signal level, starting from a 'Pre-baseline' of 0.81 and ending with a 'Post-baseline' of 0.94, effectively saturating the detector across all channels. It lacks any discernible characteristic chemical peaks or structures required for other classes (e.g., hydronium series, alkali spikes, organic envelopes, or agglomerate features), indicating an instrumental anomaly rather than a chemical fingerprint."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is disqualified from Class 3-P due to multiple reasons: the pre-impact baseline (0.81) is too high (>0.20), the post-impact baseline (0.94) is too high (>0.60), and critically, it exhibits sharp negative-going spikes ('Dip @ 38', 'Dip @ 92'). Per the rules, negative spikes disqualify Class 3-P and direct reclassification as Class 2, Noise, or Class 5. Given the absence of a dominant alkali peak (Class 5) and no discernible hydronium series with filled valleys (Class 2), coupled with the extremely high and erratic baseline, 'Noise' is the most appropriate classification for this artifact-dominated signal."
+    }
+  },
+  "1543798845": {
+    "true_class": "1",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near index 160 (global max y=1.0), a distinct secondary envelope around index 420, and a continuous elevated chemical noise cushion with a tail baseline consistently above 0.7, fulfilling all criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the three mandatory markers for Class 3-P: an explosive primary multi-peak complex peaking near index 175-215, a distinct secondary envelope peak around index 350, and a continuous elevated chemical noise cushion with a tail baseline of 0.76 past index 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the presence of multiple sharp negative-going spikes (dips at 82, 275, 610) which disqualify it from chemical classes. Additionally, the pre-impact baseline (0.73) and post-impact baseline (0.76) are exceptionally high, indicating severe instrumental noise dominating any potential chemical signal."
+    }
+  },
+  "1509347103": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive multi-peak complex peaking near index 200 (global max y=1.0), followed by a distinct broad secondary hump around index 320-360, and a continuous elevated chemical noise cushion with a tail baseline remaining well above 0.7 past index 400, satisfying all criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays the characteristic explosive primary multi-peak complex near index 200 (global max y=1.0), a distinct secondary hump around index 320-360, and a continuous, highly elevated chemical noise cushion (post-baseline 0.90) extending well past index 400, all consistent with a Class 3-P agglomerate."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P because its pre-impact baseline (0.69) is significantly above 0.20. Among the remaining options (Class 2, 3, or Noise), it cannot be Class 3 as its inter-cluster valleys do not drop low (y < 0.15), and it is not Noise due to the high signal. Therefore, by elimination, it is classified as Class 2, representing a saturated spectrum of dirty/organic-bearing water ice where specific peak features are masked by high signal levels and a high pre-baseline."
+    }
+  },
+  "1489089165": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the three mandatory markers for Class 3-P: an explosive primary multi-peak complex peaking near index 200 with global maximum amplitude, a distinct secondary envelope around index 320-360, and a continuous elevated chemical noise cushion past index 400 with the tail baseline remaining high above 0.7."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 200 with a global maximum of 1.0, followed by a sustained high signal level with complexities into the mid-range. Crucially, it exhibits a continuous elevated chemical noise cushion past index 400, indicated by a 'Post-baseline' of 0.94, which is well above the 0.70 threshold for Class 3-P agglomerates."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to the presence of a sharp negative spike ('Dip @ 20') and an excessively high pre-impact baseline (0.70 > 0.20), as well as a high post-impact baseline (0.94 > 0.60). Following the critical negative spike disqualifier, the spectrum is classified as Class 2, as it's not Noise or a typical Class 5, and the high baseline could represent a saturated organic-bearing water ice."
+    }
+  },
+  "1509350138": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays a sharp, explosive rise to saturation (y=1.0) around index 200, characteristic of the primary multi-peak complex of Class 3-P agglomerates. The signal remains strongly elevated and sustained past index 400 (y=1.0), consistent with the continuous chemical noise cushion marker."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays a clear explosive multi-peak complex peaking near index 200 with a global maximum at y=1.0. It also exhibits a continuous and exceptionally elevated chemical noise cushion past index 400, with a post-baseline of 0.95, strongly indicating a burst-and-trail agglomerate, and the inter-envelope valleys do not drop low."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to a high pre-impact baseline (0.71 > 0.20), a post-impact cushion that is too high (0.95 > 0.60), and the presence of a critical negative spike ('Dip @ 20'). The high, continuous signal throughout the spectrum, resembling filled valleys and an unresolved background, aligns with the characteristics of Class 2."
+    }
+  },
+  "1514135068": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three characteristic markers of a Class 3-P agglomerate: an explosive primary multi-peak complex peaking near index 200 at global max y=1.0, a distinct secondary envelope peak around index 320-330, and a continuous elevated chemical noise cushion with a tail baseline consistently above 0.8 extending past index 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive multi-peak complex rising to global maximum at ~180-200, a broad secondary envelope sustained at high amplitude around 320-360, and a continuous, highly elevated chemical noise cushion past index 400 with a post-baseline of 0.95, fulfilling all criteria for a Class 3-P agglomerate."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to its very high pre-impact baseline (0.70 > 0.20) and the presence of sharp negative-going spikes ('Dip @ 20' and 'Dip @ 113'). While anomalous, the high, sustained signal and saturated post-baseline (0.95) are most consistent with an extremely dense or saturated organic-bearing water ice (Class 2), as opposed to Noise or a typical Class 5 profile."
+    }
+  },
+  "1557518357": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near index 200, a distinct secondary broad hump around index 320-360, and a continuous elevated chemical noise cushion with a tail baseline consistently above 0.70 past index 400, fulfilling all criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three characteristic markers of a Class 3-P agglomerate: a primary complex peaking around channel 200, a distinct secondary envelope near channel 320-360, and a continuous, elevated chemical noise cushion with a tail baseline of 0.85 extending past channel 400."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to the sharp negative spike present at index 20 (Dip @ 20) and the high pre-impact baseline (0.75) and post-impact baseline (0.85). Given the presence of the negative spike, and that it is not Class 5 or Noise, it must be classified as Class 2, characterized by a continuous, high background suggesting filled valleys with an unresolved organic background."
+    }
+  },
+  "1514157783": {
+    "true_class": "3",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the required Class 3-P markers: an explosive primary multi-peak complex near channel 125-150 (max y=1.0), a distinct broad secondary hump at index 320-360, and a continuous elevated chemical noise cushion past index 400 with a tail baseline well above 0.70."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum exhibits an explosive multi-peak complex reaching maximum amplitude (y=1.0) around index 100-110, followed by a distinct secondary hump near index 320-340, and a continuous elevated chemical noise cushion past index 400 with a post-baseline of 0.83, fulfilling all three critical markers for Class 3-P."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to an extremely high pre-impact baseline (0.73 > 0.20), a high post-impact cushion (0.83 > 0.60), and the presence of sharp negative spikes (dips). The high, filled baseline throughout the spectrum, characteristic of unresolved background, is consistent with Class 2 (dirty/organic-bearing water ice)."
+    }
+  },
+  "1521635380": {
+    "true_class": "3",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive multi-peak complex around index 190 (global maximum y=1.0), followed by a distinct secondary envelope around index 330, and a continuous, elevated chemical noise cushion with a tail baseline remaining above y=0.70 past index 400, all consistent with a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near channel 175-200 with a global maximum of 1.0, followed by distinct secondary broad envelopes around channels 320-400. Crucially, it exhibits a continuous elevated chemical noise cushion with a 'Post-baseline' of 0.77 past index 400, extending beyond channel 600, fulfilling all mandatory markers for a Class 3-P agglomerate."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "The spectrum displays multiple sharp negative-going spikes, which, according to the negative spike disqualifier, immediately disqualifies it from Class 3-P and suggests classification as Class 2, Noise, or Class 5. It is not Noise due to high signal amplitude and structured peaks, nor is it Class 5 as it lacks a single overwhelming early alkali peak. The consistently high pre-impact and post-impact baselines, with generally 'filled valleys' between prominent peaks, are consistent with the unresolved organic background expected in Class 2 (dirty/organic-bearing water ice)."
+    }
+  },
+  "1543800507": {
+    "true_class": "3",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the characteristic explosive multi-peak complex peaking near channel 200 (global maximum), followed by a distinct secondary hump around channel 360. Crucially, a continuous elevated chemical noise cushion is present past channel 400 with a tail baseline well above 0.70, fulfilling all conditions for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays all key features of a Class 3-P agglomerate, including an explosive primary multi-peak complex peaking near index 210 at y=1.0, a distinct secondary envelope around index 340, and a continuous, elevated chemical noise cushion with a tail baseline of 0.77 past index 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum is characterized by a critical sharp negative-going spike ('Dip @ 20') and an exceptionally high pre-impact baseline (0.74), both of which are indicative of instrumental artifacts. These features, along with the high post-impact baseline (0.77), heavily obscure any clear chemical signatures and lead to disqualification from Class 3-P, making 'Noise' the most appropriate classification."
+    }
+  },
+  "1557519700": {
+    "true_class": "3",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays all three mandatory markers for Class 3-P: an explosive primary multi-peak complex peaking near channel 190, a distinct secondary envelope around channel 340, and a continuous elevated chemical noise cushion with baseline y > 0.8 extending past channel 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum exhibits all key markers for Class 3-P: an explosive primary multi-peak complex at ~190 (y=1.0), a distinct secondary envelope at ~340, and a continuous elevated chemical noise cushion past index 400 with a post-baseline of 0.91, indicating a burst-and-trail agglomerate."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum displays sharp negative-going spikes ('Dip @ 13', 'Dip @ 75') which immediately disqualify it from Class 3-P. Furthermore, the pre-impact baseline (0.70) is anomalously high, and the overall profile with sustained high signal levels, including the post-baseline (0.91), points to an instrumental artifact or overload rather than a valid chemical spectrum of any other class."
+    }
+  },
+  "1514164142": {
+    "true_class": "3",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex near index 190 (global max y = 1.0), followed by a distinct broad secondary envelope around index 330, and a continuous elevated chemical noise cushion (y > 0.8) past index 400 that extends to the end of the spectrum, fulfilling all conditions for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "3-P",
+      "explanation": "The spectrum exhibits the explosive multi-peak primary complex peaking near index 200 at global maximum (y=1.0), a distinct secondary envelope around index 340, and a continuous elevated chemical noise cushion with a tail baseline of 0.88 past index 400, which are all characteristic markers of Class 3-P agglomerates."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to the presence of a sharp negative spike (Dip @ 123) and an excessively high pre-impact baseline (0.68 > 0.20). According to the rules, a spectrum with a negative spike, if not Class 5 or Noise, should be classified as Class 2, representing dirty/organic-bearing water ice with a high, filled background, despite the absence of a clear hydronium comb."
+    }
+  },
+  "1514090477": {
+    "true_class": "4",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the three mandatory physical markers for Class 3-P: an explosive multi-peak complex peaking near index 200, a distinct secondary envelope around index 280, and a continuous elevated chemical noise cushion past index 400 with the tail baseline remaining above 0.70."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near index 200, a distinct secondary broad hump around index 280-300, and a continuous elevated chemical noise cushion with a post-baseline of 0.75 extending past index 400, all consistent with Class 3-P agglomerates."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to its very high pre-impact baseline (0.70), high post-impact baseline (0.75), and the presence of a sharp negative-going spike ('Dip @ 14'). The elevated and 'filled' baseline with broad features, despite the lack of a clear hydronium series, is most consistent with Class 2, representing dirty/organic-bearing ice with an unresolved background."
+    }
+  },
+  "1524984069": {
+    "true_class": "4",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three mandatory markers for Class 3-P: an explosive primary multi-peak complex peaking near index 175-215 (global maximum y = 1.0), a distinct broad secondary hump at index 320-360, and a continuous elevated chemical noise cushion with a tail baseline consistently above 0.70 past index 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 200 (y=1.0), a distinct secondary hump around index 320-360, and a continuous elevated chemical noise cushion past index 400 with a tail baseline remaining high at approximately 0.72, fulfilling all criteria for Class 3-P."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to multiple sharp negative spikes ('Dip' @ 20, 32, 493) and a pre-impact baseline significantly above 0.20 (0.70). The high and filled valleys, along with a consistently elevated baseline throughout the spectrum, are characteristic of Class 2 (dirty/organic-bearing water ice with an unresolved VOC background)."
+    }
+  },
+  "1519598022": {
+    "true_class": "4",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive multi-peak complex peaking near index 120-210 (global maximum y = 1.0), followed by a distinct broad secondary hump around index 380, and a continuous elevated chemical noise cushion past index 400 with the tail baseline remaining high (y > 0.7), consistent with a burst-and-trail agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the hallmark features of Class 3-P: an explosive primary multi-peak complex (near index 150-200), a distinct secondary envelope (near index 390), and a continuous, highly elevated chemical noise cushion (post-baseline 0.76) that persists past channel 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum exhibits a pervasive high baseline (pre-baseline 0.76, post-baseline 0.76), indicating significant background noise throughout. Critically, it contains a sharp negative spike ('Dip @ 121'), which is an unphysical artifact for positive ion current and disqualifies it from most chemical classes, leading to a classification as Noise."
+    }
+  },
+  "1481851286": {
+    "true_class": "4",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex near channel 200 with global maximum amplitude, followed by a distinct secondary envelope around channel 320, and a continuous elevated chemical noise cushion with a tail baseline remaining above 0.70 past channel 400, satisfying all three criteria for Class 3-P."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three defining characteristics of a Class 3-P agglomerate: an explosive multi-peak complex peaking near index 210-290, a distinct secondary envelope around index 320-360, and a continuous elevated chemical noise cushion past index 400 with a post-baseline of 0.80, which is well above 0.70."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to the sharp negative spike at index 10 ('Dip @ 10'), a pre-impact baseline of 0.72 (>0.20), and a post-impact baseline of 0.80 (>0.60). Given these disqualifiers, especially the negative spike, and the presence of high amplitude features and filled valleys characteristic of a 'dirty' or organic-rich spectrum rather than noise or pure atomic species, it is best classified as Class 2."
+    }
+  },
+  "1519583358": {
+    "true_class": "4",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near channel 210 with global maximum amplitude, followed by distinct secondary humps, and a continuous elevated chemical noise cushion (baseline > 0.70) extending past channel 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays an explosive primary multi-peak complex peaking near index 200, a distinct secondary hump around index 320-360, and a continuous elevated chemical noise cushion with a post-baseline of 0.76 past index 400, consistent with all mandatory markers for a burst-and-trail agglomerate."
+    },
+    "case_c": {
+      "class": "Class 2",
+      "explanation": "This spectrum is disqualified from Class 3-P due to a clear negative spike at index 90, a pre-impact baseline of 0.72 (which is > 0.20), and a post-impact cushion of 0.76 (which is > 0.60). Given the high, filled baseline (0.72 pre-baseline and 0.76 post-baseline) and multiple broad peaks, it best fits Class 2, representing dirty/organic-bearing water ice with unresolved background."
+    }
+  },
+  "1521639955": {
+    "true_class": "5",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 175, followed by a distinct secondary envelope around index 240, and a continuous elevated chemical noise cushion with a tail baseline significantly above 0.70, matching all criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive multi-peak complex near index 175-215 reaching global maximum amplitude (y=1.0), coupled with a continuous elevated chemical noise cushion with a post-baseline of 0.72 past index 400, consistent with a burst-and-trail agglomerate."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the clear presence of a sharp negative-going spike (Dip @ 163), which immediately disqualifies it from Class 3-P and other chemical classes. Additionally, the pre-impact and post-impact baselines are consistently very high (0.72), which is not typical for a chemically significant spectrum returning to a low baseline, and the post-impact baseline value (0.72) exceeds the allowed range for Class 3-P."
+    }
+  },
+  "1506298659": {
+    "true_class": "5",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three characteristic markers of a Class 3-P agglomerate: an explosive primary multi-peak complex peaking at 1.0 around index 200, a distinct secondary envelope around index 250-300, and a continuous elevated chemical noise cushion past index 400 with a baseline above 0.7."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near channel 200 (global max y=1.0) and a secondary hump around 320-360. Crucially, it exhibits a continuous elevated chemical noise cushion with a 'post-baseline' of 0.72, extending beyond channel 400 without returning to zero, satisfying all criteria for Class 3-P."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the extremely high pre-impact baseline (0.69) and post-impact baseline (0.72), which indicate an overwhelming, fluctuating background signal. Additionally, the prominent sharp negative spike ('Dip @ 172') is an instrumental artifact that prevents classification into any clear chemical class and is a specific disqualifier for Class 3-P, pushing it towards Noise or Class 2/5. Given the lack of resolved chemical peaks against this high background, 'Noise' is the most appropriate classification."
+    }
+  },
+  "1543802231": {
+    "true_class": "5",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays a strong primary complex peaking around index 220, a sustained secondary envelope, and a continuous, highly elevated chemical noise cushion with a tail baseline of approximately 0.8 past index 400, fulfilling all criteria for a Class 3-P agglomerate."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum exhibits all three mandatory markers for Class 3-P: an explosive primary multi-peak complex near channel 220, a distinct secondary hump around channel 320-360, and a continuous, highly elevated chemical noise cushion (post-baseline 0.81) extending past channel 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum displays a prominent negative-going spike (\"Dip @ 33\") and an extremely high, sustained baseline (pre-baseline 0.77, post-baseline 0.81), which are strong indicators of severe instrumental interference or saturation, not a true chemical signal. This disqualifies it from Class 3-P and other specific chemical classes."
+    }
+  }
+}

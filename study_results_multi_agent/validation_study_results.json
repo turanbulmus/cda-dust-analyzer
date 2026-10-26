@@ -1,0 +1,47 @@
+{
+  "1557518477": {
+    "true_class": "2",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays all three characteristic markers of Class 3-P: an explosive multi-peak complex peaking near index 175-215, a distinct secondary envelope around index 320-360, and a continuous elevated chemical noise cushion (tail baseline > 0.70) extending past index 400."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays the three mandatory markers for Class 3-P: a sustained, high-amplitude primary complex peaking near 1.0 (approaching saturation) between channels 175-215, a broad secondary envelope around channels 320-360, and a continuous elevated chemical noise cushion with a 'post-baseline' of 0.91 past channel 400, which is well above 0.70."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "This spectrum is classified as Noise due to the presence of a sharp negative-going spike (Dip @ 20) and an extremely high, sustained baseline (pre-baseline 0.85, post-baseline 0.91), which are not characteristic of any chemical species classes. It does not show typical features of Class 2 or Class 5, making Noise the most fitting classification."
+    }
+  },
+  "1533132722": {
+    "true_class": "Noise",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "The spectrum displays an explosive primary multi-peak complex peaking near index 175-200 (y=1.0), followed by a distinct secondary envelope around index 320-360, and a continuous elevated chemical noise cushion with a baseline above 0.8 extending past index 600."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three mandatory markers for Class 3-P: an explosive primary multi-peak complex peaking near index 200, a distinct secondary envelope around index 350, and a continuous elevated chemical noise cushion with a post-baseline of 0.85 past index 400."
+    },
+    "case_c": {
+      "class": "Class 3",
+      "explanation": "The spectrum displays a broad, continuous high-amplitude signal from the start, peaking around index 200, which is characteristic of organic-rich impacts. It is disqualified from Class 3-P due to an excessively high pre-impact baseline (0.90 > 0.20), and fails to meet criteria for Class 1, 2, 4, 5, or 5-Na. Given the prompt's instruction to classify as Class 2, 3, or Noise if disqualified from Class 3-P, Class 3 (macromolecular organics) is the best fit for this broad, high signal, despite the probable saturation obscuring typical 'shark-fin' features or low valleys."
+    }
+  },
+  "1506298659": {
+    "true_class": "5",
+    "case_a": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three characteristic markers of a Class 3-P agglomerate: an explosive primary multi-peak complex near channel 190 (max y=1.0), a distinct secondary envelope around channel 320-330, and a continuous elevated chemical noise cushion past channel 400 with a baseline consistently above y=0.7."
+    },
+    "case_b": {
+      "class": "Class 3-P",
+      "explanation": "This spectrum displays all three markers for Class 3-P: an explosive primary multi-peak complex peaking near index 200, a distinct secondary broad hump around index 320-360, and a continuous elevated chemical noise cushion with a post-baseline of 0.72, extending past index 400."
+    },
+    "case_c": {
+      "class": "Noise",
+      "explanation": "The spectrum displays an extremely high and erratic baseline throughout (pre-baseline 0.69, post-baseline 0.72), along with a sharp negative-going spike at index 172. These features, particularly the negative spike, disqualify it from Class 3-P and indicate severe instrumental noise or an artifact rather than a discernible chemical signature."
+    }
+  }
+}

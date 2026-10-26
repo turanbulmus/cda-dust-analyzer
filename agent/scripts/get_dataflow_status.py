@@ -30,7 +30,7 @@ def main():
             created = job.get('createTime')
             print(f" - Job Name: {job_name} | ID: {job_id} | State: {state} | Created: {created}")
             
-            if state == "JOB_STATE_RUNNING" and job_name.startswith("cda-data-prep-full"):
+            if state == "JOB_STATE_RUNNING":
                 # Fetch recent messages
                 print(f"\nRecent logs/messages for job {job_name} ({job_id}):")
                 msg_request = service.projects().locations().jobs().messages().list(
